@@ -1,0 +1,26 @@
+{
+  "model1": "qwen3.5:0.8b",
+  "model2": "gemma4:e2b",
+  "metrics": {
+    "tool_judgment_accuracy": {
+      "model1": 36.0,
+      "model2": 84.0,
+      "winner": "gemma4:e2b"
+    },
+    "context_retention_rate": {
+      "model1": 60.0,
+      "model2": 95.0,
+      "winner": "gemma4:e2b"
+    },
+    "state_tracking_accuracy": {
+      "model1": 40.0,
+      "model2": 80.0,
+      "winner": "gemma4:e2b"
+    },
+    "average_overall_turn_score": {
+      "model1": 2.04,
+      "model2": 4.34,
+      "winner": "gemma4:e2b"
+    }
+  }
+}

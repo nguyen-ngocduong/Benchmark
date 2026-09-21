@@ -1,0 +1,37 @@
+{
+  "model1": "qwen3.5:0.8b",
+  "model2": "gemma4:e2b",
+  "metrics": {
+    "correctness": {
+      "model1": 3.9,
+      "model2": 4.5,
+      "diff": 0.6,
+      "winner": "gemma4:e2b"
+    },
+    "completeness": {
+      "model1": 3.6,
+      "model2": 4.6,
+      "diff": 1.0,
+      "winner": "gemma4:e2b"
+    },
+    "fluency": {
+      "model1": 4.4,
+      "model2": 4.9,
+      "diff": 0.5,
+      "winner": "gemma4:e2b"
+    },
+    "conciseness": {
+      "model1": 4.5,
+      "model2": 5.0,
+      "diff": 0.5,
+      "winner": "gemma4:e2b"
+    },
+    "overall": {
+      "model1": 3.8,
+      "model2": 4.7,
+      "diff": 0.9,
+      "winner": "gemma4:e2b"
+    }
+  },
+  "winner": "gemma4:e2b"
+}

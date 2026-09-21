@@ -1,0 +1,326 @@
+{
+  "summary_comparison": {
+    "faithfulness": {
+      "qwen": {
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stdev": 0.0
+      },
+      "gemma": {
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stdev": 0.0
+      }
+    },
+    "completeness": {
+      "qwen": {
+        "mean": 0.764,
+        "median": 0.773,
+        "min": 0.579,
+        "max": 0.943,
+        "stdev": 0.114
+      },
+      "gemma": {
+        "mean": 0.863,
+        "median": 0.861,
+        "min": 0.709,
+        "max": 0.975,
+        "stdev": 0.082
+      }
+    },
+    "key_fact_recall": {
+      "qwen": {
+        "mean": 0.913,
+        "median": 1.0,
+        "min": 0.667,
+        "max": 1.0,
+        "stdev": 0.141
+      },
+      "gemma": {
+        "mean": 0.983,
+        "median": 1.0,
+        "min": 0.833,
+        "max": 1.0,
+        "stdev": 0.053
+      }
+    },
+    "entity_recall": {
+      "qwen": {
+        "mean": 0.703,
+        "median": 0.709,
+        "min": 0.333,
+        "max": 1.0,
+        "stdev": 0.202
+      },
+      "gemma": {
+        "mean": 0.792,
+        "median": 0.875,
+        "min": 0.333,
+        "max": 1.0,
+        "stdev": 0.252
+      }
+    },
+    "number_recall": {
+      "qwen": {
+        "mean": 0.64,
+        "median": 0.625,
+        "min": 0.0,
+        "max": 1.0,
+        "stdev": 0.363
+      },
+      "gemma": {
+        "mean": 0.86,
+        "median": 1.0,
+        "min": 0.25,
+        "max": 1.0,
+        "stdev": 0.256
+      }
+    },
+    "conciseness": {
+      "qwen": {
+        "mean": 0.785,
+        "median": 0.772,
+        "min": 0.487,
+        "max": 1.0,
+        "stdev": 0.183
+      },
+      "gemma": {
+        "mean": 0.738,
+        "median": 0.73,
+        "min": 0.43,
+        "max": 1.0,
+        "stdev": 0.212
+      }
+    },
+    "compression_ratio": {
+      "qwen": {
+        "mean": 0.459,
+        "median": 0.472,
+        "min": 0.339,
+        "max": 0.581,
+        "stdev": 0.078
+      },
+      "gemma": {
+        "mean": 0.46,
+        "median": 0.487,
+        "min": 0.259,
+        "max": 0.608,
+        "stdev": 0.118
+      }
+    },
+    "fluency": {
+      "qwen": {
+        "mean": 0.996,
+        "median": 1.0,
+        "min": 0.97,
+        "max": 1.0,
+        "stdev": 0.01
+      },
+      "gemma": {
+        "mean": 0.996,
+        "median": 0.997,
+        "min": 0.987,
+        "max": 1.0,
+        "stdev": 0.005
+      }
+    },
+    "overall_score": {
+      "qwen": {
+        "mean": 0.885,
+        "median": 0.901,
+        "min": 0.81,
+        "max": 0.938,
+        "stdev": 0.041
+      },
+      "gemma": {
+        "mean": 0.912,
+        "median": 0.916,
+        "min": 0.828,
+        "max": 0.965,
+        "stdev": 0.04
+      }
+    },
+    "latency_seconds": {
+      "qwen": {
+        "mean": 20.733,
+        "median": 19.695,
+        "min": 16.58,
+        "max": 29.93,
+        "stdev": 3.797
+      },
+      "gemma": {
+        "mean": 41.098,
+        "median": 40.135,
+        "min": 32.34,
+        "max": 62.43,
+        "stdev": 8.384
+      }
+    }
+  },
+  "sample_comparison": [
+    {
+      "sample_id": "sample_001",
+      "topic": "Quy trình chế tác khăn lụa Hermès",
+      "qwen_overall": 0.835,
+      "gemma_overall": 0.91,
+      "qwen_fact_rec": 0.75,
+      "gemma_fact_rec": 1.0,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.514,
+      "gemma_compression": 0.473,
+      "qwen_words": 126,
+      "gemma_words": 116,
+      "qwen_latency": 23.92,
+      "gemma_latency": 62.43
+    },
+    {
+      "sample_id": "sample_002",
+      "topic": "Bí quyết làm đẹp và chăm sóc da bằng đá lạnh dưa chuột",
+      "qwen_overall": 0.81,
+      "gemma_overall": 0.903,
+      "qwen_fact_rec": 1.0,
+      "gemma_fact_rec": 1.0,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.581,
+      "gemma_compression": 0.576,
+      "qwen_words": 137,
+      "gemma_words": 136,
+      "qwen_latency": 18.17,
+      "gemma_latency": 35.94
+    },
+    {
+      "sample_id": "sample_003",
+      "topic": "Chỉ đạo các nhiệm vụ trọng tâm của ngành Kiểm sát nhân dân",
+      "qwen_overall": 0.892,
+      "gemma_overall": 0.906,
+      "qwen_fact_rec": 1.0,
+      "gemma_fact_rec": 1.0,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.464,
+      "gemma_compression": 0.608,
+      "qwen_words": 129,
+      "gemma_words": 169,
+      "qwen_latency": 19.03,
+      "gemma_latency": 42.28
+    },
+    {
+      "sample_id": "sample_004",
+      "topic": "Lấy phiếu tín nhiệm tại HĐND TP. Đà Nẵng",
+      "qwen_overall": 0.912,
+      "gemma_overall": 0.828,
+      "qwen_fact_rec": 1.0,
+      "gemma_fact_rec": 1.0,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.397,
+      "gemma_compression": 0.557,
+      "qwen_words": 114,
+      "gemma_words": 160,
+      "qwen_latency": 18.37,
+      "gemma_latency": 42.22
+    },
+    {
+      "sample_id": "sample_005",
+      "topic": "Tranh luận về cơ chế thu hồi đất dự án khu đô thị tại Quốc hội",
+      "qwen_overall": 0.911,
+      "gemma_overall": 0.871,
+      "qwen_fact_rec": 1.0,
+      "gemma_fact_rec": 1.0,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.479,
+      "gemma_compression": 0.511,
+      "qwen_words": 152,
+      "gemma_words": 162,
+      "qwen_latency": 21.15,
+      "gemma_latency": 39.14
+    },
+    {
+      "sample_id": "sample_006",
+      "topic": "Cuộc cách mạng nhận diện thương hiệu của Céline, Balmain và Calvin Klein",
+      "qwen_overall": 0.938,
+      "gemma_overall": 0.922,
+      "qwen_fact_rec": 1.0,
+      "gemma_fact_rec": 1.0,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.339,
+      "gemma_compression": 0.459,
+      "qwen_words": 111,
+      "gemma_words": 150,
+      "qwen_latency": 19.24,
+      "gemma_latency": 43.61
+    },
+    {
+      "sample_id": "sample_007",
+      "topic": "Thiều Bảo Trâm xuất hiện trên biển quảng cáo Times Square với Spotify EQUAL",
+      "qwen_overall": 0.913,
+      "gemma_overall": 0.935,
+      "qwen_fact_rec": 1.0,
+      "gemma_fact_rec": 1.0,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.498,
+      "gemma_compression": 0.502,
+      "qwen_words": 119,
+      "gemma_words": 120,
+      "qwen_latency": 16.58,
+      "gemma_latency": 33.9
+    },
+    {
+      "sample_id": "sample_008",
+      "topic": "Pierpaolo Piccioli rời Valentino sau 25 năm cống hiến",
+      "qwen_overall": 0.852,
+      "gemma_overall": 0.949,
+      "qwen_fact_rec": 0.667,
+      "gemma_fact_rec": 0.833,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.375,
+      "gemma_compression": 0.318,
+      "qwen_words": 133,
+      "gemma_words": 113,
+      "qwen_latency": 20.79,
+      "gemma_latency": 37.99
+    },
+    {
+      "sample_id": "sample_009",
+      "topic": "Thức tỉnh khỏi cuộc sống rập khuôn và hành trình tìm lại bản thân",
+      "qwen_overall": 0.872,
+      "gemma_overall": 0.932,
+      "qwen_fact_rec": 0.714,
+      "gemma_fact_rec": 1.0,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.407,
+      "gemma_compression": 0.34,
+      "qwen_words": 121,
+      "gemma_words": 101,
+      "qwen_latency": 20.15,
+      "gemma_latency": 32.34
+    },
+    {
+      "sample_id": "sample_010",
+      "topic": "Bí quyết tự nhiên chăm sóc da và cơ thể trong mùa hè",
+      "qwen_overall": 0.91,
+      "gemma_overall": 0.965,
+      "qwen_fact_rec": 1.0,
+      "gemma_fact_rec": 1.0,
+      "qwen_faith": 1.0,
+      "gemma_faith": 1.0,
+      "qwen_compression": 0.539,
+      "gemma_compression": 0.259,
+      "qwen_words": 243,
+      "gemma_words": 117,
+      "qwen_latency": 29.93,
+      "gemma_latency": 41.13
+    }
+  ]
+}

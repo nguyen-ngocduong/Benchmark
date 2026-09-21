@@ -1,0 +1,275 @@
+{
+  "timestamp": "2026-09-15T16:57:45.256324",
+  "model": "qwen3.5:0.8b",
+  "total_samples": 10,
+  "successful_judged": 10,
+  "average_scores": {
+    "correctness": 3.9,
+    "completeness": 3.6,
+    "fluency": 4.4,
+    "conciseness": 4.5,
+    "overall": 3.8
+  },
+  "by_source": {
+    "human": {
+      "count": 5,
+      "avg_overall": 3.8
+    },
+    "ai": {
+      "count": 5,
+      "avg_overall": 3.8
+    }
+  },
+  "latency": {
+    "avg_ms": 15640.0,
+    "min_ms": 10050.0,
+    "max_ms": 20150.0
+  },
+  "details": [
+    {
+      "id": "sample_001",
+      "source": "human",
+      "label": 0,
+      "text": "phẩm nghệ thuật. Mỗi mùa, hơn mười phác thảo thiết kế mới được gửi đến xưởng in lụa của Hermès để rồi từ đó sản xuất thành hàng triệu chiếc khăn tại Lyon. Công việc của những nghệ sĩ chạm khắc và những nghệ nhân phối màu luôn được giữ kín tuyệt đối trước khi in các mẫu khăn. Loại tơ dùng để dệt nên khăn lụa Hermès xuất xứ từ một vườn ươm ở Brazil. Những sợi kén tơ thô được thu hoạch, sau đó mang đến xưởng dệt Perrin – Pháp, nơi làm ra những chiếc khăn của Hermès từ hơn nửa thế kỷ nay. Phải mất gần ba tháng, lần lượt trải qua các công đoạn quay lụa, dệt và khử keo, sợi chỉ thô tạo thành những cuộn vải dài 100-150 mét, sẵn sàng cho các nghệ sĩ phối màu bay bổng. Ngay khi nhận được bản thiết kế từ Paris, thợ khắc sẽ bắt tay vào việc giải mã các sắc màu, và phác lại chúng trên nhiều lớp phim, với mỗi màu là một lớp phim tương ứng. Sử dụng một chiếc bàn hắt sáng trắng, người thợ tỉ mỉ tách từng màu trên bản thiết kế. Mỗi nét vẽ được phác thảo lại bằng bút lông ngỗng, bút chì hay bút điện, sau đó",
+      "word_count": 221,
+      "expected_key_info": [
+        ""
+      ],
+      "summary_result": {
+        "summary": "Tại Lyon, hàng triệu chiếc khăn lụa Hermès được sản xuất từ hơn nửa thế kỷ qua thông qua một chuỗi công nghệ phức tạp. Các thợ chạm khắc và phối màu giữ bí mật thiết kế trước khi bắt đầu in mẫu vào xưởng Perrin của Pháp; thời gian này kéo dài gần ba tháng với các bước quay lụa, dệt và khử keo. Sợi chỉ thô thu hoạch từ Brazil trải qua nhiều lớp phim để tạo ra những nét vẽ chi tiết trên bàn hắt sáng trắng. Mỗi chiếc khăn kết quả là một tác phẩm nghệ thuật độc đáo được hoàn thiện bởi kỹ năng tỉ mỉ của nhân viên trong suốt quá trình sản xuất dài hạn.",
+        "tool_calls": [],
+        "latency_ms": 10050.0,
+        "ttft_ms": 1.5717,
+        "error": null
+      },
+      "scores": {
+        "correctness": 3,
+        "completeness": 3,
+        "fluency": 4,
+        "conciseness": 4,
+        "overall": 3,
+        "reasoning": "Bản tóm tắt có một số điểm chưa chính xác và thiếu thông tin quan trọng. Ví dụ, bài gốc nói rằng phác thảo thiết kế được gửi đến xưởng in lụa của Hermès, sau đó mới sản xuất thành khăn, còn bản tóm tắt lại nói thợ khắc giải mã sắc màu và phác lại trên phim. Bài gốc cũng đề cập đến việc sản xuất hàng triệu chiếc khăn tại Lyon, nhưng bản tóm tắt lại nói xưởng Perrin của Pháp là nơi sản xuất. Tuy nhiên, bản tóm tắt vẫn giữ được ý chính về quy trình sản xuất phức tạp và sự tỉ mỉ của các nghệ nhân."
+      }
+    },
+    {
+      "id": "sample_002",
+      "source": "human",
+      "label": 0,
+      "text": "mặt, tập trung vào vùng chữ T và bên dưới bọng mắt. Bạn nên chú ý không để đá ở một vị trí quá lâu mà nên di chuyển đều khắp mặt. Khăn vải màn giúp viên đá lạnh không tiếp xúc trực tiếp với da mặt mỏng manh gây kích ứng đồng thời không làm đá chảy nước ra mặt và quần áo. Sau khi viên đá tan hết, tôi thấm nhẹ da mặt cho khô và sẵn sàng cho các bước dưỡng, trang điểm trước khi đi làm. Kết quả Sau khi sử dụng phương pháp này được một tháng, tôi rất hài lòng với những gì nó mang lại: – Da tôi đổ ít dầu, mềm mịn và dễ ăn phấn hơn – Lỗ chân lông được thu nhỏ đáng kể – Mắt và toàn bộ khuôn mặt giảm sưng rất nhiều, tôi cảm giác mặt mình gọn hơn so với lúc vừa ngủ dậy – Giúp tôi loại bỏ hẳn cảm giác ngái ngủ, trở nên tỉnh táo hơn trước khi đi làm. Thỉnh thoàng, tôi có “đổi vị” bằng cách dùng một ít bột trà xanh Nhật Bản, hòa với nước và thực hiện như trên. Tuy nhiên nguyên liệu dưa chuột vẫn làm tôi ưng ý nhất. Bài: Minh Nhật Ảnh: Jacquelinecote, Flickr Hãy chia sẻ bí quyết làm đẹp của bạn với độc giả Đẹp Online bằng cách gửi thông tin, hình ảnh và công thức làm đẹp của bạn tại đây. Bài được chọn đăng sẽ hưởng nhuận bút theo quy định chung của tòa soạn. Thực hiện: depweb 26/11/2014, 15:17 se lỗ chân lông trị quầng thâm giảm bọng mắt",
+      "word_count": 279,
+      "expected_key_info": [
+        "26/11/2014",
+        ""
+      ],
+      "summary_result": {
+        "summary": "Một người dùng Minh Nhật đã chia sẻ bí quyết làm đẹp tại depweb.com ngày 26/11/2014. Người đó tập trung vào vùng chữ T và bên dưới bọng mắt, khuyên không để đá ở một vị trí quá lâu mà nên di chuyển đều khắp mặt bằng khăn vải màn giúp viên đá lạnh không tiếp xúc trực tiếp với da mỏng manh gây kích ứng đồng thời ngăn nước chảy ra ngoài. Sau khi tan hết viên đá, người đó thấm nhẹ da mặt cho khô và sẵn sàng dưỡng điểm trước giờ đi làm. Kết quả sau một tháng sử dụng phương pháp này: làn da đổ ít dầu mềm mịn dễ ăn phấn hơn lỗ chân lông thu nhỏ đáng kể mắt giảm sưng rất nhiều khiến khuôn mặt gọn gàng hơn giúp loại bỏ cảm giác ngái ngủ, trở nên tỉnh táo trước khi đi làm. Người đó cũng dùng bột trà xanh Nhật Bản hòa với nước để \"đổi vị\" và dưa chuột vẫn là nguyên liệu ưng ý nhất của họ.",
+        "tool_calls": [],
+        "latency_ms": 18700.0,
+        "ttft_ms": 5.5805,
+        "error": null
+      },
+      "scores": {
+        "correctness": 5,
+        "completeness": 5,
+        "fluency": 5,
+        "conciseness": 5,
+        "overall": 5,
+        "reasoning": "Bản tóm tắt này rất xuất sắc. Nó chính xác, đầy đủ, mượt mà và ngắn gọn, bao quát tất cả các thông tin quan trọng từ bài báo gốc một cách hiệu quả."
+      }
+    },
+    {
+      "id": "sample_003",
+      "source": "human",
+      "label": 0,
+      "text": "tục phát huy những gì đã đạt được, Chủ tịch Quốc hội yêu cầu Viện KSND tối cao tập trung lãnh đạo, chỉ đạo thực hiện tốt một số nhiệm vụ trọng tâm trong thời gian tới. Trong đó, toàn ngành cần thực hiện đồng bộ các giải pháp nâng cao chất lượng công tác thực hành quyền công tố, kiểm sát hoạt động tư pháp; không để xảy ra trường hợp bị oan, sai trong tố tụng hình sự; không hình sự hóa quan hệ dân sự, kinh tế; tạo điều kiện, môi trường ổn định cho phát triển kinh tế - xã hội đất nước. Đồng thời, tập trung giải quyết tốt các vụ án kinh tế, tham nhũng, chức vụ, nhất là các vụ án thuộc diện Ban Chỉ đạo T.Ư về phòng, chống tham nhũng, tiêu cực theo dõi, chỉ đạo. Chủ tịch Quốc hội cũng lưu ý việc nâng cao hiệu quả công tác kiểm sát giải quyết vụ việc dân sự, vụ án hành chính, thi hành án hình sự, thi hành án dân sự, hành chính; tăng cường kiểm sát và kiến nghị xử lý các trường hợp chậm thi hành án; đẩy mạnh giải quyết đơn đề nghị giám đốc thẩm, tái thẩm thuộc thẩm quyền. Mặt khác, ngành kiểm sát cần tập trung sắp xếp cơ cấu tổ chức bộ máy theo hướng tinh gọn, hiệu lực, hiệu quả, phân công và sử dụng hợp lý, hiệu quả biên chế cán bộ hiện có; tiếp tục giữ vững kỷ luật, kỷ cương trong thực thi công vụ, nâng cao chất lượng hoạt động của ngành…",
+      "word_count": 274,
+      "expected_key_info": [],
+      "summary_result": {
+        "summary": "Chủ tịch Quốc hội yêu cầu Viện Kiểm sát Tối cao tập trung lãnh đạo và chỉ đạo các nhiệm vụ trọng tâm về quyền công tố, kiểm sát tư pháp để ngăn ngừa sai phạm trong tố tụng hình sự. Đồng thời, nghị quyết nhấn mạnh việc giải quyết triệt để các vụ án kinh tế, tham nhũng, chức vụ nhất là những vụ thuộc Ban Chỉ đạo T.U.R., đồng thời đề xuất nâng cao hiệu quả kiểm sát dân sự và hành chính thông qua tăng cường giám đốc thẩm. Bên cạnh đó, ngành Kiểm sát cần sắp xếp cơ cấu tổ chức bộ máy theo hướng tinh gọn hơn để đảm bảo chất lượng hoạt động công vụ và kỷ cương trong thực thi pháp luật.",
+        "tool_calls": [],
+        "latency_ms": 17750.0,
+        "ttft_ms": 6.7892,
+        "error": null
+      },
+      "scores": {
+        "correctness": 4,
+        "completeness": 4,
+        "fluency": 4,
+        "conciseness": 4,
+        "overall": 4,
+        "reasoning": "Bản tóm tắt khá tốt, nắm bắt được các ý chính. Tuy nhiên, có một vài điểm cần cải thiện: 'nghị quyết nhấn mạnh' không xuất hiện trong bài gốc, 'Ban Chỉ đạo T.U.R.' là viết tắt không rõ ràng, và 'tăng cường giám đốc thẩm' chỉ là một phần nhỏ trong việc nâng cao hiệu quả kiểm sát vụ việc dân sự, vụ án hành chính. Độ dài và sự mượt mà đều ở mức tốt."
+      }
+    },
+    {
+      "id": "sample_004",
+      "source": "human",
+      "label": 0,
+      "text": "Người được lấy phiếu tín nhiệm sẽ tự soi, tự sửa Ngày 12.12, phát biểu tại kỳ họp thứ 15 HĐND TP.Đà Nẵng khóa X (nhiệm kỳ 2021 - 2026), Bí thư Thành ủy Đà Nẵng Nguyễn Văn Quảng đề nghị các đại biểu HĐND phát huy tinh thần trách nhiệm, đánh giá công tâm, khách quan, chính xác khi thực hiện khâu lấy phiếu tín nhiệm đối với từng chức danh do HĐND TP.Đà Nẵng bầu. Theo Bí thư Thành ủy Đà Nẵng, việc lấy phiếu tín nhiệm các chức danh do HĐND TP.Đà Nẵng bầu là hoạt động giám sát quan trọng để nâng cao hiệu lực, hiệu quả hoạt động của bộ máy nhà nước, góp phần đánh giá uy tín, kết quả thực hiện nhiệm vụ, quyền hạn của những người được HĐND TP.Đà Nẵng bầu. Thông qua đó, người được lấy phiếu tín nhiệm sẽ tự soi, tự sửa, thấy được mức độ tín nhiệm của mình để tiếp tục phấn đấu, rèn luyện, nâng cao chất lượng, hiệu quả công tác trong thời gian tới. \"Kết quả lấy phiếu tín nhiệm tiếp tục giúp cho bộ máy nhà nước có những bước phát triển mới, xây dựng đội ngũ cán bộ lãnh đạo trong hệ thống chính trị của thành phố có đầy đủ phẩm chất, uy tín, ngang tầm với nhiệm vụ. Nhất là khắc phục, đẩy lùi tình trạng né tránh, đùn đẩy trách nhiệm, không làm đúng chức trách, quyền hạn của một bộ phận cán bộ, công chức, viên chức hiện nay\", Bí thư Thành ủy Đà Nẵng Nguyễn Văn Quảng nhấn mạnh. Bí thư Thành ủy Đà Nẵng Nguyễn Văn Quảng phát biểu tại kỳ họp HOÀNG SƠN Cũng theo Bí thư Thành ủy Đà Nẵng Nguyễn Văn Quảng, các đại",
+      "word_count": 302,
+      "expected_key_info": [
+        ""
+      ],
+      "summary_result": {
+        "summary": "Tại Kỳ họp HĐND TP.Đà Nẵng khóa X diễn ra ngày 12/12, Bí thư Thành ủy Đă Nẵng Nguyễn Văn Quảng phát biểu đề nghị người được lấy phiếu tín nhiệm tự soi và sửa chữa để đánh giá công tác chính xác hơn trong khâu này nhằm nâng cao hiệu lực của bộ máy nhà nước. Ông nhấn mạnh việc thực hiện yêu cầu này giúp các chức danh do HĐND TP.Đà Nẵng bầu có phẩm chất, uy tín ngang tầm với nhiệm vụ, đồng thời khắc phục tình trạng né tránh trách nhiệm và không làm đúng quyền hạn cho cán bộ công chức trong hệ thống chính trị của thành phố.",
+        "tool_calls": [],
+        "latency_ms": 15920.0,
+        "ttft_ms": 6.7845,
+        "error": null
+      },
+      "scores": {
+        "correctness": 3,
+        "completeness": 3,
+        "fluency": 4,
+        "conciseness": 4,
+        "overall": 3,
+        "reasoning": "Bản tóm tắt đã nắm bắt được ý chính của bài báo gốc, tuy nhiên có một số điểm chưa hoàn toàn chính xác. Cụ thể, việc đề nghị \"người được lấy phiếu tín nhiệm tự soi và sửa chữa để đánh giá công tác chính xác hơn\" là diễn đạt chưa sát với ý gốc là \"người được lấy phiếu tín nhiệm sẽ tự soi, tự sửa\" để \"thấy được mức độ tín nhiệm của mình\". Ngoài ra, việc nhấn mạnh \"đánh giá công tác chính xác hơn trong khâu này\" cũng không phải là mục đích chính của việc lấy phiếu tín nhiệm theo bài báo gốc. Tuy nhiên, bản tóm tắt vẫn truyền tải được thông điệp về việc nâng cao hiệu lực bộ máy nhà nước và khắc phục tình trạng né tránh trách nhiệm."
+      }
+    },
+    {
+      "id": "sample_005",
+      "source": "human",
+      "label": 0,
+      "text": "Thu hồi toàn bộ hay một phần ? Theo dự thảo luật trình Quốc hội (QH), Nhà nước chỉ thu hồi đất để thực hiện dự án đầu tư xây khu đô thị có công năng hỗn hợp, đồng bộ hạ tầng kỹ thuật, xã hội với nhà ở. Tuy nhiên, đại biểu (ĐB) Mai Văn Hải (đoàn Thanh Hóa) cho rằng quy định thu hồi cần cân nhắc cho phù hợp tinh thần Nghị quyết 18 của Ban Chấp hành T.Ư Đảng về tiếp tục thực hiện cơ chế tự thỏa thuận giữa người dân và doanh nghiệp (DN) trong chuyển nhượng quyền sử dụng đất để thực hiện các dự án đô thị, nhà ở thương mại. Tổng Bí thư Nguyễn Phú Trọng, Chủ tịch nước Võ Văn Thưởng dự phiên khai mạc kỳ họp bất thường thứ 5 QH khóa XV GIA HÂN Ông Hải đề xuất nên quy định Nhà nước chỉ thực hiện thu hồi diện tích đất để làm hạ tầng kỹ thuật, hạ tầng xã hội, các công trình phúc lợi công cộng trong dự án đô thị, còn phần diện tích xây dựng nhà ở thì vẫn phải thực hiện thỏa thuận giữa người dân và DN. \"Nên quy định rõ cơ chế thực hiện tự thỏa thuận như thế nào để thuận lợi cho cả DN và người dân. Nếu không có căn cứ pháp lý để thỏa thuận, nhất là giá thì rất khó cho DN trong vấn đề thu hồi đất và hài hòa lợi ích với người dân\", ông Hải nói. Chương trình kỳ họp bất thường thứ năm Quốc hội khóa XV Trong khi đó, ĐB Hoàng Văn Cường (đoàn Hà Nội) băn khoăn nếu quy định như dự thảo, rất nhiều dự án xây dựng khu đô thị không thỏa mãn tiêu chí sẽ không được đấu thầu. Dự án sử dụng đất không phải đất ở thì không được phép thỏa thuận và cũng không được đấu thầu. \"Tôi cho rằng đây sẽ là một khoảng trống của pháp luật, có nhiều dự án sẽ không thể thực hiện được, không đấu thầu, không được thỏa thuận và cũng không phải giao trực tiếp\", ông Cường đặt vấn đề. Do đó, ông đề nghị sửa khoản 27 điều 79 thành \"các dự án sử dụng đất thuộc đối tượng phải đấu giá quyền sử dụng đất và đấu thầu lựa chọn nhà đầu tư theo quy định của",
+      "word_count": 413,
+      "expected_key_info": [
+        ""
+      ],
+      "summary_result": {
+        "summary": "Đại biểu Mai Văn Hải, ĐB Thanh Hóa cho rằng Luật trình Quốc hội cần cân nhắc cơ chế tự thỏa thuận giữa người dân và doanh nghiệp trong chuyển nhượng quyền sử dụng đất để thực hiện các dự án đô thị nhà ở thương mại. Ông nhấn mạnh việc quy định chỉ thu hồi diện tích hạ tầng kỹ thuật xã hội là phù hợp, còn phần xây dựng nhà thì vẫn phải tuân thủ nguyên tắc thỏa thuận. ĐB Hoàng Văn Cường (ĐNH) cũng phản đối nếu áp dụng như vậy vì nhiều dự án không đáp ứng tiêu chí sẽ bị loại khỏi đấu thầu và không được giao trực tiếp cho người dân.",
+        "tool_calls": [],
+        "latency_ms": 16600.0,
+        "ttft_ms": 7.9423,
+        "error": null
+      },
+      "scores": {
+        "correctness": 5,
+        "completeness": 4,
+        "fluency": 5,
+        "conciseness": 5,
+        "overall": 4,
+        "reasoning": "Bản tóm tắt đã nắm bắt chính xác ý kiến của hai đại biểu Mai Văn Hải và Hoàng Văn Cường về dự thảo luật thu hồi đất. Thông tin được trình bày mạch lạc, dễ hiểu và ngắn gọn. Tuy nhiên, phần đề xuất cụ thể của ông Cường về việc sửa khoản 27 điều 79 chưa được đề cập, làm giảm một chút độ đầy đủ."
+      }
+    },
+    {
+      "id": "sample_006",
+      "source": "ai",
+      "label": 1,
+      "text": "Gần đây, thương hiệu Céline đã quyết định thay đổi cách viết tên thành Celine, một động thái gây ra nhiều tranh cãi trong cộng đồng yêu thời trang. Nhiều người hâm mộ không khỏi thất vọng khi Hedi Slimane, Giám đốc Sáng tạo của thương hiệu, lại một lần nữa lặp lại hành động tương tự như khi ông loại bỏ “Yves” khỏi tên thương hiệu Saint Laurent vào năm 2012. Trước những phản ứng trái chiều từ dư luận, Slimane đã giải thích rằng việc viết lại tên thương hiệu sẽ giúp nó trở nên cân đối và hiện đại hơn.\n\nKhông chỉ riêng Celine, mà trong tháng 12 năm 2018, nhiều thương hiệu nổi tiếng cũng đã thực hiện các cuộc cách mạng về nhận diện thương hiệu. NTK Olivier Rousteing đã giới thiệu logo mới cho Balmain sau 73 năm, thể hiện tham vọng đưa thương hiệu này trở thành một trong những cái tên hàng đầu trong ngành thời trang Paris. Logo mới của Balmain được áp dụng trên nhiều thiết kế, đánh dấu một bước chuyển mình mạnh mẽ.\n\nCùng thời điểm đó, vào ngày 22 tháng 12, nhà mốt Calvin Klein cũng gây sốc khi thông báo Raf Simons chính thức rời khỏi vị trí Giám đốc Sáng tạo. Raf Simons, người đã được giao quyền kiểm soát toàn bộ hoạt động của thương hiệu, đã có những đóng góp đáng kể nhằm nâng cao giá trị của Calvin Klein. Sự ra đi của ông để lại nhiều tiếc nuối và đặt ra câu hỏi lớn về tương lai của dòng sản phẩm Calvin Klein 205W39NYC khi thiếu vắng “người cha đẻ” của nó. Những thay đổi này không chỉ phản ánh sự chuyển mình của các thương hiệu mà còn cho thấy áp lực mà ngành công nghiệp thời trang đang phải đối mặt trong việc duy trì sự hấp dẫn và phù hợp với xu hướng hiện đại.",
+      "word_count": 327,
+      "expected_key_info": [
+        ""
+      ],
+      "summary_result": {
+        "summary": "Thương hiệu Céline đã thay đổi tên thành Celine, gây tranh cãi vì Hedi Slimane lặp lại hành động loại bỏ \"Yves\" từ Saint Laurent năm 2012 trước phản ứng trái chiều. Cùng thời điểm đó, Balmain nhận logo mới sau 73 năm và Calvin Klein thông báo Raf Simons rời vị Giám đốc sáng tạo để giữ thương hiệu cho dòng sản phẩm 205W39NYC. Những thay đổi này thể hiện sự chuyển mình mạnh mẽ của các nhãn hàng Paris trong bối cảnh áp lực từ dư luận thời trang hiện đại.",
+        "tool_calls": [],
+        "latency_ms": 16219.999999999998,
+        "ttft_ms": 6.627,
+        "error": null
+      },
+      "scores": {
+        "correctness": 3,
+        "completeness": 3,
+        "fluency": 4,
+        "conciseness": 5,
+        "overall": 3,
+        "reasoning": "Bản tóm tắt có một số điểm chưa chính xác và thiếu sót thông tin quan trọng. Cụ thể, việc Raf Simons rời khỏi Calvin Klein không phải để 'giữ thương hiệu cho dòng sản phẩm 205W39NYC', mà là sự ra đi của ông đặt ra câu hỏi về tương lai của dòng sản phẩm này. Ngoài ra, tóm tắt chưa đề cập đến lý do Hedi Slimane thay đổi tên Céline (cân đối và hiện đại hơn) và tham vọng của Balmain với logo mới. Tuy nhiên, tóm tắt khá ngắn gọn và dễ đọc."
+      }
+    },
+    {
+      "id": "sample_007",
+      "source": "ai",
+      "label": 1,
+      "text": "Gần đây, Thiều Bảo Trâm đã tự tin thể hiện hình ảnh mạnh mẽ của mình với vòng eo thon gọn, khẳng định tinh thần nữ quyền trong bộ ảnh mới. Những bức ảnh này được thực hiện trong khuôn khổ chiến dịch EQUAL Global của Spotify và được trình chiếu tại một trong những địa điểm nổi tiếng nhất thế giới - quảng trường Thời đại ở New York.\n\nChỉ trong vòng nửa năm qua, nữ ca sĩ nổi tiếng với ca khúc “Sau Lưng Ai Có Ai Kìa” đã liên tiếp đón nhận những tin vui. Vào tháng 6, cô được vinh danh là đại diện cho chiến dịch EQUAL của Spotify tại Việt Nam. Chiến dịch này không chỉ là một playlist quy tụ những bài hát nổi bật của các nữ nghệ sĩ toàn cầu mà còn là cơ hội để mỗi tháng giới thiệu một tài năng âm nhạc từ các quốc gia khác nhau.\n\nVới sứ mệnh tôn vinh sự sáng tạo và phong cách âm nhạc độc đáo của các nữ nghệ sĩ, Thiều Bảo Trâm đã chọn cho mình bộ trang phục cá tính với chân váy ngắn và boots, thể hiện một hình ảnh hoàn toàn khác biệt so với vẻ ngọt ngào trong album “after YOU”. Điều này không chỉ cho thấy sự trưởng thành trong âm nhạc mà còn phản ánh đúng tinh thần nữ quyền mà chiến dịch EQUAL hướng tới.\n\nNgày 7/6, cô đã phát hành mini album “after YOU” với cả phiên bản trực tuyến và vật lý, bao gồm ba phiên bản khác nhau. Album này chứa đựng năm ca khúc ballad, kể về những câu chuyện tình yêu và thể hiện chiều sâu trong âm nhạc của cô. Ngay sau khi ra mắt, mini album đã nhanh chóng chiếm lĩnh vị trí số 1 trên BXH Album được nghe nhiều nhất trên iTunes Việt Nam, đồng thời năm ca khúc trong album cũng chiếm giữ các vị trí cao trong BXH Ca khúc được yêu thích. Đặc biệt, vào ngày 13/6, Thiều Bảo Trâm đã có dịp tỏa sáng tại Hàn Quốc trong chương trình Simply K-Pop Con-tour, nơi cô tự tin giao lưu bằng tiếng Anh và trình diễn ca khúc “Chúng Ta Làm Bạn Được Không?”.",
+      "word_count": 384,
+      "expected_key_info": [
+        ""
+      ],
+      "summary_result": {
+        "summary": "Thiều Bảo Trâm đã thực hiện bộ ảnh mạnh mẽ với phong cách nữ quyền tại quảng trường New York, được vinh danh là đại diện cho chiến dịch EQUAL Global của Spotify vào tháng 6. Ngày 7/6, cô ra mắt mini album \"after YOU\" và phát biểu tại Hàn Quốc trong chương trình Simply K-Pop Con-tour để giới thiệu ca khúc \"Chúng Ta Làm Bạn Được Không?\".",
+        "tool_calls": [],
+        "latency_ms": 13430.0,
+        "ttft_ms": 7.7541,
+        "error": null
+      },
+      "scores": {
+        "correctness": 3,
+        "completeness": 3,
+        "fluency": 4,
+        "conciseness": 4,
+        "overall": 3,
+        "reasoning": "Bản tóm tắt khá tốt, nắm bắt được các ý chính. Tuy nhiên, còn thiếu một số chi tiết quan trọng như việc bộ ảnh được trình chiếu tại quảng trường Thời đại ở New York và thành công của mini album 'after YOU' trên iTunes. Phần 'phát biểu tại Hàn Quốc' cũng chưa rõ ràng, bài gốc nói về việc cô biểu diễn và giao lưu."
+      }
+    },
+    {
+      "id": "sample_008",
+      "source": "ai",
+      "label": 1,
+      "text": "Thế giới thời trang, nơi những giấc mơ và sự sáng tạo giao thoa, đang chứng kiến một cuộc chia tay đầy tiếc nuối. Sau thông báo bất ngờ của NTK Dries Van Noten về việc rời khỏi thương hiệu riêng, làng mốt tiếp tục rung chuyển khi Pierpaolo Piccioli, bậc thầy của Valentino, tuyên bố rút lui khỏi vị trí giám đốc sáng tạo sau 25 năm gắn bó. \n\nThông báo trên trang Instagram cá nhân của Pierpaolo Piccioli như một lời chia tay đầy ẩn ý. Ông viết bằng tiếng Ý: \"Không phải mọi câu chuyện đều có khởi đầu và kết thúc, một số tồn tại mãi mãi, rực rỡ và mãnh liệt đến mức bóng tối không thể nào chen chân\". Những lời này ẩn chứa bao nhiêu tâm tư, bao nhiêu hoài niệm về những năm tháng cống hiến hết mình cho Valentino. Cả một phần tư thế kỷ, ông đã sống, đã dệt nên những câu chuyện đầy màu sắc, đầy cảm xúc, cùng với những người đồng hành, tạo nên một “chúng ta” gắn bó, bền chặt. \n\nGiờ đây, khi ông bước sang một trang mới, di sản của tình yêu, của ước mơ, của vẻ đẹp và nhân loại ấy sẽ mãi theo ông, như một phần không thể thiếu của cuộc đời. \n\nCEO của Valentino, Jacopo Venturini, đã bày tỏ lòng biết ơn sâu sắc đến Pierpaolo, người đã mang đến tầm nhìn, sự cam kết và sức sáng tạo phi thường, góp phần đưa Valentino đến đỉnh cao như ngày nay. Chủ tịch của thương hiệu Ý, ông Rachid Mohamed Rachid, cũng gửi lời cảm ơn chân thành đến bậc thầy của thời trang, người đã viết nên một chương rực rỡ trong lịch sử Valentino. \n\nSự ra đi của Pierpaolo Piccioli là một mất mát lớn cho Valentino, nhưng đồng thời, cũng là một lời khẳng định cho sự nghiệp rực rỡ của ông. Chắc chắn, ông sẽ tiếp tục tỏa sáng trên con đường riêng của mình, mang đến những dấu ấn mới, những bất ngờ thú vị cho thế giới thời trang. \n",
+      "word_count": 355,
+      "expected_key_info": [
+        ""
+      ],
+      "summary_result": {
+        "summary": "Nhân vật Pierpaolo Piccioli đã tuyên bố rút lui khỏi vai trò giám đốc sáng tạo Valentino sau 25 năm gắn bó với thương hiệu Ý. Ông từng sống và dệt nên một thế giới thời trang rực rỡ, bao gồm cả những người đồng hành cùng mình trong kỷ nguyên của ông. CEO Jacopo Venturini bày tỏ lòng biết ơn sâu sắc đến bậc thầy này cho sự nghiệp dẫn dắt Valentino lên đỉnh cao hiện tại. Mặc dù đây là mất mát lớn đối với thương hiệu, nhưng Piccioli sẽ tiếp tục tỏa sáng trên con đường riêng để mang lại những dấu ấn mới và bất ngờ thú vị cho thế giới thời trang vào tương lai.",
+        "tool_calls": [],
+        "latency_ms": 15740.0,
+        "ttft_ms": 6.7127,
+        "error": null
+      },
+      "scores": {
+        "correctness": 5,
+        "completeness": 4,
+        "fluency": 5,
+        "conciseness": 5,
+        "overall": 5,
+        "reasoning": "Bản tóm tắt đã nắm bắt được các ý chính của bài báo gốc một cách chính xác và đầy đủ. Ngôn ngữ mượt mà, dễ hiểu và độ dài rất phù hợp. Chỉ thiếu một chút chi tiết về lời chia tay ẩn ý của Piccioli."
+      }
+    },
+    {
+      "id": "sample_009",
+      "source": "ai",
+      "label": 1,
+      "text": "Trong cuộc sống hiện đại, nhiều người vẫn sống theo cách mà cha mẹ đã định sẵn cho họ. Họ thức dậy sớm, đi làm và trở về nhà mà không có một chút thay đổi nào trong thói quen hàng ngày. Mọi thứ đều được sắp đặt từ trước, từ bữa ăn đến công việc, khiến cho cuộc sống của họ trở nên đơn điệu và thiếu màu sắc. Những con người này sống như những tấm ván ép, phẳng phiu, không có một chút nứt vỡ nào, không có ước mơ hay tham vọng. Họ ngoan ngoãn, nhưng sự ngoan ngoãn ấy lại không mang lại niềm vui. Cuộc sống của họ trở nên nhạt nhẽo, thiếu đi sự lãng mạn và bất ngờ. Khi nhìn lại, có lẽ họ sẽ chỉ có thể viết ra một vài trang hồi ký, bởi vì cuộc đời họ không có nhiều điều để kể.\n\nGia đình được hình thành từ những con người như vậy cũng trở nên tẻ nhạt, không có sức sống. Thế nhưng, có một ngày, một trong hai người trong mối quan hệ ấy bỗng nhận ra sự đơn điệu của cuộc sống hôn nhân. Họ không còn muốn tiếp tục sống trong sự bình lặng ấy nữa. Họ bắt đầu tìm kiếm những điều mới mẻ, những giấc mơ bị chôn vùi bấy lâu. Họ quyết định phá vỡ bầu không khí tĩnh lặng, để tìm kiếm những cảm xúc chân thật và sống động hơn. Đó là lúc họ bắt đầu hành trình khám phá bản thân, tìm kiếm những điều mà trước đây họ chưa từng dám nghĩ tới. Họ không chỉ muốn sống, mà còn muốn cảm nhận, trải nghiệm và thực sự tồn tại trong cuộc đời này.",
+      "word_count": 297,
+      "expected_key_info": [],
+      "summary_result": {
+        "summary": "Một gia đình đơn điệu với thói quen cứng nhắc đã trở nên tẻ nhạt khi một người phát hiện ra sự thiếu vắng niềm vui trong mối quan hệ hôn nhân đó. Hai vợ chồng quyết định phá vỡ bầu không khí tĩnh lặng để tìm kiếm cảm xúc chân thật và sống động hơn, từ đó bắt đầu hành trình khám phá bản thân mà trước đây họ chưa từng dám nghĩ tới.",
+        "tool_calls": [],
+        "latency_ms": 11840.0,
+        "ttft_ms": 6.1878,
+        "error": null
+      },
+      "scores": {
+        "correctness": 5,
+        "completeness": 4,
+        "fluency": 5,
+        "conciseness": 5,
+        "overall": 5,
+        "reasoning": "Bản tóm tắt đã nắm bắt được ý chính của bài báo gốc một cách chính xác và cô đọng. Ngôn ngữ mượt mà, dễ hiểu. Tuy nhiên, nó bỏ qua phần mô tả chi tiết về cuộc sống đơn điệu ban đầu của những người sống theo khuôn mẫu, chỉ tập trung vào sự thay đổi trong mối quan hệ hôn nhân."
+      }
+    },
+    {
+      "id": "sample_010",
+      "source": "ai",
+      "label": 1,
+      "text": "Mùa hè oi ả, làn da thường dễ bị tổn thương bởi nắng nóng, khiến bạn cảm thấy mệt mỏi và thiếu sức sống. Nhưng đừng lo, thiên nhiên đã ban tặng cho chúng ta những \"bí mật\" đơn giản để chăm sóc bản thân, giúp bạn tỏa sáng rạng rỡ và khỏe khoắn suốt mùa hè.\n\nSữa tươi, với thành phần axit lactic tự nhiên, chính là “vũ khí bí mật” giúp bạn có làn da mềm mại, mịn màng. Thay vì  tắm sữa trong bồn, bạn có thể  chuyển đổi thành những phương pháp đơn giản hơn như  ngâm tay chân trong sữa ấm hoặc thêm vào bồn tắm một lượng nhỏ để tận hưởng cảm giác thư giãn và dưỡng da. Mật ong, với khả năng kháng khuẩn và dưỡng ẩm tuyệt vời, sẽ là “liên minh” hoàn hảo cùng sữa tươi, giúp bảo vệ da khỏi vi khuẩn và giữ ẩm cho da.\n\nSalad xanh mát với các thành phần giàu vitamin và khoáng chất như xà lách, rau diếp, rau bina, dưa chuột, ớt chuông và cà chua là “bữa tiệc”  cho làn da và cơ thể của bạn.  Salad không chỉ giúp  làm mát cơ thể,  mà còn chống lão hóa,  thúc đẩy sự phát triển của tóc và móng.\n\nMật ong không chỉ là \"vị thần\" của mùa đông,  mà còn là \"người bạn đồng hành\"  tuyệt vời của bạn trong những ngày hè oi bức. Mật ong  giúp  hồi phục độ ẩm cho da,  ngăn ngừa khô nứt môi,  và thậm chí  giúp  khắc phục tình trạng nhiệt miệng.\n\nNhững túi trà xanh mát lạnh  không chỉ  giúp  làm tan bọng mắt sưng  mà còn  mang lại cảm giác thư giãn tuyệt vời.  Bạn có thể  lạnh túi trà trong tủ lạnh trước khi đắp để  tăng cường hiệu quả và  cảm nhận rõ nét  cảm giác mát lạnh, sảng khoái.\n\nVang đỏ,  không chỉ  là thức uống tinh tế,  mà còn là  \"bí mật\"  giúp  duy trì vẻ đẹp rạng rỡ.  Các chất chống oxy hóa và polyphenol có trong vang đỏ  giúp  làm mềm da,  thúc đẩy quá trình hấp thụ dưỡng chất.  Tương tự  như  tắm sữa,  bạn có thể  thưởng thức vang đỏ  bằng cách  ngâm tay chân trong rượu vang hoặc  thêm một lượng nhỏ  vào bồn tắm.\n\nNước chanh  là  “thần dược”  đơn giản và hiệu quả  cho mái tóc.  Ngoài  việc  giúp  tóc chắc khỏe,  nước chanh  còn  mang lại  sự  tươi sáng rạng rỡ  cho  mái tóc  của bạn.  Hãy thử  trộn nước chanh  với  trà hoặc  dùng  nước chanh  rửa sạch  tóc  sau khi gội để  cảm nhận sự  thay đổi  tuyệt vời.\n\nNhững  bí mật  đơn giản từ thiên nhiên  sẽ  giúp  bạn  tỏa sáng  trong mùa hè  với  làn da khỏe mạnh và rạng rỡ.  Hãy  thử  áp dụng  những  \"bí mật\"  này  và  cảm nhận  sự  thay đổi  tuyệt vời  trên cơ thể  của bạn!\n",
+      "word_count": 495,
+      "expected_key_info": [],
+      "summary_result": {
+        "summary": "Mùa hè oi ả, làn da dễ bị tổn thương bởi nắng nóng nhưng thiên nhiên đã cung cấp nhiều \"bí mật\" chăm sóc tự nhiên giúp bạn tỏa sáng. Sữa tươi với axit lactic và mật ong kháng khuẩn là những phương pháp đơn giản để dưỡng ẩm mềm mại; salad xanh giàu vitamin hỗ trợ làm mát cơ thể chống lão hóa, trong khi vang đỏ nhờ polyphenol giúp bảo vệ da khỏi oxy hóa. Nước chanh còn mang lại sức sống cho mái tóc bằng cách tẩy trắng hoặc rửa sạch ngay sau gội. Những \"bí mật\" này kết hợp với các món ăn như trà xanh và rượu vang để tận hưởng vẻ đẹp rạng rỡ suốt mùa hè, đồng thời duy trì làn da khỏe mạnh từ bên trong.",
+        "tool_calls": [],
+        "latency_ms": 20150.0,
+        "ttft_ms": 10.0187,
+        "error": null
+      },
+      "scores": {
+        "correctness": 3,
+        "completeness": 3,
+        "fluency": 4,
+        "conciseness": 4,
+        "overall": 3,
+        "reasoning": "Bản tóm tắt đã nắm bắt được ý chính về các phương pháp làm đẹp tự nhiên trong mùa hè. Tuy nhiên, có một số điểm chưa chính xác hoặc thiếu sót: nước chanh không có tác dụng 'tẩy trắng' tóc mà là làm sáng tóc, và việc kết hợp trà xanh, rượu vang với các món ăn để tận hưởng vẻ đẹp là không rõ ràng và không có trong bài gốc. Độ đầy đủ ở mức khá vì còn thiếu một số chi tiết về công dụng của từng nguyên liệu. Độ mượt và ngắn gọn ở mức tốt."
+      }
+    }
+  ]
+}

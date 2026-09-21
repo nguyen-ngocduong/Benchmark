@@ -1,0 +1,491 @@
+{
+  "model": "gemma4:e2b",
+  "evaluation_timestamp": "2026-09-18T17:16:52.709815",
+  "total_samples": 10,
+  "statistical_metrics": {
+    "faithfulness": {
+      "mean": 1.0,
+      "median": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "stdev": 0.0
+    },
+    "completeness": {
+      "mean": 0.863,
+      "median": 0.861,
+      "min": 0.709,
+      "max": 0.975,
+      "stdev": 0.082
+    },
+    "key_fact_recall": {
+      "mean": 0.983,
+      "median": 1.0,
+      "min": 0.833,
+      "max": 1.0,
+      "stdev": 0.053
+    },
+    "entity_recall": {
+      "mean": 0.792,
+      "median": 0.875,
+      "min": 0.333,
+      "max": 1.0,
+      "stdev": 0.252
+    },
+    "number_recall": {
+      "mean": 0.86,
+      "median": 1.0,
+      "min": 0.25,
+      "max": 1.0,
+      "stdev": 0.256
+    },
+    "conciseness": {
+      "mean": 0.738,
+      "median": 0.73,
+      "min": 0.43,
+      "max": 1.0,
+      "stdev": 0.212
+    },
+    "compression_ratio": {
+      "mean": 0.46,
+      "median": 0.487,
+      "min": 0.259,
+      "max": 0.608,
+      "stdev": 0.118
+    },
+    "fluency": {
+      "mean": 0.996,
+      "median": 0.997,
+      "min": 0.987,
+      "max": 1.0,
+      "stdev": 0.005
+    },
+    "overall_score": {
+      "mean": 0.912,
+      "median": 0.916,
+      "min": 0.828,
+      "max": 0.965,
+      "stdev": 0.04
+    },
+    "latency_seconds": {
+      "mean": 41.098,
+      "median": 40.135,
+      "min": 32.34,
+      "max": 62.43,
+      "stdev": 8.384
+    }
+  },
+  "average_metrics": {
+    "faithfulness_score": 1.0,
+    "completeness_score": 0.863,
+    "key_fact_recall": 0.983,
+    "entity_recall": 0.792,
+    "number_recall": 0.86,
+    "conciseness_score": 0.738,
+    "average_compression_ratio": 0.46,
+    "fluency_score": 0.996,
+    "overall_score": 0.912,
+    "average_latency_seconds": 41.098
+  },
+  "samples": [
+    {
+      "sample_id": "sample_001",
+      "topic": "Quy trình chế tác khăn lụa Hermès",
+      "article_word_count": 245,
+      "summary_word_count": 116,
+      "summary": "Những chiếc khăn lụa Hermès được xem là tác phẩm nghệ thuật, với hơn mười phác thảo thiết kế mới được gửi đến xưởng in lụa để sản xuất hàng triệu chiếc tại Lyon. Loại tơ dùng để dệt khăn lụa này có nguồn gốc từ một vườn ươm ở Brazil. Quá trình sản xuất bắt đầu khi sợi kén tơ thô được mang đến xưởng dệt Perrin – Pháp, nơi mất gần ba tháng để hoàn thành các công đoạn quay lụa, dệt và khử keo. Các nghệ sĩ sau đó tiến hành phối màu bằng cách phác lại thiết kế trên nhiều lớp phim trước khi chuyển sang giai đoạn in ấn hoàn thiện.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 4,
+          "total_claims_count": 4
+        },
+        "completeness": {
+          "completeness_score": 0.843,
+          "key_fact_recall": 1.0,
+          "entity_recall": 0.833,
+          "number_recall": 0.6,
+          "rouge_l_recall": 0.446,
+          "facts_recalled_ratio": "5/5"
+        },
+        "conciseness": {
+          "conciseness_score": 0.768,
+          "compression_ratio": 0.473,
+          "redundancy_rate": 0.0
+        },
+        "fluency": {
+          "fluency_score": 1.0,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 1.0
+        },
+        "overall_score": 0.91,
+        "summary_words": 116,
+        "article_words": 245
+      },
+      "latency_seconds": 62.43
+    },
+    {
+      "sample_id": "sample_002",
+      "topic": "Bí quyết làm đẹp và chăm sóc da bằng đá lạnh dưa chuột",
+      "article_word_count": 236,
+      "summary_word_count": 136,
+      "summary": "Để chăm sóc da mặt, nên dùng viên đá lạnh thoa nhẹ nhàng khắp mặt, tập trung vào vùng chữ T và dưới bọng mắt, di chuyển đều để tránh kích ứng. Sử dụng khăn vải màn giúp viên đá không tiếp xúc trực tiếp với da, ngăn ngừa kích ứng và rò rỉ nước. Sau khi đá tan, thấm khô da mặt và tiến hành dưỡng, trang điểm. Sau một tháng áp dụng phương pháp này, người viết hài lòng vì da đổ ít dầu hơn, mềm mịn, lỗ chân lông thu nhỏ, mắt và khuôn mặt giảm sưng, đồng thời loại bỏ cảm giác ngái ngủ. Người viết cũng thử dùng bột trà xanh Nhật Bản nhưng vẫn ưu tiên dưa chuột để se lỗ chân lông, trị quầng thâm và giảm bọng mắt.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 5,
+          "total_claims_count": 5
+        },
+        "completeness": {
+          "completeness_score": 0.935,
+          "key_fact_recall": 1.0,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "rouge_l_recall": 0.348,
+          "facts_recalled_ratio": "4/4"
+        },
+        "conciseness": {
+          "conciseness_score": 0.507,
+          "compression_ratio": 0.576,
+          "redundancy_rate": 0.007
+        },
+        "fluency": {
+          "fluency_score": 0.997,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 0.993
+        },
+        "overall_score": 0.903,
+        "summary_words": 136,
+        "article_words": 236
+      },
+      "latency_seconds": 35.94
+    },
+    {
+      "sample_id": "sample_003",
+      "topic": "Chỉ đạo các nhiệm vụ trọng tâm của ngành Kiểm sát nhân dân",
+      "article_word_count": 278,
+      "summary_word_count": 169,
+      "summary": "Chủ tịch Quốc hội yêu cầu Viện KSND tối cao tập trung lãnh đạo thực hiện các nhiệm vụ trọng tâm nhằm phát huy những thành tựu đã đạt được. Ngành cần đồng bộ các giải pháp nâng cao chất lượng thực hành quyền công tố, kiểm sát hoạt động tư pháp, tránh oan sai trong tố tụng hình sự và không hình sự hóa quan hệ dân sự, kinh tế. Đồng thời, cần tập trung giải quyết tốt các vụ án kinh tế, tham nhũng, chức vụ theo dõi, chỉ đạo của Ban Chỉ đạo T.Ư về phòng, chống tham nhũng, tiêu cực. Ngoài ra, ngành kiểm sát phải nâng cao hiệu quả giải quyết các vụ việc dân sự, hành chính, thi hành án và đẩy mạnh giải quyết đơn đề nghị giám đốc thẩm, tái thẩm. Bên cạnh đó, cần sắp xếp cơ cấu tổ chức bộ máy theo hướng tinh gọn, hiệu lực, hiệu quả và giữ vững kỷ luật trong thực thi công vụ.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 6,
+          "total_claims_count": 6
+        },
+        "completeness": {
+          "completeness_score": 0.975,
+          "key_fact_recall": 1.0,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "rouge_l_recall": 0.745,
+          "facts_recalled_ratio": "5/5"
+        },
+        "conciseness": {
+          "conciseness_score": 0.43,
+          "compression_ratio": 0.608,
+          "redundancy_rate": 0.0
+        },
+        "fluency": {
+          "fluency_score": 1.0,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 1.0
+        },
+        "overall_score": 0.906,
+        "summary_words": 169,
+        "article_words": 278
+      },
+      "latency_seconds": 42.28
+    },
+    {
+      "sample_id": "sample_004",
+      "topic": "Lấy phiếu tín nhiệm tại HĐND TP. Đà Nẵng",
+      "article_word_count": 287,
+      "summary_word_count": 160,
+      "summary": "Ngày 12.12, Bí thư Thành ủy Đà Nẵng Nguyễn Văn Quảng đề nghị các đại biểu HĐND phát huy tinh thần trách nhiệm, đánh giá công tâm và khách quan khi thực hiện lấy phiếu tín nhiệm đối với các chức danh do HĐND bầu. Hoạt động này được xem là giám sát quan trọng nhằm nâng cao hiệu lực, hiệu quả hoạt động của bộ máy nhà nước và đánh giá uy tín của người được bầu. Việc lấy phiếu giúp người được tín nhiệm tự soi, tự sửa để phấn đấu nâng cao chất lượng công tác trong thời gian tới. Mục tiêu là xây dựng đội ngũ cán bộ lãnh đạo có phẩm chất, uy tín và khắc phục tình trạng né tránh, đùn đẩy trách nhiệm. Bí thư Thành ủy nhấn mạnh các đại biểu cần thực hiện lấy phiếu một cách nghiêm túc và minh bạch để tạo động lực đổi mới cho thành phố.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 5,
+          "total_claims_count": 5
+        },
+        "completeness": {
+          "completeness_score": 0.709,
+          "key_fact_recall": 1.0,
+          "entity_recall": 0.5,
+          "number_recall": 0.25,
+          "rouge_l_recall": 0.47,
+          "facts_recalled_ratio": "4/4"
+        },
+        "conciseness": {
+          "conciseness_score": 0.542,
+          "compression_ratio": 0.557,
+          "redundancy_rate": 0.031
+        },
+        "fluency": {
+          "fluency_score": 0.987,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 0.969
+        },
+        "overall_score": 0.828,
+        "summary_words": 160,
+        "article_words": 287
+      },
+      "latency_seconds": 42.22
+    },
+    {
+      "sample_id": "sample_005",
+      "topic": "Tranh luận về cơ chế thu hồi đất dự án khu đô thị tại Quốc hội",
+      "article_word_count": 317,
+      "summary_word_count": 162,
+      "summary": "Theo dự thảo luật, Nhà nước chỉ thu hồi đất để thực hiện dự án xây dựng khu đô thị có công năng hỗn hợp, đồng bộ hạ tầng kỹ thuật, xã hội với nhà ở. Đại biểu Mai Văn Hải đề xuất quy định Nhà nước chỉ thu hồi diện tích đất làm hạ tầng kỹ thuật, hạ tầng xã hội và công trình phúc lợi công cộng, trong khi phần xây dựng nhà ở vẫn thực hiện thỏa thuận giữa người dân và doanh nghiệp. Ông Hải nhấn mạnh cần quy định rõ cơ chế tự thỏa thuận về giá cả để hài hòa lợi ích. Đại biểu Hoàng Văn Cường băn khoăn rằng quy định hiện tại có thể tạo ra khoảng trống pháp lý vì nhiều dự án không thỏa mãn tiêu chí sẽ không được đấu thầu, đề nghị sửa đổi để mở rộng đối tượng phải đấu giá và đấu thầu lựa chọn nhà đầu tư.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 4,
+          "total_claims_count": 4
+        },
+        "completeness": {
+          "completeness_score": 0.785,
+          "key_fact_recall": 1.0,
+          "entity_recall": 0.333,
+          "number_recall": 1.0,
+          "rouge_l_recall": 0.513,
+          "facts_recalled_ratio": "4/4"
+        },
+        "conciseness": {
+          "conciseness_score": 0.657,
+          "compression_ratio": 0.511,
+          "redundancy_rate": 0.031
+        },
+        "fluency": {
+          "fluency_score": 0.988,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 0.969
+        },
+        "overall_score": 0.871,
+        "summary_words": 162,
+        "article_words": 317
+      },
+      "latency_seconds": 39.14
+    },
+    {
+      "sample_id": "sample_006",
+      "topic": "Cuộc cách mạng nhận diện thương hiệu của Céline, Balmain và Calvin Klein",
+      "article_word_count": 327,
+      "summary_word_count": 150,
+      "summary": "Thương hiệu Céline đã thay đổi cách viết tên thành Celine, gây ra tranh cãi trong cộng đồng yêu thời trang, khi Hedi Slimane, Giám đốc Sáng tạo, thực hiện động thái này tương tự như việc loại bỏ \"Yves\" khỏi tên Saint Laurent năm 2012. Slimane giải thích rằng việc viết lại tên nhằm giúp thương hiệu trở nên cân đối và hiện đại hơn. Trong tháng 12 năm 2018, nhiều thương hiệu khác cũng có những thay đổi nhận diện; NTK Olivier Rousteing đã giới thiệu logo mới cho Balmain sau 73 năm. Cùng thời điểm đó, Calvin Klein thông báo Raf Simons rời khỏi vị trí Giám đốc Sáng tạo, để lại nhiều tiếc nuối về tương lai của dòng sản phẩm Calvin Klein 205W39NYC. Những thay đổi này phản ánh sự chuyển mình và áp lực mà ngành công nghiệp thời trang đang phải đối mặt.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 6,
+          "total_claims_count": 6
+        },
+        "completeness": {
+          "completeness_score": 0.87,
+          "key_fact_recall": 1.0,
+          "entity_recall": 0.875,
+          "number_recall": 0.75,
+          "rouge_l_recall": 0.387,
+          "facts_recalled_ratio": "5/5"
+        },
+        "conciseness": {
+          "conciseness_score": 0.792,
+          "compression_ratio": 0.459,
+          "redundancy_rate": 0.02
+        },
+        "fluency": {
+          "fluency_score": 0.992,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 0.98
+        },
+        "overall_score": 0.922,
+        "summary_words": 150,
+        "article_words": 327
+      },
+      "latency_seconds": 43.61
+    },
+    {
+      "sample_id": "sample_007",
+      "topic": "Thiều Bảo Trâm xuất hiện trên biển quảng cáo Times Square với Spotify EQUAL",
+      "article_word_count": 239,
+      "summary_word_count": 120,
+      "summary": "Thiều Bảo Trâm đã xuất hiện trên biển quảng cáo khổng lồ tại Quảng trường Thời đại, New York, đại diện cho chiến dịch EQUAL Global của Spotify nhằm tôn vinh các nữ nghệ sĩ toàn cầu. Ngày 7/6, cô phát hành mini album “after YOU” với ba phiên bản, bao gồm năm ca khúc ballad về chuyện tình yêu. Album này nhanh chóng đạt vị trí số 1 trên BXH Album được nghe nhiều nhất trên iTunes Việt Nam và các ca khúc cũng nằm trong top yêu thích. Ngoài ra, vào ngày 13/6, Thiều Bảo Trâm còn tham gia chương trình Simply K-Pop Con-tour tại Hàn Quốc và trình diễn ca khúc “Chúng Ta Làm Bạn Được Không?”.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 4,
+          "total_claims_count": 4
+        },
+        "completeness": {
+          "completeness_score": 0.949,
+          "key_fact_recall": 1.0,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "rouge_l_recall": 0.489,
+          "facts_recalled_ratio": "4/4"
+        },
+        "conciseness": {
+          "conciseness_score": 0.691,
+          "compression_ratio": 0.502,
+          "redundancy_rate": 0.008
+        },
+        "fluency": {
+          "fluency_score": 0.997,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 0.992
+        },
+        "overall_score": 0.935,
+        "summary_words": 120,
+        "article_words": 239
+      },
+      "latency_seconds": 33.9
+    },
+    {
+      "sample_id": "sample_008",
+      "topic": "Pierpaolo Piccioli rời Valentino sau 25 năm cống hiến",
+      "article_word_count": 355,
+      "summary_word_count": 113,
+      "summary": "NTK Dries Van Noten rời khỏi thương hiệu riêng, và Pierpaolo Piccioli, bậc thầy của Valentino, tuyên bố rút lui khỏi vị trí giám đốc sáng tạo sau 25 năm gắn bó. Piccioli đã chia sẻ những lời ẩn ý về sự cống hiến của mình cho Valentino trong suốt một phần tư thế kỷ. CEO của Valentino, Jacopo Venturini, và Chủ tịch thương hiệu Ý, Rachid Mohamed Rachid, đều bày tỏ lòng biết ơn sâu sắc đến ông vì tầm nhìn và sáng tạo phi thường. Sự ra đi này là một mất mát lớn đối với Valentino nhưng cũng khẳng định sự nghiệp rực rỡ của Piccioli trên con đường riêng.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 4,
+          "total_claims_count": 4
+        },
+        "completeness": {
+          "completeness_score": 0.853,
+          "key_fact_recall": 0.833,
+          "entity_recall": 1.0,
+          "number_recall": 1.0,
+          "rouge_l_recall": 0.361,
+          "facts_recalled_ratio": "3/4"
+        },
+        "conciseness": {
+          "conciseness_score": 1.0,
+          "compression_ratio": 0.318,
+          "redundancy_rate": 0.0
+        },
+        "fluency": {
+          "fluency_score": 1.0,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 1.0
+        },
+        "overall_score": 0.949,
+        "summary_words": 113,
+        "article_words": 355
+      },
+      "latency_seconds": 37.99
+    },
+    {
+      "sample_id": "sample_009",
+      "topic": "Thức tỉnh khỏi cuộc sống rập khuôn và hành trình tìm lại bản thân",
+      "article_word_count": 297,
+      "summary_word_count": 101,
+      "summary": "Nhiều người sống theo thói quen được cha mẹ định sẵn, khiến cuộc sống trở nên đơn điệu, thiếu màu sắc và không có ước mơ. Sự ngoan ngoãn này không mang lại niềm vui, dẫn đến một cuộc sống nhạt nhẽo, thiếu lãng mạn và bất ngờ. Khi nhận ra sự đơn điệu trong hôn nhân, một người quyết định phá vỡ bầu không khí tĩnh lặng để tìm kiếm những cảm xúc chân thật hơn. Họ bắt đầu hành trình khám phá bản thân, mong muốn được cảm nhận, trải nghiệm và thực sự tồn tại trong cuộc đời.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 4,
+          "total_claims_count": 4
+        },
+        "completeness": {
+          "completeness_score": 0.806,
+          "key_fact_recall": 1.0,
+          "entity_recall": 0.5,
+          "number_recall": 1.0,
+          "rouge_l_recall": 0.309,
+          "facts_recalled_ratio": "4/4"
+        },
+        "conciseness": {
+          "conciseness_score": 1.0,
+          "compression_ratio": 0.34,
+          "redundancy_rate": 0.0
+        },
+        "fluency": {
+          "fluency_score": 1.0,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 1.0
+        },
+        "overall_score": 0.932,
+        "summary_words": 101,
+        "article_words": 297
+      },
+      "latency_seconds": 32.34
+    },
+    {
+      "sample_id": "sample_010",
+      "topic": "Bí quyết tự nhiên chăm sóc da và cơ thể trong mùa hè",
+      "article_word_count": 451,
+      "summary_word_count": 117,
+      "summary": "Sữa tươi giúp làn da mềm mại nhờ axit lactic, có thể dùng ngâm tay chân hoặc thêm vào bồn tắm để thư giãn và dưỡng da. Mật ong kết hợp với sữa tươi giúp bảo vệ da khỏi vi khuẩn và giữ ẩm. Salad xanh mát với các loại rau giàu vitamin chống lão hóa và thúc đẩy phát triển tóc móng. Ngoài ra, mật ong còn giúp hồi phục độ ẩm cho da và khắc phục nhiệt miệng. Túi trà xanh làm mát bọng mắt sưng, còn vang đỏ chứa chất chống oxy hóa giúp làm mềm da. Nước chanh có tác dụng làm chắc khỏe tóc và mang lại sự tươi sáng rạng rỡ.",
+      "metrics": {
+        "faithfulness": {
+          "faithfulness_score": 1.0,
+          "supported_claim_rate": 1.0,
+          "unsupported_claim_rate": 0.0,
+          "contradiction_rate": 0.0,
+          "supported_claims_count": 6,
+          "total_claims_count": 6
+        },
+        "completeness": {
+          "completeness_score": 0.902,
+          "key_fact_recall": 1.0,
+          "entity_recall": 0.875,
+          "number_recall": 1.0,
+          "rouge_l_recall": 0.337,
+          "facts_recalled_ratio": "5/5"
+        },
+        "conciseness": {
+          "conciseness_score": 0.996,
+          "compression_ratio": 0.259,
+          "redundancy_rate": 0.009
+        },
+        "fluency": {
+          "fluency_score": 0.997,
+          "sentence_completeness": 1.0,
+          "truncation_detected": false,
+          "trigram_diversity": 0.991
+        },
+        "overall_score": 0.965,
+        "summary_words": 117,
+        "article_words": 451
+      },
+      "latency_seconds": 41.13
+    }
+  ]
+}
