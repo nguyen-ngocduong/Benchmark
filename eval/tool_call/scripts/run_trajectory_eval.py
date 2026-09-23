@@ -633,8 +633,13 @@ class TrajectoryEvaluator:
             if tool_eval["actual_called_tool"]:
                 slot_cov = slot_eval["context_slot_accuracy"]
                 ans_len = len(final_ans.split())
-                conciseness = 1.0 if 40 <= ans_len <= 300 else max(0.5, 300 / max(ans_len, 1))
-                res_sum_score = round(0.7 * slot_cov + 0.3 * conciseness, 3)
+                if 40 <= ans_len <= 300:
+                    conciseness = 1.0
+                elif ans_len < 40:
+                    conciseness = max(0.5, ans_len / 40.0)
+                else:
+                    conciseness = max(0.5, 300.0 / max(ans_len, 1))
+                res_sum_score = round(min(1.0, max(0.0, 0.7 * slot_cov + 0.3 * conciseness)), 3)
             elif tool_eval.get("missing_tool_call"):
                 # Phương án 2: Khi lượt yêu cầu gọi tool mà mô hình quên gọi (Missing Tool Call),
                 # phạt điểm tóm tắt công cụ = 0.0 vì không có kết quả từ công cụ để tóm tắt
@@ -844,7 +849,7 @@ class TrajectoryEvaluator:
 
 async def main_async():
     parser = argparse.ArgumentParser(description="Multi-Turn Trajectory Evaluator with 3-Pillar Taxonomy")
-    parser.add_argument("--model", type=str, default="gemma4:e2b", help="Model name")
+    parser.add_argument("--model", type=str, default=os.environ.get("MODEL", "gemma4:e2b"), help="Model name (or set MODEL in .env)")
     parser.add_argument("--trajectory", type=str, default=None, help="Path to agent_output.jsonl")
     parser.add_argument("--dataset", type=str, default="eval/tool_call/datasets/multi_turn/samples.json")
     parser.add_argument("--output", type=str, default=None, help="Output JSON path")

@@ -77,17 +77,19 @@ print_help() {
     echo "  -h, --help             Hiển thị trợ giúp này"
     echo ""
     echo -e "${BOLD}VÍ DỤ:${NC}"
-    echo "  ./run.sh                                  # Chạy toàn bộ cho cả gemma4 và qwen3.5"
-    echo "  ./run.sh -m gemma4:e2b                    # Chạy toàn bộ chỉ cho gemma4:e2b"
+    echo "  ./run.sh                                  # Chạy toàn bộ theo MODEL trong .env hoặc mặc định"
+    echo "  ./run.sh -m google/gemma-4-31B-it         # Chạy trực tiếp cho google/gemma-4-31B-it"
+    echo "  ./run.sh -m gemma4:e2b                    # Chạy chỉ cho gemma4:e2b"
     echo "  ./run.sh enrich-mentor                    # Làm giàu file mẫu của mentor"
     echo "  ./run.sh enrich-mentor --sample-id sample_013 # Làm giàu riêng sample_013"
     echo "  ./run.sh enrich-mentor --from-sample sample_013 --to-sample sample_015 # Làm giàu từ sample_013 đến sample_015"
     echo "  ./run.sh enrich --sample-id sample_011    # Làm giàu dữ liệu cho riêng sample_011"
     echo "  ./run.sh enrich-task2 --from-sample sample_011 # Làm giàu Task 2 từ sample_011 trở đi"
-    echo "  ./run.sh trajectory -m gemma4:e2b --sample-id sample_011  # Chỉ sinh vết cho sample_011"
-    echo "  ./run.sh eval -m gemma4:e2b               # Chạy chấm điểm tất cả các samples"
-    echo "  ./run.sh eval -m gemma4:e2b --sample-id sample_013  # Chỉ chấm điểm riêng sample_013"
-    echo "  ./run.sh eval -m gemma4:e2b --from-sample sample_011 --to-sample sample_013 # Chấm điểm từ sample_011 đến 013"
+    echo "  ./run.sh trajectory                       # Sinh vết cho MODEL từ .env"
+    echo "  ./run.sh trajectory --sample-id sample_013 # Chỉ sinh vết cho sample_013"
+    echo "  ./run.sh eval                             # Chấm điểm cho MODEL từ .env"
+    echo "  ./run.sh eval --sample-id sample_013      # Chỉ chấm điểm riêng sample_013"
+    echo "  ./run.sh eval --from-sample sample_011 --to-sample sample_013 # Chấm điểm từ sample_011 đến 013"
 }
 
 # Parse command line arguments
@@ -141,6 +143,14 @@ esac
 
 # Check Ollama service
 check_ollama() {
+    # Check if using remote BASE_URL from .env
+    local env_base_url
+    env_base_url=$( (grep -E "^\s*BASE_URL\s*=" "$WORKSPACE_DIR/.env" 2>/dev/null || true) | cut -d '=' -f2- | tr -d ' "' | tr -d "'" )
+    if [ -n "$env_base_url" ] && [[ "$env_base_url" != *"localhost:11434"* && "$env_base_url" != *"127.0.0.1:11434"* ]]; then
+        echo -e "${GREEN}✓ Đang sử dụng remote endpoint từ .env: ${env_base_url}${NC}"
+        return 0
+    fi
+
     if ! curl -s http://localhost:11434/api/tags > /dev/null 2>&1; then
         echo -e "${YELLOW}⚠️ CẢNH BÁO: Không kết nối được tới Ollama (http://localhost:11434).${NC}"
         echo -e "${YELLOW}   Vui lòng đảm bảo tiến trình 'ollama serve' đang chạy nếu sử dụng local models.${NC}\n"
@@ -256,7 +266,13 @@ run_enrich_mentor() {
 if [ -n "$SPECIFIC_MODEL" ]; then
     TARGET_MODELS=("$SPECIFIC_MODEL")
 else
-    TARGET_MODELS=("${MODELS[@]}")
+    # Check if MODEL is defined in .env
+    ENV_MODEL=$( (grep -E "^\s*MODEL\s*=" "$WORKSPACE_DIR/.env" 2>/dev/null || true) | cut -d '=' -f2- | tr -d ' "' | tr -d "'" )
+    if [ -n "$ENV_MODEL" ]; then
+        TARGET_MODELS=("$ENV_MODEL")
+    else
+        TARGET_MODELS=("${MODELS[@]}")
+    fi
 fi
 
 # Main execution logic

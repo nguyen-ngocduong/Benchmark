@@ -55,11 +55,28 @@ import sys
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 import httpx
 from dotenv import load_dotenv
 
+from eval.tool_call.core.chat_client import chat_completion_async
+
 load_dotenv()
+
+
+def load_tools_from_file(path: Union[str, Path]) -> List[Dict[str, Any]]:
+    """Loads tools safely whether formatted as {'tools': [...]} or [...]"""
+    p = Path(path)
+    if not p.exists():
+        return []
+    with open(p, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    if isinstance(data, dict) and "tools" in data:
+        return data["tools"]
+    elif isinstance(data, list):
+        return data
+    return []
+
 
 # Benchmark tool definition: sole tool web_search according to Section II
 BENCHMARK_TOOLS = [
@@ -104,7 +121,7 @@ class AgentTrajectoryRunner:
 
     def __init__(
         self,
-        model_name: str = "qwen3.5:0.8b",
+        model_name: Optional[str] = None,
         base_url: Optional[str] = None,
         num_ctx: int = 2048,
         max_tokens: int = 800,
@@ -112,9 +129,24 @@ class AgentTrajectoryRunner:
         system_prompt: str = SYSTEM_PROMPT,
         tools: Optional[List[Dict]] = None
     ):
-        self.model_name = model_name
-        self.base_url = (base_url or os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")).rstrip("/")
-        if "gemma" in model_name.lower() and num_ctx > 1536:
+        self.model_name = model_name or os.environ.get("MODEL") or "qwen3.5:0.8b"
+        raw_base_url = (
+            base_url
+            or os.environ.get("BASE_URL")
+            or os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
+        )
+        self.base_url = raw_base_url.rstrip("/")
+        self.api_key = os.environ.get("API_KEY", "EMPTY")
+
+        # Determine if using OpenAI-compatible client (remote endpoint, vLLM, SGLang, or external model)
+        self.use_openai_client = bool(
+            os.environ.get("BASE_URL")
+            or "/" in self.model_name
+            or "/v1" in self.base_url
+            or ("localhost:11434" not in self.base_url and "127.0.0.1:11434" not in self.base_url)
+        )
+
+        if "gemma" in self.model_name.lower() and num_ctx > 1536 and not self.use_openai_client:
             self.num_ctx = 1536
         else:
             self.num_ctx = num_ctx
@@ -124,7 +156,9 @@ class AgentTrajectoryRunner:
         self.tools = tools if tools is not None else BENCHMARK_TOOLS
 
     async def cleanup_other_models(self):
-        """Unload other models from Ollama RAM before running to prevent OOM."""
+        """Unload other models from Ollama RAM before running to prevent OOM (only for local Ollama)."""
+        if self.use_openai_client:
+            return
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
                 res = await client.get(f"{self.base_url}/api/ps")
@@ -146,12 +180,54 @@ class AgentTrajectoryRunner:
         max_tokens: Optional[int] = None
     ) -> Dict[str, Any]:
         """
-        Call local model via Ollama native /api/chat.
-        Passes arguments as dict to prevent Go JSON parser 400 errors.
+        Call model either via OpenAI-compatible endpoint (BASE_URL) or local Ollama native /api/chat.
         """
-        ollama_url = f"{self.base_url}/api/chat"
         num_predict = max_tokens or self.max_tokens
 
+        # ── Branch 1: OpenAI-compatible endpoint (e.g. google/gemma-4-31B-it via BASE_URL) ──
+        if self.use_openai_client:
+            start_time = time.perf_counter()
+            try:
+                resp = await chat_completion_async(
+                    messages=messages,
+                    base_url=self.base_url,
+                    model=self.model_name,
+                    api_key=self.api_key,
+                    tools=tools,
+                    tool_choice="auto",
+                    temperature=self.temperature,
+                    max_tokens=num_predict
+                )
+                latency_ms = (time.perf_counter() - start_time) * 1000
+                raw_tc = resp.get("tool_calls", [])
+                norm_tc = []
+                for tc in raw_tc:
+                    norm_tc.append({
+                        "id": tc.get("id") or f"call_{int(time.time()*1000)}",
+                        "name": tc.get("name", ""),
+                        "arguments": tc.get("arguments", {})
+                    })
+                content = resp.get("content") or ""
+                if not content.strip() and resp.get("reasoning"):
+                    content = resp.get("reasoning", "").strip()
+
+                return {
+                    "content": content,
+                    "tool_calls": norm_tc,
+                    "latency_ms": latency_ms,
+                    "error": resp.get("error")
+                }
+            except Exception as e:
+                print(f"  ⚠️ [OpenAI Client Error] {str(e)[:160]}")
+                return {
+                    "content": "",
+                    "tool_calls": [],
+                    "latency_ms": (time.perf_counter() - start_time) * 1000,
+                    "error": str(e)
+                }
+
+        # ── Branch 2: Local Ollama native /api/chat ──
+        ollama_url = f"{self.base_url}/api/chat"
         payload: Dict[str, Any] = {
             "model": self.model_name,
             "messages": messages,
@@ -291,7 +367,8 @@ class AgentTrajectoryRunner:
                     ]
                 }
 
-                # Append assistant tool call to message history (arguments as dict for Ollama)
+                # Append assistant tool call to message history (JSON string for OpenAI/vLLM, dict for Ollama)
+                hist_args = json.dumps(tool_args, ensure_ascii=False) if (self.use_openai_client or isinstance(tool_args, str)) else tool_args
                 messages.append({
                     "role": "assistant",
                     "content": "",
@@ -300,7 +377,7 @@ class AgentTrajectoryRunner:
                         "type": "function",
                         "function": {
                             "name": tool_name,
-                            "arguments": tool_args
+                            "arguments": hist_args
                         }
                     }]
                 })
@@ -433,8 +510,20 @@ async def main_async():
     parser.add_argument(
         "--model",
         type=str,
-        default="qwen3.5:0.8b",
-        help="Ollama model name (e.g. qwen3.5:0.8b, gemma4:e2b)"
+        default=os.environ.get("MODEL", "qwen3.5:0.8b"),
+        help="Model name (e.g. google/gemma-4-31B-it, qwen3.5:0.8b, gemma4:e2b)"
+    )
+    parser.add_argument(
+        "--base-url",
+        type=str,
+        default=None,
+        help="Custom endpoint URL (e.g. remote OpenAI-compatible base URL or Ollama)"
+    )
+    parser.add_argument(
+        "--tools",
+        type=str,
+        default=None,
+        help="Optional custom tools JSON path (e.g. eval/tool_call/tools/list_tool.json)"
     )
     parser.add_argument(
         "--dataset",
@@ -499,6 +588,17 @@ async def main_async():
     args = parser.parse_args()
 
     WORKSPACE_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+
+    # Determine custom tools if specified
+    custom_tools = None
+    if args.tools:
+        tools_path = Path(args.tools)
+        if not tools_path.is_absolute():
+            tools_path = (WORKSPACE_ROOT / tools_path).resolve()
+        loaded = load_tools_from_file(tools_path)
+        if loaded:
+            custom_tools = loaded
+            print(f"🔧 Loaded {len(custom_tools)} custom tool definitions from {tools_path.name}")
 
     # Determine output file path
     if args.output:
@@ -565,12 +665,16 @@ async def main_async():
 
     runner = AgentTrajectoryRunner(
         model_name=args.model,
+        base_url=args.base_url,
         num_ctx=args.num_ctx,
         max_tokens=args.max_tokens,
-        temperature=args.temperature
+        temperature=args.temperature,
+        tools=custom_tools
     )
 
     print(f"\n🚀 Starting Agent Trajectory Runner for model: {args.model}")
+    print(f"   Endpoint mode: {'Remote OpenAI Client' if runner.use_openai_client else 'Local Ollama Native'}")
+    print(f"   Base URL:      {runner.base_url}")
     print(f"📝 Output target: {out_path.resolve()}\n")
 
     await runner.cleanup_other_models()
@@ -592,12 +696,13 @@ async def main_async():
         except Exception as e:
             print(f"  ❌ Error executing {sample_id}: {e}", flush=True)
 
-    # Immediately release model from RAM
-    async with httpx.AsyncClient(timeout=10.0) as client:
-        try:
-            await client.post(f"{runner.base_url}/api/generate", json={"model": args.model, "keep_alive": 0})
-        except Exception:
-            pass
+    # Immediately release model from RAM if using local Ollama
+    if not runner.use_openai_client:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            try:
+                await client.post(f"{runner.base_url}/api/generate", json={"model": args.model, "keep_alive": 0})
+            except Exception:
+                pass
 
     total_time = time.time() - t_start
     print(f"\n{'='*65}")

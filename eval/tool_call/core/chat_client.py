@@ -40,6 +40,28 @@ async def chat_completion_async(
     if system_prompt:
         messages = [{"role": "system", "content": system_prompt}] + messages
 
+    # Ensure assistant tool_calls arguments in messages are JSON strings for OpenAI / vLLM compatibility
+    sanitized_messages = []
+    for m in messages:
+        if isinstance(m, dict) and "tool_calls" in m and isinstance(m["tool_calls"], list):
+            m_copy = dict(m)
+            new_tcs = []
+            for tc in m["tool_calls"]:
+                if isinstance(tc, dict) and "function" in tc and isinstance(tc["function"], dict):
+                    tc_c = dict(tc)
+                    fn_c = dict(tc["function"])
+                    if "arguments" in fn_c and not isinstance(fn_c["arguments"], str):
+                        fn_c["arguments"] = json.dumps(fn_c["arguments"], ensure_ascii=False)
+                    tc_c["function"] = fn_c
+                    new_tcs.append(tc_c)
+                else:
+                    new_tcs.append(tc)
+            m_copy["tool_calls"] = new_tcs
+            sanitized_messages.append(m_copy)
+        else:
+            sanitized_messages.append(m)
+    messages = sanitized_messages
+
     client = AsyncOpenAI(base_url=base_url, api_key=api_key)
 
     kwargs = {
