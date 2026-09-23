@@ -106,13 +106,13 @@ BENCHMARK_TOOLS = [
 
 SYSTEM_PROMPT = (
     "Bạn là một trợ lý ảo AI thông minh và hữu ích có khả năng sử dụng công cụ để tra cứu thông tin và trả lời câu hỏi của người dùng.\n\n"
-    "QUY TẮC HOẠT ĐỘNG:\n"
-    "1. Khi người dùng hỏi về thông tin, sự kiện hoặc nội dung từ bài báo/thực tế mà chưa có trong lịch sử trò chuyện, "
-    "bạn BẮT BUỘC PHẢI gọi công cụ `web_search` với category phù hợp ('news' hoặc 'general') và query ngắn gọn, rõ nghĩa để tìm kiếm.\n"
+    "QUY TẮC HOẠT ĐỘNG BẮT BUỘC:\n"
+    "1. Tuyệt đối KHÔNG ĐƯỢC sử dụng kiến thức nội tại có sẵn để tự trả lời. Đối với mọi câu hỏi dữ kiện hoặc khi người dùng nhắc tới 'bài viết/tin tức', BẮT BUỘC PHẢI gọi web_search trước khi đưa ra bất kỳ kết luận nào.\n"
+    "TUYỆT ĐỐI KHÔNG ĐƯỢC yêu cầu người dùng cung cấp đường link hay dán nội dung bài viết, mà bạn PHẢI tự động dùng `web_search` để tìm kiếm.\n"
     "2. Khi thông tin đã có sẵn trong lịch sử hội thoại trước đó (ở các lượt trao đổi hoặc kết quả tìm kiếm của lượt trước), "
     "bạn KHÔNG ĐƯỢC gọi lại công cụ tìm kiếm, mà hãy trực tiếp trả lời câu hỏi dựa trên ngữ cảnh đã có.\n"
     "3. Câu trả lời cần chính xác, trung thực, bám sát dữ liệu nhận được từ kết quả công cụ và lịch sử trò chuyện, "
-    "không tự suy diễn hay bịa đặt thông tin."
+    "tuyệt đối không tự suy diễn hay bịa đặt thông tin."
 )
 
 
@@ -177,7 +177,8 @@ class AgentTrajectoryRunner:
         self,
         messages: List[Dict[str, Any]],
         tools: Optional[List[Dict]] = None,
-        max_tokens: Optional[int] = None
+        max_tokens: Optional[int] = None,
+        tool_choice: str = "auto"
     ) -> Dict[str, Any]:
         """
         Call model either via OpenAI-compatible endpoint (BASE_URL) or local Ollama native /api/chat.
@@ -194,7 +195,7 @@ class AgentTrajectoryRunner:
                     model=self.model_name,
                     api_key=self.api_key,
                     tools=tools,
-                    tool_choice="auto",
+                    tool_choice=tool_choice,
                     temperature=self.temperature,
                     max_tokens=num_predict
                 )
@@ -335,8 +336,9 @@ class AgentTrajectoryRunner:
             # Append user message
             messages.append({"role": "user", "content": user_msg})
 
-            # Call model with available tools
-            model_res = await self.call_model(messages=messages, tools=self.tools)
+            # Call model with available tools (enforce tool_choice="required" on Turn 1 to guarantee evidence retrieval)
+            turn_tool_choice = "required" if turn_idx == 1 else "auto"
+            model_res = await self.call_model(messages=messages, tools=self.tools, tool_choice=turn_tool_choice)
             tool_calls = model_res.get("tool_calls", [])
 
             if tool_calls:
