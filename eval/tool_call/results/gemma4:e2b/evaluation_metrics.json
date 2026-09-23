@@ -1,6 +1,6 @@
 {
   "model": "gemma4:e2b",
-  "evaluation_timestamp": "2026-09-22T17:28:49.275956",
+  "evaluation_timestamp": "2026-09-23T14:21:22.286749",
   "total_scenarios": 11,
   "summary_metrics": {
     "task_success_rate": 0.636,
@@ -12,13 +12,17 @@
     "context_slot_accuracy": 0.879,
     "coreference_accuracy": 0.909,
     "follow_up_understanding": 0.915,
-    "state_tracking_accuracy": 0.873,
-    "cross_turn_consistency": 0.902,
+    "state_tracking_accuracy": 0.872,
+    "cross_turn_consistency": 0.901,
     "result_summarization_score": 0.896,
-    "final_answer_quality": 0.894,
-    "grounded_claim_precision": 0.855,
-    "unsupported_claim_rate": 0.046,
-    "contradiction_rate": 0.098
+    "final_answer_quality": 0.891,
+    "grounded_claim_precision": 0.849,
+    "unsupported_claim_rate": 0.052,
+    "contradiction_rate": 0.099,
+    "bineval_tool_score": 0.8,
+    "bineval_context_score": 1.0,
+    "bineval_factuality_score": 0.867,
+    "bineval_overall_score": 0.889
   },
   "scenarios": [
     {
@@ -2949,44 +2953,100 @@
                 "claim": "The vast majority of known planets exist within our own solar system.",
                 "label": "UNSUPPORTED",
                 "evidence_quote": "",
-                "reason": "Bằng chứng không đề cập đến tỷ lệ hay số lượng các hành tinh đã biết nằm trong hệ mặt trời so với bên ngoài."
+                "reason": "Bằng chứng không đề cập đến tỷ lệ hoặc phần lớn các hành tinh đã biết nằm trong hệ mặt trời của chúng ta."
               },
               {
-                "claim": "The possibility of planets existing outside of star systems is extremely rare or unlikely based on current models of planetary formation.",
+                "claim": "Natural planet formation in deep space outside of any solar system is considered extremely rare or unlikely.",
                 "label": "SUPPORTED",
                 "evidence_quote": "Natural planet formation in deep space outside of any solar system is considered extremely rare or unlikely.",
-                "reason": "Khớp chính xác với thông tin trong snippet về sự hình thành hành tinh ngoài không gian sâu thẳm."
+                "reason": "Trùng khớp hoàn toàn với nội dung trong snippet của bài báo 'Planetary Formation Outside Star Systems'."
               },
               {
                 "claim": "There are ongoing searches for candidate rocky planets in other star systems (like Tau Ceti), but these are not confirmed as actual planets.",
                 "label": "CONTRADICTED",
                 "evidence_quote": "Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone",
-                "reason": "Trợ lý khẳng định 'these are not confirmed as actual planets', nhưng văn bản gốc gọi chúng là 'candidate rocky planets' (các ứng viên hành tinh đá) và bằng chứng không nói rõ việc chúng chưa được xác nhận là hành tinh thực sự mà thực tế Tau Ceti sở hữu các ứng viên hành tinh."
+                "reason": "Trợ lý khẳng định 'these are not confirmed as actual planets' trong khi bằng chứng gọi chúng là 'candidate rocky planets' (hành tinh ứng viên đá) nhưng không khẳng định là 'không phải là hành tinh thực sự'."
               },
               {
                 "claim": "Even if such planets existed, their habitability is highly uncertain due to unknown factors.",
                 "label": "SUPPORTED",
                 "evidence_quote": "Being an Earth-sized planet in a habitable zone does not guarantee survival. Factors like Venus-like runaway greenhouse effects... remain completely unverified.",
-                "reason": "Bằng chứng xác nhận khả năng sinh sống của các hành tinh dạng này có nhiều điều không chắc chắn."
-              },
-              {
-                "claim": "While we search for exoplanets, the existence of planets outside of any star systems is considered extremely rare or unlikely by current scientific understanding.",
-                "label": "SUPPORTED",
-                "evidence_quote": "Natural planet formation in deep space outside of any solar system is considered extremely rare or unlikely.",
-                "reason": "Ý chính được hỗ trợ trực tiếp từ đoạn snippet đầu tiên."
+                "reason": "Bằng chứng xác nhận tính có thể sống được (habitability) của các hành tinh kích thước Trái Đất trong vùng habitable zone là không chắc chắn do các yếu tố chưa được kiểm chứng."
               }
             ],
-            "grounded_claim_precision": 0.6,
-            "unsupported_claim_rate": 0.2,
-            "contradiction_rate": 0.2,
-            "total_claims": 5,
-            "supported_claims_count": 3,
+            "grounded_claim_precision": 0.5,
+            "unsupported_claim_rate": 0.25,
+            "contradiction_rate": 0.25,
+            "total_claims": 4,
+            "supported_claims_count": 2,
             "unsupported_claims_count": 1,
             "contradicted_claims_count": 1
           },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "YES",
+                    "reason": "Độ chính xác từ khóa query đạt 100%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (1/1 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 50%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "NO",
+                    "reason": "Phát hiện 1 phát biểu mâu thuẫn (25.0%)"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 80%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.778
+          },
           "result_summarization_score": 1.0,
           "follow_up_understanding": null,
-          "final_answer_quality": 0.84
+          "final_answer_quality": 0.8
         },
         {
           "turn": 2,
@@ -3049,25 +3109,25 @@
                 "claim": "Tau Ceti hosts candidate rocky planets that are estimated to be between 2 and 6 Earth masses within or near the habitable zone.",
                 "label": "SUPPORTED",
                 "evidence_quote": "Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone",
-                "reason": "Phát biểu được trích dẫn trực tiếp và chính xác từ snippet về Tau Ceti Candidate Planets."
+                "reason": "Bằng chứng từ tool cung cấp chính xác thông tin này về các hành tinh ứng viên của Tau Ceti."
               },
               {
                 "claim": "Being an Earth-sized planet in a habitable zone does not guarantee survival.",
                 "label": "SUPPORTED",
                 "evidence_quote": "Being an Earth-sized planet in a habitable zone does not guarantee survival.",
-                "reason": "Phát biểu trùng khớp hoàn toàn với nội dung trong snippet Planetary Habitability Uncertainties."
+                "reason": "Bằng chứng khẳng định nguyên văn câu này trong phần mô tả về planetary habitability uncertainties."
               },
               {
                 "claim": "The factors that determine habitability—such as Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure—remain completely unverified.",
                 "label": "SUPPORTED",
                 "evidence_quote": "Factors like Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure remain completely unverified.",
-                "reason": "Phát biểu phản ánh chính xác các yếu tố không chắc chắn được liệt kê trong bằng chứng."
+                "reason": "Bằng chứng liệt kê và khẳng định chính xác các yếu tố này vẫn hoàn toàn chưa được xác minh."
               },
               {
                 "claim": "There is no confirmed information about the actual conditions or long-term consequences for human life on Tau Ceti b.",
                 "label": "SUPPORTED",
-                "evidence_quote": "Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone... Factors like Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure remain completely unverified.",
-                "reason": "Bằng chứng chỉ ra các hành tinh này chỉ là 'candidate' (ứng viên) và các yếu tố điều kiện sống chưa được kiểm chứng, suy diễn hợp lý rằng chưa có thông tin xác thực về hậu quả đối với con người."
+                "evidence_quote": "Tau Ceti hosts candidate rocky planets... though radio searches (SETI) have found no artificial signals... Factors like Venus-like runaway greenhouse effects... remain completely unverified.",
+                "reason": "Bằng chứng chỉ ra chúng chỉ là hành tinh ứng viên và các điều kiện sinh sống chưa được xác minh, suy ra chưa có thông tin xác thực về hậu quả đối với sự sống của con người."
               }
             ],
             "grounded_claim_precision": 1.0,
@@ -3077,6 +3137,74 @@
             "supported_claims_count": 4,
             "unsupported_claims_count": 0,
             "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "NO",
+                    "reason": "Độ chính xác từ khóa query đạt 33%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "YES",
+                    "reason": "Bắt đúng đối tượng 'tau ceti'"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "YES",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 100%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 100%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.889
           },
           "result_summarization_score": 1.0,
           "follow_up_understanding": 1.0,
@@ -3142,38 +3270,106 @@
                 "claim": "A Moon base is not designed as a closed biological biosphere like Biosphere 2.",
                 "label": "SUPPORTED",
                 "evidence_quote": "A Moon base is not designed as a closed biological biosphere like Biosphere 2.",
-                "reason": "Bằng chứng nói rõ căn cứ trên văn bản cung cấp."
+                "reason": "Bằng chứng nói rõ căn cứ này trùng khớp từng từ với phát biểu."
               },
               {
-                "claim": "Lunar bases will rely on bulk cargo supply flights from Earth for essential resources like oxygen, water, and food on a regular schedule (similar to the ISS).",
+                "claim": "Instead, lunar bases will rely on bulk cargo supply flights from Earth for essential resources like oxygen, water, and food on a regular schedule (similar to the ISS).",
                 "label": "SUPPORTED",
-                "evidence_quote": "lunar bases will rely on bulk cargo supply flights from Earth for oxygen, water, and food on a regular schedule, similar to the ISS.",
-                "reason": "Khớp hoàn toàn với văn bản bằng chứng."
+                "evidence_quote": "Instead, lunar bases will rely on bulk cargo supply flights from Earth for oxygen, water, and food on a regular schedule, similar to the ISS.",
+                "reason": "Bằng chứng cung cấp đầy đủ thông tin về việc căn cứ trên mặt trăng sẽ dựa vào các chuyến bay cung cấp hàng hóa từ Trái Đất."
               },
               {
                 "claim": "The context implies that recreating a fully self-sustaining, closed biological system on Earth (like Biosphere 2) is extremely difficult or currently unachievable.",
-                "label": "SUPPORTED",
-                "evidence_quote": "A Moon base is not designed as a closed biological biosphere like Biosphere 2. Instead, lunar bases will rely on bulk cargo supply flights from Earth...",
-                "reason": "Suy diễn logic trực tiếp từ bằng chứng khi đối chiếu cách tiếp cận giữa trạm Mặt Trăng và Biosphere 2."
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ nêu Biosphere 2 là một hệ sinh thái sinh học kín mà căn cứ Mặt Trăng không được thiết kế theo dạng đó, nhưng không có câu nào nói việc tái tạo nó là cực kỳ khó khăn hay không thể đạt được."
               },
               {
                 "claim": "The plan for building a Moon base shifts away from attempting a completely isolated, self-contained terrestrial ecosystem and instead focuses on establishing a logistically supported outpost that relies on regular resupply from Earth.",
                 "label": "SUPPORTED",
-                "evidence_quote": "A Moon base is not designed as a closed biological biosphere like Biosphere 2. Instead, lunar bases will rely on bulk cargo supply flights from Earth...",
-                "reason": "Phát biểu tóm tắt chính xác dựa trên nội dung so sánh trong bằng chứng."
+                "evidence_quote": "A Moon base is not designed as a closed biological biosphere like Biosphere 2. Instead, lunar bases will rely on bulk cargo supply flights from Earth for oxygen, water, and food on a regular schedule, similar to the ISS.",
+                "reason": "Phát biểu tóm tắt logic từ bằng chứng về việc căn cứ Mặt Trăng không khép kín hoàn toàn mà dựa vào việc tiếp tế định kỳ từ Trái Đất."
               }
             ],
-            "grounded_claim_precision": 1.0,
-            "unsupported_claim_rate": 0.0,
+            "grounded_claim_precision": 0.75,
+            "unsupported_claim_rate": 0.25,
             "contradiction_rate": 0.0,
             "total_claims": 4,
-            "supported_claims_count": 4,
-            "unsupported_claims_count": 0,
+            "supported_claims_count": 3,
+            "unsupported_claims_count": 1,
             "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "YES",
+                    "reason": "Độ chính xác từ khóa query đạt 50%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "YES",
+                    "reason": "Bắt đúng đối tượng 'moon base'"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "YES",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 75%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 90%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 1.0
           },
           "result_summarization_score": 1.0,
           "follow_up_understanding": 1.0,
-          "final_answer_quality": 1.0
+          "final_answer_quality": 0.9
         },
         {
           "turn": 4,
@@ -3234,25 +3430,25 @@
                 "claim": "The Space Shuttle was the first reusable launch platform.",
                 "label": "SUPPORTED",
                 "evidence_quote": "The Space Shuttle was the first reusable launch platform",
-                "reason": "Khớp hoàn toàn với văn bản bằng chứng về Space Shuttle Historical Record."
+                "reason": "Bằng chứng trong đoạn về Space Shuttle Historical Record khớp hoàn toàn với phát biểu này."
               },
               {
                 "claim": "The Space Shuttle completed over 100 missions across 30 years.",
                 "label": "SUPPORTED",
                 "evidence_quote": "completing over 100 missions across 30 years",
-                "reason": "Khớp chính xác với số liệu trong bằng chứng."
+                "reason": "Bằng chứng cung cấp chính xác số lượng sứ mệnh và thời gian hoạt động của Space Shuttle."
               },
               {
-                "claim": "The Space Shuttle proved essential to building the International Space Station.",
+                "claim": "The Space Shuttle proved essential to building the International Space Station (ISS).",
                 "label": "SUPPORTED",
-                "evidence_quote": "proving essential to building the International Space Station.",
-                "reason": "Khớp hoàn toàn với tuyên bố trong bằng chứng."
+                "evidence_quote": "and proving essential to building the International Space Station.",
+                "reason": "Bằng chứng xác nhận tầm quan trọng của Space Shuttle trong việc xây dựng Trạm Vũ trụ Quốc tế."
               },
               {
-                "claim": "The search results do not contain an explicit evaluation or debate regarding whether the Space Shuttle program was good or if NASA should have chosen something else.",
+                "claim": "The search results do not contain an explicit evaluation or debate regarding whether the Space Shuttle program was 'good' or if NASA should have chosen something else.",
                 "label": "SUPPORTED",
                 "evidence_quote": "The Space Shuttle was the first reusable launch platform, completing over 100 missions across 30 years and proving essential to building the International Space Station.",
-                "reason": "Bằng chứng thực tế chỉ cung cấp thông tin lịch sử khách quan mà không có đánh giá tốt/xấu hay lựa chọn thay thế."
+                "reason": "Bằng chứng thực tế chỉ cung cấp thông tin lịch sử khách quan, hoàn toàn không có đánh giá tốt/xấu hay so sánh lựa chọn nào khác cho NASA."
               }
             ],
             "grounded_claim_precision": 1.0,
@@ -3262,6 +3458,74 @@
             "supported_claims_count": 4,
             "unsupported_claims_count": 0,
             "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "NO",
+                    "reason": "Độ chính xác từ khóa query đạt 33%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "YES",
+                    "reason": "Bắt đúng đối tượng 'space shuttle program'"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "YES",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 100%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 100%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.889
           },
           "result_summarization_score": 1.0,
           "follow_up_understanding": 1.0,
@@ -3320,25 +3584,25 @@
                 "claim": "Humanity is currently unprepared for a sudden, large-scale threat from dangerous asteroids.",
                 "label": "SUPPORTED",
                 "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike, and mounting a coordinated global defense on short notice faces immense hurdles.",
-                "reason": "Bằng chứng nói rõ loài người có 'zero active defense' và gặp nhiều trở ngại lớn, hỗ trợ cho việc chưa được chuẩn bị."
+                "reason": "Bằng chứng nêu rõ nhân loại có zero (không có) hệ thống phòng thủ hoạt động nào sẵn sàng để làm chệch hướng hoặc ngăn chặn một cuộc tấn công thiên thạch nguy hiểm đột ngột."
               },
               {
                 "claim": "Humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike.",
                 "label": "SUPPORTED",
-                "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike",
-                "reason": "Phát biểu này khớp hoàn toàn với văn bản trong bằng chứng."
+                "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike, and mounting a coordinated global defense on short notice faces immense hurdles.",
+                "reason": "Phát biểu này khớp hoàn toàn với nội dung của bằng chứng."
               },
               {
                 "claim": "Mounting a coordinated global defense on short notice faces immense hurdles.",
                 "label": "SUPPORTED",
-                "evidence_quote": "mounting a coordinated global defense on short notice faces immense hurdles.",
-                "reason": "Phát biểu này được trích dẫn trực tiếp và chính xác từ đoạn văn bản trong bằng chứng."
+                "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike, and mounting a coordinated global defense on short notice faces immense hurdles.",
+                "reason": "Phát biểu trích dẫn gần như nguyên văn từ bằng chứng."
               },
               {
                 "claim": "There is currently no established, ready-to-deploy system for actively defending Earth against such an event.",
                 "label": "SUPPORTED",
                 "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike",
-                "reason": "Được suy diễn trực tiếp từ dữ liệu bằng chứng về việc chưa có hệ thống phòng thủ hoạt động nào sẵn sàng."
+                "reason": "Bằng chứng xác nhận việc chưa có hệ thống phòng thủ hoạt động sẵn sàng nào."
               }
             ],
             "grounded_claim_precision": 1.0,
@@ -3348,6 +3612,68 @@
             "supported_claims_count": 4,
             "unsupported_claims_count": 0,
             "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "NO",
+                    "reason": "Độ chính xác từ khóa query đạt 33%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "YES",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 100%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 100%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.889
           },
           "result_summarization_score": 1.0,
           "follow_up_understanding": 1.0,
@@ -3364,13 +3690,17 @@
         "context_slot_accuracy": 1.0,
         "coreference_accuracy": 1.0,
         "follow_up_understanding": 1.0,
-        "state_tracking_accuracy": 0.96,
-        "cross_turn_consistency": 0.96,
+        "state_tracking_accuracy": 0.95,
+        "cross_turn_consistency": 0.95,
         "result_summarization_score": 1.0,
-        "final_answer_quality": 0.968,
-        "grounded_claim_precision": 0.92,
-        "unsupported_claim_rate": 0.04,
-        "contradiction_rate": 0.04
+        "final_answer_quality": 0.94,
+        "grounded_claim_precision": 0.85,
+        "unsupported_claim_rate": 0.1,
+        "contradiction_rate": 0.05,
+        "bineval_tool_score": 0.8,
+        "bineval_context_score": 1.0,
+        "bineval_factuality_score": 0.867,
+        "bineval_overall_score": 0.889
       }
     }
   ]

@@ -265,9 +265,11 @@ async def enrich_turn_with_llm(
 
 
 async def convert_and_enrich_mentor_dataset(
-    input_file: str = "eval/tool_call/datasets/multi_turn/samples_new.json",
-    output_file: str = "eval/tool_call/datasets/multi_turn/samples.json",
+    input_file: str,
+    output_file: str,
     sample_id: Optional[str] = None,
+    from_sample: Optional[str] = None,
+    to_sample: Optional[str] = None,
     base_url: str = DEFAULT_BASE_URL,
     model: str = DEFAULT_MODEL,
     api_key: str = DEFAULT_API_KEY,
@@ -296,6 +298,12 @@ async def convert_and_enrich_mentor_dataset(
     if isinstance(raw_data, dict):
         if "messages" in raw_data:
             conversations = [raw_data]
+        elif "conversations" in raw_data and isinstance(raw_data["conversations"], list):
+            conversations = raw_data["conversations"]
+        elif "samples" in raw_data and isinstance(raw_data["samples"], list):
+            conversations = raw_data["samples"]
+        elif "scenarios" in raw_data and isinstance(raw_data["scenarios"], list):
+            conversations = raw_data["scenarios"]
         else:
             print(f"❌ Unexpected dictionary format in {input_path}")
             sys.exit(1)
@@ -320,26 +328,86 @@ async def convert_and_enrich_mentor_dataset(
             print(f"⚠️ Could not read {output_path}: {e}")
 
     results = list(existing_scenarios)
-    print(f"📋 Found {len(conversations)} conversation(s) to process from {input_path.name}")
+    print(f"📋 Found {len(conversations)} conversation(s) in {input_path.name}")
     print(f"🌐 LLM Endpoint: {base_url} | Model: {model}\n")
 
-    for conv_idx, conv in enumerate(conversations, start=1):
+    # Determine base sample numbering from existing output
+    max_num = 0
+    for sid in existing_ids:
+        m = re.match(r"^sample_(\d+)$", sid)
+        if m:
+            max_num = max(max_num, int(m.group(1)))
+
+    # Assign IDs to conversations
+    prepared_items = []
+    for idx, conv in enumerate(conversations, start=1):
+        explicit_id = conv.get("sample_id") or conv.get("id")
+        if explicit_id:
+            assigned_id = str(explicit_id)
+        elif len(conversations) == 1 and sample_id:
+            assigned_id = sample_id
+        else:
+            assigned_id = f"sample_{max_num + idx:03d}"
+
+        prepared_items.append({
+            "index": idx,
+            "id": assigned_id,
+            "data": conv
+        })
+
+    # Filter by sample_id, from_sample, to_sample
+    if sample_id:
+        matched = [
+            it for it in prepared_items
+            if it["id"] == sample_id or str(it["index"]) == str(sample_id)
+        ]
+        if matched:
+            prepared_items = matched
+            if len(matched) == 1 and sample_id.startswith("sample_"):
+                prepared_items[0]["id"] = sample_id
+            print(f"🎯 Filtered for single sample: {sample_id} ({len(prepared_items)} conversation matched)")
+        elif len(prepared_items) == 1:
+            prepared_items[0]["id"] = sample_id
+            print(f"🎯 Single conversation found, assigned target ID: {sample_id}")
+        else:
+            print(f"❌ Sample '{sample_id}' not found in {input_path.name}")
+            return
+    elif from_sample or to_sample:
+        start_idx = 0
+        end_idx = len(prepared_items)
+
+        if from_sample:
+            found_from = False
+            for i, it in enumerate(prepared_items):
+                if it["id"] == from_sample or str(it["index"]) == str(from_sample):
+                    start_idx = i
+                    found_from = True
+                    break
+            if not found_from:
+                print(f"⚠️ From-sample '{from_sample}' not found in candidate list. Starting from beginning.")
+
+        if to_sample:
+            found_to = False
+            for i, it in enumerate(prepared_items):
+                if it["id"] == to_sample or str(it["index"]) == str(to_sample):
+                    end_idx = i + 1
+                    found_to = True
+                    break
+            if not found_to:
+                print(f"⚠️ To-sample '{to_sample}' not found in candidate list. Processing until end.")
+
+        prepared_items = prepared_items[start_idx:end_idx]
+        print(f"🎯 Filtered range: {len(prepared_items)} conversation(s) ({from_sample or 'start'} -> {to_sample or 'end'})")
+
+    for item in prepared_items:
+        conv_idx = item["index"]
+        target_id = item["id"]
+        conv = item["data"]
+
         messages = conv.get("messages", [])
         if not messages:
-            print(f"⚠️ Conversation #{conv_idx} has no messages, skipping.")
+            print(f"⚠️ Conversation #{conv_idx} ({target_id}) has no messages, skipping.")
             continue
-
-        # Determine target sample_id
-        if sample_id:
-            target_id = sample_id if len(conversations) == 1 else f"{sample_id}_{conv_idx}"
-        else:
-            # Auto-assign next consecutive ID
-            max_num = 0
-            for sid in existing_ids:
-                m = re.match(r"^sample_(\d+)$", sid)
-                if m:
-                    max_num = max(max_num, int(m.group(1)))
-            target_id = f"sample_{max_num + 1:03d}"
 
         if target_id in existing_ids and not force and not sample_id:
             print(f"⏭️ Skipping {target_id} (already exists in {output_path.name}).")
@@ -498,6 +566,18 @@ def main():
         help="Sampling temperature (default: 0.1)"
     )
     parser.add_argument(
+        "--from-sample",
+        type=str,
+        default=None,
+        help="Enrich starting from a specific sample_id or index (e.g. sample_013)"
+    )
+    parser.add_argument(
+        "--to-sample",
+        type=str,
+        default=None,
+        help="Enrich up to a specific sample_id or index (e.g. sample_015)"
+    )
+    parser.add_argument(
         "--force", "-f",
         action="store_true",
         help="Force overwrite if scenario with same ID exists"
@@ -509,6 +589,8 @@ def main():
         input_file=args.input,
         output_file=args.output,
         sample_id=args.sample_id,
+        from_sample=args.from_sample,
+        to_sample=args.to_sample,
         base_url=args.base_url,
         model=args.model,
         api_key=args.api_key,

@@ -256,10 +256,10 @@ class AtomicClaimVerifier:
         if not self.client:
             return self._heuristic_fallback(answer_text, evidence_text)
 
-        prompt = f"""Bạn là hệ thống kiểm chứng tính chân thực (Atomic Claim & Grounding Verifier) theo chuẩn BINEVAL và FactScore.
+        prompt = f"""Bạn là hệ thống kiểm chứng tính chân thực (Atomic Claim & Grounding Verifier) theo chuẩn FactScore.
 
 MỤC TIÊU:
-Kiểm tra xem câu trả lời của Trợ lý có được hỗ trợ bởi Bằng chứng (Evidence) hay không.
+Phân rã câu trả lời của Trợ lý thành các phát biểu đơn nguyên tử (atomic claims) và kiểm chứng từng phát biểu đối chiếu với Bằng chứng (Evidence) theo 3 nhãn: SUPPORTED, CONTRADICTED, UNSUPPORTED.
 
 BẰNG CHỨNG (EVIDENCE TỪ TOOL VÀ NGỮ CẢNH HỘI THOẠI):
 \"\"\"
@@ -275,12 +275,13 @@ CÂU TRẢ LỜI CỦA TRỢ LÝ CẦN KIỂM CHỨNG:
 \"\"\"
 
 HƯỚNG DẪN KIỂM CHỨNG:
-1. Phân rã câu trả lời thành danh sách các phát biểu đơn nguyên tử (atomic claims). Bỏ qua các tiêu đề markdown hoặc câu chào hỏi/mở đầu xã giao.
+1. Phân rã câu trả lời thành danh sách các phát biểu đơn nguyên tử (atomic claims). Bỏ qua các tiêu đề markdown, câu chào hỏi hoặc mở đầu xã giao.
 2. Đối chiếu từng phát biểu với BẰNG CHỨNG ở trên và gán một trong ba nhãn:
    - "SUPPORTED": Bằng chứng khẳng định rõ ràng hoặc suy diễn tất yếu trực tiếp từ bằng chứng.
    - "CONTRADICTED": Bằng chứng khẳng định điều trái ngược hoặc mâu thuẫn với phát biểu.
    - "UNSUPPORTED": Bằng chứng KHÔNG HỀ ĐỀ CẬP hoặc không đủ căn cứ để kết luận (ảo giác/suy đoán ngoài văn bản).
-3. Ghi rõ trích dẫn ngắn từ bằng chứng (evidence_quote).
+3. Nếu nhãn là "SUPPORTED", ghi rõ trích dẫn nguyên văn từ bằng chứng (evidence_quote). Nếu "UNSUPPORTED" hoặc "CONTRADICTED", để trống hoặc trích dẫn câu mâu thuẫn.
+4. Ghi rõ giải thích ngắn gọn lý do gán nhãn trong "reason".
 
 Trả về CHỈ DUY NHẤT một chuỗi JSON hợp lệ theo format:
 {{
@@ -324,6 +325,13 @@ Trả về CHỈ DUY NHẤT một chuỗi JSON hợp lệ theo format:
                 "unsupported_claims_count": 0,
                 "contradicted_claims_count": 0
             }
+
+        # Normalize label to standard 3-class uppercase
+        for c in claims:
+            lbl = str(c.get("label", "UNSUPPORTED")).strip().upper()
+            if lbl not in ("SUPPORTED", "CONTRADICTED", "UNSUPPORTED"):
+                lbl = "UNSUPPORTED"
+            c["label"] = lbl
 
         supported = sum(1 for c in claims if c.get("label") == "SUPPORTED")
         unsupported = sum(1 for c in claims if c.get("label") == "UNSUPPORTED")
@@ -378,8 +386,7 @@ Trả về CHỈ DUY NHẤT một chuỗi JSON hợp lệ theo format:
 
     def _heuristic_fallback(self, answer_text: str, evidence_text: str) -> Dict[str, Any]:
         """
-        Refined sentence overlap fallback with header filtering.
-        FIXED: Now extracts evidence_quote and ensures consistency between label and evidence.
+        Refined sentence overlap fallback with header filtering and 3-class schema.
         """
         clean_sentences = extract_clean_claims(answer_text)
         claims = []
@@ -393,16 +400,12 @@ Trả về CHỈ DUY NHẤT một chuỗi JSON hợp lệ theo format:
             # Extract evidence quote if there's enough overlap
             evidence_quote = self._extract_evidence_quote(s, evidence_text)
 
-            # Consistency check: SUPPORTED requires both high overlap AND evidence quote
-            # If overlap is high but no evidence quote found, it means the words are
-            # similar but the sentence is NOT actually derived from the evidence
             if ratio >= 0.55 and evidence_quote:
                 label = "SUPPORTED"
                 reason = f"Overlap ratio: {ratio:.2f}"
             else:
                 label = "UNSUPPORTED"
                 if ratio >= 0.55 and not evidence_quote:
-                    # High overlap but no evidence quote = likely false positive (same pattern but different meaning)
                     reason = f"Overlap ratio: {ratio:.2f} (no evidence quote found)"
                 else:
                     reason = f"Overlap ratio: {ratio:.2f}"
@@ -417,15 +420,162 @@ Trả về CHỈ DUY NHẤT một chuỗi JSON hợp lệ theo format:
 
 
 # ==============================================================================
-# 3. Trajectory Evaluator Engine with 3-Pillar Taxonomy
+# 2B. BinEval Aspect-Based Binary Evaluator (Checklist-based Rubrics)
+# ==============================================================================
+
+class BinEvalEvaluator:
+    """
+    Implements BinEval (Binary Evaluation) by decomposing evaluation criteria into
+    an objective checklist of YES/NO questions across 3 core aspects:
+      1. Tool Proficiency & Action
+      2. Multi-Turn Context & Continuity
+      3. Factuality & Response Quality
+    """
+
+    @staticmethod
+    def evaluate_turn(
+        turn_data: Dict[str, Any],
+        turn_gt: Dict[str, Any],
+        tool_eval: Dict[str, Any],
+        slot_eval: Dict[str, Any],
+        coref_eval: Dict[str, Any],
+        claim_eval: Dict[str, Any],
+        final_ans_quality: float
+    ) -> Dict[str, Any]:
+        """Evaluates a single conversation turn across 3 binary-question aspects."""
+
+        # --- Aspect 1: Tool Proficiency ---
+        tool_questions = []
+        # Q1.1: Decision accuracy
+        decision_pass = (tool_eval.get("tool_decision_accuracy", 0.0) == 1.0)
+        tool_questions.append({
+            "id": "tool_decision_pass",
+            "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+            "verdict": "YES" if decision_pass else "NO",
+            "reason": "Quyết định gọi tool trùng khớp với Ground Truth" if decision_pass else "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+        })
+
+        # Q1.2: Query quality (if tool was called)
+        if tool_eval.get("actual_called_tool"):
+            arg_acc = tool_eval.get("tool_argument_accuracy")
+            query_pass = (arg_acc is not None and arg_acc >= 0.5)
+            tool_questions.append({
+                "id": "tool_query_pass",
+                "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                "verdict": "YES" if query_pass else "NO",
+                "reason": f"Độ chính xác từ khóa query đạt {arg_acc*100:.0f}%" if arg_acc is not None else "Không có tham số query hợp lệ"
+            })
+
+        # Q1.3: Efficiency / Non-redundancy
+        unnecessary = tool_eval.get("unnecessary_tool_call", False)
+        tool_questions.append({
+            "id": "tool_efficiency_pass",
+            "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+            "verdict": "NO" if unnecessary else "YES",
+            "reason": "Gọi dư thừa tool khi không có yêu cầu" if unnecessary else "Hành động gọi tool tinh gọn, không dư thừa"
+        })
+
+        tool_score = round(sum(1 for q in tool_questions if q["verdict"] == "YES") / len(tool_questions), 3) if tool_questions else 1.0
+
+        # --- Aspect 2: Multi-Turn Context & Continuity ---
+        context_questions = []
+        # Q2.1: Coreference resolution (if turn has coreference)
+        if coref_eval.get("has_coreference"):
+            coref_pass = (coref_eval.get("coreference_accuracy", 0.0) == 1.0)
+            context_questions.append({
+                "id": "coreference_pass",
+                "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                "verdict": "YES" if coref_pass else "NO",
+                "reason": f"Bắt đúng đối tượng '{coref_eval.get('matched_target')}'" if coref_pass else "Không nhận diện được đối tượng tham chiếu"
+            })
+
+        # Q2.2: Context slot coverage
+        total_slots = slot_eval.get("total_required_slots", 0)
+        slot_acc = slot_eval.get("context_slot_accuracy", 1.0)
+        if total_slots > 0:
+            slot_pass = (slot_acc >= 0.5)
+            context_questions.append({
+                "id": "slot_coverage_pass",
+                "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                "verdict": "YES" if slot_pass else "NO",
+                "reason": f"Độ bao phủ thực thể đạt {slot_acc*100:.0f}% ({slot_eval.get('matched_slots_count')}/{total_slots} slots)"
+            })
+        else:
+            context_questions.append({
+                "id": "slot_coverage_pass",
+                "question": "Câu trả lời có bám sát thông tin ngữ cảnh được yêu cầu không?",
+                "verdict": "YES",
+                "reason": "Lượt này không có ràng buộc slot đặc thù"
+            })
+
+        context_score = round(sum(1 for q in context_questions if q["verdict"] == "YES") / len(context_questions), 3) if context_questions else 1.0
+
+        # --- Aspect 3: Factuality & Quality ---
+        fact_questions = []
+        # Q3.1: Grounded facts
+        ground_prec = claim_eval.get("grounded_claim_precision")
+        ground_pass = (ground_prec is not None and ground_prec >= 0.70) if ground_prec is not None else True
+        fact_questions.append({
+            "id": "grounding_pass",
+            "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+            "verdict": "YES" if ground_pass else "NO",
+            "reason": f"Tỷ lệ luận điểm có bằng chứng đạt {ground_prec*100:.0f}%" if ground_prec is not None else "Không có claim phát sinh"
+        })
+
+        # Q3.2: No contradiction / Hallucination-free
+        contra_rate = claim_eval.get("contradiction_rate", 0.0)
+        no_contra_pass = (contra_rate == 0.0)
+        fact_questions.append({
+            "id": "no_contradiction_pass",
+            "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+            "verdict": "YES" if no_contra_pass else "NO",
+            "reason": "Hoàn toàn không có phát biểu mâu thuẫn" if no_contra_pass else f"Phát hiện {claim_eval.get('contradicted_claims_count', 1)} phát biểu mâu thuẫn ({contra_rate*100:.1f}%)"
+        })
+
+        # Q3.3: Answer completeness & structure
+        completeness_pass = (final_ans_quality >= 0.65)
+        fact_questions.append({
+            "id": "completeness_pass",
+            "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+            "verdict": "YES" if completeness_pass else "NO",
+            "reason": f"Chất lượng câu trả lời tổng thể đạt {final_ans_quality*100:.0f}%"
+        })
+
+        fact_score = round(sum(1 for q in fact_questions if q["verdict"] == "YES") / len(fact_questions), 3) if fact_questions else 1.0
+
+        # Overall Turn BinEval score (average of aspects)
+        turn_bineval_score = round((tool_score + context_score + fact_score) / 3.0, 3)
+
+        return {
+            "aspects": {
+                "tool_proficiency": {
+                    "score": tool_score,
+                    "questions": tool_questions
+                },
+                "context_continuity": {
+                    "score": context_score,
+                    "questions": context_questions
+                },
+                "factuality_quality": {
+                    "score": fact_score,
+                    "questions": fact_questions
+                }
+            },
+            "turn_score": turn_bineval_score
+        }
+
+
+# ==============================================================================
+# 3. Trajectory Evaluator Engine with 3-Pillar Taxonomy & BinEval
 # ==============================================================================
 
 class TrajectoryEvaluator:
-    """Full pipeline evaluating trajectory against structured Ground Truth across 3 pillars."""
+    """Full pipeline evaluating trajectory against structured Ground Truth across 3 pillars and BinEval."""
 
     def __init__(self, claim_verifier: Optional[AtomicClaimVerifier] = None):
         self.validator = DeterministicValidator()
         self.verifier = claim_verifier or AtomicClaimVerifier()
+        self.bineval = BinEvalEvaluator()
 
     async def evaluate_scenario(
         self,
@@ -515,6 +665,17 @@ class TrajectoryEvaluator:
             cumulative_context += f"\nUser lượt {turn_num}: {user_msg}\nAssistant lượt {turn_num}: {final_ans}\n"
             prior_answers.append(final_ans)
 
+            # 6. BinEval Checklist Evaluation (Aspect-Based Binary Scoring)
+            bineval_eval = self.bineval.evaluate_turn(
+                turn_data=turn_data,
+                turn_gt=turn_gt,
+                tool_eval=tool_eval,
+                slot_eval=slot_eval,
+                coref_eval=coref_eval,
+                claim_eval=claim_eval,
+                final_ans_quality=final_ans_quality
+            )
+
             evaluated_turn = {
                 "turn": turn_num,
                 "user_message": user_msg,
@@ -522,6 +683,7 @@ class TrajectoryEvaluator:
                 "slot_evaluation": slot_eval,
                 "coreference_evaluation": coref_eval,
                 "claim_evaluation": claim_eval,
+                "bineval_evaluation": bineval_eval,
                 "result_summarization_score": res_sum_score,
                 "follow_up_understanding": follow_up_score,
                 "final_answer_quality": final_ans_quality
@@ -631,6 +793,19 @@ class TrajectoryEvaluator:
             (avg_grounded_precision >= 0.75)
         )
 
+        # --- BINEVAL CHECKLIST METRICS ---
+        bineval_tool_scores = [t["bineval_evaluation"]["aspects"]["tool_proficiency"]["score"] for t in evaluated_turns]
+        avg_bineval_tool = sum(bineval_tool_scores) / total_turns if bineval_tool_scores else 1.0
+
+        bineval_context_scores = [t["bineval_evaluation"]["aspects"]["context_continuity"]["score"] for t in evaluated_turns]
+        avg_bineval_context = sum(bineval_context_scores) / total_turns if bineval_context_scores else 1.0
+
+        bineval_fact_scores = [t["bineval_evaluation"]["aspects"]["factuality_quality"]["score"] for t in evaluated_turns]
+        avg_bineval_fact = sum(bineval_fact_scores) / total_turns if bineval_fact_scores else 1.0
+
+        bineval_turn_scores = [t["bineval_evaluation"]["turn_score"] for t in evaluated_turns]
+        avg_bineval_overall = sum(bineval_turn_scores) / total_turns if bineval_turn_scores else 1.0
+
         return {
             "task_success": 1.0 if task_success else 0.0,
 
@@ -653,7 +828,13 @@ class TrajectoryEvaluator:
             "final_answer_quality": round(avg_final_quality, 3),
             "grounded_claim_precision": round(avg_grounded_precision, 3),
             "unsupported_claim_rate": round(avg_unsupported_rate, 3),
-            "contradiction_rate": round(avg_contradiction_rate, 3)
+            "contradiction_rate": round(avg_contradiction_rate, 3),
+
+            # D. BinEval Checklist (Binary Scoring)
+            "bineval_tool_score": round(avg_bineval_tool, 3),
+            "bineval_context_score": round(avg_bineval_context, 3),
+            "bineval_factuality_score": round(avg_bineval_fact, 3),
+            "bineval_overall_score": round(avg_bineval_overall, 3)
         }
 
 
@@ -797,7 +978,13 @@ async def main_async():
         "final_answer_quality": avg_metric("final_answer_quality"),
         "grounded_claim_precision": avg_metric("grounded_claim_precision"),
         "unsupported_claim_rate": avg_metric("unsupported_claim_rate"),
-        "contradiction_rate": avg_metric("contradiction_rate")
+        "contradiction_rate": avg_metric("contradiction_rate"),
+
+        # D. BinEval Checklist (Binary Scoring)
+        "bineval_tool_score": avg_metric("bineval_tool_score"),
+        "bineval_context_score": avg_metric("bineval_context_score"),
+        "bineval_factuality_score": avg_metric("bineval_factuality_score"),
+        "bineval_overall_score": avg_metric("bineval_overall_score")
     }
 
     summary = {
@@ -832,7 +1019,12 @@ async def main_async():
     print(f"  • final_answer_quality:          {summary_metrics['final_answer_quality']*100:.1f}%")
     print(f"  • grounded_claim_precision:      {summary_metrics['grounded_claim_precision']*100:.1f}%")
     print(f"  • unsupported_claim_rate:        {summary_metrics['unsupported_claim_rate']*100:.1f}%")
-    print(f"  • contradiction_rate:            {summary_metrics['contradiction_rate']*100:.1f}%")
+    print(f"  • contradiction_rate:            {summary_metrics['contradiction_rate']*100:.1f}%\n")
+    print(f"--- [D. BINEVAL CHECKLIST SCORING] ---")
+    print(f"  • bineval_tool_score:            {summary_metrics['bineval_tool_score']*100:.1f}%")
+    print(f"  • bineval_context_score:         {summary_metrics['bineval_context_score']*100:.1f}%")
+    print(f"  • bineval_factuality_score:      {summary_metrics['bineval_factuality_score']*100:.1f}%")
+    print(f"  • bineval_overall_score:         {summary_metrics['bineval_overall_score']*100:.1f}%")
     print(f"\n📁 Full report saved to: {out_path.resolve()}")
     print(f"{'='*75}\n")
 

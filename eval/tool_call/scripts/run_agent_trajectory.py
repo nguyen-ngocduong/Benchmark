@@ -467,6 +467,12 @@ async def main_async():
         help="Run starting from a specific sample_id onwards (e.g. sample_011)"
     )
     parser.add_argument(
+        "--to-sample",
+        type=str,
+        default=None,
+        help="Run up to a specific sample_id (e.g. sample_013)"
+    )
+    parser.add_argument(
         "--num-ctx",
         type=int,
         default=2048,
@@ -520,21 +526,29 @@ async def main_async():
     scenarios = load_dataset(str(dataset_path))
     print(f"📂 Loaded {len(scenarios)} total scenarios from {dataset_path}")
 
-    # Filter by sample-id or from-sample
+    # Filter by sample-id or from-sample/to-sample
     if args.sample_id:
         scenarios = [s for s in scenarios if (s.get("sample_id") or s.get("id")) == args.sample_id]
         print(f"🎯 Filtered for single sample: {args.sample_id} ({len(scenarios)} matched)")
-    elif args.from_sample:
-        from_idx = None
-        for i, s in enumerate(scenarios):
-            if (s.get("sample_id") or s.get("id")) == args.from_sample:
-                from_idx = i
-                break
-        if from_idx is not None:
-            scenarios = scenarios[from_idx:]
-            print(f"🎯 Filtered from sample {args.from_sample} onwards ({len(scenarios)} scenarios)")
-        else:
-            print(f"⚠️ Sample {args.from_sample} not found in dataset. Running all remaining.")
+    elif args.from_sample or args.to_sample:
+        from_idx = 0
+        to_idx = len(scenarios)
+        if args.from_sample:
+            for i, s in enumerate(scenarios):
+                if (s.get("sample_id") or s.get("id")) == args.from_sample:
+                    from_idx = i
+                    break
+            else:
+                print(f"⚠️ Sample {args.from_sample} not found in dataset. Starting from beginning.")
+        if args.to_sample:
+            for i, s in enumerate(scenarios):
+                if (s.get("sample_id") or s.get("id")) == args.to_sample:
+                    to_idx = i + 1
+                    break
+            else:
+                print(f"⚠️ Sample {args.to_sample} not found in dataset. Running until end.")
+        scenarios = scenarios[from_idx:to_idx]
+        print(f"🎯 Filtered range: {len(scenarios)} scenarios ({args.from_sample or 'start'} -> {args.to_sample or 'end'})")
     elif completed_ids:
         # Automatic resume: only run scenarios not yet in agent_output.jsonl
         scenarios = [s for s in scenarios if (s.get("sample_id") or s.get("id")) not in completed_ids]

@@ -1,24 +1,28 @@
 {
   "model": "qwen3.5:0.8b",
-  "evaluation_timestamp": "2026-09-21T16:50:32.990686",
-  "total_scenarios": 10,
+  "evaluation_timestamp": "2026-09-23T14:49:39.472292",
+  "total_scenarios": 11,
   "summary_metrics": {
-    "task_success_rate": 0.2,
-    "tool_decision_accuracy": 0.633,
-    "tool_argument_accuracy": 0.833,
-    "tool_switching_accuracy": 0.2,
-    "missing_tool_call_rate": 0.0,
-    "unnecessary_tool_call_rate": 0.367,
-    "context_slot_accuracy": 0.917,
+    "task_success_rate": 0.182,
+    "tool_decision_accuracy": 0.649,
+    "tool_argument_accuracy": 0.791,
+    "tool_switching_accuracy": 0.25,
+    "missing_tool_call_rate": 0.018,
+    "unnecessary_tool_call_rate": 0.333,
+    "context_slot_accuracy": 0.87,
     "coreference_accuracy": 1.0,
-    "follow_up_understanding": 0.944,
-    "state_tracking_accuracy": 0.917,
-    "cross_turn_consistency": 1.0,
-    "result_summarization_score": 0.949,
-    "final_answer_quality": 0.904,
-    "grounded_claim_precision": 0.884,
-    "unsupported_claim_rate": 0.116,
-    "contradiction_rate": 0.0
+    "follow_up_understanding": 0.926,
+    "state_tracking_accuracy": 0.866,
+    "cross_turn_consistency": 0.99,
+    "result_summarization_score": 0.91,
+    "final_answer_quality": 0.873,
+    "grounded_claim_precision": 0.849,
+    "unsupported_claim_rate": 0.14,
+    "contradiction_rate": 0.01,
+    "bineval_tool_score": 0.7,
+    "bineval_context_score": 0.7,
+    "bineval_factuality_score": 0.333,
+    "bineval_overall_score": 0.578
   },
   "scenarios": [
     {
@@ -3239,6 +3243,853 @@
         "grounded_claim_precision": 0.909,
         "unsupported_claim_rate": 0.091,
         "contradiction_rate": 0.0
+      }
+    },
+    {
+      "sample_id": "sample_013",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Are there any planets outside of our solar system?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "formation_likelihood": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "unlikely",
+                  "extremely rare",
+                  "not impossible"
+                ]
+              }
+            },
+            "total_required_slots": 1,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "There are several other planetary systems in the universe beyond our Solar System",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến việc có nhiều hệ hành tinh ngoài hệ mặt trời (ngoại trừ nhắc tới Tau Ceti và các hành tinh trôi nổi, nhưng không đủ thông tin để xác thực câu này trong ngữ cảnh)."
+              },
+              {
+                "claim": "The Proxima Centauri System is a star and its planet (Proxima b), located about 4.2 light-years away from Earth",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng được cung cấp không hề nhắc đến Proxima Centauri hay Proxima b."
+              },
+              {
+                "claim": "Proxima b is one of the closest known exoplanets to any object outside our solar system",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa thông tin về Proxima b."
+              },
+              {
+                "claim": "Proxima b is in an orbit around a red dwarf star called Proxima Centauri",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa thông tin về Proxima b hay sao lùn đỏ Proxima Centauri."
+              },
+              {
+                "claim": "The Alpha Centauri System is a nearby stellar system containing the Sun",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến hệ Alpha Centauri chứa Mặt Trời."
+              },
+              {
+                "claim": "The Alpha Centauri System contains a white dwarf companion",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa thông tin về người bạn đồng hành là sao lùn trắng của Alpha Centauri."
+              },
+              {
+                "claim": "The Alpha Centauri System potentially contains other planets, though they may be very distant or difficult to detect due to their small size and distance",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến Alpha Centauri."
+              },
+              {
+                "claim": "The Alpha Centauri System contains the star Alpha Centauri a, which is about 4.2 light-years away from Earth",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa thông tin này."
+              },
+              {
+                "claim": "Alpha Centauri a is one of our closest known exoplanets",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến Alpha Centauri a."
+              },
+              {
+                "claim": "These systems are located in the constellation Sagittarius and belong to different stellar clusters",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa thông tin về chòm sao Nhân Mã (Sagittarius) hay các cụm sao này."
+              }
+            ],
+            "grounded_claim_precision": 0.0,
+            "unsupported_claim_rate": 1.0,
+            "contradiction_rate": 0.0,
+            "total_claims": 10,
+            "supported_claims_count": 0,
+            "unsupported_claims_count": 10,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/1 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 0%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 20%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.278
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": null,
+          "final_answer_quality": 0.2
+        },
+        {
+          "turn": 2,
+          "user_message": "What will happen to a human on the Earthlike planet Tau Ceti b?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.3333333333333333,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "query": "Tau Ceti b what happens to humans there",
+              "category": "news"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "planetary_mass": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "2 and 6 Earth masses",
+                  "2 to 6 Earth masses",
+                  "between 2 and 6"
+                ]
+              },
+              "habitability_risks": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "runaway greenhouse effects",
+                  "atmospheric toxicity",
+                  "rotation lock",
+                  "extreme pressure"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "the Earthlike planet Tau Ceti b",
+            "expected_target": [
+              "Tau Ceti",
+              "Tau Ceti planets"
+            ],
+            "matched_target": "tau ceti",
+            "resolution_mode": "explicit_mention",
+            "context_grounded": false,
+            "coreference_accuracy": 1.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Tau Ceti is a candidate planet in our own solar system.",
+                "label": "CONTRADICTED",
+                "evidence_quote": "Planets typically coalesce inside proto-planetary disks around a host star. Natural planet formation in deep space outside of any solar system is considered extremely rare or unlikely.",
+                "reason": "Bằng chứng cho thấy Tau Ceti là một hệ sao chứa các hành tinh ứng cử viên, không nằm trong 'hệ mặt trời của chúng ta' (our own solar system)."
+              },
+              {
+                "claim": "There is no information available about what would happen to humans living or traveling on Tau Ceti b.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone... Factors like Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure remain completely unverified.",
+                "reason": "Bằng chứng chỉ ra đây là hành tinh ứng cử viên đá với các yếu tố sống còn chưa được kiểm chứng, không có thông tin nào về con người sinh sống."
+              },
+              {
+                "claim": "Tau Ceti hosts a star and potentially other planets.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone",
+                "reason": "Bằng chứng xác nhận Tau Ceti chứa các hành tinh ứng cử viên."
+              },
+              {
+                "claim": "Tau Ceti does not appear to be an Earth-like world like the one we live in our solar system.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone",
+                "reason": "Bằng chứng nói rõ đây là các hành tinh đá ứng cử viên (có khối lượng từ 2 đến 6 lần Trái Đất), không phải là Trái Đất trong hệ Mặt Trời."
+              },
+              {
+                "claim": "There are no confirmed or verified reports of humans living on Tau Ceti b yet.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Factors like Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure remain completely unverified.",
+                "reason": "Bằng chứng cho thấy điều kiện sống chưa được kiểm chứng, hoàn toàn không có báo cáo về con người sinh sống."
+              },
+              {
+                "claim": "Tau Ceti b remains classified as a 'candidate' with uncertainties regarding whether it could support life.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tau Ceti hosts candidate rocky planets... Factors like Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure remain completely unverified.",
+                "reason": "Bằng chứng xác nhận đây là hành tinh ứng cử viên và có các yếu tố bất định về khả năng sinh sống."
+              },
+              {
+                "claim": "Exoplanets like Proxima Centauri have been studied but not definitively inhabited by known species.",
+                "label": "SUPPORTED",
+                "evidence_quote": "",
+                "reason": "Thông tin này mang tính chất kiến thức chung bổ sung không mâu thuẫn với ngữ cảnh, tuy nhiên trong văn bản bằng chứng không đề cập trực tiếp đến việc Proxima Centauri có sinh vật hay không nên xét về mặt nghiêm ngặt có thể coi là unsupported hoặc kiến thức ngoài lề, nhưng ở mức độ chung thì hợp lý."
+              }
+            ],
+            "grounded_claim_precision": 0.857,
+            "unsupported_claim_rate": 0.0,
+            "contradiction_rate": 0.143,
+            "total_claims": 7,
+            "supported_claims_count": 6,
+            "unsupported_claims_count": 0,
+            "contradicted_claims_count": 1
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "NO",
+                    "reason": "Độ chính xác từ khóa query đạt 33%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "YES",
+                    "reason": "Bắt đúng đối tượng 'tau ceti'"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "YES",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 86%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "NO",
+                    "reason": "Phát hiện 1 phát biểu mâu thuẫn (14.3%)"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 54%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.5
+          },
+          "result_summarization_score": 0.3,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.543
+        },
+        {
+          "turn": 3,
+          "user_message": "w do we plan to build a Moon base while we can't successfully recreate a moon base on Earth (e.g. Biosphere 2)?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.5,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "query": "Moon bases like biosphere 2 vs Tau Ceti b human colonization plans",
+              "category": "news"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.5,
+            "slots_evaluated": {
+              "biosphere_comparison": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "not a biosphere",
+                  "not designed as a closed biological biosphere",
+                  "closed systems failed"
+                ]
+              },
+              "supply_method": {
+                "matched": true,
+                "matched_alias": "bulk cargo supply",
+                "expected_aliases": [
+                  "bulk cargo supply",
+                  "flown in from Earth",
+                  "resupply flights"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 1
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "a moon base",
+            "expected_target": [
+              "Moon base",
+              "lunar base"
+            ],
+            "matched_target": "moon base",
+            "resolution_mode": "explicit_mention",
+            "context_grounded": false,
+            "coreference_accuracy": 1.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "We do not plan to build a Moon base that is designed as a 'closed biological biosphere' like Biosphere 2.",
+                "label": "SUPPORTED",
+                "evidence_quote": "A Moon base is not designed as a closed biological biosphere like Biosphere 2.",
+                "reason": "Bằng chứng nêu rõ căn cứ này."
+              },
+              {
+                "claim": "Instead, lunar bases will rely on bulk cargo supply flights from Earth for oxygen, water, and food on a regular schedule, similar to the ISS.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Instead, lunar bases will rely on bulk cargo supply flights from Earth for oxygen, water, and food on a regular schedule, similar to the ISS.",
+                "reason": "Khớp hoàn toàn với nội dung trong snippet về Lunar Habitats vs Closed Biospheres."
+              },
+              {
+                "claim": "A 'closed biosphere' (like Biosphere 2) relies entirely on a sealed, artificial habitat to maintain life support containing air, water, food, waste management systems, and energy sources.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ nhắc đến Biosphere 2 là 'closed biological biosphere' chứ không mô tả chi tiết các thành phần như air, water, food, waste management systems, energy sources."
+              }
+            ],
+            "grounded_claim_precision": 0.667,
+            "unsupported_claim_rate": 0.333,
+            "contradiction_rate": 0.0,
+            "total_claims": 3,
+            "supported_claims_count": 2,
+            "unsupported_claims_count": 1,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "YES",
+                    "reason": "Độ chính xác từ khóa query đạt 50%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "YES",
+                    "reason": "Bắt đúng đối tượng 'moon base'"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 50% (1/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 67%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 67%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.889
+          },
+          "result_summarization_score": 0.65,
+          "follow_up_understanding": 0.75,
+          "final_answer_quality": 0.667
+        },
+        {
+          "turn": 4,
+          "user_message": "Was the space shuttle program good, or should NASA have chosen something else?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.3333333333333333,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "query": "Space Shuttle history evaluation Good vs Bad for human colonization",
+              "category": "news"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.5,
+            "slots_evaluated": {
+              "historical_impact": {
+                "matched": true,
+                "matched_alias": "over 100 missions",
+                "expected_aliases": [
+                  "first reusable launch platform",
+                  "over 100 missions",
+                  "30 years"
+                ]
+              },
+              "iss_contribution": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "building the International Space Station",
+                  "essential to building the ISS"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 1
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "the space shuttle program",
+            "expected_target": [
+              "Space Shuttle program",
+              "space shuttle"
+            ],
+            "matched_target": "space shuttle program",
+            "resolution_mode": "explicit_mention",
+            "context_grounded": false,
+            "coreference_accuracy": 1.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "The Space Shuttle was the first reusable launch platform.",
+                "label": "SUPPORTED",
+                "evidence_quote": "The Space Shuttle was the first reusable launch platform",
+                "reason": "Bằng chứng xác nhận Space Shuttle là nền tảng phóng có thể tái sử dụng đầu tiên."
+              },
+              {
+                "claim": "The Space Shuttle completed over 100 missions across 30 years.",
+                "label": "SUPPORTED",
+                "evidence_quote": "completing over 100 missions across 30 years",
+                "reason": "Bằng chứng nêu rõ Space Shuttle hoàn thành hơn 100 sứ mệnh trong suốt 30 năm."
+              },
+              {
+                "claim": "The Space Shuttle proved essential to building the International Space Station.",
+                "label": "SUPPORTED",
+                "evidence_quote": "and proving essential to building the International Space Station.",
+                "reason": "Bằng chứng khẳng định nó đóng vai trò thiết yếu trong việc xây dựng Trạm Vũ trụ Quốc tế."
+              },
+              {
+                "claim": "The Space Shuttle remains in service today.",
+                "label": "CONTRADICTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng cung cấp lịch sử hoạt động nhưng không nói rằng nó vẫn còn phục vụ cho đến ngày nay; thực tế chương trình đã ngừng hoạt động, thông tin trợ lý nói vẫn còn phục vụ là mâu thuẫn/không đúng với thực tế vận hành (hoặc ngoài văn bản)."
+              },
+              {
+                "claim": "The Shuttle was built to launch astronauts from Earth into orbit, not specifically designed as a 'Moon base' or an open habitat for humans living on the Moon itself.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ nói về việc nó là nền tảng phóng tái sử dụng và đóng góp xây dựng ISS, không đề cập cụ thể về mục đích 'không được thiết kế làm căn cứ Mặt Trăng'."
+              },
+              {
+                "claim": "The ISS was built to replace the Shuttle in this role.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng nói Shuttle giúp xây dựng ISS, nhưng không có thông tin ISS được xây dựng để 'thay thế' Shuttle trong vai trò này."
+              }
+            ],
+            "grounded_claim_precision": 0.5,
+            "unsupported_claim_rate": 0.333,
+            "contradiction_rate": 0.167,
+            "total_claims": 6,
+            "supported_claims_count": 3,
+            "unsupported_claims_count": 2,
+            "contradicted_claims_count": 1
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "NO",
+                    "reason": "Độ chính xác từ khóa query đạt 33%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "YES",
+                    "reason": "Bắt đúng đối tượng 'space shuttle program'"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 50% (1/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 50%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "NO",
+                    "reason": "Phát hiện 1 phát biểu mâu thuẫn (16.7%)"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 60%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.556
+          },
+          "result_summarization_score": 0.65,
+          "follow_up_understanding": 0.75,
+          "final_answer_quality": 0.6
+        },
+        {
+          "turn": 5,
+          "user_message": "w woefully unprepared are we for dangerous asteroids hitting the Earth?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.3333333333333333,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "query": "dangerous asteroid threat to Earth preparedness 2035 NASA",
+              "category": "news"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "defense_capability": {
+                "matched": true,
+                "matched_alias": "zero active defense",
+                "expected_aliases": [
+                  "zero defence",
+                  "zero active defense",
+                  "no active defense ready"
+                ]
+              },
+              "global_coordination": {
+                "matched": true,
+                "matched_alias": "coordinated global defense",
+                "expected_aliases": [
+                  "squabbling pigs",
+                  "global effort",
+                  "coordinated global defense",
+                  "immense hurdles"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "We are not unprepared for dangerous asteroids hitting the Earth.",
+                "label": "CONTRADICTED",
+                "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike",
+                "reason": "Bằng chứng nêu rõ nhân loại hiện có 'zero active defense' (không có sự chuẩn bị/phòng thủ nào đang hoạt động) để làm chệch hướng hoặc ngăn chặn thiên thạch nguy hiểm."
+              },
+              {
+                "claim": "There is currently no active global defense system to deflect or stop such events.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike",
+                "reason": "Bằng chứng xác nhận hiện tại nhân loại không có hệ thống phòng thủ chủ động nào sẵn sàng."
+              },
+              {
+                "claim": "Mounting a coordinated global defense on short notice faces immense hurdles.",
+                "label": "SUPPORTED",
+                "evidence_quote": "mounting a coordinated global defense on short notice faces immense hurdles.",
+                "reason": "Phát biểu sao chép gần như nguyên văn từ bằng chứng."
+              },
+              {
+                "claim": "The primary concern for humanity today is not just asteroids hitting Earth but also other unpredictable events like meteor showers or natural disasters (e.g., volcanic eruptions).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề đề cập đến các sự kiện như mưa sao băng, thảm họa tự nhiên hay núi lửa như là mối quan tâm chính."
+              }
+            ],
+            "grounded_claim_precision": 0.5,
+            "unsupported_claim_rate": 0.25,
+            "contradiction_rate": 0.25,
+            "total_claims": 4,
+            "supported_claims_count": 2,
+            "unsupported_claims_count": 1,
+            "contradicted_claims_count": 1
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "NO",
+                    "reason": "Độ chính xác từ khóa query đạt 33%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 50%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "NO",
+                    "reason": "Phát hiện 1 phát biểu mâu thuẫn (25.0%)"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 80%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.667
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 0.8
+        }
+      ],
+      "conversation_metrics": {
+        "task_success": 0.0,
+        "tool_decision_accuracy": 0.8,
+        "tool_argument_accuracy": 0.375,
+        "tool_switching_accuracy": 0.75,
+        "missing_tool_call_rate": 0.2,
+        "unnecessary_tool_call_rate": 0.0,
+        "context_slot_accuracy": 0.4,
+        "coreference_accuracy": 1.0,
+        "follow_up_understanding": 0.75,
+        "state_tracking_accuracy": 0.355,
+        "cross_turn_consistency": 0.888,
+        "result_summarization_score": 0.52,
+        "final_answer_quality": 0.562,
+        "grounded_claim_precision": 0.505,
+        "unsupported_claim_rate": 0.383,
+        "contradiction_rate": 0.112,
+        "bineval_tool_score": 0.7,
+        "bineval_context_score": 0.7,
+        "bineval_factuality_score": 0.333,
+        "bineval_overall_score": 0.578
       }
     }
   ]

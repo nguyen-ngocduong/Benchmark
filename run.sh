@@ -39,6 +39,7 @@ SKIP_LLM_CLAIM=false
 SPECIFIC_MODEL=""
 SAMPLE_ID=""
 FROM_SAMPLE=""
+TO_SAMPLE=""
 
 print_banner() {
     echo -e "${CYAN}${BOLD}"
@@ -70,6 +71,7 @@ print_help() {
     echo "                         Nếu không truyền, mặc định sẽ chạy cả 2 models."
     echo "  --sample-id <ID>       Chỉ chạy cho 1 sample cụ thể (ví dụ: sample_011 hoặc sample_013)"
     echo "  --from-sample <ID>     Chạy nối tiếp từ 1 sample trở đi (ví dụ: sample_011)"
+    echo "  --to-sample <ID>       Chạy đến 1 sample cụ thể (ví dụ: sample_013 hoặc sample_015)"
     echo "  --skip-llm-claim       Bỏ qua LLM Judge cho Atomic Claim (chạy fallback heuristic)"
     echo "  --use-llm-claim        Bật LLM Judge cho Atomic Claim (mặc định đã bật)"
     echo "  -h, --help             Hiển thị trợ giúp này"
@@ -77,12 +79,15 @@ print_help() {
     echo -e "${BOLD}VÍ DỤ:${NC}"
     echo "  ./run.sh                                  # Chạy toàn bộ cho cả gemma4 và qwen3.5"
     echo "  ./run.sh -m gemma4:e2b                    # Chạy toàn bộ chỉ cho gemma4:e2b"
-    echo "  ./run.sh enrich-mentor                    # Làm giàu file mẫu của mentor thành sample_013"
+    echo "  ./run.sh enrich-mentor                    # Làm giàu file mẫu của mentor"
+    echo "  ./run.sh enrich-mentor --sample-id sample_013 # Làm giàu riêng sample_013"
+    echo "  ./run.sh enrich-mentor --from-sample sample_013 --to-sample sample_015 # Làm giàu từ sample_013 đến sample_015"
     echo "  ./run.sh enrich --sample-id sample_011    # Làm giàu dữ liệu cho riêng sample_011"
     echo "  ./run.sh enrich-task2 --from-sample sample_011 # Làm giàu Task 2 từ sample_011 trở đi"
     echo "  ./run.sh trajectory -m gemma4:e2b --sample-id sample_011  # Chỉ sinh vết cho sample_011"
-    echo "  ./run.sh trajectory -m gemma4:e2b --from-sample sample_011 # Sinh vết từ sample_011 trở đi"
-    echo "  ./run.sh eval -m gemma4:e2b               # Chỉ chạy chấm điểm Multi-turn có sẵn"
+    echo "  ./run.sh eval -m gemma4:e2b               # Chạy chấm điểm tất cả các samples"
+    echo "  ./run.sh eval -m gemma4:e2b --sample-id sample_013  # Chỉ chấm điểm riêng sample_013"
+    echo "  ./run.sh eval -m gemma4:e2b --from-sample sample_011 --to-sample sample_013 # Chấm điểm từ sample_011 đến 013"
 }
 
 # Parse command line arguments
@@ -102,6 +107,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --from-sample)
             FROM_SAMPLE="$2"
+            shift 2
+            ;;
+        --to-sample)
+            TO_SAMPLE="$2"
             shift 2
             ;;
         --skip-llm-claim)
@@ -162,6 +171,9 @@ run_step2a_trajectory() {
     if [ -n "$FROM_SAMPLE" ]; then
         traj_args+=(--from-sample "$FROM_SAMPLE")
     fi
+    if [ -n "$TO_SAMPLE" ]; then
+        traj_args+=(--to-sample "$TO_SAMPLE")
+    fi
     
     $PYTHON -m eval.tool_call.scripts.run_agent_trajectory "${traj_args[@]}"
     
@@ -182,6 +194,9 @@ run_step2b_evaluation() {
     fi
     if [ -n "$FROM_SAMPLE" ]; then
         eval_args+=(--from-sample "$FROM_SAMPLE")
+    fi
+    if [ -n "$TO_SAMPLE" ]; then
+        eval_args+=(--to-sample "$TO_SAMPLE")
     fi
     
     $PYTHON -m eval.tool_call.scripts.run_trajectory_eval "${eval_args[@]}"
@@ -226,6 +241,12 @@ run_enrich_mentor() {
     local mentor_args=()
     if [ -n "$SAMPLE_ID" ]; then
         mentor_args+=(--sample-id "$SAMPLE_ID")
+    fi
+    if [ -n "$FROM_SAMPLE" ]; then
+        mentor_args+=(--from-sample "$FROM_SAMPLE")
+    fi
+    if [ -n "$TO_SAMPLE" ]; then
+        mentor_args+=(--to-sample "$TO_SAMPLE")
     fi
     
     $PYTHON -m eval.tool_call.scripts.enrich_mentor_multiturn "${mentor_args[@]}"
