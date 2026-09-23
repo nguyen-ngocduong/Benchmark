@@ -1,24 +1,24 @@
 {
   "model": "gemma4:e2b",
-  "evaluation_timestamp": "2026-09-21T16:37:05.913851",
-  "total_scenarios": 10,
+  "evaluation_timestamp": "2026-09-22T17:28:49.275956",
+  "total_scenarios": 11,
   "summary_metrics": {
-    "task_success_rate": 0.7,
-    "tool_decision_accuracy": 0.933,
-    "tool_argument_accuracy": 0.863,
-    "tool_switching_accuracy": 0.85,
-    "missing_tool_call_rate": 0.033,
-    "unnecessary_tool_call_rate": 0.033,
-    "context_slot_accuracy": 0.867,
-    "coreference_accuracy": 0.9,
-    "follow_up_understanding": 0.907,
-    "state_tracking_accuracy": 0.864,
-    "cross_turn_consistency": 0.896,
-    "result_summarization_score": 0.886,
-    "final_answer_quality": 0.886,
-    "grounded_claim_precision": 0.849,
-    "unsupported_claim_rate": 0.047,
-    "contradiction_rate": 0.104
+    "task_success_rate": 0.636,
+    "tool_decision_accuracy": 0.939,
+    "tool_argument_accuracy": 0.83,
+    "tool_switching_accuracy": 0.864,
+    "missing_tool_call_rate": 0.03,
+    "unnecessary_tool_call_rate": 0.03,
+    "context_slot_accuracy": 0.879,
+    "coreference_accuracy": 0.909,
+    "follow_up_understanding": 0.915,
+    "state_tracking_accuracy": 0.873,
+    "cross_turn_consistency": 0.902,
+    "result_summarization_score": 0.896,
+    "final_answer_quality": 0.894,
+    "grounded_claim_precision": 0.855,
+    "unsupported_claim_rate": 0.046,
+    "contradiction_rate": 0.098
   },
   "scenarios": [
     {
@@ -2901,6 +2901,476 @@
         "grounded_claim_precision": 0.752,
         "unsupported_claim_rate": 0.248,
         "contradiction_rate": 0.0
+      }
+    },
+    {
+      "sample_id": "sample_013",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Are there any planets outside of our solar system?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 1.0,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "category": "general",
+              "query": "planets outside of our solar system"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "formation_likelihood": {
+                "matched": true,
+                "matched_alias": "unlikely",
+                "expected_aliases": [
+                  "unlikely",
+                  "extremely rare",
+                  "not impossible"
+                ]
+              }
+            },
+            "total_required_slots": 1,
+            "matched_slots_count": 1
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "The vast majority of known planets exist within our own solar system.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến tỷ lệ hay số lượng các hành tinh đã biết nằm trong hệ mặt trời so với bên ngoài."
+              },
+              {
+                "claim": "The possibility of planets existing outside of star systems is extremely rare or unlikely based on current models of planetary formation.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Natural planet formation in deep space outside of any solar system is considered extremely rare or unlikely.",
+                "reason": "Khớp chính xác với thông tin trong snippet về sự hình thành hành tinh ngoài không gian sâu thẳm."
+              },
+              {
+                "claim": "There are ongoing searches for candidate rocky planets in other star systems (like Tau Ceti), but these are not confirmed as actual planets.",
+                "label": "CONTRADICTED",
+                "evidence_quote": "Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone",
+                "reason": "Trợ lý khẳng định 'these are not confirmed as actual planets', nhưng văn bản gốc gọi chúng là 'candidate rocky planets' (các ứng viên hành tinh đá) và bằng chứng không nói rõ việc chúng chưa được xác nhận là hành tinh thực sự mà thực tế Tau Ceti sở hữu các ứng viên hành tinh."
+              },
+              {
+                "claim": "Even if such planets existed, their habitability is highly uncertain due to unknown factors.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Being an Earth-sized planet in a habitable zone does not guarantee survival. Factors like Venus-like runaway greenhouse effects... remain completely unverified.",
+                "reason": "Bằng chứng xác nhận khả năng sinh sống của các hành tinh dạng này có nhiều điều không chắc chắn."
+              },
+              {
+                "claim": "While we search for exoplanets, the existence of planets outside of any star systems is considered extremely rare or unlikely by current scientific understanding.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Natural planet formation in deep space outside of any solar system is considered extremely rare or unlikely.",
+                "reason": "Ý chính được hỗ trợ trực tiếp từ đoạn snippet đầu tiên."
+              }
+            ],
+            "grounded_claim_precision": 0.6,
+            "unsupported_claim_rate": 0.2,
+            "contradiction_rate": 0.2,
+            "total_claims": 5,
+            "supported_claims_count": 3,
+            "unsupported_claims_count": 1,
+            "contradicted_claims_count": 1
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": null,
+          "final_answer_quality": 0.84
+        },
+        {
+          "turn": 2,
+          "user_message": "What will happen to a human on the Earthlike planet Tau Ceti b?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.3333333333333333,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "category": "general",
+              "query": "conditions on Tau Ceti b"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "planetary_mass": {
+                "matched": true,
+                "matched_alias": "2 and 6 Earth masses",
+                "expected_aliases": [
+                  "2 and 6 Earth masses",
+                  "2 to 6 Earth masses",
+                  "between 2 and 6"
+                ]
+              },
+              "habitability_risks": {
+                "matched": true,
+                "matched_alias": "runaway greenhouse effects",
+                "expected_aliases": [
+                  "runaway greenhouse effects",
+                  "atmospheric toxicity",
+                  "rotation lock",
+                  "extreme pressure"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "the Earthlike planet Tau Ceti b",
+            "expected_target": [
+              "Tau Ceti",
+              "Tau Ceti planets"
+            ],
+            "matched_target": "tau ceti",
+            "resolution_mode": "explicit_mention",
+            "context_grounded": false,
+            "coreference_accuracy": 1.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Tau Ceti hosts candidate rocky planets that are estimated to be between 2 and 6 Earth masses within or near the habitable zone.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone",
+                "reason": "Phát biểu được trích dẫn trực tiếp và chính xác từ snippet về Tau Ceti Candidate Planets."
+              },
+              {
+                "claim": "Being an Earth-sized planet in a habitable zone does not guarantee survival.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Being an Earth-sized planet in a habitable zone does not guarantee survival.",
+                "reason": "Phát biểu trùng khớp hoàn toàn với nội dung trong snippet Planetary Habitability Uncertainties."
+              },
+              {
+                "claim": "The factors that determine habitability—such as Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure—remain completely unverified.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Factors like Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure remain completely unverified.",
+                "reason": "Phát biểu phản ánh chính xác các yếu tố không chắc chắn được liệt kê trong bằng chứng."
+              },
+              {
+                "claim": "There is no confirmed information about the actual conditions or long-term consequences for human life on Tau Ceti b.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone... Factors like Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure remain completely unverified.",
+                "reason": "Bằng chứng chỉ ra các hành tinh này chỉ là 'candidate' (ứng viên) và các yếu tố điều kiện sống chưa được kiểm chứng, suy diễn hợp lý rằng chưa có thông tin xác thực về hậu quả đối với con người."
+              }
+            ],
+            "grounded_claim_precision": 1.0,
+            "unsupported_claim_rate": 0.0,
+            "contradiction_rate": 0.0,
+            "total_claims": 4,
+            "supported_claims_count": 4,
+            "unsupported_claims_count": 0,
+            "contradicted_claims_count": 0
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 1.0
+        },
+        {
+          "turn": 3,
+          "user_message": "w do we plan to build a Moon base while we can't successfully recreate a moon base on Earth (e.g. Biosphere 2)?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.5,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "category": "general",
+              "query": "Moon base vs Biosphere 2 comparison"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "biosphere_comparison": {
+                "matched": true,
+                "matched_alias": "not designed as a closed biological biosphere",
+                "expected_aliases": [
+                  "not a biosphere",
+                  "not designed as a closed biological biosphere",
+                  "closed systems failed"
+                ]
+              },
+              "supply_method": {
+                "matched": true,
+                "matched_alias": "bulk cargo supply",
+                "expected_aliases": [
+                  "bulk cargo supply",
+                  "flown in from Earth",
+                  "resupply flights"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "a moon base",
+            "expected_target": [
+              "Moon base",
+              "lunar base"
+            ],
+            "matched_target": "moon base",
+            "resolution_mode": "explicit_mention",
+            "context_grounded": false,
+            "coreference_accuracy": 1.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "A Moon base is not designed as a closed biological biosphere like Biosphere 2.",
+                "label": "SUPPORTED",
+                "evidence_quote": "A Moon base is not designed as a closed biological biosphere like Biosphere 2.",
+                "reason": "Bằng chứng nói rõ căn cứ trên văn bản cung cấp."
+              },
+              {
+                "claim": "Lunar bases will rely on bulk cargo supply flights from Earth for essential resources like oxygen, water, and food on a regular schedule (similar to the ISS).",
+                "label": "SUPPORTED",
+                "evidence_quote": "lunar bases will rely on bulk cargo supply flights from Earth for oxygen, water, and food on a regular schedule, similar to the ISS.",
+                "reason": "Khớp hoàn toàn với văn bản bằng chứng."
+              },
+              {
+                "claim": "The context implies that recreating a fully self-sustaining, closed biological system on Earth (like Biosphere 2) is extremely difficult or currently unachievable.",
+                "label": "SUPPORTED",
+                "evidence_quote": "A Moon base is not designed as a closed biological biosphere like Biosphere 2. Instead, lunar bases will rely on bulk cargo supply flights from Earth...",
+                "reason": "Suy diễn logic trực tiếp từ bằng chứng khi đối chiếu cách tiếp cận giữa trạm Mặt Trăng và Biosphere 2."
+              },
+              {
+                "claim": "The plan for building a Moon base shifts away from attempting a completely isolated, self-contained terrestrial ecosystem and instead focuses on establishing a logistically supported outpost that relies on regular resupply from Earth.",
+                "label": "SUPPORTED",
+                "evidence_quote": "A Moon base is not designed as a closed biological biosphere like Biosphere 2. Instead, lunar bases will rely on bulk cargo supply flights from Earth...",
+                "reason": "Phát biểu tóm tắt chính xác dựa trên nội dung so sánh trong bằng chứng."
+              }
+            ],
+            "grounded_claim_precision": 1.0,
+            "unsupported_claim_rate": 0.0,
+            "contradiction_rate": 0.0,
+            "total_claims": 4,
+            "supported_claims_count": 4,
+            "unsupported_claims_count": 0,
+            "contradicted_claims_count": 0
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 1.0
+        },
+        {
+          "turn": 4,
+          "user_message": "Was the space shuttle program good, or should NASA have chosen something else?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.3333333333333333,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "category": "general",
+              "query": "Space Shuttle program success and criticism"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "historical_impact": {
+                "matched": true,
+                "matched_alias": "first reusable launch platform",
+                "expected_aliases": [
+                  "first reusable launch platform",
+                  "over 100 missions",
+                  "30 years"
+                ]
+              },
+              "iss_contribution": {
+                "matched": true,
+                "matched_alias": "building the International Space Station",
+                "expected_aliases": [
+                  "building the International Space Station",
+                  "essential to building the ISS"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "the space shuttle program",
+            "expected_target": [
+              "Space Shuttle program",
+              "space shuttle"
+            ],
+            "matched_target": "space shuttle program",
+            "resolution_mode": "explicit_mention",
+            "context_grounded": false,
+            "coreference_accuracy": 1.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "The Space Shuttle was the first reusable launch platform.",
+                "label": "SUPPORTED",
+                "evidence_quote": "The Space Shuttle was the first reusable launch platform",
+                "reason": "Khớp hoàn toàn với văn bản bằng chứng về Space Shuttle Historical Record."
+              },
+              {
+                "claim": "The Space Shuttle completed over 100 missions across 30 years.",
+                "label": "SUPPORTED",
+                "evidence_quote": "completing over 100 missions across 30 years",
+                "reason": "Khớp chính xác với số liệu trong bằng chứng."
+              },
+              {
+                "claim": "The Space Shuttle proved essential to building the International Space Station.",
+                "label": "SUPPORTED",
+                "evidence_quote": "proving essential to building the International Space Station.",
+                "reason": "Khớp hoàn toàn với tuyên bố trong bằng chứng."
+              },
+              {
+                "claim": "The search results do not contain an explicit evaluation or debate regarding whether the Space Shuttle program was good or if NASA should have chosen something else.",
+                "label": "SUPPORTED",
+                "evidence_quote": "The Space Shuttle was the first reusable launch platform, completing over 100 missions across 30 years and proving essential to building the International Space Station.",
+                "reason": "Bằng chứng thực tế chỉ cung cấp thông tin lịch sử khách quan mà không có đánh giá tốt/xấu hay lựa chọn thay thế."
+              }
+            ],
+            "grounded_claim_precision": 1.0,
+            "unsupported_claim_rate": 0.0,
+            "contradiction_rate": 0.0,
+            "total_claims": 4,
+            "supported_claims_count": 4,
+            "unsupported_claims_count": 0,
+            "contradicted_claims_count": 0
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 1.0
+        },
+        {
+          "turn": 5,
+          "user_message": "w woefully unprepared are we for dangerous asteroids hitting the Earth?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.3333333333333333,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "category": "news",
+              "query": "humanity preparedness for asteroid impact"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "defense_capability": {
+                "matched": true,
+                "matched_alias": "zero active defense",
+                "expected_aliases": [
+                  "zero defence",
+                  "zero active defense",
+                  "no active defense ready"
+                ]
+              },
+              "global_coordination": {
+                "matched": true,
+                "matched_alias": "coordinated global defense",
+                "expected_aliases": [
+                  "squabbling pigs",
+                  "global effort",
+                  "coordinated global defense",
+                  "immense hurdles"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Humanity is currently unprepared for a sudden, large-scale threat from dangerous asteroids.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike, and mounting a coordinated global defense on short notice faces immense hurdles.",
+                "reason": "Bằng chứng nói rõ loài người có 'zero active defense' và gặp nhiều trở ngại lớn, hỗ trợ cho việc chưa được chuẩn bị."
+              },
+              {
+                "claim": "Humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike",
+                "reason": "Phát biểu này khớp hoàn toàn với văn bản trong bằng chứng."
+              },
+              {
+                "claim": "Mounting a coordinated global defense on short notice faces immense hurdles.",
+                "label": "SUPPORTED",
+                "evidence_quote": "mounting a coordinated global defense on short notice faces immense hurdles.",
+                "reason": "Phát biểu này được trích dẫn trực tiếp và chính xác từ đoạn văn bản trong bằng chứng."
+              },
+              {
+                "claim": "There is currently no established, ready-to-deploy system for actively defending Earth against such an event.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike",
+                "reason": "Được suy diễn trực tiếp từ dữ liệu bằng chứng về việc chưa có hệ thống phòng thủ hoạt động nào sẵn sàng."
+              }
+            ],
+            "grounded_claim_precision": 1.0,
+            "unsupported_claim_rate": 0.0,
+            "contradiction_rate": 0.0,
+            "total_claims": 4,
+            "supported_claims_count": 4,
+            "unsupported_claims_count": 0,
+            "contradicted_claims_count": 0
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 1.0
+        }
+      ],
+      "conversation_metrics": {
+        "task_success": 0.0,
+        "tool_decision_accuracy": 1.0,
+        "tool_argument_accuracy": 0.5,
+        "tool_switching_accuracy": 1.0,
+        "missing_tool_call_rate": 0.0,
+        "unnecessary_tool_call_rate": 0.0,
+        "context_slot_accuracy": 1.0,
+        "coreference_accuracy": 1.0,
+        "follow_up_understanding": 1.0,
+        "state_tracking_accuracy": 0.96,
+        "cross_turn_consistency": 0.96,
+        "result_summarization_score": 1.0,
+        "final_answer_quality": 0.968,
+        "grounded_claim_precision": 0.92,
+        "unsupported_claim_rate": 0.04,
+        "contradiction_rate": 0.04
       }
     }
   ]

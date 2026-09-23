@@ -1403,5 +1403,517 @@
         ]
       }
     }
+  },
+  {
+    "sample_id": "sample_011",
+    "source": {
+      "text": "Được biết đến như là một nữ nghệ sĩ đa tàu, ít ai ngờ rằng Khả Như còn là một doanh nhân đang dần khẳng định được vị thế của mình. Hiện Khả Như đang điều hành Ruby Media – một công ty chuyên đầu tư và sản xuất phim ảnh. Khả Như chia sẻ với khán giả rằng con đường đầu tư vào phim ảnh của cô rất tình cờ. Dù xuất thân là một diễn viên nhưng để đi sâu vào mảng đầu tư sản xuất thì Khả Như chỉ mới dám nghĩ chứ chưa thật sự thực hiện. Cho đến khi gặp được những đối tác phù hợp, có nhiều mục tiêu chung, Khả Như mới có thể chính thức chuyển hướng sang lĩnh vực này. Ở thời điểm hiện tại, công việc đầu tư phim chưa mang lại cho Khả Như sự thoải mái về vật chất bằng nghề diễn xuất. Song, kinh doanh đồng nghĩa với đi đường dài, Khả Như tự tin rằng đây sẽ là công việc mang đến nguồn thu nhập tốt hơn cho bản thân cô và gia đình trong tương lai. Với tiêu chí “Kiếm tiền để sống chứ không phải sống để kiếm tiền”, Khả Như vẫn đang ưu tiên đầu tư vào những dự án được mời trước khi thực sự bắt tay sản xuất một tác phẩm lớn từ đầu đến cuối. “Tôi có thể thất tình, có thể trải",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Khả Như đang điều hành công ty nào và công ty đó hoạt động trong lĩnh vực gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "news",
+            "query_intent": "Tìm kiếm thông tin về công ty do Khả Như điều hành và lĩnh vực hoạt động",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "khả như",
+                "ruby media",
+                "đầu tư",
+                "phim ảnh"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "company_name": [
+                "ruby media",
+                "công ty ruby media"
+              ],
+              "business_field": [
+                "đầu tư và sản xuất phim ảnh",
+                "sản xuất phim",
+                "đầu tư phim ảnh"
+              ]
+            },
+            "golden_reference_claims": [
+              "Khả Như đang điều hành Ruby Media.",
+              "Ruby Media là một công ty chuyên đầu tư và sản xuất phim ảnh."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Cơ duyên nào đã đưa nữ doanh nhân đó bước chân vào lĩnh vực đầu tư phim?",
+          "expected_behavior": {
+            "should_call_tool": false,
+            "expected_tool": null,
+            "expected_category": null,
+            "query_intent": null,
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": false,
+              "expected_name": null,
+              "required_arg_keywords": []
+            },
+            "coreference": {
+              "referent_phrase": "nữ doanh nhân đó",
+              "expected_target": [
+                "khả như",
+                "nữ nghệ sĩ"
+              ]
+            },
+            "required_slots": {
+              "investment_origin": [
+                "tình cờ",
+                "gặp được những đối tác phù hợp",
+                "có nhiều mục tiêu chung"
+              ]
+            },
+            "golden_reference_claims": [
+              "Con đường đầu tư vào phim ảnh của Khả Như rất tình cờ.",
+              "Khả Như chỉ chính thức chuyển hướng khi gặp được những đối tác phù hợp và có nhiều mục tiêu chung."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Hiện tại công việc kinh doanh đó mang lại thu nhập thế nào cho cô ấy so với nghề diễn xuất?",
+          "expected_behavior": {
+            "should_call_tool": false,
+            "expected_tool": null,
+            "expected_category": null,
+            "query_intent": null,
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": false,
+              "expected_name": null,
+              "required_arg_keywords": []
+            },
+            "coreference": {
+              "referent_phrase": "công việc kinh doanh đó",
+              "expected_target": [
+                "đầu tư phim",
+                "đầu tư sản xuất phim ảnh",
+                "ruby media"
+              ]
+            },
+            "required_slots": {
+              "income_comparison": [
+                "chưa mang lại sự thoải mái về vật chất bằng nghề diễn xuất",
+                "ít hơn nghề diễn",
+                "chưa bằng diễn xuất"
+              ]
+            },
+            "golden_reference_claims": [
+              "Công việc đầu tư phim chưa mang lại cho Khả Như sự thoải mái về vật chất bằng nghề diễn xuất."
+            ]
+          }
+        }
+      ],
+      "state_requirements": {
+        "turn_1_to_2": [
+          "Agent phải nhớ thực thể 'Khả Như' và công ty 'Ruby Media' từ lượt 1 để hiểu câu hỏi về 'nữ doanh nhân đó' ở lượt 2."
+        ],
+        "turn_2_to_3": [
+          "Agent phải duy trì ngữ cảnh về sự nghiệp kinh doanh đầu tư phim ảnh của Khả Như để trả lời câu hỏi so sánh thu nhập ở lượt 3."
+        ]
+      }
+    }
+  },
+  {
+    "sample_id": "sample_012",
+    "source": {
+      "text": "Rốt cuộc, không phải cứ cùng ký vào một tờ hôn thú là sống với nhau một đời. Tập 71 của “Về nhà đi con”, sau khi bố Sơn biết con rể có nhân tình bên ngoài, Thư quyết định chấm dứt cuộc hôn nhân với Vũ (Quốc Trường).“Trên đời này, ngoại trừ gia đình, ruột rà thì tất cả đều là phép thử. Chúng ta đã thử và thất bại, thế có gì đâu mà phải đau lòng?”, câu này của Thư hẳn đã chạm vào không ít vết thương lòng, có khi đã cũ, có khi còn chưa kịp khép của khán giả. Bởi ngày trao cho nhau chiếc nhẫn cưới, ai cũng nghĩ mình sẽ có cuộc tình đằm thắm như bố mẹ hay ông bà mình. Ngày cởi chiếc nhẫn ấy ra khỏi tay, mới nhận ra, yêu dăm bảy bận, chốt cưới một người cũng chưa hẳn là cuối. Từ chuyện Thư của “Về nhà đi con” lại nhớ đến vai diễn khác của Bảo Thanh, nhân vật Minh Vân trong “Sống chung với mẹ chồng”. Khác với Thư và Vũ, kết hôn bất đắt dĩ bởi sự xuất hiện của một đứa trẻ, Vân và Thanh (Anh Dũng) tự nguyện lấy nhau. Nhưng dù yêu nhau nhiều cũng không vượt qua được thử thách chỉ có trong đời sống vợ chồng. Vân bất lực trước mẹ chồng đến sổ nhật ký cũng soi, cái drap giường cũng can thiệp. Cô càng thất vọng trước người chồng nhu nhược không lên tiếng bênh vợ khi mâu thuẫn mẹ chồng – nàng dâu xảy ra. Và vào thời điểm then chốt, Vân muốn làm lại từ đầu với chồng thì Thanh chọn cách buông tay vì cảm thấy mệt mỏi, quan trọng hơn anh cũng đã có người phụ nữ khác bên cạnh. Hệt như lúc Thư muốn quên đi bản hợp đồng hôn nhân, thổ lộ tình cảm thật của mình cũng là lúc Vũ mải mê chinh phục cô gái khác. Ừ",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Hãy tìm kiếm thông tin về diễn biến tập 71 phim Về nhà đi con liên quan đến nhân vật Thư và Vũ.",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "news",
+            "query_intent": "Tìm kiếm nội dung tập 71 Về nhà đi con về Thư và Vũ",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "về nhà đi con",
+                "tập 71",
+                "thư",
+                "vũ"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "film_name": [
+                "về nhà đi con"
+              ],
+              "episode": [
+                "tập 71"
+              ],
+              "characters": [
+                "thư",
+                "vũ",
+                "quốc trường",
+                "bố sơn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong tập 71 của Về nhà đi con, sau khi bố Sơn biết con rể có nhân tình, Thư quyết định chấm dứt hôn nhân với Vũ.",
+              "Thư có câu nói nổi tiếng về việc các mối quan hệ đều là phép thử."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Ngoài nhân vật đó ra, bài viết còn nhắc đến vai diễn nào khác của diễn viên Bảo Thanh trong một bộ phim truyền hình nổi tiếng nào?",
+          "expected_behavior": {
+            "should_call_tool": false,
+            "expected_tool": null,
+            "expected_category": null,
+            "query_intent": null,
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": false,
+              "expected_name": null,
+              "required_arg_keywords": []
+            },
+            "coreference": {
+              "referent_phrase": "nhân vật đó ra",
+              "expected_target": [
+                "thư",
+                "nhân vật thư"
+              ]
+            },
+            "required_slots": {
+              "actress": [
+                "bảo thanh"
+              ],
+              "other_character": [
+                "minh vân",
+                "vân"
+              ],
+              "other_film": [
+                "sống chung với mẹ chồng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bài viết nhắc đến vai diễn Minh Vân do Bảo Thanh thủ vai trong phim Sống chung với mẹ chồng."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Hãy so sánh nguyên nhân dẫn đến đổ vỡ hôn nhân của hai cặp đôi trong các bộ phim vừa nhắc đến.",
+          "expected_behavior": {
+            "should_call_tool": false,
+            "expected_tool": null,
+            "expected_category": null,
+            "query_intent": null,
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": false,
+              "expected_name": null,
+              "required_arg_keywords": []
+            },
+            "coreference": null,
+            "required_slots": {
+              "couple_1_conflict": [
+                "vũ có nhân tình",
+                "ngoại tình",
+                "hợp đồng hôn nhân"
+              ],
+              "couple_2_conflict": [
+                "mẹ chồng soi mói",
+                "chồng nhu nhược",
+                "thanh có người phụ nữ khác"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cặp Thư và Vũ bắt đầu từ hợp đồng hôn nhân và đổ vỡ khi Vũ có nhân tình bên ngoài.",
+              "Cặp Vân và Thanh kết hôn vì có con nhưng không vượt qua được mâu thuẫn mẹ chồng nàng dâu và sự nhu nhược của chồng."
+            ]
+          }
+        }
+      ],
+      "state_requirements": {
+        "turn_1_to_2": [
+          "Agent phải ghi nhớ thông tin về nhân vật Thư từ lượt 1 để hiểu câu hỏi so sánh sang nhân vật tiếp theo của Bảo Thanh."
+        ],
+        "turn_2_to_3": [
+          "Agent phải duy trì ngữ cảnh của cả hai bộ phim 'Về nhà đi con' và 'Sống chung với mẹ chồng' để thực hiện yêu cầu so sánh nguyên nhân đổ vỡ ở lượt 3."
+        ]
+      }
+    }
+  },
+  {
+    "sample_id": "sample_013",
+    "source": {
+      "text": "[{\"title\": \"Planetary Formation Outside Star Systems\", \"url\": \"https://example.com/rogue-planets-formation\", \"snippet\": \"Planets typically coalesce inside proto-planetary disks around a host star. Natural planet formation in deep space outside of any solar system is considered extremely rare or unlikely.\"}]\n\n[{\"title\": \"Tau Ceti Candidate Planets\", \"url\": \"https://example.com/tau-ceti-planets\", \"snippet\": \"Tau Ceti hosts candidate rocky planets between 2 and 6 Earth masses within or near the habitable zone, though radio searches (SETI) have found no artificial signals.\"}, {\"title\": \"Planetary Habitability Uncertainties\", \"url\": \"https://example.com/habitability-boxes\", \"snippet\": \"Being an Earth-sized planet in a habitable zone does not guarantee survival. Factors like Venus-like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure remain completely unverified.\"}]\n\n[{\"title\": \"Lunar Habitats vs Closed Biospheres\", \"url\": \"https://example.com/lunar-base-logistics\", \"snippet\": \"A Moon base is not designed as a closed biological biosphere like Biosphere 2. Instead, lunar bases will rely on bulk cargo supply flights from Earth for oxygen, water, and food on a regular schedule, similar to the ISS.\"}]\n\n[{\"title\": \"Space Shuttle Historical Record\", \"url\": \"https://example.com/space-shuttle-record\", \"snippet\": \"The Space Shuttle was the first reusable launch platform, completing over 100 missions across 30 years and proving essential to building the International Space Station.\"}]\n\n[{\"title\": \"Global Planetary Defense Readiness\", \"url\": \"https://example.com/asteroid-readiness\", \"snippet\": \"Currently, humanity has zero active defense ready to deflect or stop a sudden hazardous meteorite strike, and mounting a coordinated global defense on short notice faces immense hurdles.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Are there any planets outside of our solar system?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Inquire whether planets can form or exist outside of solar systems.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "planets",
+                "outside",
+                "solar system"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "formation_likelihood": [
+                "unlikely",
+                "extremely rare",
+                "not impossible"
+              ]
+            },
+            "golden_reference_claims": [
+              "Planets typically form inside proto-planetary disks around a host star.",
+              "Natural planet formation outside of any solar system is considered extremely rare or unlikely, though not impossible."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "What will happen to a human on the Earthlike planet Tau Ceti b?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Understand the survival conditions or fate of a human on the Earthlike planet Tau Ceti b.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "tau ceti",
+                "habitability",
+                "atmosphere"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "the Earthlike planet Tau Ceti b",
+              "expected_target": [
+                "Tau Ceti",
+                "Tau Ceti planets"
+              ]
+            },
+            "required_slots": {
+              "planetary_mass": [
+                "2 and 6 Earth masses",
+                "2 to 6 Earth masses",
+                "between 2 and 6"
+              ],
+              "habitability_risks": [
+                "runaway greenhouse effects",
+                "atmospheric toxicity",
+                "rotation lock",
+                "extreme pressure"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tau Ceti hosts candidate rocky planets with a mass between 2 and 6 Earth masses near or within the habitable zone.",
+              "Being an Earth-sized planet in a habitable zone does not guarantee survival due to unverified factors like runaway greenhouse effects, atmospheric toxicity, rotation lock, or extreme pressure."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "w do we plan to build a Moon base while we can't successfully recreate a moon base on Earth (e.g. Biosphere 2)?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Explain how a Moon base can be planned given the failure of closed Earth biosphere projects like Biosphere 2.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Moon base",
+                "Biosphere 2",
+                "closed ecosystem",
+                "cargo supply"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "a moon base",
+              "expected_target": [
+                "Moon base",
+                "lunar base"
+              ]
+            },
+            "required_slots": {
+              "biosphere_comparison": [
+                "not a biosphere",
+                "not designed as a closed biological biosphere",
+                "closed systems failed"
+              ],
+              "supply_method": [
+                "bulk cargo supply",
+                "flown in from Earth",
+                "resupply flights"
+              ]
+            },
+            "golden_reference_claims": [
+              "A Moon base is not designed as a closed biological biosphere like Biosphere 2.",
+              "Lunar bases will rely on regular bulk cargo supply flights from Earth for oxygen, water, and food rather than being a closed ecosystem."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Was the space shuttle program good, or should NASA have chosen something else?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá hiệu quả và thành công của chương trình Tàu con thoi (Space Shuttle program) của NASA.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Space Shuttle",
+                "reusable launch platform",
+                "missions"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "the space shuttle program",
+              "expected_target": [
+                "Space Shuttle program",
+                "space shuttle"
+              ]
+            },
+            "required_slots": {
+              "historical_impact": [
+                "first reusable launch platform",
+                "over 100 missions",
+                "30 years"
+              ],
+              "iss_contribution": [
+                "building the International Space Station",
+                "essential to building the ISS"
+              ]
+            },
+            "golden_reference_claims": [
+              "The Space Shuttle was the first reusable launch platform, completing over 100 missions across 30 years.",
+              "The Space Shuttle program was essential to building the International Space Station."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "w woefully unprepared are we for dangerous asteroids hitting the Earth?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Assess humanity's preparedness and capability to defend against dangerous asteroid impacts on Earth.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Earth preparedness",
+                "asteroid impact",
+                "planetary defense"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "defense_capability": [
+                "zero defence",
+                "zero active defense",
+                "no active defense ready"
+              ],
+              "global_coordination": [
+                "squabbling pigs",
+                "global effort",
+                "coordinated global defense",
+                "immense hurdles"
+              ]
+            },
+            "golden_reference_claims": [
+              "Humanity currently has zero active defense ready to deflect or stop a sudden hazardous meteorite strike.",
+              "A coordinated global defense effort with less than a decade's warning is unlikely to be viable due to geopolitical hurdles."
+            ]
+          }
+        }
+      ]
+    }
   }
 ]

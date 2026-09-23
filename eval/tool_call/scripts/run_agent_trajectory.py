@@ -393,6 +393,41 @@ def get_existing_sample_ids(output_path: str) -> set:
     return completed
 
 
+def save_trajectory_record(out_path: Path, new_trajectory: Dict[str, Any]):
+    """Appends or updates a trajectory record in JSONL, and synchronously updates agent_output.json array."""
+    sid = new_trajectory.get("sample_id")
+    existing_records = []
+    found = False
+
+    if out_path.exists():
+        with open(out_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line_str = line.strip()
+                if line_str:
+                    try:
+                        record = json.loads(line_str)
+                        if record.get("sample_id") == sid:
+                            existing_records.append(new_trajectory)
+                            found = True
+                        else:
+                            existing_records.append(record)
+                    except Exception:
+                        pass
+
+    if not found:
+        existing_records.append(new_trajectory)
+
+    # Write back to JSONL
+    with open(out_path, "w", encoding="utf-8") as f:
+        for r in existing_records:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+
+    # Also sync to formatted .json array
+    json_path = out_path.with_suffix(".json")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(existing_records, f, ensure_ascii=False, indent=2)
+
+
 async def main_async():
     parser = argparse.ArgumentParser(description="Run Multi-Turn Agent Trajectory Evaluation")
     parser.add_argument(
@@ -423,7 +458,13 @@ async def main_async():
         "--sample-id",
         type=str,
         default=None,
-        help="Run only a specific sample_id (e.g. sample_001)"
+        help="Run only a specific sample_id (e.g. sample_001 or sample_011)"
+    )
+    parser.add_argument(
+        "--from-sample",
+        type=str,
+        default=None,
+        help="Run starting from a specific sample_id onwards (e.g. sample_011)"
     )
     parser.add_argument(
         "--num-ctx",
@@ -479,15 +520,25 @@ async def main_async():
     scenarios = load_dataset(str(dataset_path))
     print(f"📂 Loaded {len(scenarios)} total scenarios from {dataset_path}")
 
-    # Filter by sample-id if specified
+    # Filter by sample-id or from-sample
     if args.sample_id:
         scenarios = [s for s in scenarios if (s.get("sample_id") or s.get("id")) == args.sample_id]
         print(f"🎯 Filtered for single sample: {args.sample_id} ({len(scenarios)} matched)")
-
-    # Filter out already completed
-    if completed_ids:
+    elif args.from_sample:
+        from_idx = None
+        for i, s in enumerate(scenarios):
+            if (s.get("sample_id") or s.get("id")) == args.from_sample:
+                from_idx = i
+                break
+        if from_idx is not None:
+            scenarios = scenarios[from_idx:]
+            print(f"🎯 Filtered from sample {args.from_sample} onwards ({len(scenarios)} scenarios)")
+        else:
+            print(f"⚠️ Sample {args.from_sample} not found in dataset. Running all remaining.")
+    elif completed_ids:
+        # Automatic resume: only run scenarios not yet in agent_output.jsonl
         scenarios = [s for s in scenarios if (s.get("sample_id") or s.get("id")) not in completed_ids]
-        print(f"📌 Remaining to execute: {len(scenarios)} scenarios")
+        print(f"📌 Resuming: Remaining {len(scenarios)} scenarios to execute")
 
     # Apply limit
     if args.limit and args.limit > 0:
@@ -520,14 +571,10 @@ async def main_async():
 
         try:
             trajectory = await runner.run_scenario(scenario)
-            # Write line to jsonl with immediate disk sync
-            with open(out_path, "a", encoding="utf-8") as f_out:
-                f_out.write(json.dumps(trajectory, ensure_ascii=False) + "\n")
-                f_out.flush()
-                os.fsync(f_out.fileno())
+            save_trajectory_record(out_path, trajectory)
             elapsed = time.time() - t0
             success_count += 1
-            print(f"  ✅ Finished {sample_id} in {elapsed:.1f}s (Saved to {out_path.resolve()})", flush=True)
+            print(f"  ✅ Finished {sample_id} in {elapsed:.1f}s (Synced to {out_path.name} & {out_path.with_suffix('.json').name})", flush=True)
         except Exception as e:
             print(f"  ❌ Error executing {sample_id}: {e}", flush=True)
 
@@ -544,7 +591,8 @@ async def main_async():
     print(f"   Model: {args.model}")
     print(f"   Total processed: {success_count}/{len(scenarios)}")
     print(f"   Total time: {total_time:.1f}s")
-    print(f"   Trajectory file: {out_path.resolve()}")
+    print(f"   Trajectory JSONL: {out_path.resolve()}")
+    print(f"   Trajectory JSON:  {out_path.with_suffix('.json').resolve()}")
     print(f"{'='*65}")
 
 

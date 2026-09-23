@@ -35,7 +35,7 @@ DEFAULT_API_KEY = (
 DEFAULT_MODEL = (
     os.environ.get("LLM_MODEL")
     or os.environ.get("GEMINI_MODEL")
-    or "gemini-2.5-flash"
+    or "gemini-3.5-flash-lite"
 )
 
 PROMPT_TEMPLATE = """Bạn là một chuyên gia thiết kế benchmark cho trợ lý AI hội thoại nhiều lượt (multi-turn conversational agent) có khả năng sử dụng công cụ (tool-use).
@@ -319,7 +319,7 @@ async def generate_scenario_for_article(
     """Generates a 3-turn multi-turn benchmark scenario with ground_truth via chat_client."""
     sample_id = sample.get("id") or sample.get("sample_id") or "sample_unknown"
     label = sample.get("label", 0)
-    article_text = sample.get("text") or sample.get("Test") or sample.get("content", "")
+    article_text = sample.get("article") or sample.get("text") or sample.get("Test") or sample.get("content", "")
 
     prompt = PROMPT_TEMPLATE.format(
         sample_id=sample_id,

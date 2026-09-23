@@ -8,8 +8,27 @@ Includes:
 - golden_reference_claims: list of atomic verifiable facts from source article
 """
 
+import argparse
+import asyncio
 import json
+import os
+import sys
 from pathlib import Path
+from typing import Any, Dict, List, Optional
+from dotenv import load_dotenv
+
+project_root = Path(__file__).resolve().parent.parent.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+from eval.tool_call.scripts.generate_multiturn_dataset import (
+    DEFAULT_BASE_URL,
+    DEFAULT_API_KEY,
+    DEFAULT_MODEL,
+    generate_scenario_for_article
+)
+
+load_dotenv()
 
 GROUND_TRUTH_DATA = {
     "sample_001": [
@@ -552,13 +571,50 @@ GROUND_TRUTH_DATA = {
 }
 
 
-def main():
-    dataset_path = Path("eval/tool_call/datasets/multi_turn/samples.json")
-    with open(dataset_path, "r", encoding="utf-8") as f:
-        samples = json.load(f)
+async def enrich_multiturn_dataset(
+    input_file: str = "eval/tool_call/datasets/summarization/samples_new.json",
+    output_file: str = "eval/tool_call/datasets/multi_turn/samples.json",
+    base_url: str = DEFAULT_BASE_URL,
+    model: str = DEFAULT_MODEL,
+    api_key: str = DEFAULT_API_KEY,
+    temperature: float = 0.2,
+    sample_id: Optional[str] = None,
+    from_sample: Optional[str] = None,
+    single_test: bool = False,
+    force: bool = False
+):
+    """
+    Enriches multi-turn scenarios:
+    1. Updates any existing scenarios (sample_001 -> sample_010) with curated GROUND_TRUTH_DATA.
+    2. Reads newly loaded articles from samples_new.json (sample_011+).
+    3. Calls LLM to generate 3-turn multi-turn scenarios with embedded ground truth.
+    4. Appends them incrementally to multi_turn/samples.json.
+    Supports single sample execution (--sample-id) and resumption from a sample (--from-sample).
+    """
+    input_path = Path(input_file).resolve()
+    output_path = Path(output_file).resolve()
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    updated_count = 0
-    for sample in samples:
+    # 1. Load existing scenarios from multi_turn/samples.json
+    existing_scenarios: List[Dict[str, Any]] = []
+    existing_ids = set()
+
+    if output_path.exists():
+        try:
+            with open(output_path, "r", encoding="utf-8") as f:
+                content = f.read().strip()
+                if content:
+                    existing_scenarios = json.loads(content)
+                    existing_ids = {s.get("sample_id") for s in existing_scenarios if s.get("sample_id")}
+            print(f"📖 Loaded {len(existing_scenarios)} existing multi-turn scenarios from {output_path.name}")
+        except Exception as e:
+            print(f"⚠️ Could not load existing {output_path}: {e}")
+            existing_scenarios = []
+            existing_ids = set()
+
+    # Apply curated GROUND_TRUTH_DATA to any existing scenarios that need it
+    curated_updated = 0
+    for sample in existing_scenarios:
         sid = sample.get("sample_id")
         if sid in GROUND_TRUTH_DATA:
             gt_turns = GROUND_TRUTH_DATA[sid]
@@ -566,12 +622,210 @@ def main():
             for t_idx, turn in enumerate(turns):
                 if t_idx < len(gt_turns):
                     turn["ground_truth"] = gt_turns[t_idx]
-            updated_count += 1
+            curated_updated += 1
 
-    with open(dataset_path, "w", encoding="utf-8") as f:
-        json.dump(samples, f, ensure_ascii=False, indent=2)
+    if curated_updated > 0:
+        print(f"✓ Synced curated Ground Truth for {curated_updated} existing base scenarios.")
 
-    print(f"✅ Successfully enriched {updated_count}/{len(samples)} scenarios with Ground Truth in {dataset_path}")
+    # 2. Check input candidate articles (samples_new.json)
+    if not input_path.exists():
+        print(f"ℹ️ Input file {input_path} does not exist. Saving existing synced scenarios only.")
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(existing_scenarios, f, ensure_ascii=False, indent=2)
+        return
+
+    with open(input_path, "r", encoding="utf-8") as f:
+        new_samples = json.load(f)
+
+    # Filter candidate samples by sample_id, from_sample, or single_test
+    if sample_id:
+        matched = [s for s in new_samples if (s.get("id") or s.get("sample_id")) == sample_id]
+        if matched:
+            new_samples = matched
+            print(f"🎯 Filtered for single sample: {sample_id} ({len(new_samples)} matched in {input_path.name})")
+        else:
+            existing_match = next((s for s in existing_scenarios if s.get("sample_id") == sample_id), None)
+            if existing_match:
+                new_samples = [{
+                    "id": sample_id,
+                    "article": existing_match.get("source", {}).get("text", ""),
+                    "label": existing_match.get("source", {}).get("label", 0)
+                }]
+                print(f"🎯 Filtered for existing scenario in dataset: {sample_id}")
+            else:
+                print(f"❌ Sample {sample_id} not found in {input_path.name} or {output_path.name}")
+                return
+    elif from_sample:
+        from_idx = None
+        for i, s in enumerate(new_samples):
+            if (s.get("id") or s.get("sample_id")) == from_sample:
+                from_idx = i
+                break
+        if from_idx is not None:
+            new_samples = new_samples[from_idx:]
+            print(f"🎯 Filtered from sample {from_sample} onwards ({len(new_samples)} samples in {input_path.name})")
+        else:
+            print(f"⚠️ Sample {from_sample} not found in {input_path.name}. Running all candidate samples.")
+
+    if single_test and not sample_id:
+        new_samples = new_samples[:1]
+        print(f"🔍 Running in single-test mode: 1 sample ({new_samples[0].get('id') or new_samples[0].get('sample_id')})")
+    elif not sample_id and not from_sample and not single_test:
+        print(f"📋 Loaded {len(new_samples)} candidate samples from {input_path.name}")
+
+    print(f"🌐 LLM Endpoint: {base_url} | Model: {model}\n")
+
+    results = list(existing_scenarios)
+    newly_added_count = 0
+
+    for idx, sample in enumerate(new_samples, start=1):
+        s_id = sample.get("id") or sample.get("sample_id") or f"sample_{idx:03d}"
+
+        if s_id in existing_ids and not force and not sample_id:
+            print(f"[{idx}/{len(new_samples)}] ⏭️ Skipping {s_id} (already exists in {output_path.name}).")
+            continue
+
+        print(f"[{idx}/{len(new_samples)}] ⏳ Generating Multi-Turn Ground Truth for {s_id}...")
+
+        # If present in curated dictionary, use it
+        if s_id in GROUND_TRUTH_DATA:
+            print(f"    ✓ Found in curated GROUND_TRUTH_DATA.")
+            article_text = sample.get("article") or sample.get("text", "")
+            gt_turns = GROUND_TRUTH_DATA[s_id]
+            scenario = {
+                "sample_id": s_id,
+                "source": {
+                    "text": article_text,
+                    "label": sample.get("label", 0)
+                },
+                "scenario": {
+                    "objective": "multi_turn_context_tool_use",
+                    "turns": [
+                        {
+                            "turn": t.get("turn", i + 1),
+                            "user_message": f"Hãy tìm kiếm và tóm tắt thông tin về {s_id}",
+                            "expected_behavior": {
+                                "should_call_tool": t.get("tool_call", {}).get("should_call", False),
+                                "expected_tool": t.get("tool_call", {}).get("expected_name"),
+                                "expected_category": "news" if t.get("tool_call", {}).get("should_call") else None,
+                                "query_intent": None,
+                                "context_required": i > 0,
+                                "state_required": i > 0
+                            },
+                            "ground_truth": t
+                        }
+                        for i, t in enumerate(gt_turns)
+                    ]
+                }
+            }
+        else:
+            # Generate dynamically with LLM
+            scenario = await generate_scenario_for_article(
+                sample=sample,
+                base_url=base_url,
+                model=model,
+                api_key=api_key,
+                temperature=temperature
+            )
+
+        if scenario:
+            existing_match_idx = next((i for i, x in enumerate(results) if x.get("sample_id") == s_id), None)
+            if existing_match_idx is not None:
+                results[existing_match_idx] = scenario
+            else:
+                results.append(scenario)
+                existing_ids.add(s_id)
+
+            newly_added_count += 1
+
+            # Incremental save
+            with open(output_path, "w", encoding="utf-8") as f:
+                json.dump(results, f, ensure_ascii=False, indent=2)
+
+            print(f"    💾 Saved progress: {len(results)} total scenarios in {output_path.name}")
+        else:
+            print(f"    ❌ Failed to generate multi-turn scenario for {s_id}")
+
+    print(f"\n{'='*70}")
+    print(f"🎉 TASK 2 (MULTI-TURN) ENRICHMENT COMPLETE!")
+    print(f"   • Newly added/updated: {newly_added_count} scenarios")
+    print(f"   • Total scenarios now in {output_path.name}: {len(results)}")
+    print(f"   • Output location: {output_path}")
+    print(f"{'='*70}\n")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Enrich multi-turn benchmark scenarios with Ground Truth (curated or via LLM from samples_new.json)"
+    )
+    parser.add_argument(
+        "--input",
+        default="eval/tool_call/datasets/summarization/samples_new.json",
+        help="Path to input samples_new.json"
+    )
+    parser.add_argument(
+        "--output",
+        default="eval/tool_call/datasets/multi_turn/samples.json",
+        help="Path to output multi_turn samples.json"
+    )
+    parser.add_argument(
+        "--model",
+        default=DEFAULT_MODEL,
+        help=f"Model name (default: {DEFAULT_MODEL})"
+    )
+    parser.add_argument(
+        "--base-url",
+        default=DEFAULT_BASE_URL,
+        help=f"LLM API Base URL (default: {DEFAULT_BASE_URL})"
+    )
+    parser.add_argument(
+        "--api-key",
+        default=DEFAULT_API_KEY,
+        help="LLM API Key (default: from env GEMINI_API_KEY / LLM_API_KEY)"
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=0.2,
+        help="Sampling temperature (default: 0.2)"
+    )
+    parser.add_argument(
+        "--sample-id",
+        type=str,
+        default=None,
+        help="Enrich only a specific sample_id (e.g. sample_011)"
+    )
+    parser.add_argument(
+        "--from-sample",
+        type=str,
+        default=None,
+        help="Enrich starting from a specific sample_id onwards (e.g. sample_011)"
+    )
+    parser.add_argument(
+        "--test-single",
+        action="store_true",
+        help="Enrich only 1 sample for verification"
+    )
+    parser.add_argument(
+        "--force", "-f",
+        action="store_true",
+        help="Force regenerate/overwrite existing scenarios with same ID"
+    )
+
+    args = parser.parse_args()
+
+    asyncio.run(enrich_multiturn_dataset(
+        input_file=args.input,
+        output_file=args.output,
+        base_url=args.base_url,
+        model=args.model,
+        api_key=args.api_key,
+        temperature=args.temperature,
+        sample_id=args.sample_id,
+        from_sample=args.from_sample,
+        single_test=args.test_single,
+        force=args.force
+    ))
 
 
 if __name__ == "__main__":

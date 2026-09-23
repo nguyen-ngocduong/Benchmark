@@ -5,6 +5,7 @@ import warnings
 import asyncio
 import logging
 from typing import List, Dict, Optional, Union
+from openai import AsyncOpenAI
 try:
     import toon_format
 except ImportError:
@@ -47,13 +48,17 @@ async def chat_completion_async(
         "temperature": temperature,
         "max_tokens": max_tokens,
         "stream": True,                         # <--- ENABLE STREAMING
-        "stream_options": {"include_usage": True},
-        "extra_body": {
+    }
+
+    if "generativelanguage.googleapis.com" not in base_url:
+        kwargs["stream_options"] = {"include_usage": True}
+
+    if enable_thinking:
+        kwargs["extra_body"] = {
             "chat_template_kwargs": {
-                "enable_thinking": enable_thinking
+                "enable_thinking": True
             }
         }
-    }
 
     if tools:
         kwargs.update({"tools": tools, "tool_choice": tool_choice})

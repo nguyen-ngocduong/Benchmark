@@ -227,9 +227,9 @@ class DeterministicValidator:
 class AtomicClaimVerifier:
     """Decomposes response into atomic claims and verifies grounding against evidence."""
 
-    def __init__(self, api_key: Optional[str] = None, model: str = "gemini-3.6-flash"):
+    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
         self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
-        self.model = model
+        self.model = model or os.environ.get("EVAL_CLAIM_MODEL") or os.environ.get("GEMINI_MODEL") or "gemini-3.5-flash-lite"
         self.client = None
         if self.api_key:
             self.client = AsyncOpenAI(
@@ -308,6 +308,7 @@ Trả về CHỈ DUY NHẤT một chuỗi JSON hợp lệ theo format:
             return self._compute_claim_metrics(claims)
 
         except Exception as e:
+            print(f"⚠️ [AtomicClaimVerifier] Warning: LLM claim verification failed ({e}), falling back to heuristic.")
             return self._heuristic_fallback(answer_text, evidence_text)
 
     def _compute_claim_metrics(self, claims: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -667,6 +668,10 @@ async def main_async():
     parser.add_argument("--dataset", type=str, default="eval/tool_call/datasets/multi_turn/samples.json")
     parser.add_argument("--output", type=str, default=None, help="Output JSON path")
     parser.add_argument("--skip-llm-claim-eval", action="store_true", help="Skip Gemini claim verification")
+    parser.add_argument("--claim-model", type=str, default=os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite"), help="Model for atomic claim evaluation (default: gemini-3.5-flash-lite)")
+    parser.add_argument("--sample-id", type=str, default=None, help="Evaluate only a specific sample_id (e.g. sample_013)")
+    parser.add_argument("--from-sample", type=str, default=None, help="Evaluate starting from a specific sample_id onwards (e.g. sample_011)")
+    parser.add_argument("--to-sample", type=str, default=None, help="Evaluate up to a specific sample_id (e.g. sample_013)")
 
     args = parser.parse_args()
     WORKSPACE_ROOT = Path(__file__).resolve().parent.parent.parent.parent
@@ -694,13 +699,37 @@ async def main_async():
             if line.strip():
                 trajectories.append(json.loads(line))
 
+    # Filter trajectories by sample_id, from_sample, to_sample
+    if args.sample_id:
+        matched = [t for t in trajectories if t.get("sample_id") == args.sample_id]
+        if not matched:
+            print(f"❌ Scenario {args.sample_id} not found in {traj_path}")
+            sys.exit(1)
+        trajectories = matched
+        print(f"🎯 Filtered for single scenario: {args.sample_id}")
+    elif args.from_sample or args.to_sample:
+        from_idx = 0
+        to_idx = len(trajectories)
+        if args.from_sample:
+            for i, t in enumerate(trajectories):
+                if t.get("sample_id") == args.from_sample:
+                    from_idx = i
+                    break
+        if args.to_sample:
+            for i, t in enumerate(trajectories):
+                if t.get("sample_id") == args.to_sample:
+                    to_idx = i + 1
+                    break
+        trajectories = trajectories[from_idx:to_idx]
+        print(f"🎯 Filtered range: {len(trajectories)} scenarios ({args.from_sample or 'start'} -> {args.to_sample or 'end'})")
+
     print(f"\n{'='*75}")
     print(f"🎯 Objective Multi-Turn Trajectory Evaluator | Model: {args.model}")
     print(f"📂 Trajectory source: {traj_path}")
-    print(f"📋 Loaded {len(trajectories)} scenario trajectories")
+    print(f"📋 Loaded {len(trajectories)} scenario trajectory/trajectories to evaluate")
     print(f"{'='*75}\n")
 
-    claim_verifier = None if args.skip_llm_claim_eval else AtomicClaimVerifier()
+    claim_verifier = None if args.skip_llm_claim_eval else AtomicClaimVerifier(model=args.claim_model)
     evaluator = TrajectoryEvaluator(claim_verifier=claim_verifier)
 
     eval_results = []
@@ -713,10 +742,37 @@ async def main_async():
         cm = res["conversation_metrics"]
         print(f"  ✓ Task Success: {cm['task_success']} | Tool Acc: {cm['tool_decision_accuracy']*100:.0f}% | Slot Acc: {cm['context_slot_accuracy']*100:.0f}% | Grounded: {cm['grounded_claim_precision']*100:.1f}%")
 
-    total_scenarios = len(eval_results)
-    
+    if args.output:
+        out_path = Path(args.output)
+    else:
+        out_path = WORKSPACE_ROOT / f"eval/tool_call/results/{args.model}/evaluation_metrics.json"
+
+    # Merge into existing evaluation_metrics.json if evaluating a subset
+    final_scenarios_map = {}
+    if out_path.exists():
+        try:
+            with open(out_path, "r", encoding="utf-8") as f:
+                existing_data = json.load(f)
+                for sc in existing_data.get("scenarios", []):
+                    if sc.get("sample_id"):
+                        final_scenarios_map[sc["sample_id"]] = sc
+        except Exception as e:
+            print(f"⚠️ Could not read existing {out_path.name}: {e}")
+
+    # Overwrite or insert newly evaluated scenarios
+    for res in eval_results:
+        final_scenarios_map[res["sample_id"]] = res
+
+    # Sort scenarios by ID for neatness
+    def sort_key(s_id: str):
+        m = re.match(r"^sample_(\d+)$", s_id)
+        return int(m.group(1)) if m else 999999
+
+    merged_scenarios = sorted(final_scenarios_map.values(), key=lambda s: sort_key(s.get("sample_id", "")))
+    total_scenarios = len(merged_scenarios)
+
     def avg_metric(key: str) -> float:
-        vals = [r["conversation_metrics"][key] for r in eval_results if r["conversation_metrics"].get(key) is not None]
+        vals = [r["conversation_metrics"][key] for r in merged_scenarios if r.get("conversation_metrics", {}).get(key) is not None]
         return round(sum(vals) / len(vals), 3) if vals else 0.0
 
     summary_metrics = {
@@ -749,13 +805,8 @@ async def main_async():
         "evaluation_timestamp": datetime.now().isoformat(),
         "total_scenarios": total_scenarios,
         "summary_metrics": summary_metrics,
-        "scenarios": eval_results
+        "scenarios": merged_scenarios
     }
-
-    if args.output:
-        out_path = Path(args.output)
-    else:
-        out_path = WORKSPACE_ROOT / f"eval/tool_call/results/{args.model}/evaluation_metrics.json"
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
