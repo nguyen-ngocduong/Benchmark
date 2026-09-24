@@ -338,16 +338,36 @@ async def convert_and_enrich_mentor_dataset(
         if m:
             max_num = max(max_num, int(m.group(1)))
 
+    # Map existing user first turn messages to sample_id to prevent duplicates
+    existing_first_turns = {}
+    for sc in existing_scenarios:
+        t_list = sc.get("scenario", {}).get("turns", [])
+        if t_list and sc.get("sample_id"):
+            u_msg = t_list[0].get("user_message", "").strip().lower()
+            if u_msg:
+                existing_first_turns[u_msg] = sc.get("sample_id")
+
     # Assign IDs to conversations
     prepared_items = []
+    assigned_count = 0
     for idx, conv in enumerate(conversations, start=1):
         explicit_id = conv.get("sample_id") or conv.get("id")
+        msgs = conv.get("messages", [])
+        u_first = ""
+        for m in msgs:
+            if m.get("role") == "user":
+                u_first = m.get("content", "").strip().lower()
+                break
+
         if explicit_id:
             assigned_id = str(explicit_id)
+        elif u_first in existing_first_turns:
+            assigned_id = existing_first_turns[u_first]
         elif len(conversations) == 1 and sample_id:
             assigned_id = sample_id
         else:
-            assigned_id = f"sample_{max_num + idx:03d}"
+            assigned_count += 1
+            assigned_id = f"sample_{max_num + assigned_count:03d}"
 
         prepared_items.append({
             "index": idx,

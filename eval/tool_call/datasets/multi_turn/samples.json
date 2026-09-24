@@ -1915,5 +1915,959 @@
         }
       ]
     }
+  },
+  {
+    "sample_id": "sample_014",
+    "source": {
+      "text": "[{\"title\": \"Navigating the Crypto Cosmos: Why Investing in Bitcoin Holds the Key to Financial Success\", \"url\": \"https://medium.com/@gravyomoniyi/navigating-the-crypto-cosmos-why-investing-in-bitcoin-holds-the-key-to-financial-success-e8fbcc916e96\", \"snippet\": \"Bitcoin is a remarkable cryptographic achievement and the ability to create something that is not duplicable in the digital world has enormous value. Quotes from Eric Schmidt, Bill Gates, and Chamath Palihapitiya regarding the long-term viability and significance of Bitcoin and cryptocurrencies.\"}]\n\n[{\"title\": \"Các yếu tố chính ảnh hưởng đến biến động giá tiền điện tử\", \"url\": \"https://example.com/crypto-market-fluctuations\", \"snippet\": \"Giá trị của tiền điện tử chịu ảnh hưởng bởi kinh tế toàn cầu, các sự kiện chính trị và xã hội. Khác với tài chính truyền thống, thị trường crypto ít bị tác động trực tiếp bởi kinh tế vĩ mô thông thường hay tin tức về các sàn giao dịch phá sản. Bitcoin đóng vai trò dẫn dắt toàn thị trường, di chuyển theo chu kỳ tăng trưởng và điều chỉnh.\"}]\n\n[{\"title\": \"BitInfoCharts - Crypto Transaction Fees Comparison\", \"url\": \"https://bitinfocharts.com/comparison/transactionfees-btc-eth-eos-bch-etc-ltc-xrp-bnb-trx-qtum-zec.html\", \"id\": \"res_1\", \"snippet\": \"Comparison chart of average transaction fees for major cryptocurrencies including Bitcoin, Ethereum, EOS, Bitcoin Cash, Litecoin, Ripple, and others.\"}, {\"title\": \"Stellar and Vertcoin Low Fee Analysis\", \"url\": \"https://example.com/crypto-fees-guide\", \"id\": \"res_2\", \"snippet\": \"Vertcoin, Stellar, and EOS are widely recognized for maintaining extremely low transaction fees compared to Bitcoin and Ethereum.\"}]\n\n[{\"title\": \"An toàn khi chia sẻ địa chỉ công khai Bitcoin (Bitcoin Public Address)\", \"url\": \"https://example.com/bitcoin-public-address-safety\", \"snippet\": \"Địa chỉ công khai Bitcoin (public address) hoàn toàn an toàn để chia sẻ với người khác nhằm nhận tiền, tương tự như việc đưa email để nhận thanh toán qua PayPal. Tuy nhiên, mọi giao dịch trên blockchain đều là công khai và ai cũng có thể tra cứu lịch sử giao dịch của địa chỉ đó.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Đầu tư vào tiền điện tử hiện tại có còn sinh lời không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem đầu tư vào tiền điện tử hiện tại có còn sinh lời hay không.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "dau tu",
+                "tien dien tu",
+                "bitcoin"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "investment_viability": [
+                "còn sinh lời",
+                "có",
+                "đáng tin cậy"
+              ],
+              "expert_opinions": [
+                "Eric Schmidt",
+                "Bill Gates",
+                "Chamath Palihapitiya"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bitcoin là một thành tựu mật mã đáng kinh ngạc và khả năng tạo ra thứ không thể sao chép trong thế giới kỹ thuật số có giá trị vô cùng lớn.",
+              "Bitcoin được công nhận là một kỳ quan công nghệ bởi các nhân vật nổi tiếng như Eric Schmidt, Bill Gates và Chamath Palihapitiya."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nguyên nhân nào dẫn đến sự biến động giá trị của tiền điện tử vậy bạn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên nhân dẫn đến sự biến động giá trị của tiền điện tử.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nguyên nhân biến động giá",
+                "tiền điện tử",
+                "cryptocurrency price fluctuations"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "affecting_factors": [
+                "kinh tế toàn cầu",
+                "sự kiện chính trị",
+                "sự kiện xã hội"
+              ],
+              "bitcoin_role": [
+                "Bitcoin đóng vai trò dẫn dắt",
+                "chu kỳ tăng trưởng và điều chỉnh"
+              ]
+            },
+            "golden_reference_claims": [
+              "Giá trị của tiền điện tử chịu ảnh hưởng bởi kinh tế toàn cầu, các sự kiện chính trị và xã hội.",
+              "Bitcoin đóng vai trò dẫn dắt toàn bộ thị trường tiền điện tử và biến động theo chu kỳ tăng trưởng và điều chỉnh."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiền điện tử nào có phí giao dịch thấp nhất hiện nay?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm các đồng tiền điện tử có phí giao dịch thấp nhất hiện nay.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "cryptocurrency lowest transaction fees",
+                "phí giao dịch thấp nhất"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "low_fee_cryptos": [
+                "Vertcoin",
+                "Stellar",
+                "EOS"
+              ],
+              "fee_nature": [
+                "phí giao dịch thấp",
+                "extremely low transaction fees"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vertcoin, Stellar và EOS là những đồng tiền điện tử có mức phí giao dịch thấp nhất.",
+              "Phí giao dịch của tiền điện tử có thể thay đổi theo thời gian do sự biến động."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Chia sẻ công khai địa chỉ Bitcoin của tôi có an toàn không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem việc chia sẻ công khai địa chỉ Bitcoin có an toàn hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "chia sẻ địa chỉ bitcoin",
+                "public bitcoin address safe"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "public_address_safety": [
+                "an toàn để chia sẻ",
+                "safe to share",
+                "hoàn toàn có thể chia sẻ"
+              ],
+              "private_key_warning": [
+                "khóa riêng tư",
+                "private key",
+                "không được chia sẻ"
+              ],
+              "blockchain_transparency": [
+                "mọi giao dịch đều là công khai",
+                "tra cứu lịch sử giao dịch",
+                "transparent"
+              ]
+            },
+            "golden_reference_claims": [
+              "Địa chỉ công khai Bitcoin (public address) hoàn toàn an toàn để chia sẻ với người khác nhằm mục đích nhận tiền.",
+              "Khóa riêng tư (private keys) là thứ dùng để tiêu tiền và ký giao dịch nên tuyệt đối không được chia sẻ với bất kỳ ai.",
+              "Mọi giao dịch trên blockchain đều là công khai và bất kỳ ai cũng có thể tra cứu lịch sử giao dịch của địa chỉ đó."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_015",
+    "source": {
+      "text": "[{\"title\": \"Hiệu suất và tính khả thi của các nguồn năng lượng tái tạo\", \"url\": \"https://example.com/renewable-energy-efficiency\", \"snippet\": \"Các nguồn năng lượng tái tạo như điện mặt trời phụ thuộc vào thời tiết và ban đêm, điện gió phụ thuộc vào tốc độ gió. Trong khi đó, thủy điện có hiệu suất rất cao nhưng bị giới hạn về vị trí địa lý. Năng lượng hạt nhân đôi khi cũng được cân nhắc như một giải pháp dài hạn với nguồn nhiên liệu dồi dào.\"}]\n\n[{\"title\": \"Solar Panel Recycling and EROI Improvements\", \"url\": \"https://example.com/solar-panel-recycling-eroi\", \"snippet\": \"Recycling silicon from old solar panels can improve EROI when reaching steady-state usage, though silicon itself is cheap. Other materials and reprocessing costs significantly impact the overall energy return on investment.\"}, {\"title\": \"Vòng đời và hiệu suất tấm pin năng lượng mặt trời\", \"url\": \"https://example.com/vong-doi-pin-mat-troi\", \"snippet\": \"Các tấm pin mặt trời sau 25 năm vẫn duy trì được 80-90% hiệu suất ban đầu. Việc tiếp tục sử dụng hoặc chuyển sang ứng dụng đời thứ 2 (2nd life usage) thường mang lại EROI tốt hơn so với việc đem đi tái chế ngay lập tức.\"}]\n\n[{\"title\": \"Nhu cầu năng lượng và lắp đặt pin mặt trời cho hộ gia đình\", \"url\": \"https://example.com/solar-panels-household-guide\", \"snippet\": \"Một hộ gia đình trung bình tiêu thụ khoảng 90 kWh (units) điện mỗi tháng, đủ để vận hành các thiết bị cơ bản như bóng đèn, TV, quạt trần, tủ lạnh và các thiết bị nhà bếp nhỏ.\"}]\n\n[{\"title\": \"Hướng dẫn lắp đặt và tính góc nghiêng tấm pin năng lượng mặt trời\", \"url\": \"https://example.com/solar-panel-tilt-angle-guide\", \"snippet\": \"Góc nghiêng thực tế và phổ biến nhất cho pin mặt trời đặt trên mặt đất là quay về hướng Chính Nam và có độ góc nghiêng bằng với vĩ độ của khu vực lắp đặt. Để tối ưu hóa theo mùa, có thể cộng thêm 15 độ vào mùa đông và trừ đi 15 độ vào mùa hè.\"}, {\"title\": \"Optimization of Photovoltaic Solar Panel Tilt Angle\", \"url\": \"https://example.com/pv-tilt-optimization\", \"snippet\": \"For fixed rooftop panels, the tilt angle often follows the roof slope. However, motorized tracking systems or seasonal manual adjustments (latitude +/- 15 degrees) provide the highest energy yield and maintenance efficiency.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Hiện tại, nguồn năng lượng tái tạo nào hiệu quả nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu và so sánh hiệu quả của các nguồn năng lượng tái tạo để xác định nguồn hiệu quả nhất.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nguồn năng lượng tái tạo",
+                "hiệu quả nhất",
+                "so sánh hiệu suất"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "solar_energy": [
+                "năng lượng mặt trời",
+                "điện mặt trời",
+                "solar"
+              ],
+              "wind_energy": [
+                "năng lượng gió",
+                "điện gió",
+                "wind"
+              ],
+              "hydro_energy": [
+                "thủy điện",
+                "năng lượng nước",
+                "hydroelectric"
+              ]
+            },
+            "golden_reference_claims": [
+              "Năng lượng mặt trời bị gián đoạn vào ban đêm hoặc khi thời tiết có mây.",
+              "Năng lượng gió phụ thuộc vào tốc độ gió và không thể hoạt động khi trời lặng gió.",
+              "Thủy điện có hiệu suất rất cao nhưng bị giới hạn nghiêm ngặt về vị trí địa lý."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Liệu EROI (Tỷ lệ năng lượng thu hồi trên năng lượng đầu tư) của pin mặt trời có được cải thiện đáng kể nếu lượng silicon dùng trong sản xuất được tái chế hoàn toàn từ các tấm pin cũ không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu ảnh hưởng của việc tái chế silicon từ tấm pin mặt trời cũ đến chỉ số EROI (Tỷ lệ năng lượng thu hồi trên năng lượng đầu tư).",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "EROI",
+                "solar panel recycling",
+                "silicon"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "pin mặt trời",
+              "expected_target": [
+                "tấm pin mặt trời",
+                "solar panel",
+                "pin năng lượng mặt trời"
+              ]
+            },
+            "required_slots": {
+              "eroi_impact": [
+                "improve EROI",
+                "cải thiện EROI",
+                "EROI tốt hơn"
+              ],
+              "silicon_value": [
+                "silicon cheap",
+                "silicon giá rẻ",
+                "vật liệu cơ bản"
+              ],
+              "second_life_usage": [
+                "2nd life usage",
+                "ứng dụng đời thứ 2",
+                "tiếp tục sử dụng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc tái chế silicon từ các tấm pin mặt trời cũ có thể cải thiện EROI khi đạt trạng thái sử dụng ổn định.",
+              "Bản thân silicon có giá thành rẻ và dồi dào, nên vấn đề tiết kiệm năng lượng chủ yếu nằm ở việc chiết xuất các vật liệu ít phổ biến hơn.",
+              "Việc tiếp tục sử dụng hoặc chuyển sang ứng dụng đời thứ hai (2nd life usage) thường mang lại EROI tốt hơn so với việc đem đi tái chế ngay lập tức."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Cần bao nhiêu tấm pin mặt trời để cung cấp đủ điện cho một ngôi nhà của gia đình trung lưu nhỏ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác định số lượng tấm pin mặt trời cần thiết để cung cấp điện cho một gia đình trung lưu nhỏ dựa trên mức tiêu thụ điện năng.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "tấm pin mặt trời",
+                "tiêu thụ điện",
+                "hộ gia đình"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "monthly_consumption": [
+                "90 kWh",
+                "90 units",
+                "90 kWh điện mỗi tháng"
+              ],
+              "appliances_supported": [
+                "bóng đèn",
+                "tivi",
+                "quạt trần",
+                "tủ lạnh"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một hộ gia đình trung bình tiêu thụ khoảng 90 kWh năng lượng mỗi tháng.",
+              "Lượng điện này đủ để vận hành các thiết bị cơ bản như bóng đèn, tivi, quạt trần, tủ lạnh và các thiết bị nhà bếp nhỏ."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Góc nghiêng tối ưu khi lắp đặt tấm pin năng lượng mặt trời là bao nhiêu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu góc nghiêng tối ưu khi lắp đặt tấm pin năng lượng mặt trời để đạt hiệu suất cao.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "góc nghiêng tối ưu pin mặt trời",
+                "solar panel tilt angle",
+                "vĩ độ"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "optimal_orientation": [
+                "hướng Chính Nam",
+                "quay về hướng Nam",
+                "True South"
+              ],
+              "tilt_angle_formula": [
+                "bằng với vĩ độ",
+                "latitude",
+                "cộng thêm 15 độ vào mùa đông",
+                "trừ đi 15 độ vào mùa hè"
+              ]
+            },
+            "golden_reference_claims": [
+              "Góc nghiêng thực tế phổ biến cho pin mặt trời đặt trên mặt đất là quay về hướng Chính Nam và có độ góc nghiêng bằng với vĩ độ của khu vực lắp đặt.",
+              "Để tối ưu hóa theo mùa, có thể cộng thêm 15 độ vào mùa đông và trừ đi 15 độ vào mùa hè."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_016",
+    "source": {
+      "text": "[{\"title\": \"Hiểu về các chỉ số huyết áp và nhịp tim\", \"url\": \"https://example.com/health/blood-pressure-guidelines\", \"snippet\": \"Huyết áp 138/83 mmHg nằm ở ngưỡng tiền cao huyết áp hoặc cao huyết áp giai đoạn 1. Tuy nhiên, việc chẩn đoán không thể chỉ dựa vào một lần đo đơn lẻ mà cần theo dõi trong nhiều thời điểm khác nhau. Nhịp tim 52 lần/phút thấp hơn mức trung bình nghỉ ngơi (60-100), có thể bình thường đối với vận động viên nhưng cần được bác sĩ đánh giá.\"}, {\"title\": \"Khi nào cần gặp bác sĩ về huyết áp đơn lẻ\", \"url\": \"https://example.com/health/single-bp-reading\", \"snippet\": \"Trạng thái cảm xúc, hoạt động thể chất trước khi đo và thời điểm trong ngày ảnh hưởng lớn đến kết quả huyết áp. Nếu chỉ số huyết áp cao liên tục, đặc biệt là số dưới (tâm trương), bạn nên tham khảo ý kiến của chuyên gia y tế.\"}]\n\n[{\"title\": \"Thức uống thảo dược Ayurvedic Kadha giúp tăng cường miễn dịch\", \"url\": \"https://example.com/ayurvedic-kadha-immunity\", \"snippet\": \"Kadha là một loại đồ uống thảo dược Ayurvedic nổi tiếng với công dụng tăng cường hệ miễn dịch, là bài thuốc tốt nhất chống lại sốt và đau họng. Nó còn giúp chống nhiễm trùng, cải thiện tiêu hóa, giải độc cơ thể và rất hữu ích trong mùa dị ứng.\"}, {\"title\": \"Nguyên liệu và cách nấu nước thảo dược Kadha tại nhà\", \"url\": \"https://example.com/how-to-make-kadha-at-home\", \"snippet\": \"Các nguyên liệu làm Kadha gồm: bột gừng khô, đinh hương, thảo quả đen, đường/mật ong/đường thốt nốt, húng quế (Tulsi), chanh và quế. Cách làm: nghiền nhỏ tiêu đen, bột quế, thảo quả đen và đinh hương, sau đó đun sôi với nước, lá húng quế và bột gừng khô.\"}]\n\n[{\"title\": \"Vắc-xin và bệnh tự kỷ: Sự thật khoa học và vụ bê bối Andrew Wakefield\", \"url\": \"https://example.com/vaccine-autism-wakefield-fraud\", \"snippet\": \"Nghiên cứu năm 1998 của Andrew Wakefield liên kết vắc-xin MMR với bệnh tự kỷ đã bị phát hiện là gian lận dữ liệu, bị tạp chí The Lancet rút lại hoàn toàn và tác giả đã bị tước giấy phép hành nghề y khoa.\"}, {\"title\": \"Khuyến nghị y tế về việc tiêm chủng đầy đủ cho trẻ em\", \"url\": \"https://example.com/childhood-vaccination-schedule\", \"snippet\": \"Các tổ chức y tế lớn trên toàn cầu khẳng định không có mối liên hệ nào giữa vắc-xin và bệnh tự kỷ. Việc tuân thủ lịch tiêm chủng đầy đủ là cách tốt nhất để bảo vệ trẻ khỏi các bệnh truyền nhiễm nguy hiểm.\"}]\n\n[{\"title\": \"NHS Health Checks and Cancer Screening Guidelines\", \"url\": \"https://example.com/nhs-cancer-screening-guidelines\", \"snippet\": \"Generally, NHS tests and scans are carried out free of charge if your GP deems them clinically necessary. Having a test purely by personal request without symptoms or clinical justification is not normally allowed. However, the NHS does provide routine age-based screening kits and preventative checks automatically.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Huyết áp của tôi là 138/83 và nhịp tim là 52. Như vậy có phải là ngưỡng cao không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Kiểm tra xem chỉ số huyết áp 138/83 và nhịp tim 52 có phải là ngưỡng cao không.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "huyết áp 138/83",
+                "nhịp tim 52"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "single_reading_limitation": [
+                "một lần đo đơn lẻ",
+                "kết quả đo đơn lẻ",
+                "đo đơn lẻ"
+              ],
+              "measurement_context": [
+                "vừa làm gì ngay trước khi đo",
+                "trạng thái cảm xúc",
+                "hoạt động thể chất trước khi đo"
+              ],
+              "medical_consultation": [
+                "tham khảo ý kiến của bác sĩ",
+                "chuyên gia y tế"
+              ]
+            },
+            "golden_reference_claims": [
+              "Huyết áp 138/83 mmHg nằm ở ngưỡng tiền cao huyết áp hoặc cao huyết áp giai đoạn 1 nhưng không thể chẩn đoán chỉ dựa trên một kết quả đo đơn lẻ.",
+              "Trạng thái cảm xúc và hoạt động trước khi đo ảnh hưởng lớn đến kết quả huyết áp.",
+              "Người dùng nên theo dõi huyết áp ở nhiều thời điểm khác nhau và tham khảo ý kiến bác sĩ."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Làm thế nào để tăng cường hệ miễn dịch một cách tự nhiên tại nhà vậy bạn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách tăng cường hệ miễn dịch một cách tự nhiên tại nhà.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "tăng cường hệ miễn dịch tự nhiên",
+                "tăng đề kháng tại nhà"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "remedy_name": [
+                "Kadha",
+                "thức uống thảo dược Ayurvedic Kadha"
+              ],
+              "key_ingredients": [
+                "bột gừng khô",
+                "đinh hương",
+                "thảo quả đen",
+                "lá húng quế",
+                "quế"
+              ]
+            },
+            "golden_reference_claims": [
+              "Kadha là thức uống thảo dược Ayurvedic giúp tăng cường hệ miễn dịch và chống sốt, đau họng.",
+              "Nguyên liệu làm Kadha bao gồm bột gừng khô, đinh hương, thảo quả đen, quế, tiêu đen và lá húng quế."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiêm vắc-xin cho trẻ em có gây ra bệnh tự kỷ không? Con dâu tôi đang từ chối tiêm vắc-xin cho các cháu dựa trên niềm tin này.",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu mối liên hệ giữa vắc-xin và bệnh tự kỷ để giải đáp việc con dâu từ chối tiêm chủng cho cháu.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "vac xin",
+                "tu ky",
+                "andrew wakefield"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "vaccine_autism_link": [
+                "không gây ra bệnh tự kỷ",
+                "không có mối liên hệ",
+                "không gây tự kỷ"
+              ],
+              "andrew_wakefield_fraud": [
+                "Andrew Wakefield",
+                "gian lận dữ liệu",
+                "nghiên cứu giả mạo",
+                "The Lancet rút lại"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vắc-xin hoàn toàn không gây ra bệnh tự kỷ.",
+              "Nghiên cứu ban đầu liên kết vắc-xin với bệnh tự kỷ của Andrew Wakefield là gian lận dữ liệu và đã bị tạp chí The Lancet rút lại."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Ở Anh, một cư dân có thể yêu cầu bác sĩ đa khoa (GP) kiểm tra ung thư miễn phí trên NHS (như xét nghiệm máu, chụp chiếu) khi không có triệu chứng gì không? Bác sĩ có quyền từ chối không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem cư dân Anh có thể yêu cầu GP kiểm tra ung thư miễn phí trên NHS khi không có triệu chứng và bác sĩ có quyền từ chối không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "NHS cancer tests without symptoms",
+                "GP UK",
+                "can you get cancer screening on NHS without symptoms"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "clinical_necessity": [
+                "clinically necessary",
+                "cần thiết về mặt y tế",
+                "chỉ định lâm sàng"
+              ],
+              "personal_request_policy": [
+                "personal request without symptoms",
+                "yêu cầu cá nhân",
+                "không có triệu chứng",
+                "không được chấp thuận"
+              ],
+              "nhs_routine_screening": [
+                "routine age-based screening",
+                "chương trình kiểm tra tự động",
+                "độ tuổi quy định"
+              ]
+            },
+            "golden_reference_claims": [
+              "Các xét nghiệm và chụp chiếu trên NHS chỉ được thực hiện miễn phí khi bác sĩ đa khoa (GP) thấy chúng cần thiết về mặt y tế.",
+              "Việc yêu cầu làm xét nghiệm ung thư thuần túy theo sở thích cá nhân khi không có triệu chứng thường sẽ không được chấp thuận.",
+              "Hệ thống NHS có cung cấp các chương trình tầm soát tự động dựa trên độ tuổi hoặc các bộ kit xét nghiệm gửi tự động cho người dân."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_017",
+    "source": {
+      "text": "[{\"title\": \"Trận Stalingrad và Trận Kursk: Bước ngoặt Thế chiến II\", \"url\": \"https://example.com/stalingrad-vs-kursk-ww2\", \"snippet\": \"Trận Stalingrad là nỗ lực cuối cùng của Chiến dịch Blau nhằm kiểm soát nguồn cung cấp dầu mỏ quan trọng qua sông Volga, nhưng thất bại do lực lượng Hồng quân bao vây và tiêu diệt tập đoàn quân Đức.\"}, {\"title\": \"Đánh giá chiến lược các trận đánh lớn mặt trận phía Đông\", \"url\": \"https://example.com/eastern-front-battles-analysis\", \"snippet\": \"Trận Kursk diễn ra sau đó chủ yếu mang tính chất một nỗ lực tác chiến nhằm tiêu hao sinh lực Hồng quân và kéo dài thời gian cầm cự của phát xít Đức ở mặt trận phía Đông.\"}]\n\n[{\"title\": \"Stalin and the Defense of Moscow: Fact vs Fiction\", \"url\": \"https://example.com/history/stalin-moscow-fire-myth\", \"snippet\": \"Stalin never ordered Moscow to be burned down during World War II. People often confuse this with the burning of Moscow in 1812 during Napoleon's invasion, which is attributed to Kutuzov or Rostopchin to starve out the Grande Armée.\"}, {\"title\": \"Lịch sử trận chiến Moscow 1812 và Thế chiến 2\", \"url\": \"https://example.com/history/moscow-fire-1812-vs-ww2\", \"snippet\": \"Vụ cháy Moscow năm 1812 trong cuộc chiến chống Napoleon vẫn còn nhiều tranh cãi về việc do cố ý tiêu thổ kháng chiến hay do tai nạn, hoàn toàn không liên quan đến giai đoạn Thế chiến thứ hai dưới thời Stalin.\"}]\n\n[{\"title\": \"Trận Kharkov lần thứ ba – Wikipedia tiếng Việt\", \"url\": \"https://vi.wikipedia.org/wiki/Tran_Kharkov_lan_thu_ba\", \"snippet\": \"Trận Kharkov lần thứ ba là một chuỗi các trận đánh diễn ra từ ngày 19 tháng 2 đến ngày 15 tháng 3 năm 1963 giữa Tập đoàn quân xe tăng cận vệ 1 và Tập đoàn quân 69 của Liên Xô đối với Tập đoàn quân xe tăng 4 của Đức do Erich von Manstein chỉ huy, kết thúc bằng chiến thắng chiến thuật quan trọng của Đức.\"}, {\"title\": \"How Von Manstein won the Third Battle of Kharkov\", \"url\": \"https://history-analysis.com/third-battle-of-kharkov-manstein\", \"snippet\": \"Von Manstein achieved tactical surprise, established local superiority, and executed devastating flanking attacks, exploiting the overextended Soviet supply lines following their victory at Stalingrad.\"}]\n\n[{\"title\": \"The Myth of Hitler and Gun Control\", \"url\": \"https://example.com/hitler-gun-control-history\", \"snippet\": \"Adolf Hitler actually implemented strict disarmament policies for political opponents and targeted groups, while the NRA advocates for gun safety and Second Amendment rights. Their views are diametrically opposed, and claims that the NRA supported Hitler in the 1930s are historically false.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Trong Thế chiến thứ hai, Trận Kursk hay Trận Stalingrad đóng vai trò quan trọng và quyết định hơn? Hãy so sánh tầm quan trọng và giải thích tại sao.",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh tầm quan trọng và giải thích vai trò của Trận Kursk và Trận Stalingrad trong Thế chiến thứ hai.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "trận kursk",
+                "trận stalingrad",
+                "thế chiến ii",
+                "tầm quan trọng"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "stalingrad_importance": [
+                "bước ngoặt",
+                "quyết định",
+                "chiến dịch blau",
+                "sông volga",
+                "nguồn cung cấp dầu mỏ"
+              ],
+              "kursk_nature": [
+                "nỗ lực tác chiến",
+                "tiêu hao sinh lực",
+                "cầm cự",
+                "cấp chiến dịch"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trận Stalingrad được coi là bước ngoặt quyết định và quan trọng hơn Trận Kursk trong Thế chiến thứ hai.",
+              "Trận Stalingrad đóng vai trò chiến lược trong việc kiểm soát sông Volga và làm sụp đổ Chiến dịch Blau của Đức.",
+              "Trận Kursk chỉ mang tính chất nỗ lực cấp chiến dịch nhằm tiêu hao sinh lực Liên Xô và kéo dài thời gian cầm cự của phát xít Đức."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Trong Thế chiến thứ hai, tại sao Stalin lại ra lệnh đốt các tòa nhà ở Moscow bất chấp mùa đông lạnh giá của Nga?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ thông tin về việc Stalin ra lệnh đốt Moscow trong Thế chiến 2",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Stalin",
+                "Moscow",
+                "đốt",
+                "Thế chiến 2"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "historical_fact": [
+                "Stalin chưa bao giờ ra lệnh đốt Moscow",
+                "không có lệnh đốt tòa nhà trong Thế chiến 2"
+              ],
+              "historical_confusion": [
+                "nhầm lẫn với năm 1812",
+                "Chiến tranh Vệ quốc chống Napoleon",
+                "Kutuzov",
+                "Alexander I"
+              ]
+            },
+            "golden_reference_claims": [
+              "Stalin chưa bao giờ ra lệnh đốt cháy các tòa nhà ở Moscow trong Thế chiến thứ hai.",
+              "Sự kiện đốt Moscow thường bị nhầm lẫn với cuộc chiến năm 1812 chống lại Napoleon dưới thời Sa hoàng Alexander I hoặc Thống chế Kutuzov."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Làm thế nào mà tướng Von Manstein có thể đánh bại Hồng quân Liên Xô một cách quyết định trong Trận Kharkov lần thứ ba, ngay sau khi Liên Xô vừa giành chiến thắng vang dội tại Stalingrad?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích cách tướng Von Manstein đánh bại Hồng quân Liên Xô trong Trận Kharkov lần thứ ba.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Von Manstein",
+                "Trận Kharkov lần thứ ba",
+                "Third Battle of Kharkov"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "tactical_surprise": [
+                "bất ngờ về mặt chiến thuật",
+                "tactical surprise"
+              ],
+              "flanking_attacks": [
+                "tấn công thọc sườn",
+                "flanking attacks",
+                "đòn tấn công thọc sườn"
+              ],
+              "supply_lines": [
+                "chuỗi hậu cần",
+                "supply lines",
+                "overextended Soviet supply lines"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tướng Erich von Manstein đã đạt được sự bất ngờ về mặt chiến thuật trong Trận Kharkov lần thứ ba.",
+              "Quân đội Đức thực hiện các đòn tấn công thọc sườn và tận dụng chuỗi hậu cần bị kéo dài quá mức của Liên Xô sau chiến thắng Stalingrad."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tại sao Hiệp hội Súng Quốc gia Mỹ (NRA) và các chủ sở hữu súng lại ủng hộ Adolf Hitler vào những năm 1930?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem Hiệp hội Súng Quốc gia Mỹ (NRA) và chủ sở hữu súng có ủng hộ Adolf Hitler vào những năm 1930 hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "NRA",
+                "Hitler",
+                "1930s"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "hitler_gun_policy": [
+                "tước vũ khí",
+                "disarmament policies",
+                "strict disarmament"
+              ],
+              "nra_stance": [
+                "ủng hộ an toàn súng đạn",
+                "Tu chính án thứ Hai",
+                "Second Amendment rights"
+              ],
+              "historical_accuracy": [
+                "hoàn toàn sai sự thật",
+                "historically false"
+              ]
+            },
+            "golden_reference_claims": [
+              "Adolf Hitler thực chất là người thực hiện chính sách tước vũ khí đối với các đối thủ chính trị và các nhóm đối tượng bị nhắm đến.",
+              "Hiệp hội Súng Quốc gia Mỹ (NRA) ủng hộ an toàn súng đạn và quyền theo Tu chính án thứ Hai, trái ngược hoàn toàn với quan điểm của Hitler.",
+              "Tuyên bố cho rằng NRA hay các chủ sở hữu súng từng ủng hộ Hitler vào những năm 1930 hoàn toàn sai sự thật về mặt lịch sử."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_018",
+    "source": {
+      "text": "[{\"title\": \"C++ for Machine Learning: Advantages and Disadvantages\", \"url\": \"https://example.com/cpp-machine-learning-pros-cons\", \"snippet\": \"C++ offers superior speed and precise memory control, making debugging easier once code is written. However, it is harder to build initial prototypes, has a smaller ML community, and fewer specialized libraries compared to Python.\"}, {\"title\": \"Top Platforms to Learn Data Science and Machine Learning\", \"url\": \"https://example.com/top-ml-tutorials-platforms\", \"snippet\": \"Kaggle and Hackr.io are top-rated platforms providing tutorials, courses, and resources for individuals looking to master data science and machine learning.\"}]\n\n[{\"title\": \"K-Nearest Neighbors (KNN) Algorithm Explained\", \"url\": \"https://example.com/nearest-neighbor-algorithm\", \"snippet\": \"The nearest neighbor algorithm is simple, intuitive, and self-explanatory compared to complex deep learning architectures.\"}, {\"title\": \"Machine Learning Jargon vs Simple Algorithms\", \"url\": \"https://example.com/ml-jargon-comparison\", \"snippet\": \"Complex terms like three hidden-layer fully-connected feed-forward artificial neural networks create barriers to entry for beginners.\"}]\n\n[{\"title\": \"Can AI break RSA encryption and integer factorization?\", \"url\": \"https://example.com/ai-rsa-encryption-analysis\", \"snippet\": \"Current recommendations for RSA key sizes make brute-force attacks impractical even with combined global computing resources. While quantum computers pose a future threat, AI has not yet provided breakthroughs in fast integer factorization algorithms.\"}, {\"title\": \"Application of AI in mathematics and cryptography\", \"url\": \"https://example.com/ai-mathematics-proof-checking\", \"snippet\": \"AI is primarily useful in mathematics for routine tasks such as sorting through data or checking proofs for errors, rather than solving major open problems like fast factorization.\"}]\n\n[{\"title\": \"IBM Q System One at CES 2019 - Quantum Computing\", \"url\": \"https://example.com/ibm-quantum-ces-2019\", \"snippet\": \"IBM introduced the IBM Q System One at CES 2019, hailed as the world's first integrated quantum computing system for commercial use, featuring a 20-qubit processor. However, experts note that 20 qubits are far from achieving quantum supremacy and currently serve mostly for educational and research purposes.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tôi muốn dùng C++ để học Machine Learning thay vì Python hay R thì có ổn không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu ưu và nhược điểm của việc sử dụng ngôn ngữ C++ để học Machine Learning thay vì Python hoặc R.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "machine learning",
+                "c++"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "cpp_advantages": [
+                "tốc độ xử lý rất nhanh",
+                "kiểm soát bộ nhớ",
+                "dễ dàng gỡ lỗi"
+              ],
+              "cpp_disadvantages": [
+                "khó tạo nguyên mẫu",
+                "cộng đồng nhỏ hơn",
+                "ít thư viện chuyên biệt"
+              ],
+              "learning_platforms": [
+                "Hackr.io",
+                "Kaggle"
+              ]
+            },
+            "golden_reference_claims": [
+              "C++ mang lại tốc độ xử lý nhanh và kiểm soát bộ nhớ tốt, giúp việc gỡ lỗi dễ dàng hơn nhưng lại khó khăn trong việc tạo nguyên mẫu ban đầu và có ít thư viện chuyên biệt hơn Python.",
+              "Các nền tảng như Kaggle và Hackr.io là những nguồn tài liệu và khóa học hữu ích để bắt đầu học Machine Learning."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Bạn thích tên của thuật toán học máy nào nhất và tại sao?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi về thuật toán học máy yêu thích của AI và lý do.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nearest neighbor",
+                "machine learning",
+                "algorithm"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "favorite_algorithm": [
+                "K-Nearest Neighbors",
+                "K láng giềng gần nhất",
+                "Nearest neighbor algorithm",
+                "Thuật toán láng giềng gần nhất"
+              ],
+              "reason_for_preference": [
+                "đơn giản",
+                "dễ hiểu",
+                "ngắn gọn",
+                "simple",
+                "intuitive"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thuật toán láng giềng gần nhất (nearest neighbor algorithm) là thuật toán được yêu thích vì tính đơn giản, dễ hiểu và trực quan.",
+              "Thuật toán này tránh được các thuật ngữ phức tạp gây rào cản như mạng thần kinh nhân tạo truyền thẳng nhiều lớp ẩn."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Liệu công nghệ tính toán AI có thể phá vỡ được mã hóa RSA không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu khả năng AI có thể phá vỡ mã hóa RSA và phân tích thừa số nguyên hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "AI",
+                "RSA",
+                "encryption",
+                "factorization"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "rsa_key_size_security": [
+                "kích thước khóa",
+                "key size",
+                "brute-force",
+                "bất khả thi"
+              ],
+              "ai_factorization_limit": [
+                "phân tích thừa số",
+                "fast factoring",
+                "không có bước đột phá",
+                "integer factorization"
+              ],
+              "ai_math_assistance": [
+                "kiểm tra lỗi",
+                "chứng minh toán học",
+                "proof checking",
+                "routine work"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc tấn công brute-force vào các kích thước khóa RSA hiện tại là bất khả thi ngay cả khi kết hợp toàn bộ nguồn lực máy tính trên trái đất.",
+              "AI hiện chưa mang lại bước đột phá nào trong các thuật toán phân tích thừa số nguyên tố nhanh.",
+              "AI chủ yếu hữu ích trong toán học cho các công việc thông thường như lọc dữ liệu hoặc kiểm tra lỗi chứng minh thay vì giải quyết các bài toán mở lớn."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "IBM vừa ra mắt máy tính lượng tử dùng cho thương mại tại CES 2019, những ngành công nghiệp nào có thể thu được nhiều giá trị nhất từ sản phẩm này vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu các ngành công nghiệp hưởng lợi từ máy tính lượng tử thương mại IBM ra mắt tại CES 2019.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "IBM quantum computer",
+                "CES 2019",
+                "commercial use"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "sản phẩm này",
+              "expected_target": [
+                "máy tính lượng tử dùng cho thương mại",
+                "IBM Q System One",
+                "quantum computing system"
+              ]
+            },
+            "required_slots": {
+              "practical_application": [
+                "chưa có ứng dụng thực tế",
+                "chủ yếu mang tính trình diễn",
+                "razzle-dazzle",
+                "educational and research purposes"
+              ],
+              "technical_limitation": [
+                "20 qubit",
+                "chưa đạt ưu thế lượng tử",
+                "quantum supremacy"
+              ]
+            },
+            "golden_reference_claims": [
+              "Máy tính lượng tử 20 qubit IBM Q System One ra mắt tại CES 2019 chủ yếu mang tính trình diễn và giáo dục/nghiên cứu.",
+              "Hệ thống này chưa đủ khả năng đạt được ưu thế lượng tử và chưa có ứng dụng thực tế đáng kể vào thời điểm đó."
+            ]
+          }
+        }
+      ]
+    }
   }
 ]

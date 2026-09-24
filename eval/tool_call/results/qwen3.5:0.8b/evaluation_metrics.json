@@ -1,28 +1,28 @@
 {
   "model": "qwen3.5:0.8b",
-  "evaluation_timestamp": "2026-09-23T14:49:39.472292",
-  "total_scenarios": 11,
+  "evaluation_timestamp": "2026-09-24T13:37:32.984419",
+  "total_scenarios": 16,
   "summary_metrics": {
-    "task_success_rate": 0.182,
-    "tool_decision_accuracy": 0.649,
-    "tool_argument_accuracy": 0.791,
-    "tool_switching_accuracy": 0.25,
-    "missing_tool_call_rate": 0.018,
-    "unnecessary_tool_call_rate": 0.333,
-    "context_slot_accuracy": 0.87,
-    "coreference_accuracy": 1.0,
-    "follow_up_understanding": 0.926,
-    "state_tracking_accuracy": 0.866,
-    "cross_turn_consistency": 0.99,
-    "result_summarization_score": 0.91,
-    "final_answer_quality": 0.873,
-    "grounded_claim_precision": 0.849,
-    "unsupported_claim_rate": 0.14,
-    "contradiction_rate": 0.01,
-    "bineval_tool_score": 0.7,
-    "bineval_context_score": 0.7,
-    "bineval_factuality_score": 0.333,
-    "bineval_overall_score": 0.578
+    "task_success_rate": 0.125,
+    "tool_decision_accuracy": 0.493,
+    "tool_argument_accuracy": 0.768,
+    "tool_switching_accuracy": 0.193,
+    "missing_tool_call_rate": 0.278,
+    "unnecessary_tool_call_rate": 0.229,
+    "context_slot_accuracy": 0.66,
+    "coreference_accuracy": 0.875,
+    "follow_up_understanding": 0.8,
+    "state_tracking_accuracy": 0.654,
+    "cross_turn_consistency": 0.975,
+    "result_summarization_score": 0.659,
+    "final_answer_quality": 0.722,
+    "grounded_claim_precision": 0.679,
+    "unsupported_claim_rate": 0.296,
+    "contradiction_rate": 0.025,
+    "bineval_tool_score": 0.568,
+    "bineval_context_score": 0.367,
+    "bineval_factuality_score": 0.319,
+    "bineval_overall_score": 0.418
   },
   "scenarios": [
     {
@@ -4090,6 +4090,3564 @@
         "bineval_context_score": 0.7,
         "bineval_factuality_score": 0.333,
         "bineval_overall_score": 0.578
+      }
+    },
+    {
+      "sample_id": "sample_014",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Đầu tư vào tiền điện tử hiện tại có còn sinh lời không?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.5,
+            "slots_evaluated": {
+              "investment_viability": {
+                "matched": true,
+                "matched_alias": "có",
+                "expected_aliases": [
+                  "còn sinh lời",
+                  "có",
+                  "đáng tin cậy"
+                ]
+              },
+              "expert_opinions": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "Eric Schmidt",
+                  "Bill Gates",
+                  "Chamath Palihapitiya"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 1
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Bitcoin là một thành tựu mật mã đáng chú ý và khả năng tạo ra một thứ không thể nhân bản trong thế giới kỹ thuật số có giá trị rất lớn.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Bitcoin is a remarkable cryptographic achievement and the ability to create something that is not duplicable in the digital world has enormous value.",
+                "reason": "Khớp hoàn toàn với nội dung bài báo gốc về Bitcoin."
+              },
+              {
+                "claim": "Giá trị của tiền điện tử chịu ảnh hưởng bởi kinh tế toàn cầu, các sự kiện chính trị và xã hội.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Giá trị của tiền điện tử chịu ảnh hưởng bởi kinh tế toàn cầu, các sự kiện chính trị và xã hội.",
+                "reason": "Khớp trực tiếp với đoạn snippet về các yếu tố ảnh hưởng đến biến động giá tiền điện tử."
+              },
+              {
+                "claim": "Thị trường crypto ít bị tác động trực tiếp bởi kinh tế vĩ mô thông thường hay tin tức về các sàn giao dịch phá sản.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Khác với tài chính truyền thống, thị trường crypto ít bị tác động trực tiếp bởi kinh tế vĩ mô thông thường hay tin tức về các sàn giao dịch phá sản.",
+                "reason": "Khớp trực tiếp với nội dung bài báo về các yếu tố ảnh hưởng đến giá tiền điện tử."
+              },
+              {
+                "claim": "Bitcoin đóng vai trò dẫn dắt toàn thị trường, di chuyển theo chu kỳ tăng trưởng và điều chỉnh.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Bitcoin đóng vai trò dẫn dắt toàn thị trường, di chuyển theo chu kỳ tăng trưởng và điều chỉnh.",
+                "reason": "Khớp trực tiếp với nội dung bài báo về các yếu tố ảnh hưởng đến biến động giá tiền điện tử."
+              },
+              {
+                "claim": "Địa chỉ công khai Bitcoin (public address) hoàn toàn an toàn để chia sẻ với người khác nhằm nhận tiền.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Địa chỉ công khai Bitcoin (public address) hoàn toàn an toàn để chia sẻ với người khác nhằm nhận tiền",
+                "reason": "Khớp trực tiếp với nội dung bài báo về an toàn khi chia sẻ địa chỉ công khai Bitcoin."
+              },
+              {
+                "claim": "Mọi giao dịch trên blockchain đều là công khai và ai cũng có thể tra cứu lịch sử giao dịch của địa chỉ đó.",
+                "label": "SUPPORTED",
+                "evidence_quote": "mọi giao dịch trên blockchain đều là công khai và ai cũng có thể tra cứu lịch sử giao dịch của địa chỉ đó.",
+                "reason": "Khớp trực tiếp với nội dung bài báo về địa chỉ công khai Bitcoin."
+              },
+              {
+                "claim": "Vertcoin, Stellar và EOS được công nhận rộng rãi trong việc duy trì phí giao dịch cực kỳ thấp so với Bitcoin và Ethereum.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Vertcoin, Stellar, and EOS are widely recognized for maintaining extremely low transaction fees compared to Bitcoin and Ethereum.",
+                "reason": "Khớp trực tiếp với nội dung từ bài báo về phân tích phí thấp của Stellar và Vertcoin."
+              },
+              {
+                "claim": "Khi mua vào crypto, người bán sẽ mất đi phần vốn đầu tư mà họ đã bỏ ra.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến việc người bán mất vốn đầu tư khi người mua mua crypto."
+              },
+              {
+                "claim": "Thị trường crypto hiện tại đang ở giai đoạn chuyển tiếp giữa các chu kỳ tăng trưởng và giảm giá trị (volatility).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ nói Bitcoin di chuyển theo chu kỳ tăng trưởng và điều chỉnh, không nói cụ thể về 'giai đoạn chuyển tiếp' hiện tại của toàn thị trường."
+              },
+              {
+                "claim": "Các token thuộc lĩnh vực công nghệ, AI hoặc tài chính bền vững có xu hướng tăng giá.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng hoàn toàn không nhắc đến các token thuộc lĩnh vực AI hay tài chính bền vững."
+              }
+            ],
+            "grounded_claim_precision": 0.7,
+            "unsupported_claim_rate": 0.3,
+            "contradiction_rate": 0.0,
+            "total_claims": 10,
+            "supported_claims_count": 7,
+            "unsupported_claims_count": 3,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 50% (1/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "YES",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 70%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 68%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.833
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": null,
+          "final_answer_quality": 0.68
+        },
+        {
+          "turn": 2,
+          "user_message": "Nguyên nhân nào dẫn đến sự biến động giá trị của tiền điện tử vậy bạn?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "affecting_factors": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "kinh tế toàn cầu",
+                  "sự kiện chính trị",
+                  "sự kiện xã hội"
+                ]
+              },
+              "bitcoin_role": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "Bitcoin đóng vai trò dẫn dắt",
+                  "chu kỳ tăng trưởng và điều chỉnh"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Sự biến động của tiền điện tử chịu ảnh hưởng bởi nhiều yếu tố phức tạp từ kinh tế vĩ mô đến chính sách pháp lý.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Giá trị của tiền điện tử chịu ảnh hưởng bởi kinh tế toàn cầu, các sự kiện chính trị và xã hội.",
+                "reason": "Bằng chứng xác nhận giá trị tiền điện tử chịu ảnh hưởng bởi kinh tế toàn cầu và các sự kiện chính trị, xã hội."
+              },
+              {
+                "claim": "Khác với tài chính truyền thống, thị trường crypto ít bị tác động trực tiếp bởi kinh tế vĩ mô thông thường hay tin tức về các sàn giao dịch phá sản.",
+                "label": "CONTRADICTED",
+                "evidence_quote": "Khác với tài chính truyền thống, thị trường crypto ít bị tác động trực tiếp bởi kinh tế vĩ mô thông thường hay tin tức về các sàn giao dịch phá sản.",
+                "reason": "Phần đầu câu trả lời của trợ lý lại mâu thuẫn trực tiếp với chính văn bản nguồn khi cho rằng kinh tế vĩ mô là nguồn gốc lớn nhất, trong khi bằng chứng ghi rõ thị trường crypto 'ít bị tác động trực tiếp bởi kinh tế vĩ mô thông thường'."
+              },
+              {
+                "claim": "Chính sách lãi suất ngân hàng trung ương ảnh hưởng đến tiền điện tử, khi lãi suất cao tiền điện tử có xu hướng bị bán ra.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề đề cập đến chi tiết về lãi suất ngân hàng trung ương hay hành vi bán ra khi lãi suất cao."
+              },
+              {
+                "claim": "Các yếu tố như chính sách thuế quan, sự thay đổi về quy mô và tốc độ phát triển tác động đến giá trị tiền điện tử.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến chính sách thuế quan hay tốc độ phát triển của các công nghệ mới như AI ảnh hưởng đến giá token."
+              },
+              {
+                "claim": "Các yếu tố Chính sách Pháp Lý và Quản lý như chính sách hạn chế hoặc cấm bán tiền điện tử làm giảm giá trị token.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa thông tin về việc chính sách hạn chế, cấm bán hay thuế quan từ Mỹ/Trung Quốc ảnh hưởng đến giá trị token."
+              },
+              {
+                "claim": "Xu hướng Crypto Hoarding và sự tham gia của cộng đồng, doanh nghiệp (Google, Meta) tác động đến giá trị crypto.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề nhắc đến thuật ngữ 'Crypto Hoarding' hay sự tham gia của các doanh nghiệp như Google, Meta."
+              }
+            ],
+            "grounded_claim_precision": 0.167,
+            "unsupported_claim_rate": 0.667,
+            "contradiction_rate": 0.167,
+            "total_claims": 6,
+            "supported_claims_count": 1,
+            "unsupported_claims_count": 4,
+            "contradicted_claims_count": 1
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 17%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "NO",
+                    "reason": "Phát hiện 1 phát biểu mâu thuẫn (16.7%)"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 27%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.167
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.267
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiền điện tử nào có phí giao dịch thấp nhất hiện nay?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.5,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "query": "tiền điện tử nào có phí giao dịch thấp nhất hiện nay",
+              "category": "news"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "low_fee_cryptos": {
+                "matched": true,
+                "matched_alias": "Stellar",
+                "expected_aliases": [
+                  "Vertcoin",
+                  "Stellar",
+                  "EOS"
+                ]
+              },
+              "fee_nature": {
+                "matched": true,
+                "matched_alias": "phí giao dịch thấp",
+                "expected_aliases": [
+                  "phí giao dịch thấp",
+                  "extremely low transaction fees"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Stellar và EOS là các tiền điện tử với mức phí thấp nhất được ghi nhận",
+                "label": "SUPPORTED",
+                "evidence_quote": "Vertcoin, Stellar, and EOS are widely recognized for maintaining extremely low transaction fees compared to Bitcoin and Ethereum.",
+                "reason": "Bằng chứng nêu rõ Stellar và EOS được công nhận rộng rãi với mức phí giao dịch cực kỳ thấp so với Bitcoin và Ethereum."
+              },
+              {
+                "claim": "Ethereum (ETH) có phí giao dịch trung bình khoảng 10-25 USD",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ so sánh mức độ thấp của phí giao dịch giữa các đồng coin chứ không cung cấp con số cụ thể về giá trị phí của Ethereum là 10-25 USD."
+              },
+              {
+                "claim": "Bitcoin (BTC) có phí giao dịch dao động từ 3 đến 6 USD",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng có đề cập đến biểu đồ phí giao dịch của Bitcoin nhưng không cung cấp con số cụ thể 3 đến 6 USD."
+              },
+              {
+                "claim": "Stellar (XLM) được coi là một trong những lựa chọn tốt nhất về chi phí giao dịch với mức giá rất rẻ so với Bitcoin và Ethereum",
+                "label": "SUPPORTED",
+                "evidence_quote": "Vertcoin, Stellar, and EOS are widely recognized for maintaining extremely low transaction fees compared to Bitcoin and Ethereum.",
+                "reason": "Bằng chứng xác nhận Stellar duy trì phí giao dịch cực kỳ thấp so với Bitcoin và Ethereum."
+              },
+              {
+                "claim": "EOS được đánh giá cao nhờ khả năng duy trì tỷ lệ phí thấp, thường nằm ở khoảng 1-5 USD tùy loại giao dịch",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng xác nhận EOS có phí giao dịch cực kỳ thấp nhưng không đưa ra con số cụ thể 1-5 USD."
+              }
+            ],
+            "grounded_claim_precision": 0.4,
+            "unsupported_claim_rate": 0.6,
+            "contradiction_rate": 0.0,
+            "total_claims": 5,
+            "supported_claims_count": 2,
+            "unsupported_claims_count": 3,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "YES",
+                    "reason": "Độ chính xác từ khóa query đạt 50%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 40%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 76%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.889
+          },
+          "result_summarization_score": 0.978,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 0.76
+        },
+        {
+          "turn": 4,
+          "user_message": "Chia sẻ công khai địa chỉ Bitcoin của tôi có an toàn không?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.0,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "query": "chỉ đạo bitcoin public address an toàn không rủi ro lừa đảo",
+              "category": "news"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "public_address_safety": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "an toàn để chia sẻ",
+                  "safe to share",
+                  "hoàn toàn có thể chia sẻ"
+                ]
+              },
+              "private_key_warning": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "khóa riêng tư",
+                  "private key",
+                  "không được chia sẻ"
+                ]
+              },
+              "blockchain_transparency": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "mọi giao dịch đều là công khai",
+                  "tra cứu lịch sử giao dịch",
+                  "transparent"
+                ]
+              }
+            },
+            "total_required_slots": 3,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Chia sẻ địa chỉ Bitcoin (Public Address) hoàn toàn an toàn.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Địa chỉ công khai Bitcoin (public address) hoàn toàn an toàn để chia sẻ với người khác nhằm nhận tiền",
+                "reason": "Bằng chứng nêu rõ việc chia sẻ địa chỉ công khai Bitcoin hoàn toàn an toàn để nhận tiền."
+              },
+              {
+                "claim": "Điều này giống như việc gửi email cho người khác để nhận thanh toán qua PayPal.",
+                "label": "SUPPORTED",
+                "evidence_quote": "tương tự như việc đưa email để nhận thanh toán qua PayPal.",
+                "reason": "Bằng chứng so sánh việc chia sẻ địa chỉ Bitcoin tương tự như việc đưa email để nhận thanh toán qua PayPal."
+              },
+              {
+                "claim": "Địa chỉ công khai của Bitcoin là địa chỉ mã hóa (hash) được tạo ra bởi blockchain tự động.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ nhắc đến 'Địa chỉ công khai Bitcoin (public address)' nhưng không đề cập chi tiết đây là 'địa chỉ mã hóa (hash) được tạo ra bởi blockchain tự động'."
+              },
+              {
+                "claim": "Nó không có tên riêng như email hay tài khoản ngân hàng truyền thống, nên rất khó để truy cập hoặc giả mạo.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến việc địa chỉ Bitcoin không có tên riêng hay việc khó truy cập/giả mạo vì lý do này."
+              }
+            ],
+            "grounded_claim_precision": 0.5,
+            "unsupported_claim_rate": 0.5,
+            "contradiction_rate": 0.0,
+            "total_claims": 4,
+            "supported_claims_count": 2,
+            "unsupported_claims_count": 2,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "NO",
+                    "reason": "Độ chính xác từ khóa query đạt 0%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/3 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 50%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 40%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.333
+          },
+          "result_summarization_score": 0.3,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.4
+        }
+      ],
+      "conversation_metrics": {
+        "task_success": 0.0,
+        "tool_decision_accuracy": 0.5,
+        "tool_argument_accuracy": 0.25,
+        "tool_switching_accuracy": 0.333,
+        "missing_tool_call_rate": 0.5,
+        "unnecessary_tool_call_rate": 0.0,
+        "context_slot_accuracy": 0.375,
+        "coreference_accuracy": 1.0,
+        "follow_up_understanding": 0.667,
+        "state_tracking_accuracy": 0.359,
+        "cross_turn_consistency": 0.958,
+        "result_summarization_score": 0.32,
+        "final_answer_quality": 0.527,
+        "grounded_claim_precision": 0.442,
+        "unsupported_claim_rate": 0.517,
+        "contradiction_rate": 0.042,
+        "bineval_tool_score": 0.667,
+        "bineval_context_score": 0.5,
+        "bineval_factuality_score": 0.5,
+        "bineval_overall_score": 0.555
+      }
+    },
+    {
+      "sample_id": "sample_015",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Hiện tại, nguồn năng lượng tái tạo nào hiệu quả nhất?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.3333333333333333,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "query": "năng lượng tái tạo hiệu quả nhất thế giới 2025",
+              "category": "news"
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "solar_energy": {
+                "matched": true,
+                "matched_alias": "năng lượng mặt trời",
+                "expected_aliases": [
+                  "năng lượng mặt trời",
+                  "điện mặt trời",
+                  "solar"
+                ]
+              },
+              "wind_energy": {
+                "matched": true,
+                "matched_alias": "năng lượng gió",
+                "expected_aliases": [
+                  "năng lượng gió",
+                  "điện gió",
+                  "wind"
+                ]
+              },
+              "hydro_energy": {
+                "matched": true,
+                "matched_alias": "thủy điện",
+                "expected_aliases": [
+                  "thủy điện",
+                  "năng lượng nước",
+                  "hydroelectric"
+                ]
+              }
+            },
+            "total_required_slots": 3,
+            "matched_slots_count": 3
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Thủy điện (Hydroelectric Power) được đánh giá là nguồn năng lượng tái tạo hiệu quả nhất.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Trong khi đó, thủy điện có hiệu suất rất cao nhưng bị giới hạn về vị trí địa lý.",
+                "reason": "Bằng chứng xác nhận thủy điện có hiệu suất rất cao."
+              },
+              {
+                "claim": "Thủy điện có hiệu suất khai thác khoảng từ 60% đến 85%.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến con số cụ thể 60% đến 85%."
+              },
+              {
+                "claim": "Hệ thống thủy điện được thiết kế để hoạt động lâu dài hơn 10 năm nhờ các tấm pylon cao lớn.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không nhắc tới việc thủy điện hoạt động hơn 10 năm hay có các tấm pylon cao lớn."
+              },
+              {
+                "claim": "Thủy điện có thể vận hành liên tục trong nhiều mùa, không bị ảnh hưởng bởi thời tiết như mặt trời hay gió.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ nói thủy điện có hiệu suất rất cao và bị giới hạn về vị trí địa lý, không nói chi tiết về việc vận hành liên tục qua các mùa hay không ảnh hưởng bởi thời tiết."
+              },
+              {
+                "claim": "Các dự án thủy điện mới nhất thường được xây dựng nhanh chóng (thường chỉ mất 1-2 năm).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề đề cập đến thời gian xây dựng dự án thủy điện."
+              },
+              {
+                "claim": "Năng lượng mặt trời phụ thuộc vào thời tiết, độ cao và góc nghiêng.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Các nguồn năng lượng tái tạo như điện mặt trời phụ thuộc vào thời tiết và ban đêm...",
+                "reason": "Bằng chứng xác nhận điện mặt trời phụ thuộc vào thời tiết (ngoài ra bằng chứng không đề cập độ cao nhưng ý chính phụ thuộc thời tiết được hỗ trợ)."
+              },
+              {
+                "claim": "Việc chuyển đổi sang các công nghệ thu năng lượng từ không gian hoặc sử dụng hiệu ứng quang học có thể giúp tăng cường lợi thế của năng lượng mặt trời.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến công nghệ thu năng lượng từ không gian hay hiệu ứng quang học cho năng lượng mặt trời."
+              },
+              {
+                "claim": "Năng lượng gió hiệu suất phụ thuộc vào tốc độ gió và hướng gió.",
+                "label": "SUPPORTED",
+                "evidence_quote": "...điện gió phụ thuộc vào tốc độ gió.",
+                "reason": "Bằng chứng xác nhận điện gió phụ thuộc vào tốc độ gió."
+              },
+              {
+                "claim": "Thủy điện cung cấp nguồn ổn định hơn trong mọi điều kiện thời tiết (không cần thiết bị đo đạc).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không có thông tin về việc thủy điện không cần thiết bị đo đạc hay ổn định trong mọi điều kiện thời tiết."
+              },
+              {
+                "claim": "Ngành năng lượng tái tạo đang chuyển dịch mạnh mẽ sang các giải pháp như sử dụng hiệu ứng quang học và khai thác năng lượng từ không gian.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng hoàn toàn không đề cập đến xu hướng chuyển dịch này."
+              }
+            ],
+            "grounded_claim_precision": 0.3,
+            "unsupported_claim_rate": 0.7,
+            "contradiction_rate": 0.0,
+            "total_claims": 10,
+            "supported_claims_count": 3,
+            "unsupported_claims_count": 7,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "NO",
+                    "reason": "Độ chính xác từ khóa query đạt 33%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (3/3 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 30%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 72%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.778
+          },
+          "result_summarization_score": 0.855,
+          "follow_up_understanding": null,
+          "final_answer_quality": 0.72
+        },
+        {
+          "turn": 2,
+          "user_message": "Liệu EROI (Tỷ lệ năng lượng thu hồi trên năng lượng đầu tư) của pin mặt trời có được cải thiện đáng kể nếu lượng silicon dùng trong sản xuất được tái chế hoàn toàn từ các tấm pin cũ không?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "eroi_impact": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "improve EROI",
+                  "cải thiện EROI",
+                  "EROI tốt hơn"
+                ]
+              },
+              "silicon_value": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "silicon cheap",
+                  "silicon giá rẻ",
+                  "vật liệu cơ bản"
+                ]
+              },
+              "second_life_usage": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "2nd life usage",
+                  "ứng dụng đời thứ 2",
+                  "tiếp tục sử dụng"
+                ]
+              }
+            },
+            "total_required_slots": 3,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "pin mặt trời",
+            "expected_target": [
+              "tấm pin mặt trời",
+              "solar panel",
+              "pin năng lượng mặt trời"
+            ],
+            "matched_target": null,
+            "resolution_mode": "unresolved",
+            "context_grounded": false,
+            "coreference_accuracy": 0.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Câu trả lời của trợ lý bị cắt cụt (Dựa trên dữ liệu hiện tại và nghiên cứu về)",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Phát biểu của trợ lý bị cụt câu, không chứa thông tin đầy đủ để đối chiếu với bằng chứng."
+              }
+            ],
+            "grounded_claim_precision": 0.0,
+            "unsupported_claim_rate": 1.0,
+            "contradiction_rate": 0.0,
+            "total_claims": 1,
+            "supported_claims_count": 0,
+            "unsupported_claims_count": 1,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "NO",
+                    "reason": "Không nhận diện được đối tượng tham chiếu"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/3 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 0%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 10%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.278
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.2,
+          "final_answer_quality": 0.1
+        },
+        {
+          "turn": 3,
+          "user_message": "Cần bao nhiêu tấm pin mặt trời để cung cấp đủ điện cho một ngôi nhà của gia đình trung lưu nhỏ?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "monthly_consumption": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "90 kWh",
+                  "90 units",
+                  "90 kWh điện mỗi tháng"
+                ]
+              },
+              "appliances_supported": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "bóng đèn",
+                  "tivi",
+                  "quạt trần",
+                  "tủ lạnh"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Để trả lời câu hỏi này, tôi cần phân tích các yếu tố chính là tỷ lệ năng lượng.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Phát biểu này chỉ là câu dẫn dắt mang tính ý kiến cá nhân/nửa chừng của trợ lý, không có bằng chứng nào trong ngữ cảnh đề cập đến việc phân tích 'tỷ lệ năng lượng' để trả lời cho việc lắp đặt pin mặt trời."
+              }
+            ],
+            "grounded_claim_precision": 0.0,
+            "unsupported_claim_rate": 1.0,
+            "contradiction_rate": 0.0,
+            "total_claims": 1,
+            "supported_claims_count": 0,
+            "unsupported_claims_count": 1,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 0%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 10%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.278
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.1
+        },
+        {
+          "turn": 4,
+          "user_message": "Góc nghiêng tối ưu khi lắp đặt tấm pin năng lượng mặt trời là bao nhiêu?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "optimal_orientation": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "hướng Chính Nam",
+                  "quay về hướng Nam",
+                  "True South"
+                ]
+              },
+              "tilt_angle_formula": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "bằng với vĩ độ",
+                  "latitude",
+                  "cộng thêm 15 độ vào mùa đông",
+                  "trừ đi 15 độ vào mùa hè"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Góc nghiêng tối ưu để đạt được EROI (Tỷ lệ Năng Lượng Thu Hồi) cao nhất cho các tấm pin mặt trời là khoảng 105° - 120°.",
+                "label": "CONTRADICTED",
+                "evidence_quote": "Góc nghiêng thực tế và phổ biến nhất cho pin mặt trời đặt trên mặt đất là quay về hướng Chính Nam và có độ góc nghiêng bằng với vĩ độ của khu vực lắp đặt. Để tối ưu hóa theo mùa, có thể cộng thêm 15 độ vào mùa đông và trừ đi 15 độ vào mùa hè.",
+                "reason": "Bằng chứng chỉ ra góc nghiêng tối ưu bằng vĩ độ khu vực (+/- 15 độ theo mùa), hoàn toàn không đề cập đến con số 105° - 120°."
+              },
+              {
+                "claim": "Góc nghiêng 105° - 120° giúp ánh sáng mặt trời chiếu vào bề mặt của tấm pin ở vị trí tối ưu để thu thập năng lượng và giảm thiểu sự phản xạ và hấp thụ nhiệt.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không có bất kỳ thông tin nào về tác dụng của góc nghiêng 105° - 120° đối với sự phản xạ hay hấp thụ nhiệt."
+              },
+              {
+                "claim": "Tốc độ xây dựng các dự án sử dụng góc nghiêng 105° - 120° chậm hơn so với việc lắp đặt theo hướng mặt trời thông thường (góc 0° - 30°).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến tốc độ xây dựng liên quan đến các góc nghiêng này."
+              },
+              {
+                "claim": "Việc đạt đến góc nghiêng 105° - 120° đòi hỏi thời gian dài hơn so với việc sử dụng các tấm pin thông thường (góc 0° - 30°).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa thông tin so sánh thời gian lắp đặt theo các góc nghiêng."
+              }
+            ],
+            "grounded_claim_precision": 0.0,
+            "unsupported_claim_rate": 0.75,
+            "contradiction_rate": 0.25,
+            "total_claims": 4,
+            "supported_claims_count": 0,
+            "unsupported_claims_count": 3,
+            "contradicted_claims_count": 1
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 0%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "NO",
+                    "reason": "Phát hiện 1 phát biểu mâu thuẫn (25.0%)"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 20%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.167
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.2
+        }
+      ],
+      "conversation_metrics": {
+        "task_success": 0.0,
+        "tool_decision_accuracy": 0.25,
+        "tool_argument_accuracy": 0.333,
+        "tool_switching_accuracy": 0.0,
+        "missing_tool_call_rate": 0.75,
+        "unnecessary_tool_call_rate": 0.0,
+        "context_slot_accuracy": 0.25,
+        "coreference_accuracy": 0.0,
+        "follow_up_understanding": 0.4,
+        "state_tracking_accuracy": 0.234,
+        "cross_turn_consistency": 0.938,
+        "result_summarization_score": 0.214,
+        "final_answer_quality": 0.28,
+        "grounded_claim_precision": 0.075,
+        "unsupported_claim_rate": 0.863,
+        "contradiction_rate": 0.062,
+        "bineval_tool_score": 0.542,
+        "bineval_context_score": 0.25,
+        "bineval_factuality_score": 0.333,
+        "bineval_overall_score": 0.375
+      }
+    },
+    {
+      "sample_id": "sample_016",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Huyết áp của tôi là 138/83 và nhịp tim là 52. Như vậy có phải là ngưỡng cao không?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "single_reading_limitation": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "một lần đo đơn lẻ",
+                  "kết quả đo đơn lẻ",
+                  "đo đơn lẻ"
+                ]
+              },
+              "measurement_context": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "vừa làm gì ngay trước khi đo",
+                  "trạng thái cảm xúc",
+                  "hoạt động thể chất trước khi đo"
+                ]
+              },
+              "medical_consultation": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "tham khảo ý kiến của bác sĩ",
+                  "chuyên gia y tế"
+                ]
+              }
+            },
+            "total_required_slots": 3,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Huyết áp 138/83 mmHg nằm ở ngưỡng tiền cao huyết áp hoặc cao huyết áp giai đoạn 1.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Huyết áp 138/83 mmHg nằm ở ngưỡng tiền cao huyết áp hoặc cao huyết áp giai đoạn 1.",
+                "reason": "Phát biểu khớp hoàn toàn với nội dung trong snippet của bài báo."
+              },
+              {
+                "claim": "Việc chẩn đoán không thể chỉ dựa vào một lần đo đơn lẻ mà cần theo dõi trong nhiều thời điểm khác nhau.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tuy nhiên, việc chẩn đoán không thể chỉ dựa vào một lần đo đơn lẻ mà cần theo dõi trong nhiều thời điểm khác nhau.",
+                "reason": "Được hỗ trợ trực tiếp từ đoạn văn bản bằng chứng."
+              },
+              {
+                "claim": "Nhịp tim 52 lần/phút thấp hơn mức trung bình nghỉ ngơi (60-100).",
+                "label": "SUPPORTED",
+                "evidence_quote": "Nhịp tim 52 lần/phút thấp hơn mức trung bình nghỉ ngơi (60-100)",
+                "reason": "Khớp hoàn toàn với bằng chứng."
+              },
+              {
+                "claim": "Nhịp tim 52 lần/phút có thể bình thường đối với vận động viên nhưng cần được bác sĩ đánh giá.",
+                "label": "SUPPORTED",
+                "evidence_quote": "có thể bình thường đối với vận động viên nhưng cần được bác sĩ đánh giá.",
+                "reason": "Khớp hoàn toàn với bằng chứng."
+              },
+              {
+                "claim": "Theo khuyến nghị y tế quốc gia Việt Nam, huyết áp cao hơn 140/90 mmHg mới được coi là 'ngưỡng cao'",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề đề cập đến 'khuyến nghị y tế quốc gia Việt Nam' hay mốc 140/90 mmHg này."
+              },
+              {
+                "claim": "Một huyết áp thấp hơn 120/80 mmHg mới được coi là 'ngưỡng bình thường'",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến định nghĩa 120/80 mmHg là ngưỡng bình thường."
+              }
+            ],
+            "grounded_claim_precision": 0.667,
+            "unsupported_claim_rate": 0.333,
+            "contradiction_rate": 0.0,
+            "total_claims": 6,
+            "supported_claims_count": 4,
+            "unsupported_claims_count": 2,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/3 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 67%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 47%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.278
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": null,
+          "final_answer_quality": 0.467
+        },
+        {
+          "turn": 2,
+          "user_message": "Làm thế nào để tăng cường hệ miễn dịch một cách tự nhiên tại nhà vậy bạn?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "remedy_name": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "Kadha",
+                  "thức uống thảo dược Ayurvedic Kadha"
+                ]
+              },
+              "key_ingredients": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "bột gừng khô",
+                  "đinh hương",
+                  "thảo quả đen",
+                  "lá húng quế",
+                  "quế"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Việc tăng cường hệ miễn dịch trong thời gian dài là rất quan trọng cho sức khỏe tổng thể và phòng ngừa các bệnh mãn tính như ung thư hoặc suy tim.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ nhắc đến Kadha là đồ uống thảo dược giúp tăng cường hệ miễn dịch, chống sốt, đau họng và nhiễm trùng, nhưng không đề cập gì đến việc phòng ngừa ung thư hay suy tim."
+              },
+              {
+                "claim": "Thực phẩm giàu Vitamin C là yếu tố quan trọng hàng đầu cho hệ miễn dịch.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không nhắc đến vai trò của Vitamin C hay các thực phẩm như cà chua, cam, bưởi đối với hệ miễn dịch."
+              },
+              {
+                "claim": "Một ngày tối thiểu cần có 50-60g vitamin C.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa bất kỳ thông tin nào về hàm lượng vitamin C cần thiết mỗi ngày."
+              },
+              {
+                "claim": "Thực phẩm giàu Protein giúp xây dựng cơ thể mạnh mẽ hơn, nên tiêu thụ thịt đỏ, cá, trứng, sữa chua và ngũ cốc nguyên hạt.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến việc tiêu thụ thịt đỏ, cá, trứng hay sữa chua để xây dựng cơ thể."
+              },
+              {
+                "claim": "Chất chống oxy hóa như rau bét (bánh răng), cà rốt, bí đao giúp giảm stress miễn dịch.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề nhắc đến rau bét, cà rốt, bí đao hay khái niệm stress miễn dịch."
+              },
+              {
+                "claim": "Đi bộ chậm rãi mỗi ngày giúp kích thích sản sinh hormone oxytocin, có tác dụng giảm căng thẳng.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa thông tin về việc đi bộ hay hormone oxytocin."
+              },
+              {
+                "claim": "Các bài tập như yoga, tai chi hoặc đi bộ đều rất hiệu quả và không gây hại cho cơ thể nếu được làm đúng cách.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến yoga, tai chi hay đi bộ trong việc tập luyện sức khỏe."
+              },
+              {
+                "claim": "Tuyệt đối tránh tiếp xúc với người bệnh là nguyên tắc vàng nhất để bảo vệ sức khỏe.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không nhắc đến nguyên tắc tránh tiếp xúc với người bệnh."
+              },
+              {
+                "claim": "Rửa tay bằng xà phòng hoặc dung môi hóa học (như cồn 70%) ít nhất 15-20 giây.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không có thông tin hướng dẫn về cách rửa tay hay thời gian rửa tay."
+              },
+              {
+                "claim": "Giữ gìn vệ sinh răng miệng vì răng bệnh thường là nơi trú ẩn của vi khuẩn gây nhiễm trùng hệ thống miễn dịch.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến vấn đề vệ sinh răng miệng hay vi khuẩn từ răng."
+              },
+              {
+                "claim": "Nghỉ ngơi, đọc sách hoặc nghe nhạc giúp quản lý căng thẳng.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến việc đọc sách hay nghe nhạc để giảm căng thẳng."
+              },
+              {
+                "claim": "Tập đi bộ chậm rãi hoặc yoga giúp giảm cortisol (hormone gây căng thẳng).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không chứa thông tin về cortisol hay yoga."
+              },
+              {
+                "claim": "Uống đủ nước mỗi ngày là chất kích thích để cơ thể hoạt động tốt nhất.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến việc uống nước hay tác dụng của nước đối với cơ thể."
+              },
+              {
+                "claim": "Giữ cân nặng đúng mức, ăn uống quá nhiều hoặc thiếu hụt dinh dưỡng đều ảnh hưởng đến hệ miễn dịch.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không nhắc đến việc giữ cân nặng hay tác động của việc ăn uống quá nhiều/thiếu hụt dinh dưỡng."
+              },
+              {
+                "claim": "Nếu sau một vài tuần thực hiện các biện pháp trên mà tình trạng sức khỏe không thay đổi, hãy tham khảo ý kiến bác sĩ chuyên khoa Nội tiết...",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không có bất kỳ hướng dẫn nào về việc gặp bác sĩ chuyên khoa Nội tiết sau một vài tuần áp dụng các biện pháp trên."
+              }
+            ],
+            "grounded_claim_precision": 0.0,
+            "unsupported_claim_rate": 1.0,
+            "contradiction_rate": 0.0,
+            "total_claims": 15,
+            "supported_claims_count": 0,
+            "unsupported_claims_count": 15,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 0%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 20%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.278
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.2
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiêm vắc-xin cho trẻ em có gây ra bệnh tự kỷ không? Con dâu tôi đang từ chối tiêm vắc-xin cho các cháu dựa trên niềm tin này.",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.5,
+            "slots_evaluated": {
+              "vaccine_autism_link": {
+                "matched": true,
+                "matched_alias": "không gây ra bệnh tự kỷ",
+                "expected_aliases": [
+                  "không gây ra bệnh tự kỷ",
+                  "không có mối liên hệ",
+                  "không gây tự kỷ"
+                ]
+              },
+              "andrew_wakefield_fraud": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "Andrew Wakefield",
+                  "gian lận dữ liệu",
+                  "nghiên cứu giả mạo",
+                  "The Lancet rút lại"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 1
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Việc tiêm vắc-xin hoàn toàn không gây ra bệnh tự kỉ.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Các tổ chức y tế lớn trên toàn cầu khẳng định không có mối liên hệ nào giữa vắc-xin và bệnh tự kỷ.",
+                "reason": "Bằng chứng khẳng định các tổ chức y tế lớn khẳng định không có mối liên hệ nào giữa vắc-xin và bệnh tự kỷ."
+              },
+              {
+                "claim": "Nghiên cứu liên kết vắc-xin MMR với bệnh tự kỷ của Andrew Wakefield năm 1998 là gian lận dữ liệu.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Phát biểu này nằm trong phần bị cắt cụt của câu trả lời, không có trong nội dung được cung cấp ở câu trả lời cần kiểm chứng."
+              },
+              {
+                "claim": "Các vắc-xin được tạo thành từ các phần tử hóa học (như protein, virus hoặc vi khuẩn) đã được nghiên cứu.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Câu trả lời của trợ lý bị cắt cụt giữa chừng tại đây, bằng chứng không đề cập đến chi tiết cấu tạo hóa học cụ thể này của vắc-xin."
+              }
+            ],
+            "grounded_claim_precision": 0.333,
+            "unsupported_claim_rate": 0.667,
+            "contradiction_rate": 0.0,
+            "total_claims": 3,
+            "supported_claims_count": 1,
+            "unsupported_claims_count": 2,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 50% (1/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 33%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 53%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.611
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.75,
+          "final_answer_quality": 0.533
+        },
+        {
+          "turn": 4,
+          "user_message": "Ở Anh, một cư dân có thể yêu cầu bác sĩ đa khoa (GP) kiểm tra ung thư miễn phí trên NHS (như xét nghiệm máu, chụp chiếu) khi không có triệu chứng gì không? Bác sĩ có quyền từ chối không?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "clinical_necessity": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "clinically necessary",
+                  "cần thiết về mặt y tế",
+                  "chỉ định lâm sàng"
+                ]
+              },
+              "personal_request_policy": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "personal request without symptoms",
+                  "yêu cầu cá nhân",
+                  "không có triệu chứng",
+                  "không được chấp thuận"
+                ]
+              },
+              "nhs_routine_screening": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "routine age-based screening",
+                  "chương trình kiểm tra tự động",
+                  "độ tuổi quy định"
+                ]
+              }
+            },
+            "total_required_slots": 3,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Trong hệ thống y tế Anh (NHS), việc bác sĩ đa khoa (GP) không thể và không được phép kiểm tra ung thư miễn phí cho một cư dân mà họ chưa nhận thấy triệu chứng.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Having a test purely by personal request without symptoms or clinical justification is not normally allowed.",
+                "reason": "Bằng chứng xác nhận việc yêu cầu kiểm tra chỉ dựa trên cá nhân mà không có triệu chứng hoặc chỉ định lâm sàng là không được phép thông thường."
+              },
+              {
+                "claim": "Bác sĩ có quyền từ chối việc kiểm tra ung thư hoặc xét nghiệm máu cho một người nếu họ không nhận thấy triệu chứng liên quan đến bệnh đó.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Having a test purely by personal request without symptoms or clinical justification is not normally allowed.",
+                "reason": "Bằng chứng ngầm định việc không có triệu chứng hoặc cơ sở lâm sàng sẽ không được phép thực hiện xét nghiệm/kiểm tra, tức bác sĩ không tiến hành."
+              },
+              {
+                "claim": "Nếu bạn chưa cảm thấy đau đầu, sốt cao, mệt mỏi hay thay đổi cân nặng sau 2-3 ngày tiếp tục khám tại GP của mình, bác sĩ sẽ từ chối xét nghiệm hoặc chụp chiếu.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề đề cập đến các mốc thời gian 2-3 ngày hay danh sách triệu chứng cụ thể như đau đầu, sốt cao, mệt mỏi trong ngữ cảnh này."
+              },
+              {
+                "claim": "Việc này nhằm đảm bảo rằng các công việc y tế được thực hiện dựa trên sự tin tưởng và nhận thức đúng đắn của người dân trước khi họ đi đến cơ sở y tế chuyên sâu.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Văn bản bằng chứng không đề cập đến mục đích về 'sự tin tưởng và nhận thức đúng đắn của người dân'."
+              },
+              {
+                "claim": "Bác sĩ sẽ chỉ từ chối xét nghiệm nếu bạn đã nhận thấy triệu chứng sau thời gian đủ dài để xác định được vấn đề.",
+                "label": "CONTRADICTED",
+                "evidence_quote": "Having a test purely by personal request without symptoms or clinical justification is not normally allowed.",
+                "reason": "Trợ lý nói bác sĩ chỉ từ chối khi 'đã nhận thấy triệu chứng', trong khi bằng chứng nêu rõ việc không có triệu chứng mới là lý do không được phép làm xét nghiệm (tức là bác sĩ từ chối khi KHÔNG CÓ triệu chứng)."
+              },
+              {
+                "claim": "Đau đầu kéo dài hơn một tuần hoặc hai tháng liên tục... Sốt cao (>38.5°C)... Thay đổi đột ngột về cân nặng...",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề cung cấp các ví dụ cụ thể về triệu chứng đau đầu, sốt trên 38.5 độ hay thay đổi cân nặng."
+              },
+              {
+                "claim": "Nếu bạn đang bị trầm cảm hoặc rối loạn lo âu nghiêm trọng và chưa được điều trị tại một chuyên khoa tâm lý, bác sĩ GP có thể từ chối xét nghiệm ung thư miễn phí.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề nhắc đến bệnh trầm cảm, rối loạn lo âu hay việc từ chối xét nghiệm ung thư liên quan đến bệnh tâm lý."
+              }
+            ],
+            "grounded_claim_precision": 0.286,
+            "unsupported_claim_rate": 0.571,
+            "contradiction_rate": 0.143,
+            "total_claims": 7,
+            "supported_claims_count": 2,
+            "unsupported_claims_count": 4,
+            "contradicted_claims_count": 1
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/3 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 29%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "NO",
+                    "reason": "Phát hiện 1 phát biểu mâu thuẫn (14.3%)"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 31%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.167
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.314
+        }
+      ],
+      "conversation_metrics": {
+        "task_success": 0.0,
+        "tool_decision_accuracy": 0.0,
+        "tool_argument_accuracy": 1.0,
+        "tool_switching_accuracy": 0.0,
+        "missing_tool_call_rate": 1.0,
+        "unnecessary_tool_call_rate": 0.0,
+        "context_slot_accuracy": 0.125,
+        "coreference_accuracy": 1.0,
+        "follow_up_understanding": 0.583,
+        "state_tracking_accuracy": 0.121,
+        "cross_turn_consistency": 0.964,
+        "result_summarization_score": 0.0,
+        "final_answer_quality": 0.379,
+        "grounded_claim_precision": 0.322,
+        "unsupported_claim_rate": 0.643,
+        "contradiction_rate": 0.036,
+        "bineval_tool_score": 0.5,
+        "bineval_context_score": 0.25,
+        "bineval_factuality_score": 0.25,
+        "bineval_overall_score": 0.334
+      }
+    },
+    {
+      "sample_id": "sample_017",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Trong Thế chiến thứ hai, Trận Kursk hay Trận Stalingrad đóng vai trò quan trọng và quyết định hơn? Hãy so sánh tầm quan trọng và giải thích tại sao.",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.5,
+            "slots_evaluated": {
+              "stalingrad_importance": {
+                "matched": true,
+                "matched_alias": "bước ngoặt",
+                "expected_aliases": [
+                  "bước ngoặt",
+                  "quyết định",
+                  "chiến dịch blau",
+                  "sông volga",
+                  "nguồn cung cấp dầu mỏ"
+                ]
+              },
+              "kursk_nature": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "nỗ lực tác chiến",
+                  "tiêu hao sinh lực",
+                  "cầm cự",
+                  "cấp chiến dịch"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 1
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Trận Stalingrad là nỗ lực cuối cùng của Chiến dịch Blau nhằm kiểm soát nguồn cung cấp dầu mỏ quan trọng qua sông Volga",
+                "label": "SUPPORTED",
+                "evidence_quote": "Trận Stalingrad là nỗ lực cuối cùng của Chiến dịch Blau nhằm kiểm soát nguồn cung cấp dầu mỏ quan trọng qua sông Volga",
+                "reason": "Bằng chứng trong bài báo gốc khớp hoàn toàn với phát biểu."
+              },
+              {
+                "claim": "Trận Stalingrad thất bại do lực lượng Hồng quân bao vây và tiêu diệt tập đoàn quân Đức",
+                "label": "SUPPORTED",
+                "evidence_quote": "nhưng thất bại do lực lượng Hồng quân bao vây và tiêu diệt tập đoàn quân Đức.",
+                "reason": "Bằng chứng xác nhận Hồng quân đã bao vây và tiêu diệt tập đoàn quân Đức."
+              },
+              {
+                "claim": "Trận Kursk diễn ra sau đó chủ yếu mang tính chất một nỗ lực tác chiến nhằm tiêu hao sinh lực Hồng quân và kéo dài thời gian cầm cự của phát xít Đức ở mặt trận phía Đông",
+                "label": "SUPPORTED",
+                "evidence_quote": "Trận Kursk diễn ra sau đó chủ yếu mang tính chất một nỗ lực tác chiến nhằm tiêu hao sinh lực Hồng quân và kéo dài thời gian cầm cự của phát xít Đức ở mặt trận phía Đông.",
+                "reason": "Khớp hoàn toàn với đoạn snippet về Trận Kursk."
+              },
+              {
+                "claim": "Trận Kursk buộc các lực lượng Đức phải rút lui hoàn toàn khỏi phía Nam (đặc biệt là tại vùng Kursk)",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập việc Kursk buộc Đức rút lui hoàn toàn khỏi phía Nam."
+              },
+              {
+                "claim": "Trận Stalingrad làm sụp đổ hoàn toàn quân đội Đức vào tháng 10/1943",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không nhắc tới mốc thời gian tháng 10/1943 hay sự kiện này."
+              },
+              {
+                "claim": "Trận Điện Biên Phủ năm 1954 đã kết thúc Chiến tranh Việt Nam",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề đề cập đến Trận Điện Biên Phủ hay Chiến tranh Việt Nam."
+              }
+            ],
+            "grounded_claim_precision": 0.5,
+            "unsupported_claim_rate": 0.5,
+            "contradiction_rate": 0.0,
+            "total_claims": 6,
+            "supported_claims_count": 3,
+            "unsupported_claims_count": 3,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 50% (1/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 50%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 60%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.611
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": null,
+          "final_answer_quality": 0.6
+        },
+        {
+          "turn": 2,
+          "user_message": "Trong Thế chiến thứ hai, tại sao Stalin lại ra lệnh đốt các tòa nhà ở Moscow bất chấp mùa đông lạnh giá của Nga?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "historical_fact": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "Stalin chưa bao giờ ra lệnh đốt Moscow",
+                  "không có lệnh đốt tòa nhà trong Thế chiến 2"
+                ]
+              },
+              "historical_confusion": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "nhầm lẫn với năm 1812",
+                  "Chiến tranh Vệ quốc chống Napoleon",
+                  "Kutuzov",
+                  "Alexander I"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Tôi không có khả năng truy cập trực tiếp vào internet để tìm thông tin chi tiết về hành vi của Stalin trong vụ việc này.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến năng lực hay hạn chế kỹ thuật của trợ lý ảo."
+              },
+              {
+                "claim": "Báo cáo Tổng thống Liên Xô (GND) - Bộ Chính trị là tài liệu quan trọng về Stalin.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không nhắc đến 'Báo cáo Tổng thống Liên Xô (GND) - Bộ Chính trị'."
+              },
+              {
+                "claim": "Các bài báo của tờ Tạp chí Lịch Sử và tạp chí Lịch Sử Nga có phân tích chi tiết.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến các tạp chí này."
+              }
+            ],
+            "grounded_claim_precision": 0.0,
+            "unsupported_claim_rate": 1.0,
+            "contradiction_rate": 0.0,
+            "total_claims": 3,
+            "supported_claims_count": 0,
+            "unsupported_claims_count": 3,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 0%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 20%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.278
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.2
+        },
+        {
+          "turn": 3,
+          "user_message": "Làm thế nào mà tướng Von Manstein có thể đánh bại Hồng quân Liên Xô một cách quyết định trong Trận Kharkov lần thứ ba, ngay sau khi Liên Xô vừa giành chiến thắng vang dội tại Stalingrad?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "tactical_surprise": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "bất ngờ về mặt chiến thuật",
+                  "tactical surprise"
+                ]
+              },
+              "flanking_attacks": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "tấn công thọc sườn",
+                  "flanking attacks",
+                  "đòn tấn công thọc sườn"
+                ]
+              },
+              "supply_lines": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "chuỗi hậu cần",
+                  "supply lines",
+                  "overextended Soviet supply lines"
+                ]
+              }
+            },
+            "total_required_slots": 3,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Tôi không thể trả lời câu hỏi này.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng có thông tin về Trận Kharkov lần thứ ba nhưng trợ lý từ chối trả lời dựa trên suy đoán về quy tắc hệ thống không được kiểm chứng trong văn bản."
+              },
+              {
+                "claim": "Tôi là trợ lý ảo AI thông minh và hữu ích có khả năng sử dụng công cụ để tra cứu thông tin và trả lời câu hỏi của người dùng.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến bản chất, tính chất hay năng lực của trợ lý ảo."
+              },
+              {
+                "claim": "Tôi không có khả năng truy cập trực tiếp vào internet để tìm thông tin chi tiết về hành vi của tướng Von Manstein trong vụ việc này.",
+                "label": "CONTRADICTED",
+                "evidence_quote": "Trận Kharkov lần thứ ba là một chuỗi các trận đánh diễn ra từ ngày 19 tháng 2 đến ngày 15 tháng 3 năm 1963 giữa Tập đoàn quân xe tăng cận vệ 1 và Tập đoàn quân 69 của Liên Xô đối với Tập đoàn quân xe tăng 4 của Đức do Erich von Manstein chỉ huy...",
+                "reason": "Bằng chứng thực tế có cung cấp thông tin chi tiết về Trận Kharkov lần thứ ba và Von Manstein, mâu thuẫn với việc trợ lý tuyên bố không có khả năng truy cập."
+              },
+              {
+                "claim": "Báo cáo Tổng thống Liên Xô (GND) - Bộ Chính trị là tài liệu quan trọng nhất được biên soạn bởi các nhà nghiên cứu lịch sử chuyên sâu về Stalin.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không hề nhắc đến 'Báo cáo Tổng thống Liên Xô (GND) - Bộ Chính trị'."
+              }
+            ],
+            "grounded_claim_precision": 0.0,
+            "unsupported_claim_rate": 0.75,
+            "contradiction_rate": 0.25,
+            "total_claims": 4,
+            "supported_claims_count": 0,
+            "unsupported_claims_count": 3,
+            "contradicted_claims_count": 1
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/3 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 0%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "NO",
+                    "reason": "Phát hiện 1 phát biểu mâu thuẫn (25.0%)"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 20%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.167
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.44,
+          "final_answer_quality": 0.2
+        },
+        {
+          "turn": 4,
+          "user_message": "Tại sao Hiệp hội Súng Quốc gia Mỹ (NRA) và các chủ sở hữu súng lại ủng hộ Adolf Hitler vào những năm 1930?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "hitler_gun_policy": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "tước vũ khí",
+                  "disarmament policies",
+                  "strict disarmament"
+                ]
+              },
+              "nra_stance": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "ủng hộ an toàn súng đạn",
+                  "Tu chính án thứ Hai",
+                  "Second Amendment rights"
+                ]
+              },
+              "historical_accuracy": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "hoàn toàn sai sự thật",
+                  "historically false"
+                ]
+              }
+            },
+            "total_required_slots": 3,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Hiệp hội Súng Quốc gia Mỹ (NRA) và các chủ sở hữu súng đã ủng hộ Adolf Hitler vào những năm 1930.",
+                "label": "CONTRADICTED",
+                "evidence_quote": "claims that the NRA supported Hitler in the 1930s are historically false.",
+                "reason": "Bằng chứng khẳng định các tuyên bố cho rằng NRA ủng hộ Hitler trong những năm 1930 là sai sự thật về mặt lịch sử."
+              },
+              {
+                "claim": "Adolf Hitler thực tế đã thực hiện các chính sách giải giáp nghiêm ngặt đối với các đối thủ chính trị và các nhóm đối tượng mục tiêu.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Adolf Hitler actually implemented strict disarmament policies for political opponents and targeted groups",
+                "reason": "Bằng chứng nói rõ Hitler thực hiện các chính sách giải giáp nghiêm ngặt với đối thủ chính trị và nhóm mục tiêu."
+              },
+              {
+                "claim": "Quan điểm của Adolf Hitler và Hiệp hội Súng Quốc gia Mỹ (NRA) là trái ngược nhau hoàn toàn.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Their views are diametrically opposed",
+                "reason": "Bằng chứng xác nhận quan điểm của Hitler và NRA đối lập nhau hoàn toàn."
+              }
+            ],
+            "grounded_claim_precision": 0.667,
+            "unsupported_claim_rate": 0.0,
+            "contradiction_rate": 0.333,
+            "total_claims": 3,
+            "supported_claims_count": 2,
+            "unsupported_claims_count": 0,
+            "contradicted_claims_count": 1
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/3 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 67%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "NO",
+                    "reason": "Phát hiện 1 phát biểu mâu thuẫn (33.3%)"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 47%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.167
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.467
+        }
+      ],
+      "conversation_metrics": {
+        "task_success": 0.0,
+        "tool_decision_accuracy": 0.0,
+        "tool_argument_accuracy": 1.0,
+        "tool_switching_accuracy": 0.0,
+        "missing_tool_call_rate": 1.0,
+        "unnecessary_tool_call_rate": 0.0,
+        "context_slot_accuracy": 0.125,
+        "coreference_accuracy": 1.0,
+        "follow_up_understanding": 0.48,
+        "state_tracking_accuracy": 0.107,
+        "cross_turn_consistency": 0.854,
+        "result_summarization_score": 0.0,
+        "final_answer_quality": 0.367,
+        "grounded_claim_precision": 0.292,
+        "unsupported_claim_rate": 0.562,
+        "contradiction_rate": 0.146,
+        "bineval_tool_score": 0.5,
+        "bineval_context_score": 0.25,
+        "bineval_factuality_score": 0.167,
+        "bineval_overall_score": 0.306
+      }
+    },
+    {
+      "sample_id": "sample_018",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tôi muốn dùng C++ để học Machine Learning thay vì Python hay R thì có ổn không?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "cpp_advantages": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "tốc độ xử lý rất nhanh",
+                  "kiểm soát bộ nhớ",
+                  "dễ dàng gỡ lỗi"
+                ]
+              },
+              "cpp_disadvantages": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "khó tạo nguyên mẫu",
+                  "cộng đồng nhỏ hơn",
+                  "ít thư viện chuyên biệt"
+                ]
+              },
+              "learning_platforms": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "Hackr.io",
+                  "Kaggle"
+                ]
+              }
+            },
+            "total_required_slots": 3,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "C++ cung cấp tốc độ vượt trội",
+                "label": "SUPPORTED",
+                "evidence_quote": "C++ offers superior speed and precise memory control",
+                "reason": "Bằng chứng nêu rõ C++ mang lại tốc độ vượt trội (superior speed)."
+              },
+              {
+                "claim": "C++ cung cấp khả năng kiểm soát bộ nhớ chính xác, giúp việc gỡ lỗi dễ dàng hơn sau khi viết code",
+                "label": "SUPPORTED",
+                "evidence_quote": "C++ offers superior speed and precise memory control, making debugging easier once code is written.",
+                "reason": "Khớp hoàn toàn với nội dung bằng chứng."
+              },
+              {
+                "claim": "Xây dựng các bản mẫu ban đầu (prototypes) bằng C++ khó hơn",
+                "label": "SUPPORTED",
+                "evidence_quote": "it is harder to build initial prototypes",
+                "reason": "Bằng chứng xác nhận việc xây dựng nguyên mẫu ban đầu bằng C++ khó hơn."
+              },
+              {
+                "claim": "C++ có cộng đồng ML nhỏ hơn so với Python",
+                "label": "SUPPORTED",
+                "evidence_quote": "has a smaller ML community, and fewer specialized libraries compared to Python.",
+                "reason": "Khớp với bằng chứng về cộng đồng ML của C++."
+              },
+              {
+                "claim": "C++ có ít thư viện chuyên biệt hơn so với Python",
+                "label": "SUPPORTED",
+                "evidence_quote": "has a smaller ML community, and fewer specialized libraries compared to Python.",
+                "reason": "Khớp với bằng chứng về số lượng thư viện chuyên biệt."
+              },
+              {
+                "claim": "Python sử dụng thư viện như numpy hoặc pandas có thể chậm khi làm việc lớn như phân tích dữ liệu hàng triệu dòng",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập chi tiết về hiệu năng của numpy hay pandas với dữ liệu hàng triệu dòng."
+              },
+              {
+                "claim": "C++ được viết bằng ngôn ngữ lập trình mạnh mẽ, thường chạy rất nhanh trên CPU",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ nói C++ có tốc độ vượt trội nhưng không nhắc cụ thể đến việc chạy rất nhanh trên CPU."
+              },
+              {
+                "claim": "Bạn không cần cài đặt thêm các thư viện phụ trợ để xử lý khối lượng dữ liệu khi dùng C++",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến việc không cần cài đặt thư viện phụ trợ."
+              },
+              {
+                "claim": "C++ có thể được tích hợp với các framework lớn như TensorFlow, PyTorch",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không nhắc đến việc tích hợp C++ với TensorFlow hay PyTorch."
+              },
+              {
+                "claim": "C++ được thiết kế để xử lý nhiều luồng dữ liệu và hiệu ứng đồng thời tốt hơn Python thuần túy",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến việc xử lý đa luồng hay so sánh độ tốt với Python thuần túy."
+              },
+              {
+                "claim": "Python dễ đọc, dễ viết code ngắn gọn",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không nhắc đến cú pháp hay đặc điểm của Python là dễ đọc/viết ngắn gọn."
+              },
+              {
+                "claim": "C++ có syntax phức tạp hơn nhiều, thường dùng các ký tự như #include, using namespace std",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không bàn về syntax hay các từ khóa của C++."
+              },
+              {
+                "claim": "Python vẫn là lựa chọn tốt nhất để chạy mô hình ML trên máy tính cá nhân vì được tối ưu hóa cho CPU",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không có thông tin này."
+              },
+              {
+                "claim": "C++ vẫn là lựa chọn tốt nhất để chạy mô hình trên máy tính (CPU) nếu không dùng TensorFlow/PyTorch",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến nội dung này."
+              }
+            ],
+            "grounded_claim_precision": 0.357,
+            "unsupported_claim_rate": 0.643,
+            "contradiction_rate": 0.0,
+            "total_claims": 14,
+            "supported_claims_count": 5,
+            "unsupported_claims_count": 9,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/3 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 36%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 34%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.278
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": null,
+          "final_answer_quality": 0.343
+        },
+        {
+          "turn": 2,
+          "user_message": "Bạn thích tên của thuật toán học máy nào nhất và tại sao?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.5,
+            "slots_evaluated": {
+              "favorite_algorithm": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "K-Nearest Neighbors",
+                  "K láng giềng gần nhất",
+                  "Nearest neighbor algorithm",
+                  "Thuật toán láng giềng gần nhất"
+                ]
+              },
+              "reason_for_preference": {
+                "matched": true,
+                "matched_alias": "đơn giản",
+                "expected_aliases": [
+                  "đơn giản",
+                  "dễ hiểu",
+                  "ngắn gọn",
+                  "simple",
+                  "intuitive"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 1
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Chào bạn, câu hỏi này rất thú vị!",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.43"
+              },
+              {
+                "claim": "Trong thế giới Machine Learning hiện đại, có một số **thuật toán nổi tiếng** được cộng đồng lập trình viên (đặc biệt là người dùng C++) yêu thích cao.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.52"
+              },
+              {
+                "claim": "Gradient Descent (GD) - Thuật toán tối ưu hóa",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "Khả năng mở rộng và tối ưu hóa sâu hơn",
+                "reason": "Overlap ratio: 0.33"
+              },
+              {
+                "claim": "Đây không phải là một \"thuật toán riêng lẻ\", mà chính nó là cơ chế cốt lõi của hầu hết các mô hình ML hiện đại.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.44"
+              },
+              {
+                "claim": "Tại sao thích:** Nó đơn giản, hiệu quả và được áp dụng trên mọi loại dữ liệu.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.38"
+              },
+              {
+                "claim": "Dù bạn có dùng TensorFlow (Python) hay C++, GD vẫn là nền tảng để huấn luyện model.",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 0.73"
+              },
+              {
+                "claim": "Tuy nhiên, nếu muốn tối ưu hóa tốc độ hoặc xử lý Big Data, các biến thể của nó như *Adam*, *RMSprop* hay *AdaGrad* thường được ưa chuộng hơn vì chúng không cần cập nhật tham số nhiều lần (thường chỉ 1-2 lần).",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 0.65"
+              },
+              {
+                "claim": "Neural Networks - Mạng thần kinh",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "com/ml-jargon-comparison\", \"snippet\": \"Complex terms like three hidden-layer fully-connected feed-forward artificial neural networks create barriers to entry for beginners",
+                "reason": "Overlap ratio: 0.40"
+              },
+              {
+                "claim": "Đây là \"bộ não\" của AI hiện đại, bao gồm các lớp neuron và cơ chế học tập như Backpropagation.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.40"
+              },
+              {
+                "claim": "Tại sao thích:** Đây chính là ngôn ngữ mà C++ (với TensorFlow/PyTorch) được tối ưu hóa mạnh mẽ nhất để chạy trên CPU.",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 0.78"
+              },
+              {
+                "claim": "Các mô hình Neural Networks rất dễ dàng tích hợp với framework này, cho phép bạn xây dựng các hệ thống phức tạp như ảnh học, phân loại văn bản hay xử lý giọng nói trong một khung đơn giản.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.60 (no evidence quote found)"
+              },
+              {
+                "claim": "Random Forest - Cây quyết định ngẫu nhiên",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.14"
+              },
+              {
+                "claim": "Tại sao thích:** Đây là thuật toán phổ biến nhất để dự đoán giá trị (classification) hoặc mô tả xu hướng của dữ liệu (regression).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.28"
+              },
+              {
+                "claim": "Nó rất ổn định, ít bị overfitting so với các phương pháp khác và dễ dàng tích hợp vào Python/PyTorch.",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 0.57"
+              },
+              {
+                "claim": "Tuy nhiên, nếu bạn cần xử lý Big Data lớn mà không muốn dùng thư viện phức tạp như XGBoost/LightGBM, Random Forest vẫn là lựa chọn tốt nhất để bắt đầu.",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 0.85"
+              },
+              {
+                "claim": "Support Vector Machines (SVM) - Máy học dựa trên khoảng cách",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.40"
+              },
+              {
+                "claim": "Tại sao thích:** SVM rất mạnh trong việc phân loại dữ liệu có nhiều đặc điểm tương tự nhau và xử lý các bài toán không tuyến tính.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.59 (no evidence quote found)"
+              },
+              {
+                "claim": "Nó thường được dùng làm \"bộ não\" cho các mô hình như Logistic Regression hoặc Random Forest, giúp model của bạn trở nên linh hoạt hơn khi cần thiết.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.62 (no evidence quote found)"
+              },
+              {
+                "claim": "K-Means Clustering",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.00"
+              },
+              {
+                "claim": "Tại sao thích:** Đây là thuật toán để nhóm dữ liệu thành các cụm riêng biệt (ví dụ: phân loại khách hàng theo sở thích).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.37"
+              },
+              {
+                "claim": "Nó rất nhanh và hiệu quả cho việc xử lý lượng lớn dữ liệu, đặc biệt khi bạn cần tìm kiếm trong một tập hợp khổng lồ.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.86 (no evidence quote found)"
+              },
+              {
+                "claim": "Tóm lại về C++ vs Python/R",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "However, it is harder to build initial prototypes, has a smaller ML community, and fewer specialized libraries compared to Python",
+                "reason": "Overlap ratio: 0.33"
+              },
+              {
+                "claim": "Nếu muốn học sâu:** Bạn nên bắt đầu với **Neural Networks** (TensorFlow/PyTorch) vì đây là nền tảng của AI hiện đại và được tối ưu hóa tốt nhất cho CPU/CUDA trong môi trường C++.",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 0.80"
+              },
+              {
+                "claim": "Nếu cần xử lý Big Data hoặc phân loại dữ liệu phức tạp:** Hãy thử **Random Forest**, **SVM**.",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   C++ được thiết kế để xử lý nhiều luồng dữ liệu và hiệu ứng đồng thời (parallelism) tốt hơn Python thuần túy, đặc biệt khi làm việc với Big Data hoặc mô hình phức tạp",
+                "reason": "Overlap ratio: 0.67"
+              },
+              {
+                "claim": "Bạn có muốn tôi tìm kiếm thêm về cách sử dụng các thư viện cụ thể nào (như TensorFlow, PyTorch) để làm cho việc học máy",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 1.00"
+              }
+            ],
+            "grounded_claim_precision": 0.32,
+            "unsupported_claim_rate": 0.68,
+            "contradiction_rate": 0.0,
+            "total_claims": 25,
+            "supported_claims_count": 8,
+            "unsupported_claims_count": 17,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 50% (1/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 32%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 53%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.611
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.75,
+          "final_answer_quality": 0.528
+        },
+        {
+          "turn": 3,
+          "user_message": "Liệu công nghệ tính toán AI có thể phá vỡ được mã hóa RSA không?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "rsa_key_size_security": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "kích thước khóa",
+                  "key size",
+                  "brute-force",
+                  "bất khả thi"
+                ]
+              },
+              "ai_factorization_limit": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "phân tích thừa số",
+                  "fast factoring",
+                  "không có bước đột phá",
+                  "integer factorization"
+                ]
+              },
+              "ai_math_assistance": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "kiểm tra lỗi",
+                  "chứng minh toán học",
+                  "proof checking",
+                  "routine work"
+                ]
+              }
+            },
+            "total_required_slots": 3,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Không, công nghệ hiện đại của chúng ta hoàn toàn chưa thể phá vỡ được mã hóa RSA (Rivest–Shamir–Adleman).** Đây là một trong những thách thức lớn nhất về an ninh mạng và mật khẩu quốc gia.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.62 (no evidence quote found)"
+              },
+              {
+                "claim": "Bản chất của Mã Hóa RSA",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tuy nhiên, nếu muốn tối ưu hóa tốc độ hoặc xử lý Big Data, các biến thể của nó như *Adam*, *RMSprop* hay *AdaGrad* thường được ưa chuộng hơn vì chúng không cần cập nhật tham số nhiều lần (thường chỉ 1-2 lần)",
+                "reason": "Overlap ratio: 0.80"
+              },
+              {
+                "claim": "Mã hóa RSA dựa trên **chính xác toán học** (mathematical properties) chứ không phải là một thuật ngữ hay công nghệ \"thực tế\".",
+                "label": "SUPPORTED",
+                "evidence_quote": "Đây không phải là một \"thuật toán riêng lẻ\", mà chính nó là cơ chế cốt lõi của hầu hết các mô hình ML hiện đại",
+                "reason": "Overlap ratio: 0.65"
+              },
+              {
+                "claim": "Bạn có hai số nguyên lớn $p$ và $q$.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tuy nhiên, nếu bạn cần xử lý Big Data lớn mà không muốn dùng thư viện phức tạp như XGBoost/LightGBM, Random Forest vẫn là lựa chọn tốt nhất để bắt đầu",
+                "reason": "Overlap ratio: 0.75"
+              },
+              {
+                "claim": "Một phép tính đơn giản ($a^b \\equiv c \\pmod n$), trong đó $n = p \\times q$, được dùng để mã hóa.",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 0.75"
+              },
+              {
+                "claim": "Để giải mã, bạn cần tìm ra các giá trị riêng lẻ của $p$ và $q$.",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn cần xử lý Big Data: Có thể dùng các framework riêng biệt của TensorFlow/PyTorch nhưng vẫn phải viết code C++ để tối ưu",
+                "reason": "Overlap ratio: 0.89"
+              },
+              {
+                "claim": "Tại sao nó khó phá vỡ?** Vì việc tính toán số nguyên lớn này rất nhanh (trong thực tế chỉ mất vài mili giây), nhưng **tìm kiếm lại hai số nguyên đó là cực kỳ khó khăn**.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.68 (no evidence quote found)"
+              },
+              {
+                "claim": "Trong một khoảng thời gian dài, không có ai biết được cặp $(p, q)$ nào.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.64 (no evidence quote found)"
+              },
+              {
+                "claim": "Vấn đề \"Tích lũy\" và Tốc độ Tính Toán",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   **Tại sao thích:** SVM rất mạnh trong việc phân loại dữ liệu có nhiều đặc điểm tương tự nhau và xử lý các bài toán không tuyến tính",
+                "reason": "Overlap ratio: 0.83"
+              },
+              {
+                "claim": "Tính toán:** Chỉ mất vài mili giây (microsecond).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.38"
+              },
+              {
+                "claim": "Tìm kiếm lại $p$ và $q$:** Cần tìm kiếm trong một khoảng thời gian rất dài, có thể lên đến hàng tỷ năm.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Nó rất nhanh và hiệu quả cho việc xử lý lượng lớn dữ liệu, đặc biệt khi bạn cần tìm kiếm trong một tập hợp khổng lồ",
+                "reason": "Overlap ratio: 0.72"
+              },
+              {
+                "claim": "Bạn sẽ phải tạo ra nhiều cặp $(p, q)$ ngẫu nhiên và gửi chúng cho các bên khác (ví dụ qua mạng).",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 0.73"
+              },
+              {
+                "claim": "Các bên đó cần tính toán $a^b \\equiv c$ một lần nữa để kiểm tra xem mã hóa đã được sửa đổi hay không.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Tuy nhiên, nếu muốn tối ưu hóa tốc độ hoặc xử lý Big Data, các biến thể của nó như *Adam*, *RMSprop* hay *AdaGrad* thường được ưa chuộng hơn vì chúng không cần cập nhật tham số nhiều lần (thường chỉ 1-2 lần)",
+                "reason": "Overlap ratio: 0.56"
+              },
+              {
+                "claim": "Với mỗi số lượng dữ liệu lớn hơn: **Tốc độ so sánh sẽ tăng lên rất nhanh chóng**, khiến việc tìm kiếm lại các cặp $(p, q)$ trở nên khả thi trong thời gian ngắn (thường chỉ vài giờ hoặc ngày).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.68 (no evidence quote found)"
+              },
+              {
+                "claim": "Các Công Nghệ Đang Được Sử Dụng Để \"Phá Mã\"",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.57 (no evidence quote found)"
+              },
+              {
+                "claim": "RSA + Hashing (Hash-based Authentication):** Thay vì mã hóa dữ liệu trực tiếp bằng $p$ và $q$, người dùng sử dụng một hash của chuỗi ký tự.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.56 (no evidence quote found)"
+              },
+              {
+                "claim": "Ví dụ: `SHA-256` hoặc `MD5`.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.25"
+              },
+              {
+                "claim": "Khi gửi thông tin, hệ thống chỉ cần tính toán SHA-256 (mất khoảng 100 năm) để tạo mã hóa.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.53"
+              },
+              {
+                "claim": "Sau đó, khi nhận lại dữ liệu gốc từ bên kia, họ dùng hash của nó để kiểm tra xem đã được sửa đổi hay không.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.47"
+              },
+              {
+                "claim": "Đây là cách an toàn nhất hiện nay",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   **Nếu muốn học sâu:** Bạn nên bắt đầu với **Neural Networks** (TensorFlow/PyTorch) vì đây là nền tảng của AI hiện đại và được tối ưu hóa tốt nhất cho CPU/CUDA trong môi trường C++",
+                "reason": "Overlap ratio: 0.83"
+              }
+            ],
+            "grounded_claim_precision": 0.5,
+            "unsupported_claim_rate": 0.5,
+            "contradiction_rate": 0.0,
+            "total_claims": 20,
+            "supported_claims_count": 10,
+            "unsupported_claims_count": 10,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/3 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 50%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 40%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.278
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.5,
+          "final_answer_quality": 0.4
+        },
+        {
+          "turn": 4,
+          "user_message": "IBM vừa ra mắt máy tính lượng tử dùng cho thương mại tại CES 2019, những ngành công nghiệp nào có thể thu được nhiều giá trị nhất từ sản phẩm này vậy?",
+          "tool_evaluation": {
+            "actual_called_tool": false,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 0.0,
+            "missing_tool_call": true,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": null,
+            "tool_argument_accuracy": null,
+            "actual_tool_name": null,
+            "actual_args": {}
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 0.0,
+            "slots_evaluated": {
+              "practical_application": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "chưa có ứng dụng thực tế",
+                  "chủ yếu mang tính trình diễn",
+                  "razzle-dazzle",
+                  "educational and research purposes"
+                ]
+              },
+              "technical_limitation": {
+                "matched": false,
+                "matched_alias": null,
+                "expected_aliases": [
+                  "20 qubit",
+                  "chưa đạt ưu thế lượng tử",
+                  "quantum supremacy"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 0
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "sản phẩm này",
+            "expected_target": [
+              "máy tính lượng tử dùng cho thương mại",
+              "IBM Q System One",
+              "quantum computing system"
+            ],
+            "matched_target": null,
+            "resolution_mode": "unresolved",
+            "context_grounded": false,
+            "coreference_accuracy": 0.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Hiện tại **không có thông tin cụ thể** về một \"máy tính lượng tử\" mới ra mắt bởi IBM để bán cho thương mại vào năm CES 2019.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.77 (no evidence quote found)"
+              },
+              {
+                "claim": "Máy tính lượng tử là công nghệ tiên tiến nhưng thường được triển khai trong các dự án nghiên cứu khoa học hoặc thử nghiệm trên quy mô rất nhỏ (như máy tính lượng tử của Google hay IBM), và việc phát hành một sản phẩm \"thương mại\" cho hàng loạt doanh nghiệp vào năm CES 2019 không có bằng chứng thực tế.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.70 (no evidence quote found)"
+              },
+              {
+                "claim": "Xử lý dữ liệu lớn và Trí tuệ nhân tạo",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   **Python:** Sử dụng thư viện như `numpy` hoặc `pandas`, có thể chậm khi làm việc lớn (ví dụ: phân tích dữ liệu hàng triệu dòng)",
+                "reason": "Overlap ratio: 0.67"
+              },
+              {
+                "claim": "Đây là ứng dụng hàng đầu tiên mà các nhà khoa học dự đoán máy tính lượng tử có khả năng vượt trội hơn so với hiện tại (tốc độ xử lý cực nhanh).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.80 (no evidence quote found)"
+              },
+              {
+                "claim": "Phân tích hình ảnh:** Máy tính lượng tử có thể phân tích bức tranh, video hoặc dữ liệu lớn trong thời gian ngắn.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Với mỗi số lượng dữ liệu lớn hơn: **Tốc độ so sánh sẽ tăng lên rất nhanh chóng**, khiến việc tìm kiếm lại các cặp $(p, q)$ trở nên khả thi trong thời gian ngắn (thường chỉ vài giờ hoặc ngày)",
+                "reason": "Overlap ratio: 0.85"
+              },
+              {
+                "claim": "Y tế & Nông nghiệp:** Phát hiện sớm các bệnh tật (như ung thư) từ những triệu chứng khó thấy trước đó",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.59 (no evidence quote found)"
+              },
+              {
+                "claim": "phát triển giống cây trồng mới để tiết kiệm nước và năng lượng.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.64 (no evidence quote found)"
+              },
+              {
+                "claim": "Xử lý tín hiệu âm thanh:** Giúp xử lý tiếng ồn, giọng nói hoặc truyền tải thông tin trong môi trường không gian/thực tế ảo với độ chính xác cao hơn.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.87 (no evidence quote found)"
+              },
+              {
+                "claim": "Tối ưu hóa tài nguyên máy tính (AI & Machine Learning)",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 0.88"
+              },
+              {
+                "claim": "IBM đã phát triển các thuật toán tối ưu cho việc huấn luyện mô hình AI và phân tích dữ liệu lớn, giúp hệ thống chạy nhanh hơn nhiều so với hiện tại.",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Nếu bạn muốn chạy một mô hình ML trên máy tính cá nhân (CPU), **Python** vẫn là lựa chọn tốt nhất vì nó được tối ưu hóa cho CPU và có thể chạy nhanh hơn nhiều so với các ngôn ngữ khác nếu không dùng TensorFlow/PyTorch",
+                "reason": "Overlap ratio: 1.00"
+              },
+              {
+                "claim": "Phân loại thị trường:** Dự đoán xu hướng tiêu dùng hoặc định danh khách hàng dựa trên hành vi mua sắm của họ trong thời gian ngắn (ví dụ: dự báo giá trị bất động sản).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.76 (no evidence quote found)"
+              },
+              {
+                "claim": "Bảo mật thông tin và Trí tuệ nhân tạo an toàn",
+                "label": "SUPPORTED",
+                "evidence_quote": "*   Khi gửi thông tin, hệ thống chỉ cần tính toán SHA-256 (mất khoảng 100 năm) để tạo mã hóa",
+                "reason": "Overlap ratio: 0.78"
+              },
+              {
+                "claim": "Máy tính lượng tử có thể phá vỡ các hệ thống bảo mật hiện tại nếu được sử dụng sai cách, nhưng nó cũng là công cụ mạnh mẽ để phát triển **AI An Toàn (Secure AI)**.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.88 (no evidence quote found)"
+              },
+              {
+                "claim": "Phát triển thuật toán mã hóa mới cho dữ liệu nhạy cảm.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Gradient Descent (GD) - Thuật toán tối ưu hóa",
+                "reason": "Overlap ratio: 0.80"
+              },
+              {
+                "claim": "Tối ưu hóa logistics và Vận tải",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "Khả năng mở rộng và tối ưu hóa sâu hơn",
+                "reason": "Overlap ratio: 0.40"
+              },
+              {
+                "claim": "Máy tính lượng tử có thể tối ưu hóa lộ trình vận chuyển hàng hóa hoặc phân bổ nguồn lực trong kho bãi một cách hiệu quả hơn, giảm chi phí giao dịch và thời gian lưu trữ.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.69 (no evidence quote found)"
+              },
+              {
+                "claim": "Tóm lại:** Nếu IBM phát triển máy tính lượng tử cho thương mại như dự đoán, nó sẽ chủ yếu tập trung vào các ngành công nghiệp **tối ưu hóa dữ liệu lớn (AI/ML)**, **y tế**, và **an toàn thông tin**.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.77 (no evidence quote found)"
+              },
+              {
+                "claim": "Tuy nhiên, việc sản xuất một \"máy tính\" hoàn chỉnh để bán hàng ngay tại CES 2019 vẫn là điều rất khó khăn do quy trình phức tạp của máy tính lượng tử.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Overlap ratio: 0.83 (no evidence quote found)"
+              },
+              {
+                "claim": "Bạn có thể tìm thêm các dự án cụ thể từ IBM về lĩnh vực này trong báo cáo hoặc tài liệu chính thức nếu bạn muốn biết chi tiết hơn?",
+                "label": "SUPPORTED",
+                "evidence_quote": "Bạn có muốn tôi tìm kiếm thêm về kiến thức cụ thể nào trong lĩnh vực Machine Learning hoặc lập trình C/C++ không",
+                "reason": "Overlap ratio: 0.92"
+              }
+            ],
+            "grounded_claim_precision": 0.368,
+            "unsupported_claim_rate": 0.632,
+            "contradiction_rate": 0.0,
+            "total_claims": 19,
+            "supported_claims_count": 7,
+            "unsupported_claims_count": 12,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 0.5,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "NO",
+                    "reason": "Bỏ sót gọi tool hoặc gọi tool không cần thiết"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 0.0,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "NO",
+                    "reason": "Không nhận diện được đối tượng tham chiếu"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "NO",
+                    "reason": "Độ bao phủ thực thể đạt 0% (0/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.333,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 37%"
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "NO",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 35%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.278
+          },
+          "result_summarization_score": 0.0,
+          "follow_up_understanding": 0.2,
+          "final_answer_quality": 0.347
+        }
+      ],
+      "conversation_metrics": {
+        "task_success": 0.0,
+        "tool_decision_accuracy": 0.0,
+        "tool_argument_accuracy": 1.0,
+        "tool_switching_accuracy": 0.0,
+        "missing_tool_call_rate": 1.0,
+        "unnecessary_tool_call_rate": 0.0,
+        "context_slot_accuracy": 0.125,
+        "coreference_accuracy": 0.0,
+        "follow_up_understanding": 0.483,
+        "state_tracking_accuracy": 0.125,
+        "cross_turn_consistency": 1.0,
+        "result_summarization_score": 0.0,
+        "final_answer_quality": 0.405,
+        "grounded_claim_precision": 0.386,
+        "unsupported_claim_rate": 0.614,
+        "contradiction_rate": 0.0,
+        "bineval_tool_score": 0.5,
+        "bineval_context_score": 0.25,
+        "bineval_factuality_score": 0.333,
+        "bineval_overall_score": 0.361
       }
     }
   ]

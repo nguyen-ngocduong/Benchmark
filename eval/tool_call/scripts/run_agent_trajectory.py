@@ -336,8 +336,8 @@ class AgentTrajectoryRunner:
             # Append user message
             messages.append({"role": "user", "content": user_msg})
 
-            # Call model with available tools (enforce tool_choice="required" on Turn 1 to guarantee evidence retrieval)
-            turn_tool_choice = "required" if turn_idx == 1 else "auto"
+            # Call model with available tools (auto: model autonomously decides whether to call a tool)
+            turn_tool_choice = "auto"
             model_res = await self.call_model(messages=messages, tools=self.tools, tool_choice=turn_tool_choice)
             tool_calls = model_res.get("tool_calls", [])
 
