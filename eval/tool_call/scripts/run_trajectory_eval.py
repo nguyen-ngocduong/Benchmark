@@ -117,7 +117,8 @@ class DeterministicValidator:
                 tool_name_accuracy = 1.0 if (actual_tool_name == expected_name) else 0.0
 
             if required_keywords:
-                query_str = str(actual_args.get("query", "")).lower()
+                raw_query_val = actual_args.get("query") or actual_args.get("queries") or actual_args
+                query_str = str(raw_query_val).lower()
                 matched_kw = [kw for kw in required_keywords if kw in query_str]
                 tool_argument_accuracy = len(matched_kw) / len(required_keywords)
 
@@ -227,11 +228,11 @@ class DeterministicValidator:
 class AtomicClaimVerifier:
     """Decomposes response into atomic claims and verifies grounding against evidence."""
 
-    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None, enabled: bool = True):
         self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
         self.model = model or os.environ.get("EVAL_CLAIM_MODEL") or os.environ.get("GEMINI_MODEL") or "gemini-3.5-flash-lite"
         self.client = None
-        if self.api_key:
+        if self.api_key and enabled:
             self.client = AsyncOpenAI(
                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
                 api_key=self.api_key
@@ -843,6 +844,119 @@ class TrajectoryEvaluator:
         }
 
 
+def normalize_trajectory_record(record: Dict[str, Any], gt_map: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Normalizes a trajectory record to ensure compatibility with TrajectoryEvaluator:
+    - Resolves sample_id (matches against gt_map or falls back from conversation_id)
+    - Converts OpenAI / ChatML format (messages list) to structured turns list
+    """
+    norm_rec = dict(record)
+
+    # 1. Resolve sample_id
+    sample_id = norm_rec.get("sample_id")
+    if not sample_id or sample_id not in gt_map:
+        cid = norm_rec.get("conversation_id", "")
+        first_user_msg = ""
+        if "messages" in norm_rec:
+            for m in norm_rec.get("messages", []):
+                if m.get("role") == "user":
+                    first_user_msg = m.get("content", "").strip()
+                    break
+        elif "turns" in norm_rec and norm_rec["turns"]:
+            first_user_msg = norm_rec["turns"][0].get("user_message", "").strip()
+
+        matched_sid = None
+        if first_user_msg:
+            for sid, gt in gt_map.items():
+                gt_turns = gt.get("scenario", {}).get("turns", [])
+                gt_first = gt_turns[0].get("user_message", "").strip() if gt_turns else ""
+                if gt_first and (gt_first == first_user_msg or gt_first in first_user_msg or first_user_msg in gt_first):
+                    matched_sid = sid
+                    break
+
+        if not matched_sid and cid.startswith("conversation_"):
+            try:
+                num = int(cid.split("_")[1])
+                target_sid = f"sample_{num + 13:03d}"
+                if target_sid in gt_map:
+                    matched_sid = target_sid
+            except Exception:
+                pass
+
+        norm_rec["sample_id"] = matched_sid or sample_id or cid
+
+    # 2. Convert 'messages' (ChatML / OpenAI format) -> 'turns'
+    if ("turns" not in norm_rec or not norm_rec["turns"]) and "messages" in norm_rec:
+        raw_msgs = norm_rec.get("messages", [])
+        turns = []
+        current_turn = None
+        turn_num = 1
+
+        for msg in raw_msgs:
+            role = msg.get("role")
+            content = msg.get("content") or ""
+
+            if role == "user":
+                if current_turn and current_turn.get("user_message"):
+                    turns.append(current_turn)
+                    turn_num += 1
+                current_turn = {
+                    "turn": turn_num,
+                    "user_message": content.strip(),
+                    "agent_response": {"type": "direct_answer"},
+                    "tool_result": None,
+                    "final_answer": ""
+                }
+            elif role == "assistant":
+                if not current_turn:
+                    continue
+                tool_calls = msg.get("tool_calls")
+                if tool_calls and isinstance(tool_calls, list) and len(tool_calls) > 0:
+                    fn = tool_calls[0].get("function", {})
+                    fn_name = fn.get("name", "web_search")
+                    raw_args = fn.get("arguments", {})
+                    if isinstance(raw_args, str):
+                        try:
+                            raw_args = json.loads(raw_args)
+                        except Exception:
+                            raw_args = {"query": raw_args}
+                    current_turn["agent_response"] = {
+                        "type": "tool_call",
+                        "tool_call": {
+                            "name": fn_name,
+                            "arguments": raw_args
+                        }
+                    }
+                elif content:
+                    current_turn["final_answer"] = content.strip()
+            elif role == "tool":
+                if current_turn:
+                    raw_content = content.strip()
+                    results = []
+                    if raw_content.startswith("[") or raw_content.startswith("{"):
+                        try:
+                            parsed = json.loads(raw_content)
+                            if isinstance(parsed, list):
+                                results = parsed
+                            elif isinstance(parsed, dict):
+                                results = [parsed]
+                        except Exception:
+                            results = [{"snippet": raw_content}]
+                    else:
+                        results = [{"snippet": raw_content}]
+                    current_turn["tool_result"] = {
+                        "type": "tool_result",
+                        "tool_name": current_turn.get("agent_response", {}).get("tool_call", {}).get("name", "web_search"),
+                        "results": results
+                    }
+        if current_turn and current_turn.get("user_message"):
+            turns.append(current_turn)
+
+        norm_rec["turns"] = turns
+
+    return norm_rec
+
+
 # ==============================================================================
 # 4. Main Entrypoint & Report Generation
 # ==============================================================================
@@ -879,11 +993,23 @@ async def main_async():
         samples_raw = json.load(f)
     gt_map = {s.get("sample_id"): s for s in samples_raw}
 
-    trajectories = []
-    with open(traj_path, "r", encoding="utf-8") as f:
-        for line in f:
-            if line.strip():
-                trajectories.append(json.loads(line))
+    raw_trajectories = []
+    # Support both JSON Array file (.json) and JSON Lines (.jsonl)
+    try:
+        with open(traj_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            if isinstance(data, list):
+                raw_trajectories = data
+            elif isinstance(data, dict):
+                raw_trajectories = data.get("trajectories", [data])
+    except Exception:
+        with open(traj_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line_str = line.strip()
+                if line_str:
+                    raw_trajectories.append(json.loads(line_str))
+
+    trajectories = [normalize_trajectory_record(t, gt_map) for t in raw_trajectories]
 
     # Filter trajectories by sample_id, from_sample, to_sample
     if args.sample_id:
@@ -915,7 +1041,7 @@ async def main_async():
     print(f"📋 Loaded {len(trajectories)} scenario trajectory/trajectories to evaluate")
     print(f"{'='*75}\n")
 
-    claim_verifier = None if args.skip_llm_claim_eval else AtomicClaimVerifier(model=args.claim_model)
+    claim_verifier = AtomicClaimVerifier(model=args.claim_model, enabled=not args.skip_llm_claim_eval)
     evaluator = TrajectoryEvaluator(claim_verifier=claim_verifier)
 
     eval_results = []

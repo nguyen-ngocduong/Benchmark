@@ -351,7 +351,8 @@ async def convert_and_enrich_mentor_dataset(
     prepared_items = []
     assigned_count = 0
     for idx, conv in enumerate(conversations, start=1):
-        explicit_id = conv.get("sample_id") or conv.get("id")
+        explicit_sample_id = conv.get("sample_id")
+        conv_id = conv.get("conversation_id") or conv.get("id")
         msgs = conv.get("messages", [])
         u_first = ""
         for m in msgs:
@@ -359,9 +360,9 @@ async def convert_and_enrich_mentor_dataset(
                 u_first = m.get("content", "").strip().lower()
                 break
 
-        if explicit_id:
-            assigned_id = str(explicit_id)
-        elif u_first in existing_first_turns:
+        if explicit_sample_id and str(explicit_sample_id).startswith("sample_"):
+            assigned_id = str(explicit_sample_id)
+        elif u_first in existing_first_turns and str(existing_first_turns[u_first]).startswith("sample_"):
             assigned_id = existing_first_turns[u_first]
         elif len(conversations) == 1 and sample_id:
             assigned_id = sample_id
@@ -372,6 +373,7 @@ async def convert_and_enrich_mentor_dataset(
         prepared_items.append({
             "index": idx,
             "id": assigned_id,
+            "conversation_id": conv_id,
             "data": conv
         })
 
@@ -399,7 +401,9 @@ async def convert_and_enrich_mentor_dataset(
         if from_sample:
             found_from = False
             for i, it in enumerate(prepared_items):
-                if it["id"] == from_sample or str(it["index"]) == str(from_sample):
+                if (it["id"] == from_sample or 
+                    str(it.get("conversation_id")) == str(from_sample) or 
+                    str(it["index"]) == str(from_sample)):
                     start_idx = i
                     found_from = True
                     break
@@ -409,7 +413,9 @@ async def convert_and_enrich_mentor_dataset(
         if to_sample:
             found_to = False
             for i, it in enumerate(prepared_items):
-                if it["id"] == to_sample or str(it["index"]) == str(to_sample):
+                if (it["id"] == to_sample or 
+                    str(it.get("conversation_id")) == str(to_sample) or 
+                    str(it["index"]) == str(to_sample)):
                     end_idx = i + 1
                     found_to = True
                     break

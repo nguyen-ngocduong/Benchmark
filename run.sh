@@ -40,6 +40,7 @@ SPECIFIC_MODEL=""
 SAMPLE_ID=""
 FROM_SAMPLE=""
 TO_SAMPLE=""
+TRAJECTORY_FILE=""
 
 print_banner() {
     echo -e "${CYAN}${BOLD}"
@@ -113,6 +114,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --to-sample)
             TO_SAMPLE="$2"
+            shift 2
+            ;;
+        -t|--trajectory)
+            TRAJECTORY_FILE="$2"
             shift 2
             ;;
         --skip-llm-claim)
@@ -196,6 +201,9 @@ run_step2b_evaluation() {
     echo -e "${CYAN}→ Script: run_trajectory_eval.py${NC}"
     
     local eval_args=(--model "$model")
+    if [ -n "$TRAJECTORY_FILE" ]; then
+        eval_args+=(--trajectory "$TRAJECTORY_FILE")
+    fi
     if [ "$SKIP_LLM_CLAIM" = true ]; then
         eval_args+=(--skip-llm-claim-eval)
     fi

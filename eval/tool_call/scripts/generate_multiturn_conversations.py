@@ -1,18 +1,21 @@
 """
-Pipeline to generate 5 multi-turn tool calling conversations from
+Pipeline to generate multi-turn tool calling conversations from
 Na0s/sft-ready-toughdata-quora-question-answer-dataset.
 
-Pipeline steps:
-1. Select candidate questions and answers across 5 distinct domains.
-2. Dịch (Translate): Translate English questions and comprehensive answers into Vietnamese.
-3. Gen Assistant Turn & Tool Response:
-   - Generate web_search tool_calls with search queries.
-   - Generate realistic tool snippets containing evidence.
-   - Generate reference assistant final answers.
-4. Concatenate into multi-turn conversations matching samples_new.json format.
-5. Append into eval/tool_call/datasets/multi_turn/samples_new.json.
+Output schema follows data.json:
+- conversation_id: e.g. "conversation_0001"
+- conversation_index: 1, 2, ...
+- conversation_topic: Topic title
+- turn_count: Total turns in this conversation
+- source_row_ids: list of HF dataset row indices
+- source_indices: [0, 1, 2, ...]
+- messages: List of turns (system, user, assistant tool_call, tool response, assistant answer)
+- tools: Optional tool definitions (from list_tool.json or web_search default)
+
+Saves all generated conversations into eval/tool_call/datasets/multi_turn/samples_new.json
 """
 
+import argparse
 import asyncio
 import json
 import os
@@ -31,9 +34,10 @@ from eval.tool_call.core.chat_client import chat_completion_async
 
 load_dotenv()
 
-BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
-API_KEY = os.environ.get("GEMINI_API_KEY")
-MODEL = "gemini-3.5-flash-lite"
+# Read default configurations from environment or fallbacks
+BASE_URL = os.getenv("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/")
+API_KEY = os.getenv("GEMINI_API_KEY")
+MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
 
 PROMPT_GENERATE_TURN = """Bạn là chuyên gia xây dựng dữ liệu benchmark cho Agent đàm thoại đa lượt tiếng Việt có sử dụng công cụ tìm kiếm web (web_search).
 
@@ -50,7 +54,6 @@ Nhiệm vụ của bạn là:
 3. SINH TOOL SNIPPET:
    - "results": Mảng gồm 1-2 kết quả tìm kiếm giả lập, mỗi kết quả có:
      * "title": Tiêu đề bài viết/nguồn tin cậy (tiếng Việt hoặc tiếng Anh).
-     * "url": Đường link giả định (ví dụ: https://example.com/...).
      * "snippet": Đoạn trích dẫn thông tin thực tế (tóm lược các sự kiện, số liệu chính được nhắc tới trong câu trả lời) dùng làm bằng chứng để Assistant trả lời.
 
 Trả về kết quả ĐÚNG định dạng JSON sau (không kèm markdown ngoài khối json):
@@ -60,7 +63,6 @@ Trả về kết quả ĐÚNG định dạng JSON sau (không kèm markdown ngo�
   "results": [
     {{
       "title": "...",
-      "url": "https://example.com/...",
       "snippet": "..."
     }}
   ],
@@ -68,50 +70,35 @@ Trả về kết quả ĐÚNG định dạng JSON sau (không kèm markdown ngo�
 }}
 """
 
-WEB_SEARCH_TOOL_DEF = {
-    "type": "function",
-    "function": {
-        "name": "web_search",
-        "description": "Search for information from the internet.",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "queries": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The list of search queries."
-                }
-            },
-            "required": ["queries"]
-        }
-    }
-}
-
+# Default topic configurations for generating 5 multi-turn conversations
 TOPIC_CONFIGS = [
     {
-        "topic_id": "conv3",
+        "topic_id": "conversation_0001",
+        "name": "Chính trị & Quan hệ quốc tế (US Political Discourse)",
+        "indices": [52924, 28221, 45756, 21968, 30680]
+    },
+    {
+        "topic_id": "conversation_0002",
         "name": "Kinh tế học & Tiền mã hóa (Finance & Cryptocurrency)",
         "indices": [435, 1100, 2036, 201]
     },
     {
-        "topic_id": "conv4",
+        "topic_id": "conversation_0003",
         "name": "Biến đổi khí hậu & Năng lượng tái tạo (Climate & Renewable Energy)",
         "indices": [576, 215, 1017, 4722]
     },
     {
-        "topic_id": "conv5",
+        "topic_id": "conversation_0004",
         "name": "Y học & Chăm sóc sức khỏe (Health & Medicine)",
         "indices": [1216, 2116, 1792, 345]
     },
     {
-        "topic_id": "conv6",
+        "topic_id": "conversation_0005",
         "name": "Lịch sử Thế chiến thứ II (WWII Military History)",
         "indices": [4656, 404, 4905, 308]
     },
     {
-        "topic_id": "conv7",
+        "topic_id": "conversation_0006",
         "name": "Trí tuệ nhân tạo & Điện toán tiên tiến (AI & Advanced Computing)",
         "indices": [682, 992, 875, 5635]
     }
@@ -138,7 +125,7 @@ def clean_json_output(raw_text: str) -> Optional[Dict[str, Any]]:
     if match:
         try:
             return json.loads(match.group())
-        except json.JSONDecodeError:
+        except Exception:
             pass
 
     # Regex extraction fallback
@@ -169,7 +156,6 @@ def clean_json_output(raw_text: str) -> Optional[Dict[str, Any]]:
         if not results:
             results = [{
                 "title": "Thông tin tra cứu trực tuyến",
-                "url": "https://example.com/search-result",
                 "snippet": asst_ans[:300] if asst_ans else "Kết quả tra cứu."
             }]
 
@@ -190,7 +176,10 @@ async def process_turn(
     en_question: str,
     en_answer: str,
     conv_id: str,
-    turn_idx: int
+    turn_idx: int,
+    base_url: str,
+    model: str,
+    api_key: str
 ) -> Dict[str, Any]:
     prompt = PROMPT_GENERATE_TURN.format(
         en_question=en_question,
@@ -204,9 +193,9 @@ async def process_turn(
     for attempt in range(1, 4):
         try:
             res = await chat_completion_async(
-                base_url=BASE_URL,
-                model=MODEL,
-                api_key=API_KEY,
+                base_url=base_url,
+                model=model,
+                api_key=api_key,
                 messages=messages,
                 temperature=0.2,
                 max_tokens=3000
@@ -223,7 +212,12 @@ async def process_turn(
     raise RuntimeError(f"Failed to generate turn {turn_idx} for {conv_id}")
 
 
-async def build_conversations():
+async def build_conversations(
+    base_url: str = BASE_URL,
+    model: str = MODEL,
+    api_key: str = API_KEY,
+    max_concurrency: int = 1
+):
     print("📥 Loading HuggingFace dataset Na0s/sft-ready-toughdata-quora-question-answer-dataset...")
     ds = load_dataset("Na0s/sft-ready-toughdata-quora-question-answer-dataset", split="train")
 
@@ -236,6 +230,19 @@ async def build_conversations():
             print(f"📦 Loaded {len(cached_convs)} cached conversation(s).")
         except Exception as e:
             print(f"⚠️ Could not load cache: {e}")
+
+    # Check if data.json exists in root and seed it if needed
+    data_json_path = project_root / "data.json"
+    if data_json_path.exists():
+        try:
+            with open(data_json_path, "r", encoding="utf-8") as f:
+                data_json_obj = json.load(f)
+                cid = data_json_obj.get("conversation_id", "conversation_0001")
+                if cid not in cached_convs:
+                    cached_convs[cid] = data_json_obj
+                    print(f"📦 Preloaded seed conversation {cid} from data.json.")
+        except Exception as e:
+            print(f"⚠️ Could not read data.json: {e}")
 
     new_conversations = []
 
@@ -250,7 +257,7 @@ async def build_conversations():
             continue
 
         print(f"\n==================================================")
-        print(f"🚀 Generating Conversation {c_idx}/5: {conv_id} - {t_name}")
+        print(f"🚀 Generating Conversation {c_idx}/{len(TOPIC_CONFIGS)}: {conv_id} - {t_name}")
         print(f"==================================================")
 
         messages = [
@@ -266,7 +273,15 @@ async def build_conversations():
             en_a = row["completion"].strip()
             print(f"  • Turn {turn_idx}/{len(indices)} (Source Row #{ds_idx}): \"{en_q[:55]}...\"")
 
-            turn_data = await process_turn(en_q, en_a, conv_id, turn_idx)
+            turn_data = await process_turn(
+                en_question=en_q,
+                en_answer=en_a,
+                conv_id=conv_id,
+                turn_idx=turn_idx,
+                base_url=base_url,
+                model=model,
+                api_key=api_key
+            )
 
             user_msg = turn_data["user_message"]
             queries = turn_data["queries"]
@@ -310,9 +325,15 @@ async def build_conversations():
                 "content": assistant_ans
             })
 
+        # Match exact schema of data.json
         conversation_obj = {
-            "messages": messages,
-            "tools": [WEB_SEARCH_TOOL_DEF]
+            "conversation_id": conv_id,
+            "conversation_index": c_idx,
+            "conversation_topic": t_name,
+            "turn_count": len(indices),
+            "source_row_ids": indices,
+            "source_indices": list(range(len(indices))),
+            "messages": messages
         }
         new_conversations.append(conversation_obj)
         cached_convs[conv_id] = conversation_obj
@@ -325,25 +346,31 @@ async def build_conversations():
     samples_new_path = project_root / "eval" / "tool_call" / "datasets" / "multi_turn" / "samples_new.json"
     print(f"\n💾 Reading existing {samples_new_path}...")
 
+    # Load existing items to merge
     existing_conversations = []
     if samples_new_path.exists():
-        with open(samples_new_path, "r", encoding="utf-8") as f:
-            raw_content = json.load(f)
-            if isinstance(raw_content, list):
-                # Only keep original items not starting with call_conv3..conv7
-                for it in raw_content:
-                    first_call = ""
-                    for m in it.get("messages", []):
-                        if m.get("tool_calls"):
-                            first_call = m["tool_calls"][0].get("id", "")
-                            break
-                    if not any(f"call_conv{i}" in first_call for i in range(3, 8)):
-                        existing_conversations.append(it)
-            elif isinstance(raw_content, dict):
-                existing_conversations = [raw_content]
+        try:
+            with open(samples_new_path, "r", encoding="utf-8") as f:
+                raw_content = json.load(f)
+                if isinstance(raw_content, list):
+                    for it in raw_content:
+                        # Keep existing conversations if not overwriting current generated ones
+                        curr_id = it.get("conversation_id")
+                        first_call = ""
+                        for m in it.get("messages", []):
+                            if m.get("tool_calls"):
+                                first_call = m["tool_calls"][0].get("id", "")
+                                break
+                        # Filter out older legacy format if replacing
+                        if curr_id not in [cfg["topic_id"] for cfg in TOPIC_CONFIGS] and not any(f"call_{cfg['topic_id']}" in first_call for cfg in TOPIC_CONFIGS):
+                            existing_conversations.append(it)
+                elif isinstance(raw_content, dict):
+                    existing_conversations = [raw_content]
+        except Exception as e:
+            print(f"⚠️ Could not parse existing samples_new.json: {e}")
 
-    print(f"   Found {len(existing_conversations)} original conversation(s).")
-    all_conversations = list(existing_conversations) + new_conversations
+    print(f"   Found {len(existing_conversations)} existing conversation(s).")
+    all_conversations = new_conversations + existing_conversations
 
     print(f"📝 Writing total {len(all_conversations)} conversations to {samples_new_path}...")
     with open(samples_new_path, "w", encoding="utf-8") as f:
@@ -352,5 +379,19 @@ async def build_conversations():
     print(f"✅ Successfully wrote {len(all_conversations)} conversations to {samples_new_path}!")
 
 
+def main():
+    parser = argparse.ArgumentParser(description="Generate multi-turn conversation dataset matching data.json schema.")
+    parser.add_argument("--base_url", type=str, default=BASE_URL, help="LLM Base URL")
+    parser.add_argument("--model", type=str, default=MODEL, help="Model name (e.g. google/gemma-4-31B-it)")
+    parser.add_argument("--api_key", type=str, default=API_KEY, help="API key")
+    args = parser.parse_args()
+
+    asyncio.run(build_conversations(
+        base_url=args.base_url,
+        model=args.model,
+        api_key=args.api_key
+    ))
+
+
 if __name__ == "__main__":
-    asyncio.run(build_conversations())
+    main()
