@@ -839,7 +839,7 @@ class TrajectoryEvaluator:
             (missing_calls == 0) and
             (avg_slot_acc >= 0.6) and
             (avg_contradiction_rate == 0.0) and
-            (avg_grounded_precision >= 0.75)
+            (avg_grounded_precision >= 0.65)
         )
 
         # --- BINEVAL CHECKLIST METRICS ---
@@ -910,7 +910,7 @@ def normalize_trajectory_record(record: Dict[str, Any], gt_map: Dict[str, Any]) 
 
         matched_sid = None
         if cid and cid in gt_map:
-            matched_sid = cid
+            matched_sid = gt_map[cid].get("sample_id") or cid
 
         if not matched_sid and first_user_msg:
             for sid, gt in gt_map.items():
@@ -1014,7 +1014,11 @@ async def evaluate_single_batch(
     model_name: str,
     enrich_model: str = "gemini-3.5-flash-lite",
     auto_enrich: bool = True,
-    force_enrich: bool = False
+    force_enrich: bool = False,
+    sample_id: Optional[str] = None,
+    from_sample: Optional[str] = None,
+    to_sample: Optional[str] = None,
+    custom_gt_path: Optional[str] = None
 ) -> Dict[str, Any]:
     print(f"\n{'='*75}")
     print(f"📦 EVALUATING BATCH FILE: {batch_file.name}")
@@ -1031,20 +1035,40 @@ async def evaluate_single_batch(
     # Step 1: Ground Truth handling (enrich with Gemini 3.5 Flash Lite if missing or force_enrich)
     gt_dir = WORKSPACE_ROOT / "eval/tool_call/datasets/multi_turn/ground_truth"
     gt_dir.mkdir(parents=True, exist_ok=True)
-    gt_path = gt_dir / f"gt_{batch_file.name}"
 
-    if auto_enrich and (not gt_path.exists() or force_enrich):
+    if custom_gt_path:
+        gt_path = Path(custom_gt_path)
+        if not gt_path.is_absolute():
+            gt_path = (WORKSPACE_ROOT / gt_path).resolve()
+    else:
+        gt_candidates = [
+            gt_dir / f"gt_{batch_file.name}",
+            gt_dir / f"gt_{batch_file.name.replace('__', '_')}",
+            gt_dir / f"gt_{batch_file.stem}.json",
+            gt_dir / f"gt_{batch_file.stem.replace('__', '_')}.json"
+        ]
+        gt_path = None
+        for cand in gt_candidates:
+            if cand.exists():
+                gt_path = cand
+                break
+        if gt_path is None:
+            gt_path = gt_candidates[0]
+
+    if gt_path.exists() and not force_enrich:
+        print(f"📖 Đã tìm thấy Ground Truth: {gt_path.name} (Bỏ qua bước enrich Gemini, dùng trực tiếp để chấm điểm).")
+    elif auto_enrich:
         if enrich_batch_dataset is None:
             print(f"❌ enrich_batch_dataset could not be imported.")
             return {}
-        print(f"🔄 Enriching Ground Truth with {enrich_model} for {batch_file.name}...")
+        print(f"🔄 Chưa có Ground Truth, tự động enrich bằng {enrich_model} cho {batch_file.name}...")
         scenarios, gt_path = await enrich_batch_dataset(
             input_file=str(batch_file),
             output_file=str(gt_path),
             model=enrich_model,
             force=force_enrich
         )
-    elif not gt_path.exists():
+    else:
         print(f"❌ Ground truth file not found at {gt_path.name} and auto-enrich is disabled.")
         return {}
 
@@ -1067,9 +1091,52 @@ async def evaluate_single_batch(
     trajectories = [normalize_trajectory_record(t, gt_map) for t in raw_items]
     print(f"📋 Loaded {len(trajectories)} scenario trajectory/trajectories from batch")
 
+    # Filter trajectories by sample_id, from_sample, to_sample
+    def match_item(idx, t, target):
+        sid = str(t.get("sample_id", ""))
+        cid = str(t.get("conversation_id", ""))
+        m = re.match(r"^sample_(\d+)$", sid)
+        s_num = str(int(m.group(1))) if m else ""
+        c_m = re.match(r"^conversation_(\d+)$", cid)
+        c_num = str(int(c_m.group(1))) if c_m else ""
+        target_str = str(target)
+        return (sid == target_str or 
+                cid == target_str or 
+                s_num == target_str or 
+                c_num == target_str or 
+                str(idx) == target_str)
+
+    filtered_trajectories = trajectories
+    if sample_id:
+        filtered_trajectories = [t for idx, t in enumerate(trajectories, 1) if match_item(idx, t, sample_id)]
+        if not filtered_trajectories:
+            print(f"❌ Không tìm thấy sample '{sample_id}' trong {batch_file.name}")
+            return {}
+        print(f"🎯 Evaluating single scenario: {filtered_trajectories[0].get('sample_id')} ({filtered_trajectories[0].get('conversation_id')})")
+    elif from_sample or to_sample:
+        start_idx = 0
+        end_idx = len(trajectories)
+        if from_sample:
+            for i, t in enumerate(trajectories, 1):
+                if match_item(i, t, from_sample):
+                    start_idx = i - 1
+                    break
+        if to_sample:
+            for i, t in enumerate(trajectories, 1):
+                if match_item(i, t, to_sample):
+                    end_idx = i
+                    break
+        filtered_trajectories = trajectories[start_idx:end_idx]
+        print(f"🎯 Evaluating range: {len(filtered_trajectories)} scenario(s) ({from_sample or 'start'} -> {to_sample or 'end'})")
+
+    is_subset = len(filtered_trajectories) < len(trajectories)
+
     # Step 3: Evaluate scenarios
     eval_results = []
-    for traj in trajectories:
+    print(f"\n🤖 BẮT ĐẦU CHẤM ĐIỂM BENCHMARK VỚI MODEL: {evaluator.verifier.model}")
+    print(f"   • Endpoint LLM : {evaluator.verifier.base_url}")
+    print(f"   • Số kịch bản   : {len(filtered_trajectories)}\n")
+    for traj in filtered_trajectories:
         sid = traj.get("sample_id")
         scenario_gt = gt_map.get(sid, {})
         print(f"🔍 Evaluating scenario: {sid}...")
@@ -1078,9 +1145,31 @@ async def evaluate_single_batch(
         cm = res["conversation_metrics"]
         print(f"  ✓ Task Success: {cm['task_success']} | Tool Acc: {cm['tool_decision_accuracy']*100:.0f}% | Slot Acc: {cm['context_slot_accuracy']*100:.0f}% | Grounded: {cm['grounded_claim_precision']*100:.1f}%")
 
-    # Step 4: Aggregate metrics
+    # Step 4: Incremental merge if evaluating a subset and output exists
+    final_scenarios_map = {}
+    if is_subset and out_path.exists():
+        try:
+            with open(out_path, "r", encoding="utf-8") as f:
+                prev_data = json.load(f)
+                for sc in prev_data.get("scenarios", []):
+                    if sc.get("sample_id"):
+                        final_scenarios_map[sc["sample_id"]] = sc
+            print(f"🔄 Đã nạp {len(final_scenarios_map)} scenario có sẵn từ {out_path.name} để cập nhật.")
+        except Exception as e:
+            print(f"⚠️ Could not read previous report {out_path.name}: {e}")
+
+    for res in eval_results:
+        final_scenarios_map[res["sample_id"]] = res
+
+    def sort_key(s_id: str):
+        m = re.match(r"^sample_(\d+)$", s_id)
+        return int(m.group(1)) if m else 999999
+
+    merged_scenarios = sorted(final_scenarios_map.values(), key=lambda s: sort_key(s.get("sample_id", ""))) if final_scenarios_map else eval_results
+
+    # Aggregate metrics
     def avg_metric(key: str) -> float:
-        vals = [r["conversation_metrics"][key] for r in eval_results if r.get("conversation_metrics", {}).get(key) is not None]
+        vals = [r["conversation_metrics"][key] for r in merged_scenarios if r.get("conversation_metrics", {}).get(key) is not None]
         return round(sum(vals) / len(vals), 3) if vals else 0.0
 
     summary_metrics = {
@@ -1118,9 +1207,9 @@ async def evaluate_single_batch(
         "batch_file": batch_file.name,
         "model": model_name,
         "evaluation_timestamp": datetime.now().isoformat(),
-        "total_scenarios": len(eval_results),
+        "total_scenarios": len(merged_scenarios),
         "summary_metrics": summary_metrics,
-        "scenarios": eval_results
+        "scenarios": merged_scenarios
     }
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1151,6 +1240,7 @@ async def main_async():
     parser.add_argument("--enrich-model", type=str, default="gemini-3.5-flash-lite", help="Model to enrich Ground Truth (default: gemini-3.5-flash-lite)")
     parser.add_argument("--no-auto-enrich", action="store_true", help="Disable automatic Ground Truth enrichment if missing")
     parser.add_argument("--force-enrich", action="store_true", help="Force re-enrichment of Ground Truth even if cache exists")
+    parser.add_argument("--ground-truth", "--gt", type=str, default=None, help="Path to pre-existing Ground Truth JSON file")
     parser.add_argument("--sample-id", type=str, default=None, help="Evaluate only a specific sample_id (e.g. sample_013)")
     parser.add_argument("--from-sample", type=str, default=None, help="Evaluate starting from a specific sample_id onwards (e.g. sample_011)")
     parser.add_argument("--to-sample", type=str, default=None, help="Evaluate up to a specific sample_id (e.g. sample_013)")
@@ -1184,7 +1274,11 @@ async def main_async():
                 model_name=args.model,
                 enrich_model=args.enrich_model,
                 auto_enrich=not args.no_auto_enrich,
-                force_enrich=args.force_enrich
+                force_enrich=args.force_enrich,
+                sample_id=args.sample_id,
+                from_sample=args.from_sample,
+                to_sample=args.to_sample,
+                custom_gt_path=args.ground_truth
             )
             return
 

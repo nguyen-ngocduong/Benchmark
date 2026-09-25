@@ -1394,7 +1394,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "Xác thực thông tin về việc Thần Shiva có được nhắc đến trong kinh Veda hay không.",
+            "query_intent": "Xác thực thông tin Thần Shiva có xuất hiện trong kinh Veda hay không.",
             "context_required": false,
             "state_required": false
           },
@@ -1411,28 +1411,21 @@
             },
             "coreference": null,
             "required_slots": {
-              "vedic_term_usage": [
-                "tính từ",
-                "may mắn",
-                "cát tường",
-                "adjective",
-                "auspicious"
+              "veda_samhita_term": [
+                "Veda Samhita",
+                "kinh Veda",
+                "tính từ mang nghĩa cát tường"
               ],
-              "rudra_association": [
+              "rudra_relation": [
                 "Rudra",
-                "vị thần",
-                "đồng nhất"
-              ],
-              "puranic_literature": [
-                "Puranic",
-                "văn học Puranic",
-                "500 đến 1000 năm"
+                "đồng nhất",
+                "Puranic"
               ]
             },
             "golden_reference_claims": [
-              "Trong kinh Veda Samhita, từ 'shiva' xuất hiện chủ yếu dưới dạng tính từ mang nghĩa 'may mắn' chứ không phải là tên một vị thần độc lập.",
-              "Các tham chiếu đến vị thần sau này được gọi là Thần Shiva trong kinh Veda thực chất là chỉ Rudra.",
-              "Sự đồng nhất giữa Rudra và Thần Shiva chỉ trở nên phổ biến trong văn học Puranic ra đời sau đó từ 500 đến 1000 năm."
+              "Trong Veda Samhita, từ 'shiva' xuất hiện chủ yếu như một tính từ mang nghĩa là 'cát tường' chứ không phải tên của một vị thần độc lập.",
+              "Các tham chiếu đến vị thần sau này là Thần Shiva trong kinh Veda thực chất là chỉ Rudra.",
+              "Sự đồng nhất giữa Rudra và Thần Shiva chỉ thực sự trở nên nổi bật trong văn học Puranic ra đời sau đó."
             ]
           }
         },
@@ -1443,7 +1436,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "Tìm hiểu nguồn gốc của ngày lễ Mahashivaratri (Đêm của Thần Shiva).",
+            "query_intent": "Tìm nguồn gốc và ý nghĩa của ngày lễ Shivaratri (Đêm của Thần Shiva).",
             "context_required": true,
             "state_required": true
           },
@@ -1454,9 +1447,10 @@
               "expected_name": "web_search",
               "required_arg_keywords": [
                 "Mahashivaratri",
-                "marriage",
+                "origin",
                 "Shiva",
-                "Shakti"
+                "Shakti",
+                "marriage"
               ]
             },
             "coreference": {
@@ -1468,20 +1462,21 @@
             },
             "required_slots": {
               "festival_origin": [
-                "hôn nhân",
-                "marriage",
-                "đám cưới"
+                "Mahashivaratri",
+                "Đêm của Thần Shiva",
+                "ngày lễ"
               ],
-              "deities_involved": [
-                "Thần Shiva",
-                "Shakti",
-                "Parvati",
-                "Mahadeva"
+              "legend_marriage": [
+                "hôn nhân",
+                "đám cưới",
+                "Shiva và Shakti",
+                "Thần Shiva và Nữ thần Shakti",
+                "Parvati"
               ]
             },
             "golden_reference_claims": [
-              "Ngày lễ Mahashivaratri gắn liền với truyền thuyết cuộc hôn nhân giữa Thần Shiva và Nữ thần Shakti (Parvati).",
-              "Ngày lễ này kỷ niệm sự hợp nhất thiêng liêng tượng trưng cho sự giao thoa giữa ý thức và năng lượng trong vũ trụ."
+              "Ngày lễ Mahashivaratri gắn liền với truyền thuyết về cuộc hôn nhân giữa Thần Shiva và Nữ thần Shakti (Parvati).",
+              "Đây là ngày kỷ niệm sự hợp nhất thiêng liêng giữa Mahadeva và Parvati, tượng trưng cho sự giao thoa giữa ý thức và năng lượng."
             ]
           }
         },
@@ -1492,7 +1487,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "Tìm hiểu về các loài hoa được nhắc đến trong tác phẩm Thirukkural của văn hóa Ấn Độ.",
+            "query_intent": "Tìm hiểu về loài hoa được nhắc đến trong tác phẩm văn học Ấn Độ Thirukkural.",
             "context_required": false,
             "state_required": true
           },
@@ -1503,7 +1498,7 @@
               "expected_name": "web_search",
               "required_arg_keywords": [
                 "Thirukkural",
-                "flowers",
+                "flower",
                 "Anicham"
               ]
             },
@@ -1511,24 +1506,25 @@
             "required_slots": {
               "flower_name": [
                 "hoa Anicham",
-                "Anicham flower"
+                "Anicham flower",
+                "Anicham"
               ],
               "flower_characteristic": [
                 "cực kỳ nhạy cảm",
                 "héo rũ khi ngửi",
                 "extreme sensitivity",
-                "wither by smelling"
+                "wither simply by smelling"
               ],
               "allegory_meaning": [
-                "phép ẩn dụ",
-                "tổn thương vị khách",
-                "thái độ không đúng mực",
+                "phép ẩn dụ vị khách",
+                "tổn thương vì thái độ",
                 "allegory for how a guest can be hurt"
               ]
             },
             "golden_reference_claims": [
-              "Tác phẩm Thirukkural nhắc đến hoa Anicham như một loài hoa cực kỳ nhạy cảm và có thể héo rũ chỉ bằng hành động ngửi.",
-              "Loài hoa Anicham được dùng làm phép ẩn dụ cho việc một vị khách có thể bị tổn thương bởi thái độ không đúng mực của chủ nhà."
+              "Tác phẩm Thirukkural có nhắc đến loài hoa Anicham.",
+              "Hoa Anicham được miêu tả là cực kỳ nhạy cảm, có thể héo rũ chỉ bằng hành động ngửi.",
+              "Loài hoa này được dùng làm phép ẩn dụ về việc một vị khách có thể bị tổn thương bởi thái độ không đúng mực của chủ nhà."
             ]
           }
         },
@@ -1539,7 +1535,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "Tìm hiểu về mô tả hoặc hình ảnh lễ cưới của Thần Shiva và Nữ thần Lalitha, đặc biệt là hình thái kết hợp của Nữ thần Parvati/Lalitha.",
+            "query_intent": "Tìm hiểu về lễ cưới và mô tả hình dáng của Thần Shiva và Nữ thần Lalitha Maa (Lalithambika).",
             "context_required": false,
             "state_required": true
           },
@@ -1550,27 +1546,26 @@
               "expected_name": "web_search",
               "required_arg_keywords": [
                 "Lalitha Kalyanam",
-                "Siva Shakti",
+                "Lalithambika",
                 "Kameswara"
               ]
             },
             "coreference": null,
             "required_slots": {
-              "philosophical_concept": [
+              "philosophy": [
                 "Siva Shakti aikya roopam",
-                "sự hợp nhất",
+                "sự hợp nhất của cả Shiva và Shakti",
                 "thể thống nhất"
               ],
-              "divine_figures": [
-                "Lalithambika",
+              "companions": [
                 "Kameswara Shiva",
-                "Shiva và Shakti"
+                "Thần Kameswara"
               ]
             },
             "golden_reference_claims": [
-              "Lễ cưới của Thần Shiva và Nữ thần Lalitha gắn liền với triết lý 'Siva Shakti aikya roopam'.",
-              "Nữ thần Lalithambika được xem là sự hợp nhất của cả Shiva và Shakti trong cùng một hình hài.",
-              "Trong các mô tả tâm linh, Thần Kameswara Shiva xuất hiện cùng Lalithambika như hai mặt của một thể thống nhất."
+              "Lễ cưới của Thần Shiva và Nữ thần Lalitha gọi là Lalitha Kalyanam mang triết lý 'Siva Shakti aikya roopam'.",
+              "Nữ thần Lalithambika là sự hợp nhất của cả Shiva và Shakti trong cùng một hình hài.",
+              "Trong các mô tả, khi Lalithambika xuất hiện thì Thần Kameswara Shiva cũng xuất hiện cùng và được xem là hai mặt của một thể thống nhất."
             ]
           }
         },
@@ -1581,7 +1576,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "Tìm hiểu ý nghĩa của 'con rồng đá' trong tác phẩm A Song of Ice and Fire.",
+            "query_intent": "Tìm hiểu ý nghĩa và bản chất của những 'con rồng đá' được nhắc đến trong bộ truyện 'A Song of Ice and Fire'.",
             "context_required": false,
             "state_required": true
           },
@@ -1598,20 +1593,22 @@
             },
             "coreference": null,
             "required_slots": {
-              "prophecy_context": [
-                "lời tiên tri",
+              "prophecy_origin": [
+                "Melisandre",
                 "Azor Ahai",
-                "Melisandre"
+                "đánh thức rồng từ đá",
+                "wake dragons out of stone"
               ],
               "nature_of_dragons": [
-                "chưa rõ ràng",
                 "bí ẩn",
-                "chưa được xác nhận"
+                "chưa được giải đáp",
+                "chưa rõ thực hư",
+                "mysterious and unconfirmed"
               ]
             },
             "golden_reference_claims": [
-              "Danh tính thực sự của những con rồng đá trong A Song of Ice and Fire vẫn còn là một bí ẩn chưa được giải đáp.",
-              "Melisandre là nhân vật liên quan đến lời tiên tri đánh thức những con rồng ra khỏi đá thông qua các nghi lễ hiến tế máu của nhà vua."
+              "Danh tính thực sự của những con rồng đá trong 'A Song of Ice and Fire' vẫn còn là một bí ẩn chưa được xác nhận trong văn bản.",
+              "Thông tin về rồng đá xuất phát từ lời tiên tri của Melisandre rằng Azor Ahai sẽ 'đánh thức những con rồng ra khỏi đá' thông qua nghi lễ hiến tế máu nhà vua."
             ]
           }
         }
@@ -3026,7 +3023,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "Làm rõ nhận định về việc Hillary Clinton có biến Mỹ thành quốc gia xã hội chủ nghĩa hay không.",
+            "query_intent": "Làm rõ nhận định Hillary Clinton biến Mỹ thành quốc gia xã hội chủ nghĩa.",
             "context_required": false,
             "state_required": false
           },
@@ -3036,8 +3033,7 @@
               "should_call": true,
               "expected_name": "web_search",
               "required_arg_keywords": [
-                "socialism",
-                "United States",
+                "socialism in the United States",
                 "Hillary Clinton"
               ]
             },
@@ -3048,17 +3044,16 @@
                 "mixed economy",
                 "xã hội tư bản"
               ],
-              "public_services": [
-                "dịch vụ xã hội chủ nghĩa cơ bản",
+              "socialist_elements": [
+                "dịch vụ xã hội chủ nghĩa",
                 "cảnh sát",
                 "cứu hỏa",
                 "dịch vụ công"
               ]
             },
             "golden_reference_claims": [
-              "Hoa Kỳ vốn đã vận hành như một nền kinh tế hỗn hợp bao gồm cả yếu tố tư bản và các dịch vụ xã hội chủ nghĩa cơ bản.",
-              "Các dịch vụ công như cảnh sát và cứu hỏa được chi trả bằng thuế là minh chứng cho các yếu tố xã hội chủ nghĩa được công nhận rộng rãi tại Mỹ.",
-              "Việc cho rằng một cá nhân có thể đột ngột biến toàn bộ hệ thống thành quốc gia xã hội chủ nghĩa là cái nhìn chưa đầy đủ về cấu trúc nước Mỹ."
+              "Hoa Kỳ vốn đã vận hành như một nền kinh tế hỗn hợp từ lâu.",
+              "Mỹ có một nền tảng các dịch vụ mang tính chất xã hội chủ nghĩa được công chúng chấp nhận như cảnh sát và cứu hỏa."
             ]
           }
         },
@@ -3069,7 +3064,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "So sánh năng lực hoặc đánh giá tiềm năng làm tổng thống giữa Hillary Clinton và Donald Trump",
+            "query_intent": "So sánh năng lực lãnh đạo và đánh giá chuyên môn giữa Hillary Clinton và Donald Trump để xem ai có thể là Tổng thống tốt hơn.",
             "context_required": true,
             "state_required": true
           },
@@ -3093,24 +3088,23 @@
             "required_slots": {
               "trump_ranking": [
                 "xếp hạng thấp",
-                "tệ nhất lịch sử",
-                "lowest ranking"
+                "một trong những tổng thống tệ nhất",
+                "tệ nhất lịch sử Mỹ"
               ],
-              "trump_criticism": [
+              "trump_criticisms": [
                 "thuế quan",
                 "NATO",
                 "Covid-19"
               ],
-              "clinton_evaluation": [
+              "clinton_qualifications": [
                 "am hiểu sâu sắc",
-                "kinh nghiệm đối ngoại",
-                "vận hành chính phủ"
+                "vận hành chính phủ",
+                "kinh nghiệm chính sách đối ngoại"
               ]
             },
             "golden_reference_claims": [
-              "Hiệp hội Khoa học Chính trị xếp hạng Donald Trump ở mức rất thấp trong lịch sử tổng thống Mỹ.",
-              "Donald Trump bị phê phán vì các chính sách thuế quan, thái độ với NATO và cách xử lý đại dịch Covid-19.",
-              "Bà Hillary Clinton được đánh giá cao hơn về sự am hiểu vận hành chính phủ và kinh nghiệm chính sách đối ngoại."
+              "Hiệp hội Khoa học Chính trị xếp hạng Donald Trump ở mức rất thấp trong lịch sử tổng thống Mỹ do chính sách thuế quan, thái độ với NATO và cách xử lý dịch Covid-19.",
+              "Bà Hillary Clinton được đánh giá cao hơn về sự am hiểu vận hành chính phủ Hoa Kỳ và kinh nghiệm đối ngoại."
             ]
           }
         },
@@ -3121,7 +3115,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "Tìm hiểu cách FBI xử lý vụ bê bối máy chủ email cá nhân của Hillary Clinton.",
+            "query_intent": "Tìm hiểu về vụ việc máy chủ email cá nhân của Hillary Clinton và cách FBI xử lý hoặc tình trạng của nó.",
             "context_required": true,
             "state_required": true
           },
@@ -3133,6 +3127,7 @@
               "required_arg_keywords": [
                 "Hillary Clinton",
                 "email server",
+                "investigation",
                 "FBI"
               ]
             },
@@ -3140,24 +3135,25 @@
               "referent_phrase": "vụ máy chủ email của bà Clinton",
               "expected_target": [
                 "Hillary Clinton",
-                "máy chủ email cá nhân"
+                "máy chủ email cá nhân của Hillary Clinton"
               ]
             },
             "required_slots": {
               "server_status": [
-                "ngừng hoạt động từ giữa năm 2015",
+                "ngừng hoạt động",
                 "offline",
-                "đã đóng"
+                "giữa năm 2015"
               ],
               "security_breach": [
-                "5 quốc gia xâm nhập",
-                "tải xuống các email",
-                "lỗ hổng bảo mật"
+                "khoảng 5 quốc gia",
+                "xâm nhập",
+                "tải xuống",
+                "dữ liệu bị rò rỉ"
               ]
             },
             "golden_reference_claims": [
-              "Máy chủ email cá nhân của bà Hillary Clinton đã ngừng hoạt động vào khoảng giữa năm 2015.",
-              "Các báo cáo chỉ ra có khoảng 5 quốc gia đã xâm nhập và tải xuống dữ liệu email từ máy chủ này."
+              "Máy chủ email cá nhân của bà Hillary Clinton có khả năng đã ngừng hoạt động từ khoảng giữa năm 2015.",
+              "Các báo cáo chỉ ra có khoảng 5 quốc gia đã xâm nhập thành công vào máy chủ và có thể đã tải xuống dữ liệu."
             ]
           }
         },
@@ -3168,7 +3164,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "Tìm hiểu lý do tại sao Armenia được coi là một quốc gia bảo thủ.",
+            "query_intent": "Tìm hiểu lý do Armenia được coi là một quốc gia bảo thủ và phân tích đặc điểm xã hội của quốc gia này.",
             "context_required": false,
             "state_required": true
           },
@@ -3179,24 +3175,27 @@
               "expected_name": "web_search",
               "required_arg_keywords": [
                 "Armenia",
-                "conservative"
+                "bảo thủ",
+                "conservative",
+                "society"
               ]
             },
             "coreference": null,
             "required_slots": {
-              "definition_of_conservative": [
-                "định nghĩa về bảo thủ",
-                "xem xét lại định nghĩa"
-              ],
               "diversity_of_society": [
-                "bức tranh khảm",
                 "không phải là một khối đồng nhất",
+                "bức tranh khảm",
                 "nhiều nhóm người"
+              ],
+              "nuanced_perspective": [
+                "quan điểm đa dạng",
+                "truyền thống và lối sống khác nhau",
+                "đơn giản hóa quá mức"
               ]
             },
             "golden_reference_claims": [
-              "Armenia không phải là một khối đồng nhất mà là một bức tranh khảm gồm nhiều nhóm người với các quan điểm và truyền thống đa dạng.",
-              "Việc dán nhãn toàn bộ Armenia là quốc gia bảo thủ là sự đơn giản hóa quá mức và bỏ qua các luồng tư tưởng tiến bộ song song."
+              "Armenia không phải là một khối đồng nhất mà là một bức tranh khảm gồm nhiều người với ý tưởng và lối sống khác nhau.",
+              "Việc dán nhãn toàn bộ Armenia là quốc gia bảo thủ là sự đơn giản hóa quá mức và bỏ qua các tư tưởng tiến bộ song song."
             ]
           }
         },
@@ -3207,7 +3206,7 @@
             "should_call_tool": true,
             "expected_tool": "web_search",
             "expected_category": "knowledge",
-            "query_intent": "Giải thích nguyên nhân tại sao các thuật toán dự đoán kết quả bầu cử tổng thống Mỹ năm 2016 lại sai sót lớn.",
+            "query_intent": "Giải thích nguyên nhân tại sao các thuật toán dự đoán kết quả bầu cử tổng thống Mỹ năm 2016 lại sai sót.",
             "context_required": true,
             "state_required": true
           },
@@ -3218,34 +3217,32 @@
               "expected_name": "web_search",
               "required_arg_keywords": [
                 "2016 election prediction",
-                "algorithms",
-                "bias"
+                "algorithmic bias",
+                "polling failure"
               ]
             },
             "coreference": {
-              "referent_phrase": "cuộc bầu cử năm 2016",
+              "referent_phrase": "năm 2016",
               "expected_target": [
-                "bầu cử tổng thống 2016",
-                "Hillary Clinton",
-                "Donald Trump"
+                "cuộc bầu cử năm 2016",
+                "bầu cử tổng thống 2016"
               ]
             },
             "required_slots": {
-              "human_factor": [
-                "lập trình viên",
-                "nhà khoa học dữ liệu",
-                "con người"
+              "algorithm_limitation": [
+                "thuật toán chỉ tốt bằng người tạo ra",
+                "model depends on creators"
               ],
-              "political_bias": [
-                "thiên kiến",
-                "ý thức hệ chính trị",
-                "niềm tin"
+              "human_bias": [
+                "thiên kiến chính trị",
+                "ý thức hệ",
+                "political bias",
+                "ideology"
               ]
             },
             "golden_reference_claims": [
-              "Thuật toán dự đoán năm 2016 thất bại vì chỉ tốt bằng chính người tạo ra chúng.",
-              "Các lập trình viên mang theo niềm tin và ý thức hệ chính trị riêng tạo ra sai số và điểm mù trong mô hình.",
-              "Các mô hình dự đoán đã tạo ra kịch bản thắng áp đảo không sát với thực tế do ảnh hưởng của thiên kiến."
+              "Thuật toán dự đoán chỉ tốt bằng chính người tạo ra chúng và có thể chịu ảnh hưởng bởi thiên kiến của lập trình viên.",
+              "Ý thức hệ và niềm tin chính trị của người xây dựng mô hình đã tạo ra sai số và điểm mù trong dự đoán bầu cử 2016."
             ]
           }
         }

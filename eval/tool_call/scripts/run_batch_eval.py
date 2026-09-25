@@ -286,7 +286,8 @@ def evaluate_batch_file(
     output_file: Path,
     sample_id: Optional[str] = None,
     from_sample: Optional[str] = None,
-    to_sample: Optional[str] = None
+    to_sample: Optional[str] = None,
+    force: bool = False
 ) -> Dict[str, Any]:
     """Reads a batch JSON file, computes complete metrics, and writes the output JSON."""
     print(f"\n🔍 [ĐÁNH GIÁ BATCH] File: {input_file.name}")
@@ -309,9 +310,7 @@ def evaluate_batch_file(
 
     # Filter by sample_id, from_sample, to_sample
     filtered_items = prepared_items
-    is_subset = False
     if sample_id:
-        is_subset = True
         matched = [
             it for it in prepared_items
             if it["id"] == str(sample_id) or str(it["index"]) == str(sample_id) or str(it["data"].get("conversation_index")) == str(sample_id)
@@ -322,7 +321,6 @@ def evaluate_batch_file(
         filtered_items = matched
         print(f"🎯 Đang đánh giá riêng sample: {filtered_items[0]['id']} (Index {filtered_items[0]['index']})")
     elif from_sample or to_sample:
-        is_subset = True
         start_idx = 0
         end_idx = len(prepared_items)
         if from_sample:
@@ -341,6 +339,9 @@ def evaluate_batch_file(
                     break
         filtered_items = prepared_items[start_idx:end_idx]
         print(f"🎯 Đang đánh giá dải: {len(filtered_items)} sample(s) ({from_sample or 'bắt đầu'} -> {to_sample or 'kết thúc'})")
+
+    # True subset only if strictly fewer items than the batch AND not forced
+    is_subset = (len(filtered_items) < len(prepared_items)) and not force
 
     evaluated_convs = []
     for item in filtered_items:
@@ -477,6 +478,11 @@ def main():
         default=None,
         help="Evaluate up to a specific sample/conversation (e.g. conversation_0005 or 5)"
     )
+    parser.add_argument(
+        "--force", "-f",
+        action="store_true",
+        help="Force full re-evaluation from scratch, ignoring and overwriting any existing evaluation reports."
+    )
 
     args = parser.parse_args()
 
@@ -530,7 +536,8 @@ def main():
             output_file=out_f,
             sample_id=args.sample_id,
             from_sample=args.from_sample,
-            to_sample=args.to_sample
+            to_sample=args.to_sample,
+            force=args.force
         )
         if rep:
             reports.append(rep)

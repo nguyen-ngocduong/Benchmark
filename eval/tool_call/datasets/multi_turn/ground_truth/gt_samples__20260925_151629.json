@@ -1,0 +1,3725 @@
+[
+  {
+    "sample_id": "sample_001",
+    "conversation_id": "conversation_0017",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn dịch thuật Hindi - Sanskrit\", \"snippet\": \"Việc dịch từ tiếng Hindi sang tiếng Phạn đòi hỏi sự hiểu biết về cấu trúc ngữ pháp cổ điển. Có thể sử dụng các từ điển đối chiếu hoặc các công cụ tra cứu từ vựng như Wikipedia tiếng Hindi để tìm các từ tương đương trong tiếng Phạn cho các danh từ và động từ cơ bản.\"}]\n\n[{\"title\": \"Sự tiến hóa của ngôn ngữ Indo-Aryan\", \"snippet\": \"Hindi không được 'phái sinh thuần túy' từ tiếng Phạn. Tiếng Hindi tiêu chuẩn (Standard Hindi) bắt nguồn từ Sauraseni Prakrit, một ngôn ngữ phát triển từ tiếng Phạn nhưng đã phân hóa rất mạnh. Các ngôn ngữ Prakrit là dạng bình dân của tiếng Phạn.\"}]\n\n[{\"title\": \"Từ vựng về niềm vui trong tiếng Phạn\", \"snippet\": \"Các từ tương đương cho hạnh phúc/niềm vui trong tiếng Phạn bao gồm: Modah (मोदः), Pramodah (प्रमोदः), Harshah (हर्षः), Anandah (आनन्दः). Các câu ví dụ: Aham Mudito Asmi, Aham Pramudito Asmi, Aham Anandito Asmi, Aham Harshito Asmi.\"}]\n\n[{\"title\": \"Các đại ngôn (Mahavakyas) trong kinh Veda\", \"snippet\": \" 'Aham Brahma asmi' là một Mahavakya (câu nói vĩ đại) từ Brihadaaranyaka Upanishad thuộc Yajurveda. Nó có nghĩa là 'Tôi là Brahma', dạy về sự hợp nhất giữa linh hồn cá nhân (Atman) và linh hồn vũ trụ (Brahman).\"}]\n\n[{\"title\": \"Câu chuyện tình yêu ngắn\", \"snippet\": \"Một câu chuyện về một sinh viên y khoa yêu đơn phương tiền bối của mình suốt 5 năm nhưng không dám ngỏ lời trực tiếp, cuối cùng chỉ dám gửi thư thông qua bạn thân của cô gái nhưng không được đáp lại.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tôi muốn dịch các câu từ tiếng Hindi sang tiếng Phạn thì nên làm thế nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu phương pháp và cách thức dịch câu từ tiếng Hindi sang tiếng Phạn.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "translate Hindi to Sanskrit",
+                "Hindi Sanskrit translation"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "translation_methods": [
+                "từ điển đối chiếu",
+                "công cụ tra cứu từ vựng",
+                "tài liệu đối chiếu ngôn ngữ"
+              ],
+              "grammar_and_root": [
+                "ngữ pháp cổ điển",
+                "gốc rễ trực tiếp",
+                "cấu trúc ngữ pháp"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc dịch từ tiếng Hindi sang tiếng Phạn đòi hỏi hiểu biết về cấu trúc ngữ pháp cổ điển.",
+              "Có thể sử dụng từ điển đối chiếu hoặc tài liệu ngôn ngữ để tìm từ vựng tương đương.",
+              "Tiếng Phạn là ngôn ngữ gốc của nhiều từ vựng trong tiếng Hindi, giúp việc đối chiếu thuận tiện."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nếu tiếng Hindi được bắt nguồn hoàn toàn từ tiếng Phạn, vậy tại sao không gọi nó là tiếng Phạn luôn mà lại gọi là tiếng Hindi? Việc thừa nhận nó chỉ là một dạng của tiếng Phạn thay vì một ngôn ngữ riêng biệt thì có vấn đề gì sao?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ lý do tại sao tiếng Hindi là một ngôn ngữ độc lập thay vì chỉ là một dạng của tiếng Phạn.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Hindi",
+                "Sanskrit",
+                "derived",
+                "relationship"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "nó",
+              "expected_target": [
+                "tiếng Hindi",
+                "Hindi"
+              ]
+            },
+            "required_slots": {
+              "evolution_source": [
+                "Sauraseni Prakrit",
+                "ngôn ngữ Prakrit",
+                "dạng ngôn ngữ bình dân"
+              ],
+              "linguistic_status": [
+                "ngôn ngữ riêng biệt",
+                "cấu trúc từ vựng và ngữ pháp khác biệt"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tiếng Hindi không được phái sinh thuần túy trực tiếp từ tiếng Phạn mà bắt nguồn từ Sauraseni Prakrit.",
+              "Tiếng Hindi là một ngôn ngữ riêng biệt do có cấu trúc, từ vựng và ngữ pháp khác biệt đáng kể so với tiếng Phạn cổ điển."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Vậy trong tiếng Phạn, câu 'Tôi đang hạnh phúc' sẽ nói như thế nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi cách dịch câu 'Tôi đang hạnh phúc' sang tiếng Phạn.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "I am happy",
+                "Sanskrit",
+                "how to say"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "sanskrit_translation": [
+                "Aham Mudito Asmi",
+                "Aham Pramudito Asmi",
+                "Aham Anandito Asmi",
+                "Aham Harshito Asmi"
+              ],
+              "happiness_words": [
+                "Modah",
+                "Pramodah",
+                "Harshah",
+                "Anandah"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong tiếng Phạn, câu 'Tôi đang hạnh phúc' có thể được diễn đạt bằng các cách như Aham Mudito Asmi, Aham Pramudito Asmi, Aham Anandito Asmi hoặc Aham Harshito Asmi.",
+              "Các từ vựng chỉ niềm vui hoặc hạnh phúc trong tiếng Phạn bao gồm Modah, Pramodah, Harshah và Anandah."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tôi có nghe qua câu nói tiếng Phạn 'अहम् ब्रह्मास्मि' (Aham Brahmasmi), câu này có ý nghĩa là gì vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu ý nghĩa và nguồn gốc của câu nói tiếng Phạn 'Aham Brahmasmi' (अहम् ब्रह्मास्मि).",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Aham Brahmasmi",
+                "meaning",
+                "Mahavakyas"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "origin_text": [
+                "Brihadaaranyaka Upanishad",
+                "Yajurveda",
+                "Mahavakya",
+                "Đại ngôn"
+              ],
+              "core_meaning": [
+                "Tôi là Brahma",
+                "I am Brahma",
+                "hợp nhất giữa linh hồn cá nhân và linh hồn vũ trụ"
+              ]
+            },
+            "golden_reference_claims": [
+              "'Aham Brahma asmi' là một Mahavakya (câu nói vĩ đại) trích từ Brihadaaranyaka Upanishad thuộc Yajurveda.",
+              "Ý nghĩa của câu là 'Tôi là Brahma', thể hiện sự hợp nhất giữa Atman (linh hồn cá nhân) và Brahman (linh hồn vũ trụ)."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Chúng ta đã nói nhiều về ngôn ngữ và triết học, giờ hãy đổi chủ đề một chút. Bạn có thể kể cho tôi một câu chuyện tình yêu ngắn gọn nhưng ấn tượng nhất mà bạn biết, chỉ trong khoảng hai câu không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Yêu cầu kể một câu chuyện tình yêu ngắn gọn, ấn tượng trong khoảng hai câu.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "love stories",
+                "short stories"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "story_theme": [
+                "tình yêu đơn phương",
+                "yêu đơn phương",
+                "unrequited love"
+              ],
+              "story_content": [
+                "sinh viên y khoa",
+                "5 năm",
+                "không được đáp lại"
+              ]
+            },
+            "golden_reference_claims": [
+              "Câu chuyện kể về một sinh viên y khoa yêu đơn phương tiền bối trong suốt 5 năm.",
+              "Bức thư tỏ tình gửi qua bạn thân không nhận được sự hồi đáp, thể hiện tình yêu thuần khiết nhưng buồn bã."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_002",
+    "conversation_id": "conversation_0018",
+    "source": {
+      "text": "[{\"title\": \"Marvel Hierarchy of Power\", \"snippet\": \"The One Above All is the Supreme Being (GOD) of Marvel and master of the nigh omnipotent entity known as the Living Tribunal. Other powerful entities include those with comic manipulation like Deadpool or Squirrel Girl.\"}]\n\n[{\"title\": \"Inko Midoriya Character Profile\", \"snippet\": \"Inko Midoriya's quirk allows her to pull small objects towards her using slight hand movements. While not physically strong and emotionally sensitive, she is fiercely protective of Izuku.\"}]\n\n[{\"title\": \"Molecule Man (Owen Reece) - Marvel Wiki\", \"snippet\": \"Molecule Man is not a matter-manipulator, he is a reality-manipulator. His power is derived from a source greater than anything in the Marvel Universe except the One-Above-All.\"}]\n\n[{\"title\": \"Analysis of MCU Phase 4 Structure\", \"snippet\": \"Phase 4 acts as an introductory phase, similar to Phase 1 & 2, introducing key characters like the Scarlet Witch in WandaVision to set up future conflicts.\"}]\n\n[{\"title\": \"Public Domain and Superheroes\", \"snippet\": \"Marvel does not own the Norse god Thor, only the specific version of Thor that appears in its comics and movies. This is why other companies like DC or independent studios can use Thor.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Trong vũ trụ MCU, ai là nhân vật quyền năng nhất vậy bạn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác định nhân vật quyền năng nhất trong vũ trụ điện ảnh Marvel (MCU).",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nhân vật",
+                "mạnh nhất",
+                "MCU",
+                "Marvel"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "most_powerful_character": [
+                "The One Above All",
+                "Đấng Tối Cao"
+              ],
+              "subordinate_entity": [
+                "Living Tribunal",
+                "Tòa án Sống"
+              ]
+            },
+            "golden_reference_claims": [
+              "The One Above All là nhân vật quyền năng nhất và là Đấng Tối Cao của toàn bộ đa vũ trụ Marvel.",
+              "The One Above All là chủ nhân của Living Tribunal (Tòa án Sống) - thực thể gần như toàn năng."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Đổi chủ đề một chút sang anime nhé, trong My Hero Academia thì nhân vật nào có người mẹ mạnh nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm thông tin về nhân vật có người mẹ mạnh nhất hoặc thông tin về mẹ của nhân vật trong anime My Hero Academia",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "My Hero Academia",
+                "mother",
+                "Inko Midoriya",
+                "quirk"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "mother_character": [
+                "Inko Midoriya",
+                "mẹ của Izuku",
+                "mẹ Deku"
+              ],
+              "quirk_description": [
+                "thu hút các vật thể nhỏ",
+                "pull small objects",
+                "hút vật thể"
+              ]
+            },
+            "golden_reference_claims": [
+              "Inko Midoriya là mẹ của Izuku Midoriya trong anime My Hero Academia.",
+              "Kosei của Inko Midoriya cho phép bà thu hút các vật thể nhỏ về phía mình thông qua các cử động tay nhẹ nhàng.",
+              "Bà không quá mạnh về thể chất nhưng luôn bảo vệ con trai mình hết mực."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Quay lại với Marvel, mình thấy có nhiều nhân vật điều khiển vật chất, vậy tại sao Molecule Man lại được coi là đặc biệt quyền năng đến thế?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ lý do vì sao Molecule Man trong Marvel đặc biệt quyền năng hơn các nhân vật điều khiển vật chất khác.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Molecule Man",
+                "powerful",
+                "reality-manipulator"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Molecule Man",
+              "expected_target": [
+                "Molecule Man",
+                "Owen Reece"
+              ]
+            },
+            "required_slots": {
+              "power_nature": [
+                "điều khiển thực tại",
+                "reality-manipulator",
+                "reality manipulation"
+              ],
+              "power_source": [
+                "nguồn năng lượng vĩ đại",
+                "đứng sau The One-Above-All",
+                "vượt xa mọi thứ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Molecule Man không đơn thuần là điều khiển vật chất mà thực chất là điều khiển thực tại (reality-manipulator).",
+              "Sức mạnh của Molecule Man bắt nguồn từ một nguồn năng lượng vĩ đại, chỉ đứng sau The One-Above-All trong vũ trụ Marvel."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Nhưng mình thấy Giai đoạn 4 (Phase 4) của MCU dạo này có vẻ rời rạc và thiếu định hướng, bạn có nghĩ vậy không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá và giải thích về cấu trúc cũng như định hướng của Giai đoạn 4 (Phase 4) trong MCU.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "MCU",
+                "Phase 4",
+                "structure",
+                "introductory"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Giai đoạn 4 (Phase 4) của MCU",
+              "expected_target": [
+                "MCU",
+                "Phase 4"
+              ]
+            },
+            "required_slots": {
+              "phase_role": [
+                "giai đoạn giới thiệu",
+                "introductory phase",
+                "xây dựng nền móng"
+              ],
+              "purpose": [
+                "giới thiệu nhân vật quan trọng",
+                "thiết lập xung đột tương lai",
+                "tương tự Phase 1 và 2"
+              ]
+            },
+            "golden_reference_claims": [
+              "Phase 4 của MCU đóng vai trò là giai đoạn giới thiệu và xây dựng nền móng tương tự như Phase 1 và Phase 2.",
+              "Phase 4 giới thiệu nhiều nhân vật và thiết lập xung đột cũng như các sự kiện đa vũ trụ cho tương lai thông qua các tác phẩm như WandaVision."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "À, một thắc mắc cuối cùng: Marvel thực sự 'sở hữu' nhân vật Thor sao? Vì mình thấy Thor là thần thoại Bắc Âu mà.",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ việc Marvel có độc quyền sở hữu nhân vật Thor hay không vì đây vốn là thần thoại Bắc Âu.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Marvel",
+                "Thor",
+                "public domain"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "ownership_status": [
+                "không sở hữu nhân vật Thor nói chung",
+                "không độc quyền Thor",
+                "chỉ sở hữu phiên bản cụ thể"
+              ],
+              "public_domain": [
+                "thần thoại Bắc Âu",
+                "public domain",
+                "thuộc về công chúng"
+              ],
+              "other_creators": [
+                "DC Comics cũng có phiên bản Thor",
+                "các hãng khác vẫn có thể dùng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Marvel không sở hữu hoàn toàn nhân vật Thor do đây là vị thần trong thần thoại Bắc Âu thuộc về công chúng (public domain).",
+              "Marvel chỉ sở hữu phiên bản cụ thể của Thor do họ tự sáng tạo ra trong truyện tranh và phim ảnh.",
+              "Các hãng khác như DC Comics hoặc các studio độc lập vẫn có thể sử dụng nhân vật Thor trong tác phẩm của họ."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_003",
+    "conversation_id": "conversation_0019",
+    "source": {
+      "text": "[{\"title\": \"Phân tích mối quan hệ giữa Mike Pence và Đảng Cộng hòa\", \"snippet\": \"Một số thành phần bảo thủ trong Đảng Cộng hòa coi Mike Pence là đối thủ nội bộ. Có những tranh luận gay gắt xoay quanh quan điểm về quyền tự do ngôn luận và quyền sở hữu tài sản của các nền tảng mạng xã hội như Twitter, Facebook, nơi mà ranh giới giữa kiểm duyệt chính phủ và quyền quản lý của chủ sở hữu thường bị nhầm lẫn.\"}]\n\n[{\"title\": \"Văn hóa và sự đối lập giữa Úc và New Zealand\", \"snippet\": \"Hai quốc gia có sự tích hợp văn hóa sâu sắc và lịch sử gắn bó, với nhiều người New Zealand (Kiwis) sinh sống tại Úc. Tuy nhiên, vẫn tồn tại những định kiến cá nhân và quan sát về tính cách, ví dụ như cách nhìn nhận về sự thẳng thắn của người Úc so với một số đặc điểm hành vi bị định kiến ở nam giới và nữ giới New Zealand.\"}]\n\n[{\"title\": \"So sánh chính trị Ấn Độ và Pakistan\", \"snippet\": \"Không thực sự có một đảng tương đương hoàn toàn với Đảng Quốc Đại tại Pakistan. Tại Ấn Độ, gia đình Gandhi có tầm ảnh hưởng cực lớn đến mức một số ý kiến cho rằng tầm ảnh hưởng nội bộ này gây hại cho quốc gia nhiều hơn cả các thế lực bên ngoài như Pakistan hay Trung Quốc.\"}]\n\n[{\"title\": \"Đặc điểm di truyền của Megan Fox\", \"snippet\": \"Megan Fox bị chứng ngón cái ngắn/cong (clubbed thumbs), về mặt kỹ thuật gọi là 'brachydactyly type D'. Đây là một biến thể di truyền không hiếm, xuất hiện ở khoảng 1 trên 200 người Mỹ. Nó không gây ra khiếm khuyết về chức năng, ngón cái vẫn hoạt động bình thường, chỉ ảnh hưởng nhẹ về mặt thẩm mỹ.\"}]\n\n[{\"title\": \"Chuyên khoa Huyết học Nhi khoa\", \"snippet\": \"Bác sĩ huyết học nhi khoa là chuyên gia tập trung chăm sóc trẻ em và thanh thiếu niên. Họ không khám đa khoa mà chuyên sâu vào chẩn đoán và điều trị các bệnh lý về máu, bao gồm ung thư máu, rối loạn đông máu, bệnh về tế bào máu và các rối loạn hệ thống mạch máu.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tại sao Đảng Cộng hòa lại không thích Mike Pence?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do tại sao một bộ phận trong Đảng Cộng hòa không thích Mike Pence.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Mike Pence",
+                "Republican Party",
+                "dislike",
+                "conflict"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "political_faction": [
+                "Đảng Cộng hòa",
+                "GOP",
+                "thành phần bảo thủ",
+                "một bộ phận trong Đảng Cộng hòa"
+              ],
+              "internal_conflict": [
+                "đối thủ nội bộ",
+                "mối quan hệ phức tạp",
+                "sự bất mãn"
+              ],
+              "key_issues": [
+                "quyền tự do ngôn luận",
+                "quyền sở hữu tài sản",
+                "nền tảng mạng xã hội"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một số thành phần bảo thủ trong Đảng Cộng hòa coi Mike Pence là đối thủ nội bộ.",
+              "Sự bất mãn và tranh luận xoay quanh quan điểm về quyền tự do ngôn luận và quyền sở hữu tài sản trên các nền tảng mạng xã hội."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy còn ở khu vực Châu Đại Dương, người Úc và người New Zealand thường không thích điều gì ở nhau?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các định kiến hoặc điều người Úc và người New Zealand thường không thích ở nhau.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Australia",
+                "New Zealand",
+                "stereotypes",
+                "rivalry"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "cultural_ties": [
+                "tích hợp văn hóa",
+                "lịch sử gắn bó",
+                "Kiwis sinh sống tại Úc"
+              ],
+              "australian_trait": [
+                "sự thẳng thắn",
+                "keep it real"
+              ],
+              "new_zealand_stereotypes": [
+                "định kiến cá nhân",
+                "thiếu trung thực",
+                "thô ráp"
+              ]
+            },
+            "golden_reference_claims": [
+              "Úc và New Zealand có mối quan hệ láng giềng gần gũi với sự tích hợp văn hóa sâu sắc và nhiều người New Zealand sinh sống tại Úc.",
+              "Giữa người Úc và người New Zealand tồn tại một số định kiến và quan sát mang tính đặc thù về tính cách, lối sống của nhau."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Chuyển sang chính trị Nam Á, ở Pakistan có đảng nào tương tự như Đảng Quốc Đại (Indian National Congress) của Ấn Độ không? Kiểu như một đảng bị coi là phản bội ấy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem ở Pakistan có đảng phái nào tương tự như Đảng Quốc Đại của Ấn Độ hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Indian National Congress",
+                "Pakistan",
+                "political parties"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "pakistan_party_equivalent": [
+                "không có đảng phái nào ở Pakistan hoàn toàn tương đồng",
+                "không có một đảng tương đương hoàn toàn"
+              ],
+              "india_gandhi_family": [
+                "gia đình Gandhi",
+                "tầm ảnh hưởng của gia đình Gandhi"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thực tế là không có một đảng phái nào ở Pakistan hoàn toàn tương đồng với Đảng Quốc Đại của Ấn Độ.",
+              "Tại Ấn Độ, vai trò và tầm ảnh hưởng nội bộ của gia đình Gandhi là rất lớn và gây nhiều tranh cãi."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Thay đổi chủ đề một chút, tôi nghe nói Megan Fox có một dị tật di truyền, đó là gì vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về đặc điểm di truyền hoặc dị tật của Megan Fox.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Megan Fox",
+                "genetic",
+                "malformation",
+                "clubbed thumbs"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "genetic_trait": [
+                "ngón cái ngắn",
+                "clubbed thumbs",
+                "brachydactyly type D"
+              ],
+              "functionality": [
+                "không gây trở ngại",
+                "hoạt động bình thường",
+                "không gây khiếm khuyết"
+              ]
+            },
+            "golden_reference_claims": [
+              "Megan Fox có một đặc điểm di truyền gọi là ngón cái ngắn hay brachydactyly type D.",
+              "Tình trạng này không gây ảnh hưởng đến chức năng sinh hoạt hàng ngày mà chỉ có ảnh hưởng nhỏ về mặt thẩm mỹ."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Câu hỏi cuối cùng, bạn có thể giải thích giúp tôi bác sĩ huyết học nhi khoa (pediatric hematologist) là làm gì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích định nghĩa và công việc của một bác sĩ huyết học nhi khoa.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "pediatric hematologist",
+                "what does",
+                "do"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "target_audience": [
+                "trẻ em và thanh thiếu niên",
+                "children",
+                "teens"
+              ],
+              "medical_specialty": [
+                "chẩn đoán và điều trị các bệnh lý về máu",
+                "blood disorders",
+                "ung thư máu",
+                "rối loạn đông máu"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bác sĩ huyết học nhi khoa là chuyên gia chăm sóc sức khỏe cho trẻ em và thanh thiếu niên.",
+              "Họ chuyên sâu vào việc chẩn đoán và điều trị các bệnh lý về máu như ung thư máu và rối loạn đông máu."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_004",
+    "conversation_id": "conversation_0020",
+    "source": {
+      "text": "[{\"title\": \"The day Harry Redknapp brought a fan on to play for West Ham\", \"snippet\": \"In 1994, during a friendly match against Oxford, West Ham's assistant coach Harry Redknapp allegedly pulled an abusive fan named Steve Davis from the crowd to play as a substitute in the second half. Remarkably, the fan scored in that match.\"}]\n\n[{\"title\": \"Puma Football Boots Guide\", \"snippet\": \"Puma boots provide stability, traction, speed, and agility. Made primarily of synthetic materials, they are lightweight, easier to slide across the field, and more durable than traditional leather boots.\"}]\n\n[{\"title\": \"Perspectives on Required Reading\", \"snippet\": \"The idea of requiring everyone to read a specific book is controversial because 'one man's trash is another man's treasure'. Preferences in nonfiction vary greatly between individuals.\"}]\n\n[{\"title\": \"ICC COVID-19 Safety Protocols in Cricket\", \"snippet\": \"Due to COVID-19 protocols, bowlers cannot hand over their caps and sunglasses to the umpire to maintain social distancing. They must hand them to their captain instead, as they are in the same bio-bubble.\"}]\n\n[{\"title\": \"Fantasy Football Analysis Week 5\", \"snippet\": \"Arizona's passing game is struggling, making defenses focus on the run, limiting David Johnson's effectiveness (YPC 3.3). However, with rookie Rosen starting, Johnson showed potential in game 4. Brieda had one monster game (49 pts) but inconsistent output otherwise.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Bạn có biết pha thay người nào gây sốc nhất trong lịch sử các trận đấu bóng đá không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm câu chuyện thay người gây sốc hoặc kỳ lạ nhất trong lịch sử bóng đá.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "shocking football substitution",
+                "Harry Redknapp fan substitute"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "substitute_event": [
+                "Harry Redknapp",
+                "West Ham",
+                "Oxford",
+                "1994"
+              ],
+              "substitute_fan": [
+                "Steve Davis",
+                "cổ động viên",
+                "fan"
+              ],
+              "match_outcome": [
+                "ghi bàn",
+                "scored"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vào năm 1994, trong trận giao hữu giữa West Ham và Oxford, trợ lý huấn luyện viên Harry Redknapp đã đưa một cổ động viên tên là Steve Davis từ trên khán đài vào sân thay người.",
+              "Cổ động viên Steve Davis đã ghi bàn trong trận đấu đó."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nhắc đến bóng đá, mình đang định mua giày Puma, loại này có tốt không và mỗi dòng giày thì dùng cho mục đích gì vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá chất lượng giày đá bóng Puma và phân loại mục đích sử dụng của các dòng giày.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Puma",
+                "football boots",
+                "review",
+                "types"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "chất_lượng_giày": [
+                "tốt",
+                "chất lượng cao",
+                "nhiều cầu thủ tin dùng"
+              ],
+              "công_năng_chính": [
+                "ổn định",
+                "độ bám sân",
+                "tăng tốc",
+                "linh hoạt"
+              ],
+              "chất_liệu": [
+                "vật liệu tổng hợp",
+                "nhẹ",
+                "bền hơn giày da"
+              ]
+            },
+            "golden_reference_claims": [
+              "Giày bóng đá Puma là lựa chọn chất lượng tốt, giúp mang lại sự ổn định, độ bám sân, tăng tốc và tính linh hoạt cho người chơi.",
+              "Giày Puma chủ yếu sử dụng vật liệu tổng hợp giúp nhẹ hơn, dễ lướt trên mặt sân và có độ bền cao hơn giày da truyền thống."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Ngoài thể thao ra, bạn có gợi ý cuốn sách phi hư cấu (nonfiction) nào thực sự thú vị hoặc gây sốc đến mức mọi người đều nên đọc không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Người dùng muốn tìm gợi ý về các cuốn sách phi hư cấu (nonfiction) thú vị hoặc gây sốc mà mọi người nên đọc.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "shocking nonfiction books",
+                "impactful nonfiction books"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "reading_perspective": [
+                "gu đọc sách của mỗi người là hoàn toàn khác nhau",
+                "one man's trash is another man's treasure",
+                "vấn đề khá gây tranh cãi"
+              ],
+              "book_categories": [
+                "hồi ký",
+                "sách phân tích tâm lý học hành vi",
+                "sự kiện lịch sử chấn động"
+              ],
+              "clarification_request": [
+                "chia sẻ thêm về chủ đề",
+                "chính trị",
+                "khoa học",
+                "tội phạm thực tế"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc đề xuất một cuốn sách bắt buộc mọi người phải đọc là một vấn đề gây tranh cãi vì sở thích đọc sách của mỗi cá nhân rất khác nhau.",
+              "Người dùng được gợi ý tìm đến các thể loại như hồi ký về sự kiện lịch sử chấn động hoặc sách tâm lý học hành vi nếu thích sách phi hư cấu gây sốc.",
+              "Trợ lý đề nghị người dùng chia sẻ thêm về chủ đề quan tâm như chính trị, khoa học hay tội phạm thực tế để có gợi ý chính xác hơn."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại chuyện thể thao một chút, mình thấy có hình ảnh cầu thủ cricket Eoin Morgan của Anh đội hai chiếc mũ trong một trận đấu, tại sao lại như vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích lý do cầu thủ cricket Eoin Morgan đội hai chiếc mũ trong trận đấu.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Eoin Morgan",
+                "two caps",
+                "COVID-19",
+                "cricket"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "reason": [
+                "COVID-19 protocols",
+                "quy định COVID-19",
+                "giãn cách xã hội",
+                "social distancing"
+              ],
+              "action": [
+                "giữ hộ mũ",
+                "đưa mũ cho đội trưởng",
+                "hand to captain"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc Eoin Morgan đội hai chiếc mũ bắt nguồn từ các quy định phòng chống COVID-19 của ICC nhằm duy trì giãn cách xã hội.",
+              "Các vận động viên ném bóng không được đưa mũ cho trọng tài mà phải giao cho đội trưởng (thuộc cùng bong bóng sinh học) giữ hộ."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình đang chơi Fantasy Football và phân vân không biết nên chọn Running Back nào cho tuần 5 giữa Matt Brieda (gặp Arizona), David Johnson (gặp SF) và Mark Ingram (gặp Washington)?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh và đưa ra lời khuyên lựa chọn Running Back cho tuần 5 trong Fantasy Football giữa Matt Brieda, David Johnson và Mark Ingram.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Fantasy Football",
+                "Week 5",
+                "Running Back",
+                "Brieda",
+                "Johnson",
+                "Ingram"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "david_johnson_analysis": [
+                "David Johnson",
+                "Arizona",
+                "YPC 3.3",
+                "Rosen"
+              ],
+              "matt_brieda_analysis": [
+                "Matt Brieda",
+                "49 pts",
+                "49 điểm",
+                "Garoppolo"
+              ]
+            },
+            "golden_reference_claims": [
+              "David Johnson gặp khó khăn do Arizona chơi chuyền bóng kém khiến đối thủ tập trung phòng ngự đường chạy, với chỉ số YPC là 3.3.",
+              "Matt Brieda từng có một trận đấu bùng nổ với 49 điểm nhưng các trận khác không ổn định."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_005",
+    "conversation_id": "conversation_0021",
+    "source": {
+      "text": "[{\"title\": \"Understanding Dr. Ambedkar's critique of Hinduism\", \"snippet\": \"Nhiều phân tích chỉ ra rằng Tiến sĩ Ambedkar không ghét bản thân tôn giáo Hindu mà thực chất là ghét hệ thống phân chia giai cấp (caste system) khắc nghiệt gắn liền với nó.\"}]\n\n[{\"title\": \"Gaming Console Wars: PS5 vs Xbox Series X\", \"snippet\": \"Một số người dùng không ghét Xbox mà ghét cách Microsoft quản lý các IP (sở hữu trí tuệ). Họ cho rằng Microsoft mua lại nhiều studio lớn nhưng không khai thác hiệu quả các thương hiệu như Conker hay Banjo-Kazooie.\"}]\n\n[{\"title\": \"The Private Life of John F. Kennedy\", \"snippet\": \"Có hai lý do chính cho các cuộc tình ngoài luồng của JFK: một là ông lớn lên trong gia đình nơi sự không chung thủy được bình thường hóa bởi cha ông, Joseph Kennedy; hai là địa vị giàu có, quyền lực và ngoại hình thu hút tạo ra nhiều cơ hội.\"}]\n\n[{\"title\": \"Radar Technology in WWII\", \"snippet\": \"Đức phát triển radar độc lập vào những năm 1930 và ban đầu thậm chí còn tiên tiến hơn Anh (ví dụ hệ thống Seetakt). Tuy nhiên, họ thua kém Anh ở việc xây dựng mạng lưới kiểm soát tiêm kích hỗ trợ.\"}]\n\n[{\"title\": \"Captain Marvel: The Controversy of the Hand Squeeze\", \"snippet\": \"Nhiều khán giả cho rằng hành động của Captain Marvel là không cần thiết và quá mức. Họ lập luận rằng một anh hùng không nên gây nguy hiểm cho dân thường chỉ vì cảm thấy khó chịu nhẹ.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm hiểu về lịch sử Ấn Độ. Bạn cho mình hỏi tại sao Tiến sĩ B.R. Ambedkar lại được cho là ghét đạo Hindu vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do Tiến sĩ B.R. Ambedkar phản đối hoặc được cho là ghét đạo Hindu.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Ambedkar",
+                "Hinduism",
+                "caste system"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "view_on_religion": [
+                "không ghét bản thân tôn giáo Hindu",
+                "không ghét đạo Hindu theo nghĩa tôn giáo thuần túy"
+              ],
+              "core_objection": [
+                "hệ thống phân chia giai cấp",
+                "caste system",
+                "bất công xã hội"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tiến sĩ B.R. Ambedkar không ghét bản thân đạo Hindu theo nghĩa tôn giáo thuần túy.",
+              "Sự phản đối của Tiến sĩ B.R. Ambedkar tập trung vào hệ thống phân chia giai cấp (caste system) bất công và gây phân biệt đối xử."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe có vẻ như là sự xung đột về quan điểm quản lý và hệ thống. Nói đến xung đột, mình thấy cộng đồng game thủ cũng hay cãi nhau, ví dụ như tại sao fan PlayStation thường không thích Xbox?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do tại sao fan PlayStation lại thường không thích hoặc có ác cảm với Xbox.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "PlayStation",
+                "Xbox",
+                "management",
+                "Microsoft"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "conflict_nature": [
+                "không nằm ở bản thân phần cứng",
+                "cách vận hành của nhà sản xuất"
+              ],
+              "management_issue": [
+                "cách Microsoft quản lý các thương hiệu",
+                "mua lại nhiều studio lớn"
+              ],
+              "unexploited_ips": [
+                "Conker",
+                "Banjo-Kazooie",
+                "không được khai thác hết tiềm năng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sự xung đột giữa fan PlayStation và Xbox thường xuất phát từ cách vận hành của nhà sản xuất chứ không phải bản thân phần cứng.",
+              "Nhiều người không hài lòng với cách Microsoft quản lý và khai thác các thương hiệu (IP) mà họ mua lại.",
+              "Các thương hiệu tiềm năng như Conker hay Banjo-Kazooie bị 'đắp chiếu' hoặc phát triển thiếu đột phá, tạo tâm lý thất vọng cho game thủ."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Thú vị thật, đúng là vấn đề quản trị và hình ảnh công chúng. Nhắc đến hình ảnh công chúng, mình thắc mắc về các chính trị gia, như JFK chẳng hạn. Tại sao một người quyền lực như ông ấy lại có nhiều mối quan hệ ngoài luồng?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên nhân khiến Tổng thống JFK có nhiều mối quan hệ ngoài luồng.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "JFK",
+                "affairs",
+                "Joseph Kennedy"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "ông ấy",
+              "expected_target": [
+                "JFK",
+                "John F. Kennedy",
+                "Tổng thống JFK"
+              ]
+            },
+            "required_slots": {
+              "family_influence": [
+                "gia đình",
+                "Joseph Kennedy",
+                "cha ông"
+              ],
+              "opportunity_and_status": [
+                "quyền lực",
+                "giàu có",
+                "ngoại hình",
+                "cơ hội"
+              ]
+            },
+            "golden_reference_claims": [
+              "JFK lớn lên trong gia đình có người cha là Joseph Kennedy bình thường hóa sự không chung thủy.",
+              "Địa vị giàu có, quyền lực và ngoại hình thu hút tạo ra nhiều cơ hội cho các mối quan hệ ngoài luồng của JFK."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại chuyện lịch sử một chút, mình đọc thấy nói về Thế chiến II. Có phải người Đức phát hiện ra radar của Anh nên mới đối phó được không, hay họ tự phát triển?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem Đức tự phát triển radar hay phát hiện radar của Anh trong Thế chiến II.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "German radar development",
+                "WWII",
+                "Seetakt"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "phát hiện ra radar của Anh",
+              "expected_target": [
+                "radar"
+              ]
+            },
+            "required_slots": {
+              "radar_origin": [
+                "tự phát triển độc lập",
+                "phát triển độc lập",
+                "từ những năm 1930"
+              ],
+              "german_radar_tech": [
+                "hệ thống Seetakt",
+                "tiên tiến hơn Anh",
+                "Seetakt"
+              ],
+              "british_advantage": [
+                "mạng lưới điều phối tiêm kích",
+                "mạng lưới kiểm soát tiêm kích",
+                "hỗ trợ hiệu quả"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người Đức tự phát triển radar độc lập từ những năm 1930 chứ không phát hiện ra từ Anh.",
+              "Công nghệ radar Seetakt của Đức ở giai đoạn đầu thậm chí còn tiên tiến hơn Anh.",
+              "Điểm yếu của Đức là thiếu mạng lưới điều phối tiêm kích hỗ trợ hiệu quả như Anh."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình muốn hỏi về văn hóa đại chúng hiện nay. Tại sao nhiều người lại ghét nhân vật Captain Marvel chỉ vì phân cảnh cô ấy bóp tay một người đàn ông, trong khi ông ta rõ ràng là thô lỗ với cô ấy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên nhân khán giả chỉ trích nhân vật Captain Marvel trong phân cảnh bóp tay một người đàn ông.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Captain Marvel",
+                "hand squeeze",
+                "controversy"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "criticism_reason": [
+                "hành động không cần thiết",
+                "quá mức",
+                "không nên gây nguy hiểm cho dân thường"
+              ],
+              "hero_definition": [
+                "góc nhìn về định nghĩa anh hùng",
+                "chỉ vì một chút khó chịu cá nhân"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sự tranh cãi xung quanh phân cảnh Captain Marvel bóp tay người đàn ông xuất phát từ góc nhìn về định nghĩa anh hùng.",
+              "Nhiều khán giả cho rằng hành động này là không cần thiết, quá mức và một anh hùng không nên gây nguy hiểm cho dân thường chỉ vì cảm giác khó chịu cá nhân."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_006",
+    "conversation_id": "conversation_0022",
+    "source": {
+      "text": "[{\"title\": \"Lịch sử về Haj Amin al-Husseini\", \"snippet\": \"Haj Amin al-Husseini, Mufti của Jerusalem, là một nhà lãnh đạo Arab có ảnh hưởng lớn, từng hợp tác với Hitler và thành lập các sư đoàn SS Hồi giáo hỗ trợ Đức Quốc xã trong Thế chiến II, góp phần vào thảm họa Holocaust đối với người Do Thái và Kitô giáo ở Bosnia và Serbia.\"}]\n\n[{\"title\": \"Đánh giá súng HiPoint và Glock\", \"snippet\": \"HiPoint thường bị chê là có thiết kế xấu, trông giống đồ chơi rẻ tiền. Trong khi đó, Glock sử dụng khung polymer giúp giảm trọng lượng nhưng có thể gây ra độ giật không cần thiết cho người bắn không chuyên. Ngoài ra, cò súng Glock dễ bị tùy chỉnh quá mức dẫn đến tình trạng 'hairpin trigger', dễ gây cướp cò và tai nạn.\"}]\n\n[{\"title\": \"Phân tích kỳ thi NEET 2019\", \"snippet\": \"NTA bị chỉ trích vì ra đề thi NEET 2019 quá dễ trong khi tỉ lệ chọi cực cao (1,5 triệu thí sinh cho vài nghìn chỗ), khiến vai trò của năng lực thực sự bị giảm sút và tăng yếu tố may rủi (tukka-logy). Ngoài ra, đề thi còn chứa nhiều câu hỏi mơ hồ không được xử lý thỏa đáng.\"}]\n\n[{\"title\": \"Sức mạnh của Adam Warlock\", \"snippet\": \"Ngay cả khi không có Soul Stone, Adam Warlock vẫn mạnh hơn hầu hết các Avengers, ngoại trừ những nhân vật như Scarlet Witch, Doctor Strange và Thor. Anh được tạo ra như một hình mẫu di truyền hoàn hảo của con người tiến hóa, sở hữu sức mạnh tựa như thần thánh và khả năng hồi sinh từ một cái kén huyền bí sau khi chết.\"}]\n\n[{\"title\": \"Văn hóa ẩn danh trên Quora\", \"snippet\": \"Việc ẩn danh tùy thuộc vào môi trường sống và nghề nghiệp của người dùng. Những người sống ở nơi tự do về xã hội hoặc làm trong các lĩnh vực không khắt khe về hình ảnh truyền thông thường ít có nhu cầu ẩn danh, trừ khi họ chia sẻ nội dung nhạy cảm hoặc gây tranh cãi.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Nếu có cơ hội gửi một thông điệp đến Adam D'Angelo, CEO của Quora, bạn sẽ nói gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đưa ra thông điệp hoặc quan điểm gửi đến CEO Quora Adam D'Angelo liên quan đến vấn đề kiểm duyệt lịch sử.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Adam D'Angelo",
+                "Quora",
+                "Haj Amin al-Husseini"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "target_person": [
+                "Adam D'Angelo",
+                "CEO Quora"
+              ],
+              "historical_figure": [
+                "Haj Amin al-Husseini",
+                "Mufti của Jerusalem"
+              ]
+            },
+            "golden_reference_claims": [
+              "Adam D'Angelo là CEO của Quora, nền tảng đang đối mặt với các ý kiến bức xúc về vấn đề kiểm duyệt thông tin lịch sử.",
+              "Haj Amin al-Husseini từng là Mufti của Jerusalem, hợp tác với Hitler và thành lập các sư đoàn SS Hồi giáo hỗ trợ Đức Quốc xã trong Thế chiến II."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Chuyển sang chủ đề vũ khí một chút, tại sao các dòng súng như Glock và HiPoint trông có vẻ thô sơ, giống như loại súng dành cho những người chỉ muốn khoe là mình sở hữu súng vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích lý do tại sao các dòng súng như Glock và HiPoint có thiết kế thô sơ, giống đồ chơi.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "HiPoint",
+                "Glock",
+                "design",
+                "pros and cons"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "hipoint_design": [
+                "HiPoint xấu",
+                "đồ chơi rẻ tiền",
+                "món đồ chơi từ cửa hàng giá rẻ"
+              ],
+              "glock_material_recoil": [
+                "khung polymer",
+                "vật liệu nhựa",
+                "tăng độ giật"
+              ],
+              "glock_trigger": [
+                "cò súng dễ bị điều chỉnh",
+                "hairpin trigger",
+                "nổ súng ngoài ý muốn"
+              ]
+            },
+            "golden_reference_claims": [
+              "HiPoint thường bị coi là có thiết kế xấu, trông giống như một món đồ chơi từ cửa hàng giá rẻ.",
+              "Glock sử dụng vật liệu nhựa (polymer) giúp giảm trọng lượng nhưng làm tăng độ giật và gây khó khăn cho người bắn.",
+              "Cò súng Glock rất dễ bị điều chỉnh thành dạng quá nhạy (hairpin trigger), dẫn đến nguy cơ nổ súng ngoài ý muốn."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tôi muốn hỏi về giáo dục, bạn đánh giá thế nào về NTA sau kết quả kỳ thi NEET 2019?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá về Cơ quan Kiểm tra Quốc gia (NTA) sau kết quả kỳ thi NEET 2019.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "NTA",
+                "NEET 2019",
+                "controversy"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "nta_criticism": [
+                "NTA bị chỉ trích",
+                "vấp phải nhiều chỉ trích"
+              ],
+              "exam_difficulty": [
+                "đề quá dễ",
+                "đề thi quá dễ"
+              ],
+              "competition_and_luck": [
+                "1,5 triệu thí sinh",
+                "tăng yếu tố may rủi",
+                "tukka-logy"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cơ quan Kiểm tra Quốc gia (NTA) vấp phải nhiều chỉ trích nặng nề sau kỳ thi NEET 2019 vì đề thi quá dễ trong khi tỉ lệ chọi cực cao.",
+              "Đề thi dễ làm giảm giá trị năng lực thực sự và làm tăng yếu tố may rủi thông qua phương pháp đánh lụi (tukka-logy).",
+              "Đề thi NEET 2019 chứa nhiều câu hỏi mơ hồ, gây tranh cãi và không được NTA giải quyết triệt để."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại với thế giới giả tưởng, nhân vật Adam Warlock mạnh đến mức nào nếu không có Viên đá Linh hồn (Soul Stone)?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về mức độ mạnh mẽ của nhân vật Adam Warlock khi không có Viên đá Linh hồn.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Adam Warlock",
+                "Soul Stone",
+                "powers"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "strength_level": [
+                "mạnh hơn hầu hết các Avengers",
+                "vượt xa hầu hết các thành viên Avengers",
+                "sức mạnh tựa như thần thánh"
+              ],
+              "exceptions": [
+                "Scarlet Witch",
+                "Doctor Strange",
+                "Thor"
+              ],
+              "abilities": [
+                "hồi sinh từ một cái kén",
+                "tái sinh",
+                "bản mẫu di truyền hoàn hảo"
+              ]
+            },
+            "golden_reference_claims": [
+              "Adam Warlock vẫn là một thực thể cực kỳ quyền năng và mạnh hơn hầu hết các thành viên Avengers ngay cả khi không có Viên đá Linh hồn.",
+              "Sức mạnh của Adam Warlock chỉ đứng sau một số nhân vật như Scarlet Witch, Doctor Strange hay Thor.",
+              "Adam Warlock sở hữu khả năng tái sinh thông qua một chiếc kén huyền bí khi bị thương nặng hoặc tử vong."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, bạn có biết những người dùng nổi tiếng trên Quora có thường xuyên ẩn danh khi trả lời không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem những người dùng nổi tiếng trên Quora có thường xuyên ẩn danh khi trả lời câu hỏi hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Quora",
+                "anonymous",
+                "popular users"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "anonymity_usage": [
+                "ẩn danh",
+                "chọn ẩn danh hay không",
+                "có ẩn danh"
+              ],
+              "influencing_factors": [
+                "hoàn cảnh cá nhân",
+                "nghề nghiệp",
+                "môi trường xã hội",
+                "lĩnh vực"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc những người dùng nổi tiếng trên Quora có chọn ẩn danh hay không phụ thuộc vào hoàn cảnh cá nhân và nghề nghiệp của họ.",
+              "Nhiều người dùng sống trong môi trường xã hội cởi mở hoặc làm trong lĩnh vực không khắt khe vẫn chọn không ẩn danh trừ khi chia sẻ nội dung nhạy cảm."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_007",
+    "conversation_id": "conversation_0023",
+    "source": {
+      "text": "[{\"title\": \"Forged telegrams attributed to Talat Pasha\", \"snippet\": \"Có những tranh luận cho rằng các tài liệu và bức điện mật của Talaat Pasha ra lệnh thảm sát là giả mạo. Một số quan điểm cho rằng các hành động của Thổ Nhĩ Kỳ lúc đó là tự vệ khi người Armenia bí mật tuyên chiến và phản bội Đế quốc Ottoman.\"}]\n\n[{\"title\": \"The Debate over Confederate Monuments\", \"snippet\": \"Nhiều ý kiến cho rằng các đài tưởng niệm này không được thiết kế để cảnh báo về sự chia rẽ, mà để tôn vinh những người gây chia rẽ và dùng ký ức đó để áp bức người khác. Nếu là lời cảnh báo, chúng nên bao gồm cả những đài tưởng niệm về nạn nhân hoặc những kẻ phản quốc.\"}]\n\n[{\"title\": \"Robert A. Heinlein's YA Works\", \"snippet\": \"Hai tác phẩm tiêu biểu là 'The Rolling Stones' và 'Have Space Suit Will Travel'. Trong đó, 'Have Space Suit Will Travel' (1958) kể về Kip Russell, một cậu bé khao khát lên Mặt Trăng và đã tham gia một cuộc thi sáng tác câu khẩu hiệu quảng cáo cho xà phòng Skyway Soap để giành giải thưởng là một chuyến du hành vũ trụ.\"}]\n\n[{\"title\": \"Making Money in College\", \"snippet\": \"Một cách đơn giản để bắt đầu kinh doanh quy mô nhỏ cho sinh viên là xác định khách hàng tiềm năng xung quanh mình. Ví dụ, việc bán các loại bánh kẹo và đồ ăn nhẹ ngay trong lớp học là một cách tiếp cận dễ dàng và hiệu quả.\"}]\n\n[{\"title\": \"Guide to Intraday Trading\", \"snippet\": \"Giao dịch trong ngày là mua và bán chứng khoán trong cùng một ngày để kiếm lời từ những biến động nhỏ. Quy tắc vàng là 'đi theo xu hướng' (ride with the trend). Cần sử dụng biểu đồ trong ngày để xác định cổ phiếu và phải nghiên cứu kỹ lưỡng trước khi vào lệnh vì rủi ro rất cao.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Bạn có thể cho tôi biết tại sao Talaat Pasha lại ra lệnh thực hiện cuộc diệt chủng người Armenia không? Và vai trò của nhóm Young Turks trong sự kiện này là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên nhân Talaat Pasha ra lệnh diệt chủng người Armenia và vai trò của nhóm Young Turks.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Talaat Pasha",
+                "Armenian genocide",
+                "Young Turks"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "controversial_documents": [
+                "tài liệu giả mạo",
+                "bức điện mật",
+                "tranh luận lịch sử"
+              ],
+              "self_defense_claim": [
+                "biện pháp tự vệ",
+                "phản bội Đế quốc Ottoman",
+                "tuyên chiến"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc Talaat Pasha ra lệnh thảm sát người Armenia là một chủ đề lịch sử gây tranh cãi gay gắt.",
+              "Có quan điểm cho rằng các tài liệu và bức điện mật ra lệnh thảm sát là giả mạo.",
+              "Hành động của phía Thổ Nhĩ Kỳ được lý giải theo góc nhìn tự vệ trước việc người Armenia phản bội Đế quốc Ottoman."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Chuyển sang một chủ đề lịch sử khác, bạn nghĩ sao về việc giữ lại các bức tượng và đài tưởng niệm Liên minh miền Nam (Confederate) để nhắc nhở thế hệ trẻ về quá khứ đen tối và sự nguy hiểm của chia rẽ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi quan điểm về việc giữ lại các bức tượng và đài tưởng niệm Liên minh miền Nam (Confederate) để làm lời nhắc nhở lịch sử.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Confederate monuments",
+                "controversy",
+                "purpose"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "monument_purpose": [
+                "tôn vinh những người gây chia rẽ",
+                "duy trì sự áp bức",
+                "không được xây dựng để cảnh báo"
+              ],
+              "alternative_perspective": [
+                "nếu là cảnh báo nên tưởng niệm nạn nhân",
+                "không tôn vinh kẻ cầm đầu",
+                "lý lẽ thiếu thuyết phục"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc giữ lại các bức tượng Liên minh miền Nam để làm lời nhắc nhở thường bị coi là lập luận thiếu thuyết phục.",
+              "Các đài tưởng niệm này được cho là nhằm tôn vinh nhân vật gây chia rẽ và duy trì áp bức thay vì cảnh báo về quá khứ.",
+              "Nếu mục đích thực sự là cảnh báo, các đài tưởng niệm nên tập trung vào nạn nhân thay vì tôn vinh kẻ cầm đầu."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tôi muốn đổi chủ đề sang văn học một chút. Trong số các tiểu thuyết dành cho thanh thiếu niên (Young Adult) của Robert A. Heinlein, cuốn nào là hay nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm và giới thiệu tiểu thuyết thanh thiếu niên hay nhất của tác giả Robert A. Heinlein.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Robert A. Heinlein",
+                "Young Adult novel"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "novel_title": [
+                "Have Space Suit Will Travel",
+                "Have Space Suit, Will Travel",
+                "Have Space Suit Will Travel (1958)"
+              ],
+              "protagonist_and_plot": [
+                "Kip Russell",
+                "Mặt Trăng",
+                "xà phòng Skyway Soap"
+              ]
+            },
+            "golden_reference_claims": [
+              "'Have Space Suit Will Travel' (1958) là tiểu thuyết thanh thiếu niên tiêu biểu của Robert A. Heinlein.",
+              "Câu chuyện xoay quanh nhân vật Kip Russell và hành trình tham gia cuộc thi quảng cáo xà phòng Skyway Soap để thực hiện ước mơ du hành vũ trụ."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Nói về thanh thiếu niên, tôi hiện còn trẻ và muốn bắt đầu kiếm tiền sớm thì nên làm thế nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm các ý tưởng và cách thức để người trẻ, học sinh hoặc sinh viên có thể bắt đầu kiếm tiền sớm.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "make money",
+                "young age",
+                "student business ideas"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "thanh thiếu niên",
+              "expected_target": [
+                "thanh thiếu niên",
+                "young adult",
+                "người trẻ"
+              ]
+            },
+            "required_slots": {
+              "target_audience": [
+                "khách hàng tiềm năng",
+                "bạn bè xung quanh",
+                "trong môi trường học đường"
+              ],
+              "business_idea": [
+                "bán các loại bánh kẹo",
+                "đồ ăn nhẹ",
+                "kinh doanh quy mô nhỏ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Để bắt đầu kiếm tiền khi còn trẻ, bước đầu tiên là xác định rõ khách hàng tiềm năng trong môi trường học đường.",
+              "Một gợi ý kinh doanh quy mô nhỏ là bán bánh kẹo hoặc đồ ăn nhẹ ngay trong lớp học để tận dụng nhu cầu của bạn bè."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Nếu tôi muốn đầu tư chuyên sâu hơn như giao dịch trong ngày (intraday trading) thì cần tuân thủ những quy tắc nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các quy tắc cần tuân thủ khi thực hiện giao dịch trong ngày (intraday trading).",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "intraday trading",
+                "rules",
+                "day trading"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition": [
+                "mua và bán chứng khoán trong cùng một ngày",
+                "mua và bán tài sản ngay trong cùng một ngày",
+                "intraday trading"
+              ],
+              "golden_rule": [
+                "đi theo xu hướng",
+                "ride with the trend"
+              ],
+              "risk_management": [
+                "rủi ro rất cao",
+                "nghiên cứu kỹ lưỡng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Giao dịch trong ngày (Intraday Trading) là việc mua và bán tài sản ngay trong cùng một ngày để thu lợi nhuận từ biến động giá nhỏ.",
+              "Quy tắc vàng trong giao dịch trong ngày là luôn đi theo xu hướng (ride with the trend).",
+              "Giao dịch trong ngày mang lại rủi ro rất cao và đòi hỏi phải nghiên cứu kỹ lưỡng trước khi vào lệnh."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_008",
+    "conversation_id": "conversation_0024",
+    "source": {
+      "text": "[{\"title\": \"Tầm nhìn về xã hội tương lai\", \"snippet\": \"Trong tương lai xa, trẻ em sẽ được chăm sóc toàn diện bởi những người bảo trợ. Giáo dục sẽ không còn gò bó mà tập trung vào việc phát triển mong muốn cá nhân, khuyến khích đổi mới, sự thấu cảm và lòng kiên nhẫn. Sự hợp tác nhóm, tự tin và động lực tự thân sẽ trở thành giá trị cốt lõi.\"}]\n\n[{\"title\": \"Những câu đố của tiến hóa: Tại sao chúng ta không giống tinh tinh hơn?\", \"snippet\": \"Con người là loài linh trưởng đứng thẳng, mất lông và chinh phục toàn cầu. Dù chia sẻ nhiều DNA với tinh tinh hơn là với chuột, nhưng sự khác biệt về hình thái và hành vi vẫn là một bí ẩn mà genomics đang dần giải mã.\"}]\n\n[{\"title\": \"Muỗi: Loài vật chết chóc nhất thế giới\", \"snippet\": \"Bill Gates gọi muỗi là loài vật chết chóc nhất vì truyền bệnh sốt rét (giết khoảng 429.000 người năm 2015). Tuy nhiên, các chuyên gia vẫn chưa chắc chắn điều gì sẽ xảy ra nếu toàn bộ loài muỗi bị tuyệt chủng.\"}]\n\n[{\"title\": \"Phân tích về Đảng Cộng hòa hiện đại\", \"snippet\": \"Đảng Cộng hòa hiện nay bị xem là một thương hiệu thiếu sản phẩm cốt lõi, phụ thuộc vào các nhân vật truyền hình để truyền tải thông điệp và tập trung vào việc duy trì quyền lực. Nền tảng của đảng dường như xoay quanh quan điểm của Donald Trump thay vì tầm nhìn của Reagan.\"}]\n\n[{\"title\": \"Điểm kỳ dị công nghệ và tương lai nhân loại\", \"snippet\": \"Điểm kỳ dị (singularity) có thể khiến phần lớn nhân loại trở nên dư thừa, dẫn đến một xã hội dystopia. Sự phân hóa giàu nghèo sâu sắc khiến nhóm thiểu số giàu có kiểm soát mọi nguồn lực và tiêu chuẩn sống của số đông.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Bạn nghĩ con người sẽ trông như thế nào và sống ra sao trong 1000 năm tới?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu dự đoán về ngoại hình và đời sống của con người trong 1000 năm tới.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "human evolution",
+                "future of human society"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "education_and_care": [
+                "giáo dục được cá nhân hóa",
+                "trẻ em được chăm sóc toàn diện",
+                "người bảo trợ"
+              ],
+              "core_values": [
+                "sự đổi mới",
+                "thấu cảm",
+                "hợp tác nhóm",
+                "động lực tự thân"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong 1000 năm tới, trẻ em sẽ được chăm sóc toàn diện bởi những người bảo trợ và giáo dục tập trung vào phát triển mong muốn cá nhân.",
+              "Giáo dục tương lai khuyến khích đổi mới, sự thấu cảm, lòng kiên nhẫn, sự hợp tác nhóm và động lực tự thân làm giá trị cốt lõi."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe có vẻ lý tưởng nhỉ. Nhưng nhìn lại hiện tại, điều gì ở con người khiến bạn cảm thấy khó hiểu hoặc bí ẩn nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu điều gì ở con người khiến AI cảm thấy khó hiểu hoặc bí ẩn nhất hiện nay.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "human evolution",
+                "chimpanzee DNA"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "evolution_mystery": [
+                "quá trình tiến hóa",
+                "tiến hóa của chúng ta"
+              ],
+              "chimpanzee_dna": [
+                "chia sẻ DNA với tinh tinh",
+                "DNA với tinh tinh"
+              ]
+            },
+            "golden_reference_claims": [
+              "Quá trình tiến hóa của con người từ loài linh trưởng đứng thẳng, mất lông và chinh phục toàn cầu là một trong những điều bí ẩn nhất.",
+              "Con người chia sẻ lượng DNA với tinh tinh nhiều hơn so với các loài gặm nhấm nhưng sự khác biệt về hình thái và trí tuệ lại rất lớn."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nói về sự sinh tồn, nếu con người quyết định tiêu diệt hoàn toàn loài muỗi để bảo vệ sức khỏe, liệu điều đó có gây ra hậu quả gì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về hậu quả sinh thái nếu tiêu diệt hoàn toàn loài muỗi.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "impact",
+                "mosquito extinction",
+                "tuyệt chủng",
+                "muỗi"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "deadliest_animal": [
+                "loài vật chết chóc nhất",
+                "deadliest animal",
+                "giết nhiều người nhất"
+              ],
+              "extinction_consequences": [
+                "chưa chắc chắn",
+                "không thực sự biết",
+                "phản ứng dây chuyền",
+                "chuỗi thức ăn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Muỗi được Bill Gates gọi là loài vật chết chóc nhất thế giới do truyền bệnh sốt rét.",
+              "Các chuyên gia khoa học chưa chắc chắn điều gì sẽ xảy ra nếu toàn bộ loài muỗi bị tuyệt chủng.",
+              "Việc xóa sổ loài muỗi có thể gây ra những phản ứng dây chuyền không lường trước được trong hệ sinh thái."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tôi thấy con người thường có những mâu thuẫn lớn về chính trị và quyền lực. Bạn đánh giá thế nào về tình trạng của Đảng Cộng hòa (GOP) ở Mỹ hiện nay?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá tình trạng và định hướng hiện tại của Đảng Cộng hòa (GOP) tại Mỹ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Republican Party",
+                "GOP",
+                "Donald Trump"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "ideology_status": [
+                "thương hiệu thiếu sản phẩm cốt lõi",
+                "thương hiệu không có sản phẩm",
+                "thiếu mục tiêu bao quát"
+              ],
+              "trump_influence": [
+                "phụ thuộc vào Donald Trump",
+                "tầm nhìn của Donald Trump",
+                "bất cứ điều gì Donald Trump cho là tốt nhất"
+              ]
+            },
+            "golden_reference_claims": [
+              "Đảng Cộng hòa hiện nay bị xem là thiếu hệ tư tưởng hoặc mục tiêu rõ ràng ngoài việc duy trì quyền lực.",
+              "Nền tảng chính trị và định hướng của đảng hiện nay phụ thuộc mạnh mẽ vào Donald Trump và các nhân vật truyền thông."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Quay lại câu chuyện tương lai, nhưng ngắn hạn hơn, bạn hình dung cuộc sống trong 100 năm tới sẽ ra sao? Liệu có lạc quan như viễn cảnh 1000 năm bạn nói lúc đầu không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu dự đoán về cuộc sống trong 100 năm tới và đánh giá tính lạc quan so với viễn cảnh 1000 năm.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "life in 100 years",
+                "singularity",
+                "dystopia"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "viễn cảnh 1000 năm bạn nói lúc đầu",
+              "expected_target": [
+                "1000 năm tới",
+                "viễn cảnh 1000 năm"
+              ]
+            },
+            "required_slots": {
+              "technological_singularity": [
+                "điểm kỳ dị công nghệ",
+                "singularity"
+              ],
+              "social_impact": [
+                "dystopia",
+                "phản địa đàng",
+                "nhân loại trở nên dư thừa"
+              ],
+              "power_concentration": [
+                "tập trung quyền lực",
+                "người giàu nhất thế giới",
+                "kiểm soát nguồn lực"
+              ]
+            },
+            "golden_reference_claims": [
+              "Viễn cảnh 100 năm tới có rủi ro lớn về điểm kỳ dị công nghệ khiến phần lớn nhân loại trở nên dư thừa và dẫn đến xã hội phản địa đàng.",
+              "Những người giàu nhất thế giới đang tập trung quyền lực và kiểm soát hầu hết các nguồn lực, quyết định tiêu chuẩn sống của số đông."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_009",
+    "conversation_id": "conversation_0025",
+    "source": {
+      "text": "[{\"title\": \"Kinh nghiệm đạt hạng 7 toàn Ấn Độ kỳ thi GATE CS\", \"snippet\": \"Chiến lược ôn tập bao gồm: phân tích chi tiết từng môn học, áp dụng kỹ thuật học tập và ôn tập hệ thống, giải đề thi các năm trước, luyện tập với các bộ đề thi thử (Test Series) và kết hợp sử dụng sách giáo khoa chuẩn để nắm vững lý thuyết.\"}]\n\n[{\"title\": \"Tổng quan về kỳ thi GATE và định hướng nghề nghiệp\", \"snippet\": \"GATE kiểm tra sự hiểu biết toàn diện về các môn học đại học ngành Kỹ thuật/Công nghệ/Kiến trúc. Nhiều sinh viên đăng ký nhưng thất bại do không nắm vững kiến thức nền tảng hoặc thiếu chiến lược tiếp cận đúng đắn cho các mục tiêu như học M.Tech hoặc làm việc tại các PSU (BHEL, GAIL, IOCL...).\"}]\n\n[{\"title\": \"Phương pháp cải thiện độ sâu và chất lượng đất\", \"snippet\": \"Có 3 phương pháp chính để tăng độ sâu của đất: 1. Bổ sung đất tầng mặt (Topsoil) chất lượng cao; 2. Ủ phân compost định kỳ để tăng chất hữu cơ và cải thiện cấu trúc đất theo thời gian; 3. Sử dụng phương pháp phủ mulch.\"}]\n\n[{\"title\": \"Dịch vụ chuyển tiền quốc tế từ Nhật Bản\", \"snippet\": \"Do cộng đồng người Ấn tại Nhật khá nhỏ (dưới 1% dân số nước ngoài), nhu cầu chuyển tiền về Ấn Độ không cao nên ít ngân hàng/công ty cung cấp dịch vụ này. Một trong những lựa chọn phổ biến và hiệu quả hiện nay là Wise (trước đây là TransferWise).\"}]\n\n[{\"title\": \"Sai lầm khi tiếp cận nhà đầu tư tại nơi công cộng\", \"snippet\": \"Việc tiếp cận đột ngột một VC khi họ đang trong cuộc họp hoặc thời gian riêng tư (như tại nhà hàng/cafe) và yêu cầu một cuộc hẹn ngay lập tức thường gây phản cảm. Các nhà đầu tư thường ưu tiên nhận thông tin qua website hoặc kênh chính thức thay vì bị 'theo dõi' và tiếp cận bất ngờ.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang muốn ôn thi GATE CSE (Khoa học Máy tính) nhưng không biết bắt đầu từ đâu. Bạn có thể chia sẻ cách chuẩn bị tốt nhất cho kỳ thi này không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu chiến lược và phương pháp chuẩn bị ôn thi hiệu quả cho kỳ thi GATE CSE.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "ôn thi GATE CSE",
+                "GATE CSE preparation strategy"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "study_strategy": [
+                "phân tích môn học",
+                "chương trình",
+                "trọng tâm kiến thức"
+              ],
+              "practice_methods": [
+                "giải đề thi",
+                "đề thi các năm trước",
+                "Test Series",
+                "bộ đề thi thử"
+              ],
+              "learning_resources": [
+                "sách giáo khoa chuẩn",
+                "standard textbooks",
+                "lý thuyết"
+              ]
+            },
+            "golden_reference_claims": [
+              "Chiến lược ôn tập kỳ thi GATE CSE bao gồm việc phân tích chi tiết từng môn học và chương trình.",
+              "Cần áp dụng kỹ thuật học tập và ôn tập hệ thống kết hợp với giải đề thi các năm trước và luyện tập qua các bộ Test Series.",
+              "Nên sử dụng sách giáo khoa chuẩn để nắm vững lý thuyết và lấp đầy lỗ hổng kiến thức."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe có vẻ áp lực quá. Vậy theo bạn, những sai lầm phổ biến mà sinh viên thường mắc phải khi ôn thi GATE là gì để mình có thể tránh?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu những sai lầm phổ biến khi ôn thi GATE để tránh.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "common mistakes in GATE preparation",
+                "sai lầm khi ôn thi GATE"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "mistake_foundation": [
+                "không nắm vững kiến thức nền tảng",
+                "học vẹt",
+                "chỉ học mẹo",
+                "bỏ qua việc xây dựng nền tảng kiến thức"
+              ],
+              "mistake_strategy": [
+                "thiếu chiến lược tiếp cận đúng đắn",
+                "thiếu định hướng rõ ràng",
+                "phân bổ thời gian không hợp lý"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nhiều thí sinh mắc sai lầm là quá tập trung vào giải đề mà bỏ qua xây dựng nền tảng kiến thức toàn diện, dẫn đến dễ mất điểm ở câu hỏi vận dụng cao.",
+              "Nhiều bạn thiếu định hướng rõ ràng về mục tiêu sau kỳ thi như học Thạc sĩ M.Tech hoặc thi vào PSU, dẫn đến thiếu động lực hoặc phân bổ thời gian không hợp lý."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Cảm ơn bạn. Tiện đây mình đang cải tạo lại khu vườn, bạn có biết cách nào hiệu quả nhất để tăng độ sâu của đất không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu các phương pháp hiệu quả để tăng độ sâu của đất khi cải tạo vườn.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "tăng độ sâu của đất",
+                "cách tăng độ sâu đất",
+                "soil depth"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "topsoil_addition": [
+                "bổ sung đất tầng mặt",
+                "đất tầng mặt",
+                "topsoil"
+              ],
+              "compost_composting": [
+                "ủy phân compost",
+                "phân compost",
+                "chất hữu cơ"
+              ],
+              "mulching": [
+                "phủ mulch",
+                "mulching",
+                "vật liệu hữu cơ phủ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bổ sung đất tầng mặt (Topsoil) chất lượng cao là phương pháp nhanh nhất để đắp lên bề mặt và tăng độ sâu của đất.",
+              "Ủ phân compost định kỳ giúp tăng lớp đất hữu cơ, cải thiện độ phì nhiêu và cấu trúc đất về lâu dài.",
+              "Sử dụng phương pháp phủ mulch (mulching) với vật liệu hữu cơ giúp giữ ẩm và phân hủy tạo thành lớp đất mới."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Hay quá, mình sẽ thử. À, mình có một người bạn đang sống ở Nhật và muốn gửi tiền về Ấn Độ, bạn có biết cách nào tối ưu nhất không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách tối ưu nhất để chuyển tiền từ Nhật Bản về Ấn Độ cho bạn của người dùng.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "remit money from Japan to India",
+                "chuyển tiền từ Nhật về Ấn Độ"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "transfer_service": [
+                "Wise",
+                "TransferWise",
+                "dịch vụ chuyển tiền trực tuyến"
+              ],
+              "market_context": [
+                "cộng đồng người Ấn tại Nhật",
+                "ít ngân hàng cung cấp",
+                "không có nhiều ngân hàng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cộng đồng người Ấn tại Nhật nhỏ nên ít ngân hàng cung cấp dịch vụ chuyển tiền về Ấn Độ.",
+              "Wise (trước đây là TransferWise) là một trong những lựa chọn tối ưu và phổ biến hiện nay để chuyển tiền từ Nhật về Ấn Độ."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Câu hỏi cuối cùng nhé, nếu mình tình cờ gặp một nhà đầu tư mạo hiểm (VC) ở quán cafe, mình nên giới thiệu bản thân thế nào để gây ấn tượng mà không bị coi là khiếm nhã?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi cách giới thiệu bản thân với nhà đầu tư mạo hiểm (VC) tại nơi công cộng một cách lịch sự và hiệu quả.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "introduce",
+                "VC",
+                "venture capitalist",
+                "public",
+                "networking"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "etiquette_warning": [
+                "tránh tiếp cận đột ngột",
+                "không ngắt lời",
+                "tôn trọng quyền riêng tư",
+                "tránh yêu cầu hẹn gặp ngay"
+              ],
+              "approach_method": [
+                "quan sát ngữ cảnh",
+                "giới thiệu ngắn gọn",
+                "elevator pitch",
+                "xin thông tin liên hệ",
+                "gửi email hoặc LinkedIn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tiếp cận đột ngột VC khi họ đang ở nơi công cộng hoặc dùng bữa và yêu cầu gặp mặt ngay thường gây phản cảm và thiếu tôn trọng quyền riêng tư.",
+              "Bạn nên quan sát ngữ cảnh, không ngắt lời nếu họ đang bận và chỉ đưa ra lời chào cùng giới thiệu cực kỳ ngắn gọn.",
+              "Nên xin phép gửi thông tin qua email hoặc LinkedIn thay vì đòi hỏi một cuộc hẹn ngay tại thời điểm đó."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_010",
+    "conversation_id": "conversation_0026",
+    "source": {
+      "text": "[{\"title\": \"What Is The Placebo Effect - Wikipedia\", \"snippet\": \"The placebo effect and its counterpart, Nocebo, are large components of response to medications. Crucially, the placebo effect exists even without a placebo; it operates regardless of whether the treatment is a validated drug with a known mechanism or a real procedure.\"}]\n\n[{\"title\": \"Certified Six Sigma Green Belt - IMC Institute\", \"snippet\": \"Six Sigma is a data-driven methodology that seeks to eliminate defects, reduce variability, and improve efficiency. It uses a structured approach, including the DMAIC (Define, Measure, Analyze, Improve, Control) methodology, to identify and solve problems.\"}]\n\n[{\"title\": \"The properties and environmental impact of Teflon\", \"snippet\": \"The final product is miraculous in its properties; nothing can really replace it. It has phenomenal electrical insulation and leakage qualities. The entire semiconductor industry would not be possible without Teflon as an insulator for measuring tiny currents in transistors. However, its manufacture is fraught with environmental peril due to non-biodegradable precursors.\"}]\n\n[{\"title\": \"Ethics of Kindness and Reciprocity\", \"snippet\": \"One reason to be kind to those who have been hurtful is that two wrongs don’t make anything right. While some believe in 'a dose of their own medicine' to send a message, the method of resolving situations is a reflection of who the person is.\"}]\n\n[{\"title\": \"BTS V's preferences regarding fans\", \"snippet\": \"Tae likes the ones that support him and his brothers. The ones who don’t talk shit about the other members, the ones who truly value his artistry and beautiful mind. He especially loves the ones that mind their business and let’s him live his life in peace.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm hiểu về y khoa. Cho mình hỏi thường người ta sử dụng thiết kế thí nghiệm nào để đo lường hiệu ứng giả dược (placebo effect) vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về thiết kế thí nghiệm được sử dụng để đo lường hiệu ứng giả dược trong y khoa.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "placebo effect",
+                "experimental design",
+                "thiết kế thí nghiệm",
+                "hiệu ứng giả dược"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "experimental_design": [
+                "thí nghiệm đối chứng",
+                "controlled trials",
+                "thiết kế thí nghiệm đối chứng"
+              ],
+              "placebo_characteristics": [
+                "hiệu ứng giả dược",
+                "placebo effect",
+                "quy trình y tế"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong y khoa, để đo lường hiệu ứng giả dược, các nhà nghiên cứu thường sử dụng các thiết kế thí nghiệm đối chứng (controlled trials).",
+              "Hiệu ứng giả dược tồn tại bất kể phương pháp điều trị là một loại thuốc đã được kiểm chứng hay là một thủ thuật y tế thực sự.",
+              "Khái niệm đối lập với hiệu ứng giả dược là hiệu ứng Nocebo, khi bệnh nhân gặp tác dụng tiêu cực do kỳ vọng."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe có vẻ phức tạp nhỉ. Vậy nếu chuyển sang lĩnh vực quản lý quy trình công nghiệp, ví dụ như Six Sigma, thì họ có những phương pháp nào để đo lường quy trình không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu các phương pháp đo lường quy trình trong Six Sigma thuộc lĩnh vực quản lý quy trình công nghiệp.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Six Sigma",
+                "measure processes",
+                "phương pháp đo lường"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "methodology": [
+                "DMAIC",
+                "Define, Measure, Analyze, Improve, Control",
+                "quy trình DMAIC"
+              ],
+              "purpose": [
+                "loại bỏ sai sót",
+                "giảm thiểu sự biến thiên",
+                "eliminate defects",
+                "reduce variability"
+              ]
+            },
+            "golden_reference_claims": [
+              "Six Sigma sử dụng phương pháp DMAIC gồm Define, Measure, Analyze, Improve và Control để đo lường và giải quyết vấn đề quy trình.",
+              "Mục đích của Six Sigma trong quản lý chất lượng là loại bỏ sai sót, giảm thiểu sự biến thiên và cải thiện hiệu suất."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nhắc đến công nghiệp, mình thấy Teflon là một vật liệu rất phổ biến. Nhưng mình nghe nói nó có hại cho môi trường, vậy tại sao hiện nay người ta vẫn tiếp tục sử dụng nó?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do tại sao Teflon vẫn tiếp tục được sử dụng mặc dù gây hại cho môi trường.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Teflon",
+                "sử dụng",
+                "why",
+                "environmental"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "nó",
+              "expected_target": [
+                "Teflon",
+                "vật liệu này"
+              ]
+            },
+            "required_slots": {
+              "unique_properties": [
+                "đặc tính vật lý",
+                "không thể thay thế",
+                "miraculous properties"
+              ],
+              "semiconductor_industry": [
+                "ngành công nghiệp bán dẫn",
+                "chất cách điện",
+                "insulator"
+              ],
+              "environmental_impact": [
+                "rủi ro môi trường",
+                "không phân hủy sinh học",
+                "non-biodegradable"
+              ]
+            },
+            "golden_reference_claims": [
+              "Teflon vẫn được sử dụng rộng rãi nhờ sở hữu những đặc tính vật lý độc đáo mà hiện chưa có vật liệu nào thay thế hoàn toàn được.",
+              "Teflon đóng vai trò là chất cách điện quan trọng trong ngành công nghiệp bán dẫn để đo các dòng điện cực nhỏ trong bóng bán dẫn.",
+              "Quá trình sản xuất Teflon gây ra rủi ro môi trường nghiêm trọng do sử dụng các tiền chất không có khả năng phân hủy sinh học."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Đi từ những vấn đề kỹ thuật sang chuyện con người một chút. Bạn nghĩ sao về việc chúng ta có nên tử tế với tất cả mọi người, kể cả những người từng đối xử tệ với mình không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu quan điểm đạo đức về việc có nên tử tế với những người từng đối xử tệ với mình hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "kind",
+                "unkind people",
+                "tử tế",
+                "người không tử tế"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "moral_principle": [
+                "hai cái sai không thể tạo nên một cái đúng",
+                "two wrongs don't make anything right"
+              ],
+              "reflection_of_character": [
+                "tấm gương phản chiếu giá trị và bản chất con người",
+                "reflection of who the person is"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một lý do để tử tế với người từng gây tổn thương là hai cái sai không thể tạo nên một cái đúng.",
+              "Cách chúng ta chọn giải quyết xung đột phản ánh giá trị và bản chất con người chúng ta chứ không chỉ là cách trả đũa đối phương."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình muốn hỏi một chút về giải trí cho thoải mái. Bạn có biết V của nhóm BTS thường thích kiểu fan hâm mộ như thế nào không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về gu/sở thích của thành viên V nhóm BTS đối với người hâm mộ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "BTS V",
+                "fans",
+                "thích",
+                "fan hâm mộ"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "support_members": [
+                "ủng hộ các thành viên",
+                "không nói xấu",
+                "support him and his brothers"
+              ],
+              "artistry": [
+                "tư duy nghệ thuật",
+                "artistry",
+                "tâm hồn"
+              ],
+              "privacy": [
+                "quyền riêng tư",
+                "mind their business",
+                "cuộc sống cá nhân"
+              ]
+            },
+            "golden_reference_claims": [
+              "V (Taehyung) thích những người hâm mộ ủng hộ anh và các thành viên khác trong nhóm, không nói xấu các thành viên.",
+              "Anh trân trọng những fan đánh giá cao tư duy nghệ thuật và tâm hồn của mình.",
+              "V rất yêu quý những fan biết tôn trọng quyền riêng tư để anh có cuộc sống bình yên."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_011",
+    "conversation_id": "conversation_0027",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn ôn tập General Awareness (GA) cho SBI Clerk 2021\", \"snippet\": \"Ưu tiên tập trung vào các câu hỏi về Ngân hàng (Banking) trước, sau đó đến các nội dung liên quan đến RBI và các chương trình của Chính phủ (Govt Schemes). Đây là lộ trình đặc thù cho kỳ thi chính thức tháng 8/2021.\"}]\n\n[{\"title\": \"Thông tin tuyển dụng và luyện thi SBI PO\", \"snippet\": \"SBI PO là kỳ thi tuyển chọn Nhân viên tập sự với quy mô khoảng 25 lakh thí sinh cho 2313 chỉ tiêu. Việc luyện tập với đề thi cũ giúp thí sinh làm quen với cấu trúc đề, xác định điểm mạnh, điểm yếu và cải thiện kỹ năng làm bài.\"}]\n\n[{\"title\": \"Xu hướng phát triển thương mại điện tử với Magento 2021\", \"snippet\": \"Thương mại điện tử tăng trưởng mạnh mẽ, thu hút đầu tư lớn. Magento là nền tảng hàng đầu để xây dựng website thương mại điện tử tiên tiến và giàu tính năng. Việc cập nhật các xu hướng mới nhất là yếu tố then chốt để xây dựng website thành công.\"}]\n\n[{\"title\": \"Phân tích nội bộ Đảng Cộng hòa năm 2021\", \"snippet\": \"Nhiều ý kiến cho rằng GOP phần lớn bị chi phối bởi Donald Trump (DJT). Một số lãnh đạo Đảng Cộng hòa bị cáo buộc chấp nhận những tuyên bố sai sự thật của Trump dù biết rõ thực tế để theo đuổi mục tiêu chính trị riêng.\"}]\n\n[{\"title\": \"Tình hình an ninh và xã hội tại Hồng Kông 2021\", \"snippet\": \"Các cuộc biểu tình rải rác và đối đầu ngầm vẫn tồn tại. Lực lượng chính là thanh niên, những người cảm thấy thiếu hụt thành tựu kinh tế và không chia sẻ được lợi ích từ sự phát triển của Trung Quốc đại lục.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tôi muốn biết làm thế nào để ôn thi hiệu quả cho kỳ thi SBI Clerk 2021?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách ôn thi hiệu quả cho kỳ thi SBI Clerk 2021",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "sbi clerk 2021",
+                "ôn thi",
+                "preparation"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "general_awareness": [
+                "General Awareness",
+                "GA",
+                "Kiến thức chung"
+              ],
+              "priority_topics": [
+                "Ngân hàng",
+                "Banking",
+                "RBI",
+                "chương trình của Chính phủ",
+                "Govt Schemes"
+              ],
+              "exam_timeline": [
+                "tháng 8/2021",
+                "tháng 8 năm 2021",
+                "August 2021"
+              ]
+            },
+            "golden_reference_claims": [
+              "Phần Kiến thức chung (General Awareness - GA) là nội dung cần tập trung cao độ khi ôn thi SBI Clerk 2021.",
+              "Lộ trình ôn tập ưu tiên theo thứ tự: Kiến thức Ngân hàng, RBI, và các chương trình của Chính phủ.",
+              "Lộ trình ôn tập được thiết kế riêng cho kỳ thi chính thức tháng 8/2021."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy tôi có thể tải các đề thi cũ của SBI PO ở đâu để luyện tập không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm nguồn tải các đề thi cũ của kỳ thi SBI PO để luyện tập",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "SBI PO",
+                "old question papers",
+                "download",
+                "practice"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "competition_scale": [
+                "2,5 triệu thí sinh",
+                "khoảng 2,5 triệu thí sinh ứng tuyển",
+                "25 lakh"
+              ],
+              "benefits_of_practice_papers": [
+                "làm quen với cấu trúc bài thi",
+                "nhận diện rõ những mảng kiến thức mình còn yếu",
+                "cấu trúc đề"
+              ]
+            },
+            "golden_reference_claims": [
+              "Kỳ thi SBI PO là một kỳ thi rất cạnh tranh với khoảng 2,5 triệu thí sinh ứng tuyển cho hơn 2.300 chỉ tiêu.",
+              "Việc giải đề cũ giúp thí sinh làm quen với cấu trúc bài thi và nhận diện điểm yếu để bổ sung kịp thời.",
+              "Bạn có thể tìm kiếm các bộ đề thi cũ từ các trang web giáo dục uy tín hoặc cổng thông tin tuyển dụng của SBI để tải về luyện tập."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Chuyển sang một chủ đề khác, bạn có biết 5 xu hướng phát triển Magento hàng đầu trong năm 2021 là gì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu 5 xu hướng phát triển Magento hàng đầu trong năm 2021",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Magento",
+                "development trends",
+                "2021"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "magento_platform_role": [
+                "nền tảng hàng đầu",
+                "website thương mại điện tử",
+                "nền tảng xây dựng website bán hàng"
+              ],
+              "key_focus_areas": [
+                "trải nghiệm người dùng",
+                "thanh toán hiện đại",
+                "cá nhân hóa hành trình mua sắm"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong năm 2021, Magento tiếp tục là nền tảng hàng đầu để xây dựng các website thương mại điện tử tiên tiến và giàu tính năng.",
+              "Các doanh nghiệp cần tập trung tối ưu hóa trải nghiệm người dùng, tích hợp thanh toán hiện đại và cá nhân hóa hành trình mua sắm để phát triển thành công."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Còn về chính trị Mỹ, ai là người đại diện cho Đảng Cộng hòa (GOP) trong năm 2021?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về người đại diện hoặc nhân vật có tầm ảnh hưởng lớn nhất lãnh đạo Đảng Cộng hòa (GOP) trong năm 2021.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "GOP",
+                "2021",
+                "Đảng Cộng hòa"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "republican_party_leader_2021": [
+                "Donald Trump",
+                "cựu Tổng thống Donald Trump",
+                "DJT"
+              ],
+              "party_influence": [
+                "chi phối",
+                "tầm ảnh hưởng",
+                "định hướng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong năm 2021, Đảng Cộng hòa (GOP) phần lớn chịu sự chi phối và ảnh hưởng lớn từ cựu Tổng thống Donald Trump.",
+              "Nhiều lãnh đạo Đảng Cộng hòa đã đi theo định hướng của ông Trump để duy trì sự đoàn kết nội bộ và theo đuổi mục tiêu chính trị."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, cho tôi hỏi liệu các nhà hoạt động ở Hồng Kông có còn biểu tình trong năm 2021 không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem các nhà hoạt động ở Hồng Kông có còn biểu tình trong năm 2021 không",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Hong Kong protests 2021",
+                "Hong Kong independence movement 2021"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "protest_status": [
+                "biểu tình rải rác",
+                "đối đầu ngầm",
+                "các cuộc biểu tình quy mô lớn đã giảm bớt"
+              ],
+              "activist_demographics": [
+                "giới trẻ",
+                "thanh niên",
+                "thiếu hụt thành tựu kinh tế"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong năm 2021, các cuộc biểu tình quy mô lớn ở Hồng Kông đã giảm bớt nhưng các hoạt động phản kháng rải rác và đối đầu ngầm vẫn tồn tại.",
+              "Lực lượng nòng cốt tham gia các hoạt động này chủ yếu là giới trẻ gặp khó khăn kinh tế và không chia sẻ được lợi ích từ sự phát triển của Trung Quốc đại lục."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_012",
+    "conversation_id": "conversation_0028",
+    "source": {
+      "text": "[{\"title\": \"Cấu trúc cơ bản của nguyên tử\", \"snippet\": \"Cấu trúc cơ bản của mọi nguyên tử bao gồm một hạt nhân cực nhỏ ở trung tâm và một khoảng không gian trống khổng lồ (chiếm hơn 99% cấu trúc nguyên tử).\"}]\n\n[{\"title\": \"Nguồn gốc họ Shenvi trong cộng đồng GSB\", \"snippet\": \"Có hai giả thuyết về tên Shenvi: một là từ tiếng Phạn 'śrēṇīpati' nghĩa là người lãnh đạo phường hội; hai là từ 'ṣaṇṇavati' nghĩa là 96, liên quan đến 96 ngôi làng cốt lõi của vùng Goa nơi các gia tộc Saraswat Brahmins định cư.\"}]\n\n[{\"title\": \"Phân tích ngôn ngữ học so sánh\", \"snippet\": \"Một số quan điểm cho rằng các nhà ngôn ngữ học phương Tây kết luận về sự tương đồng giữa tiếng Phạn và tiếng châu Âu chỉ dựa trên một vài từ số đếm và từ cơ bản như Cha, Mẹ, Anh em, thay vì phân tích toàn diện.\"}]\n\n[{\"title\": \"Hạt cơ bản trong vật lý\", \"snippet\": \"Leptons bao gồm electron và các hạt họ hàng. Quarks là những hạt cấu tạo nên proton, neutron. Proton và neutron cùng electron tạo nên nguyên tử.\"}]\n\n[{\"title\": \"Kính hiển vi quét xuyên hầm (STM)\", \"snippet\": \"STM sử dụng một đầu kim cực nhọn (với một nguyên tử duy nhất ở đỉnh) để đo các biến thiên điện nhỏ, cho phép quan sát các nguyên tử đơn lẻ trên một bề mặt phẳng.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chúng ta có thể quan sát được nguyên tử không? Nếu không, bạn có thể giải thích giúp tôi về thuyết nguyên tử và lịch sử hình thành của nó không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải đáp khả năng quan sát nguyên tử và lịch sử hình thành thuyết nguyên tử.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "quan sát nguyên tử",
+                "lịch sử thuyết nguyên tử"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "atomic_observation": [
+                "quan sát trực tiếp nguyên tử là không thể",
+                "không thể quan sát trực tiếp",
+                "kích thước siêu nhỏ"
+              ],
+              "atomic_structure": [
+                "hạt nhân cực nhỏ ở trung tâm",
+                "khoảng không gian trống khổng lồ",
+                "chiếm hơn 99%"
+              ],
+              "atomic_theory_history": [
+                "thuyết nguyên tử đã phát triển qua nhiều giai đoạn",
+                "lịch sử thuyết nguyên tử"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc quan sát trực tiếp nguyên tử theo cách thông thường là không thể do kích thước siêu nhỏ.",
+              "Cấu trúc cơ bản của nguyên tử gồm một hạt nhân ở trung tâm và khoảng không gian trống khổng lồ chiếm hơn 99%.",
+              "Thuyết nguyên tử đã phát triển qua nhiều giai đoạn lịch sử để giải thích bản chất vật chất."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Đang nói về lịch sử và nguồn gốc, tôi tò mò một chút về nhân chủng học. Bạn có biết nguồn gốc của họ Shenvi hoặc Sinai trong các họ tên GSB (Gaud Saraswat Brahmins) là từ đâu không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về nguồn gốc của họ Shenvi hoặc Sinai trong cộng đồng GSB (Gaud Saraswat Brahmins).",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Shenvi",
+                "GSG",
+                "origin",
+                "nguồn gốc"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "etymology_meaning_1": [
+                "śrēṇīpati",
+                "người lãnh đạo phường hội",
+                "head of guild"
+              ],
+              "etymology_meaning_2": [
+                "ṣaṇṇavati",
+                "96",
+                "96 ngôi làng",
+                "Goa"
+              ]
+            },
+            "golden_reference_claims": [
+              "Họ Shenvi được sử dụng bởi nhóm lớn nhất trong cộng đồng GSB.",
+              "Giả thuyết thứ nhất cho rằng họ này bắt nguồn từ từ 'śrēṇīpati' trong tiếng Phạn, nghĩa là người lãnh đạo phường hội.",
+              "Giả thuyết thứ hai cho rằng cái tên xuất phát từ từ 'ṣaṇṇavati' trong tiếng Phạn, nghĩa là 96, liên quan đến 96 ngôi làng ở vùng Goa nơi các gia tộc định cư."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nhắc đến tiếng Phạn, tôi thấy có nhiều tranh luận về lý thuyết di cư của người Aryan. Với những người phủ nhận lý thuyết này, họ giải thích thế nào về sự tương đồng giữa tiếng Phạn và các ngôn ngữ châu Âu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách những người phủ nhận lý thuyết di cư Aryan giải thích sự tương đồng giữa tiếng Phạn và các ngôn ngữ châu Âu.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Sanskrit European language similarities",
+                "Aryan migration theory criticism"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "criticism_basis": [
+                "phóng đại sự tương đồng",
+                "chỉ dựa trên một số ít từ vựng cơ bản",
+                "từ số đếm và từ cơ bản"
+              ],
+              "historical_context": [
+                "học giả thực dân Anh",
+                "đầu thế kỷ 19",
+                "nguồn gốc chung"
+              ]
+            },
+            "golden_reference_claims": [
+              "Những người phủ nhận lý thuyết di cư Aryan cho rằng sự tương đồng giữa tiếng Phạn và tiếng châu Âu đã bị phóng đại và chỉ dựa trên một số ít từ cơ bản cùng số đếm.",
+              "Vào đầu thế kỷ 19, các học giả thực dân Anh khi nghiên cứu kinh điển Ấn Độ đã nhận ra điểm chung giữa các ngôn ngữ Ấn Độ, Iran và châu Âu, dẫn đến giả thuyết nguồn gốc chung."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại với vật lý nhé, tôi nghe nói về Quark và Lepton. Bạn có thể giải thích hai khái niệm này một cách đơn giản nhất có thể không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích khái niệm Quark và Lepton một cách đơn giản nhất có thể.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "quarks",
+                "leptons",
+                "quark",
+                "lepton"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "lepton_definition": [
+                "lepton",
+                "electron"
+              ],
+              "quark_definition": [
+                "quark",
+                "proton",
+                "neutron"
+              ]
+            },
+            "golden_reference_claims": [
+              "Lepton bao gồm electron và các hạt họ hàng của nó.",
+              "Quark là những hạt nhỏ hơn cấu tạo nên proton và neutron."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Vậy nếu chúng nhỏ đến thế, liệu có hình ảnh thực tế nào về nguyên tử và phân tử không? Hay tất cả chỉ là mô hình vẽ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem có hình ảnh thực tế nào về nguyên tử và phân tử không hay chỉ là mô hình vẽ.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "atoms",
+                "molecules",
+                "images",
+                "STM"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "chúng",
+              "expected_target": [
+                "nguyên tử",
+                "atoms",
+                "phân tử"
+              ]
+            },
+            "required_slots": {
+              "imaging_technology": [
+                "Kính hiển vi quét xuyên hầm",
+                "STM",
+                "Scanning Tunneling Microscope"
+              ],
+              "imaging_mechanism": [
+                "đầu kim cực nhọn",
+                "hiệu ứng đường hầm electron",
+                "biến thiên điện cực nhỏ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Chúng ta thực sự có những hình ảnh thực tế của nguyên tử nhờ công nghệ Kính hiển vi quét xuyên hầm (STM).",
+              "Kính hiển vi STM sử dụng một đầu kim cực nhọn quét qua bề mặt để đo biến thiên điện và dựng lại hình ảnh nguyên tử."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_013",
+    "conversation_id": "conversation_0029",
+    "source": {
+      "text": "[{\"title\": \"Phân tích hệ thống phản diện MCU\", \"snippet\": \"Ban đầu, các phản diện MCU thường bị đánh giá là mờ nhạt, thường là phiên bản 'ác' đối lập với chính anh hùng. Tuy nhiên, vấn đề này dần biến mất theo thời gian. Obadiah Stane (Iron Monger) là kẻ khởi đầu, một doanh nhân tham vọng với mặc cảm thượng đẳng, âm mưu thâu tóm Stark Industries để đưa giáp Iron Man vào quân sự.\"}]\n\n[{\"title\": \"Đánh giá năng lực của Grand Admiral Thrawn\", \"snippet\": \"Thrawn là một trong những nhà lãnh đạo xuất sắc nhất Star Wars về năng lực quân sự, chiến thuật và chiến lược. Khác với các sĩ quan Đế chế khác dựa vào vũ lực thô bạo hay quân Nổi loạn dựa vào may mắn, Thrawn thể hiện sự am hiểu sâu sắc về hậu cần và tư duy chiến lược vượt trội.\"}]\n\n[{\"title\": \"Thiết kế ý tưởng cho giáp Iron Man\", \"snippet\": \"Có rất nhiều nhà thiết kế sáng tạo tạo ra các concept cho giáp Iron Man. Ví dụ như các bản fan art Mark L cho Infinity War hoặc các mẫu giáp giả định Mark 70 với vũ khí tiên tiến, hoặc các bộ giáp chuyên dụng cho không gian với thiết kế khí động học, tốc độ cao dù không dùng nano-tech.\"}]\n\n[{\"title\": \"Phân tích tốc độ Shinobi\", \"snippet\": \"Thuấn thân của Shisui tạo ra tàn ảnh do phản xạ của đối phương không kịp theo dõi, nhưng với người có phản xạ siêu việt, họ vẫn thấy Shisui di chuyển bình thường. Minato và Tobirama được coi là nhanh nhất thời đại của họ không chỉ nhờ thuật dịch chuyển, mà còn nhờ tốc độ cơ bản và phản xạ cực cao.\"}]\n\n[{\"title\": \"Gia đình Allu-Konidela và điện ảnh Tollywood\", \"snippet\": \"Một số quan điểm cho rằng nepotism không quá nặng nề ở Tollywood vì đa số đều có tài năng. Gia đình Allu-Konidela là một ví dụ điển hình: bắt đầu từ Dr. Allu Rama Lingaiah (nhận giải Padma Shri, đóng hơn 1000 phim), sau đó là Allu Aravind và các thế hệ tiếp theo tiếp nối sự nghiệp điện ảnh.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Bạn đánh giá thế nào về các phản diện trong vũ trụ điện ảnh Marvel (MCU), tính cả Mysterio?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá chất lượng các nhân vật phản diện trong vũ trụ điện ảnh Marvel (MCU), bao gồm Obadiah Stane.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "MCU villains",
+                "Obadiah Stane"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "villain_evolution": [
+                "mờ nhạt",
+                "được cải thiện rõ rệt",
+                "phiên bản đối lập"
+              ],
+              "obadiah_stane_analysis": [
+                "Iron Monger",
+                "doanh nhân tham vọng",
+                "Stark Industries"
+              ]
+            },
+            "golden_reference_claims": [
+              "Hệ thống phản diện của MCU từng có giai đoạn bị coi là mờ nhạt và là phiên bản đối lập của siêu anh hùng trước khi được cải thiện.",
+              "Obadiah Stane (Iron Monger) là kẻ khởi đầu với sự tham vọng, mặc cảm thượng đẳng và âm mưu chiếm Stark Industries."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy còn trong Star Wars, nếu chỉ tính những phản diện không có khả năng sử dụng Thần lực (non-force sensitive), thì Đại Đô đốc Thrawn đứng ở vị trí nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá vị trí và năng lực của Đại Đô đốc Thrawn trong nhóm phản diện không dùng Thần lực của Star Wars",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Thrawn",
+                "non-force sensitive villains",
+                "Star Wars"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "thrawn_standing": [
+                "một trong những phản diện xuất sắc nhất",
+                "người phản diện không sử dụng Thần lực xuất sắc nhất"
+              ],
+              "military_genius": [
+                "thiên tài về chiến thuật và chiến lược",
+                "tư duy phân tích và khả năng quản trị hậu cần"
+              ]
+            },
+            "golden_reference_claims": [
+              "Đại Đô đốc Thrawn là một trong những phản diện không sử dụng Thần lực xuất sắc nhất trong vũ trụ Star Wars.",
+              "Thrawn vượt trội nhờ thiên tài về chiến thuật, chiến lược, tư duy phân tích và khả năng quản trị hậu cần."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Quay lại với MCU, bạn có nghĩ Marvel sẽ cạn ý tưởng để nâng cấp bộ giáp của Iron Man trở nên ngầu hơn và công nghệ cao hơn trong các phim tới không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi về khả năng cạn kiệt ý tưởng nâng cấp giáp Iron Man của Marvel trong các phim tới dựa trên các thiết kế concept.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Iron Man suit concept designs",
+                "future Iron Man armor technology"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "MCU",
+              "expected_target": [
+                "vũ trụ điện ảnh Marvel",
+                "MCU"
+              ]
+            },
+            "required_slots": {
+              "concept_designs": [
+                "cộng đồng thiết kế concept",
+                "fan art",
+                "thiết kế ý tưởng"
+              ],
+              "armor_ideas": [
+                "mẫu Mark 70",
+                "giáp chuyên dụng cho không gian",
+                "Mark L"
+              ]
+            },
+            "golden_reference_claims": [
+              "Marvel sẽ không dễ dàng cạn kiệt ý tưởng nâng cấp giáp Iron Man nhờ sự sáng tạo của cộng đồng thiết kế.",
+              "Các bản concept tiềm năng bao gồm cải tiến mẫu Mark L, dự đoán mẫu Mark 70 tối tân và giáp chuyên dụng chiến đấu ngoài không gian."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tôi muốn đổi chủ đề sang Anime một chút. Trong Naruto, nếu xếp hạng tốc độ Thuấn Thân (Body Flicker) của Shisui, Minato và Tobirama thì ai nhanh nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xếp hạng tốc độ Thuấn Thân giữa Shisui, Minato và Tobirama trong Naruto",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Shisui",
+                "Minato",
+                "Tobirama",
+                "body flicker speed"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "shisui_speed_characteristic": [
+                "tạo ra nhiều tàn ảnh",
+                "hiệu ứng thị giác",
+                "thị giác đối phương không kịp phản ứng"
+              ],
+              "minato_tobirama_speed": [
+                "nhanh nhất thời đại",
+                "tốc độ cơ bản và phản xạ",
+                "thuật dịch chuyển"
+              ]
+            },
+            "golden_reference_claims": [
+              "Shisui nổi tiếng với việc tạo ra nhiều tàn ảnh do phản xạ thị giác của đối phương không kịp theo dõi.",
+              "Minato và Tobirama được công nhận là những shinobi nhanh nhất thời đại nhờ tốc độ cơ bản, phản xạ siêu việt và thuật dịch chuyển."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, bạn biết gì về vấn đề con ông cháu cha (nepotism) trong ngành công nghiệp điện ảnh Tollywood của Ấn Độ không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về vấn đề con ông cháu cha (nepotism) trong ngành công nghiệp điện ảnh Tollywood của Ấn Độ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nepotism",
+                "Tollywood"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "nepotism_in_tollywood": [
+                "con ông cháu cha",
+                "nepotism",
+                "gia đình điện ảnh"
+              ],
+              "allu_konidela_family": [
+                "Allu-Konidela",
+                "Allu Rama Lingaiah",
+                "Allu Aravind"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vấn đề con ông cháu cha trong Tollywood là chủ đề gây tranh cãi nhưng các diễn viên xuất thân từ gia đình điện ảnh vẫn chứng minh được tài năng.",
+              "Gia đình Allu-Konidela là ví dụ điển hình với nền móng từ Tiến sĩ Allu Rama Lingaiah và được tiếp nối bởi Allu Aravind cùng các thế hệ sau."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_014",
+    "conversation_id": "conversation_0030",
+    "source": {
+      "text": "[{\"title\": \"Lịch sử Macedonia cổ đại\", \"snippet\": \"Macedonia là một vương quốc nhỏ nằm dọc theo biển Aegean, trải dài từ bán đảo Hy Lạp ngày nay lên phía bắc. Trong khi quyền lực chính trị Hy Lạp tập trung ở các thành bang phía nam như Athens, Sparta và Thebes, thì đến nửa đầu thế kỷ 4 TCN, Vua Philip II của Macedonia đã chinh phục các khu vực này.\"}, {\"title\": \"Nguồn gốc sắc tộc Macedonia\", \"snippet\": \"Có nhiều tranh luận về bản sắc, nhưng một quan điểm cho rằng nếu tôn trọng lịch sử cổ đại khách quan, người Macedonia cổ đại không hoàn toàn là người Hy Lạp theo định nghĩa của các thành bang phía nam.\"}]\n\n[{\"title\": \"Tiến hóa của ngôn ngữ Hy Lạp\", \"snippet\": \"Tiếng Hy Lạp hiện đại thực chất là một phần của một tổng thể lớn hơn gọi là ngôn ngữ Hy Lạp. Nó không phải là một ngôn ngữ riêng biệt mà là một trong hàng trăm phương ngôn đã tồn tại qua hàng thiên niên kỷ.\"}, {\"title\": \"Tiếng Koine là gì?\", \"snippet\": \"Koine là một phương ngôn (dialect) của tiếng Hy Lạp, là ngôn ngữ mà Kinh Thánh được viết ra, đóng vai trò cầu nối giữa tiếng Hy Lạp cổ điển và các dạng sau này.\"}]\n\n[{\"title\": \"Nguồn gốc bảng chữ cái Hy Lạp\", \"snippet\": \"Bảng chữ cái Hy Lạp cổ đại ra đời khá muộn, những ví dụ khảo cổ sớm nhất có từ thế kỷ thứ 8 TCN, chẳng hạn như chiếc Cúp của Nestor được tìm thấy ở Ischia.\"}, {\"title\": \"Mối liên hệ Coptic - Hy Lạp\", \"snippet\": \"Mối quan hệ giữa chữ cái Hy Lạp và Coptic khá đặc biệt. Chữ Coptic thực chất sử dụng bảng chữ cái Hy Lạp bổ sung thêm một vài ký tự từ chữ Demotic của Ai Cập.\"}]\n\n[{\"title\": \"Macedonia và Thế vận hội cổ đại\", \"snippet\": \"Việc tham gia Olympic thời cổ đại yêu cầu người tham gia phải chứng minh được nguồn gốc Hy Lạp. Các cuộc tranh luận về việc người Macedonia có được chấp nhận hay không thường mang đậm màu sắc chính trị và dân tộc học.\"}]\n\n[{\"title\": \"Lịch sử bánh xe\", \"snippet\": \"Việc tạo ra một vật thể tròn xoay quanh một trục không quá khó. Tuy nhiên, việc tạo ra bánh xe để vận chuyển tải trọng nặng trên quãng đường dài với nỗ lực tối thiểu là cực kỳ khó.\"}, {\"title\": \"Bánh xe gốm vs Bánh xe vận tải\", \"snippet\": \"Bánh xe thợ gốm xuất hiện sớm vì nó không cần chịu tải trọng nặng hay hình dáng hoàn hảo tuyệt đối, miễn là nó xoay được để tạo hình đất sét.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm hiểu về lịch sử vùng Balkan. Bạn cho mình hỏi mối quan hệ giữa Macedonia cổ đại và Hy Lạp là gì? Liệu người Macedonia thời đó có được coi là người Hy Lạp không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu mối quan hệ giữa Macedonia cổ đại và Hy Lạp và bản sắc sắc tộc của người Macedonia thời đó.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "mối quan hệ Macedonia cổ đại và Hy Lạp",
+                "ancient Macedonia vs Greece relationship"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "geographic_location": [
+                "nằm ở phía đông bắc và tây bắc bán đảo Hy Lạp",
+                "bán đảo Hy Lạp ngày nay",
+                "Bắc Macedonia hiện tại"
+              ],
+              "political_relation": [
+                "Vua Philip II chinh phục các thành bang phía nam",
+                "Athens, Sparta và Thebes",
+                "chinh phục các thành bang này"
+              ],
+              "ethnic_identity": [
+                "không hoàn toàn là người Hy Lạp",
+                "không được coi là người Hy Lạp thuần túy",
+                "khác biệt về văn hóa và chính trị"
+              ]
+            },
+            "golden_reference_claims": [
+              "Macedonia cổ đại là một vương quốc nằm ở phía đông bắc và tây bắc của bán đảo Hy Lạp ngày nay.",
+              "Nửa đầu thế kỷ 4 TCN, Vua Philip II của Macedonia đã chinh phục các thành bang phía nam như Athens, Sparta và Thebes.",
+              "Có quan điểm lịch sử cho rằng người Macedonia cổ đại không hoàn toàn được coi là người Hy Lạp thuần túy do sự khác biệt về văn hóa và chính trị."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Thú vị thật. Vậy còn về ngôn ngữ thì sao? Nếu một người nói tiếng Hy Lạp hiện đại đọc các văn bản tiếng Hy Lạp cổ, họ có thể hiểu được đến mức nào trước khi ngôn ngữ trở nên quá xa lạ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu mức độ hiểu biết của người nói tiếng Hy Lạp hiện đại khi đọc các văn bản tiếng Hy Lạp cổ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "tiếng Hy Lạp hiện đại",
+                "tiếng Hy Lạp cổ đại",
+                "intelligibility",
+                "khác biệt"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "language_evolution": [
+                "tiếng Hy Lạp hiện đại là một phần của hệ thống lớn hơn",
+                "hàng trăm phương ngôn",
+                "tiến hóa qua hàng thiên niên kỷ"
+              ],
+              "intelligibility_level": [
+                "khó khăn tùy giai đoạn",
+                "dễ dàng hơn với tiếng Koine",
+                "khó hiểu dần ở văn bản cổ điển"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tiếng Hy Lạp hiện đại không phải là một ngôn ngữ tách biệt mà là một phần trong tổng thể lớn hơn và đã tiến hóa qua hàng thiên niên kỷ.",
+              "Người nói tiếng Hy Lạp hiện đại có thể đọc hiểu tiếng Koine (ngôn ngữ viết Kinh Thánh) tương đối dễ dàng, nhưng sẽ gặp nhiều khó khăn và cần nghiên cứu chuyên sâu khi đọc các văn bản tiếng Hy Lạp cổ điển."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Mình có đọc ở đâu đó rằng chữ viết Coptic được viết bằng các chữ cái Hy Lạp, nhưng lại có ý kiến nói chữ Hy Lạp bắt nguồn từ chữ tượng hình Ai Cập thông qua dạng Coptic. Điều này có đúng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ mối quan hệ và nguồn gốc lịch sử giữa bảng chữ cái Hy Lạp và chữ viết Coptic",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Coptic",
+                "Hy Lạp",
+                "nguồn gốc"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "coptic_script_origin": [
+                "mượn bảng chữ cái Hy Lạp",
+                "sử dụng bảng chữ cái Hy Lạp",
+                "chữ Coptic dùng chữ Hy Lạp"
+              ],
+              "demotic_influence": [
+                "bổ sung ký tự từ chữ Demotic",
+                "ký tự từ chữ Demotic của Ai Cập",
+                "demotic"
+              ],
+              "historical_chronology": [
+                "chữ Hy Lạp xuất hiện trước",
+                "thế kỷ thứ 8 TCN",
+                "chữ Coptic không phải là nguồn gốc của chữ Hy Lạp"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bảng chữ cái Hy Lạp cổ đại xuất hiện tương đối muộn, có từ khoảng thế kỷ thứ 8 TCN.",
+              "Chữ Coptic sử dụng bảng chữ cái Hy Lạp kết hợp thêm một số ký tự từ chữ Demotic của Ai Cập.",
+              "Chữ Coptic không phải là nguồn gốc của chữ Hy Lạp, mà ngược lại chữ Coptic mượn từ chữ Hy Lạp."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại chuyện Macedonia, mình nghe nói trước thời Alexander I, người Macedonia cổ đại không bao giờ được phép thi Olympic. Sau đó họ chỉ được thi khi Alexander I đưa ra câu chuyện về 'một tổ tiên chung người Hy Lạp', và thậm chí chỉ có hoàng gia mới được tham gia cho đến khi Philip II chinh phục Hy Lạp. Điều này có đúng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác thực thông tin về việc người Macedonia cổ đại tham gia Thế vận hội Olympic trước thời Alexander I.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Macedonians",
+                "Olympic Games",
+                "Alexander I",
+                "ancient"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Macedonia",
+              "expected_target": [
+                "Macedonia cổ đại",
+                "vương quốc Macedonia",
+                "người Macedonia"
+              ]
+            },
+            "required_slots": {
+              "olympic_eligibility": [
+                "Thế vận hội Olympic cổ đại",
+                "nguồn gốc Hy Lạp",
+                "tham gia Olympic"
+              ],
+              "alexander_i_role": [
+                "Alexander I",
+                "tổ tiên chung",
+                "nguồn gốc Hy Lạp"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thế vận hội Olympic cổ đại yêu cầu người tham gia phải có nguồn gốc Hy Lạp.",
+              "Alexander I đã đưa ra câu chuyện về tổ tiên chung người Hy Lạp nhằm hợp thức hóa vị thế tham gia của vương triều Macedonia."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Kết thúc chủ đề lịch sử ở đây nhé. Mình tò mò một chút về kỹ thuật cổ đại: Việc phát minh ra bánh xe đối với các nền văn minh cổ đại khó đến mức nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về độ khó và bản chất của việc phát minh ra bánh xe đối với các nền văn minh cổ đại.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "bánh xe",
+                "phát minh",
+                "độ khó",
+                "cổ đại",
+                "wheel",
+                "ancient"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "potter_wheel": [
+                "bánh xe thợ gốm",
+                "bánh xe làm gốm",
+                "potter's wheel"
+              ],
+              "transport_wheel": [
+                "bánh xe vận tải",
+                "vận chuyển tải trọng nặng",
+                "vận tải"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc tạo ra một vật thể hình tròn xoay quanh trục (như bánh xe thợ gốm) không quá khó và không đòi hỏi chịu tải trọng lớn.",
+              "Việc chế tạo bánh xe để vận chuyển hàng hóa nặng đi xa với nỗ lực tối thiểu là cực kỳ khó khăn do đòi hỏi vật liệu bền vững và kỹ thuật trục chính xác."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_015",
+    "conversation_id": "conversation_0031",
+    "source": {
+      "text": "[{\"title\": \"Triết lý về sự tỉnh thức trong Phật giáo\", \"snippet\": \"Sự tâm linh bắt đầu từ sự tỉnh thức, dẫn đến giác ngộ. Quá trình này đòi hỏi nhiều năm rèn luyện. Trong khi đó, một số quan điểm cho rằng sự tỉnh thức và giác ngộ là món quà từ một Ý thức/Thượng đế tối cao nếu con người sống đúng đắn.\"}]\n\n[{\"title\": \"eSIM là gì? Mọi điều bạn cần biết\", \"snippet\": \"eSIM (embedded SIM) là SIM được tích hợp sẵn trong thiết bị. Ví dụ trên Apple Watch Series 3, eSIM cho phép thiết bị kết nối di động mà không cần khe cắm SIM vật lý, tạo sự tiện lợi tối đa cho các thiết bị đeo thông minh.\"}]\n\n[{\"title\": \"Các quốc gia Mahājanapadas thời cổ đại\", \"snippet\": \"Các cộng hòa Ấn Độ sơ khai thường là các thể chế đầu sỏ hoặc bán dân chủ. Cơ quan quản lý tối cao là một hội đồng trung tâm, nơi cả người trẻ và già đều có thể thảo luận việc nước. Tuy nhiên, quyền lực thực tế về chính trị, quân sự và kinh tế thường nằm trong tay một vài gia tộc có quan hệ huyết thống. Một ví dụ điển hình là Vr̥jji (hay Vajji).\"}]\n\n[{\"title\": \"Sự trùng hợp trong nhiếp ảnh\", \"snippet\": \"Một bức ảnh kinh ngạc đôi khi không đến từ kỹ thuật mà từ sự trùng hợp ngẫu nhiên khó tin. Ví dụ, việc chụp đúng khoảnh khắc một sự kiện hiếm gặp xảy ra có thể mang lại ý nghĩa tinh thần sâu sắc cho người chụp, vượt xa giá trị hình ảnh thuần túy.\"}]\n\n[{\"title\": \"Ảnh hưởng của sự bay hơi đến tính chất vật lý\", \"snippet\": \"Bản thân sự bay hơi không làm thay đổi độ nhớt của một chất tinh khiết. Tuy nhiên, đối với hỗn hợp, sự bay hơi làm thay đổi nồng độ các thành phần, từ đó ảnh hưởng đến độ nhớt. Ví dụ, nếu benzene bay hơi nhanh hơn toluene trong một hỗn hợp, nồng độ toluene tăng lên sẽ làm thay đổi độ nhớt của chất lỏng còn lại.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, tôi là một Phật tử. Tôi muốn biết làm sao để nuôi dưỡng lòng trắc ẩn và sự từ bi mà không khiến bản thân bị người khác lợi dụng?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách nuôi dưỡng lòng trắc ẩn và sự từ bi trong Phật giáo nhưng vẫn giữ được ranh giới để không bị lợi dụng.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "lòng trắc ẩn",
+                "Phật giáo",
+                "compassion",
+                "Buddhism"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "compassion_and_wisdom": [
+                "kết hợp từ bi với trí tuệ",
+                "từ bi và trí tuệ",
+                "trí tuệ và lòng trắc ẩn"
+              ],
+              "boundaries_and_awakening": [
+                "sự tỉnh thức",
+                "ranh giới rõ ràng",
+                "spiritual awakening"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong Phật giáo, lòng trắc ẩn không đồng nghĩa với sự nhu nhược mà cần kết hợp với trí tuệ.",
+              "Sự tỉnh thức giúp phân biệt giữa sự giúp đỡ thực sự và sự bị lợi dụng.",
+              "Quá trình rèn luyện sự tỉnh thức và giác ngộ đòi hỏi thời gian lâu dài để giữ tâm bình thản và có ranh giới bảo vệ bản thân."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Tiện thể đang nói về sự hiện đại, tôi thấy dạo này nhiều thiết bị dùng eSIM. Vậy eSIM có ưu điểm gì vượt trội hơn so với SIM vật lý thông thường?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các ưu điểm vượt trội của eSIM so với SIM vật lý thông thường.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "ưu điểm của eSIM",
+                "eSIM so với SIM vật lý"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition": [
+                "SIM được tích hợp sẵn",
+                "SIM điện tử",
+                "embedded SIM"
+              ],
+              "advantages": [
+                "không cần khe cắm SIM",
+                "chuyển đổi nhà mạng qua phần mềm",
+                "tiết kiệm không gian thiết bị"
+              ]
+            },
+            "golden_reference_claims": [
+              "eSIM là SIM điện tử được nhúng sẵn vào bo mạch của thiết bị và loại bỏ nhu cầu về thẻ SIM vật lý cùng khe cắm SIM.",
+              "eSIM giúp các thiết bị nhỏ như smartwatch có khả năng kết nối độc lập mà không làm tăng kích thước máy.",
+              "eSIM cho phép người dùng chuyển đổi nhà mạng hoặc thêm nhiều số điện thoại dễ dàng thông qua phần mềm."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Quay lại một chút về lịch sử, tôi có đọc trong cuốn 'Buddhist India' của T.W. Rhys Davids rằng thời kỳ đầu của Phật giáo tại Ấn Độ tồn tại song song các vương quốc và các cộng hòa. Bạn có thể giải thích rõ hơn các cộng hòa sơ khai này hoạt động như thế nào không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về cách thức hoạt động của các cộng hòa sơ khai tại Ấn Độ thời kỳ đầu Phật giáo.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "early Indian republics",
+                "Mahājanapadas republics",
+                "Buddhist India"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "republic_model": [
+                "đầu sỏ hoặc bán dân chủ",
+                "thể chế đầu sỏ",
+                "bán dân chủ"
+              ],
+              "governing_body": [
+                "hội đồng trung tâm",
+                "hội đồng"
+              ],
+              "actual_power": [
+                "gia tộc quyền quý",
+                "gia tộc có quan hệ huyết thống",
+                "gia tộc"
+              ]
+            },
+            "golden_reference_claims": [
+              "Các cộng hòa Ấn Độ sơ khai thời kỳ đầu Phật giáo hoạt động theo mô hình đầu sỏ hoặc bán dân chủ.",
+              "Cơ quan quản lý tối cao là một hội đồng trung tâm cho phép mọi thành viên thảo luận việc nước.",
+              "Trên thực tế, quyền lực chính trị, quân sự và kinh tế tập trung vào tay một số gia tộc có liên kết huyết thống."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Nghe thú vị thật. Tôi cũng thích lưu giữ những khoảnh khắc lịch sử hoặc đời thường qua ảnh. Theo bạn, điều gì tạo nên một bức ảnh thực sự 'kinh ngạc'?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu yếu tố tạo nên một bức ảnh thực sự kinh ngạc hoặc ấn tượng.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "photo amazing",
+                "photography coincidence"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "key_elements": [
+                "khoảnh khắc",
+                "sự trùng hợp",
+                "ý nghĩa"
+              ],
+              "emotional_value": [
+                "giá trị cảm xúc",
+                "kết nối tâm linh",
+                "thông điệp đặc biệt"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một bức ảnh thực sự kinh ngạc không chỉ nằm ở kỹ thuật chụp hay độ phân giải mà phụ thuộc vào khoảnh khắc và ý nghĩa.",
+              "Sự trùng hợp ngẫu nhiên khó tin khi chụp đúng thời điểm sự kiện hiếm gặp mang lại giá trị cảm xúc và ý nghĩa sâu sắc."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, tôi có một câu hỏi về hóa học: Việc bay hơi có làm tăng độ nhớt của chất lỏng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem quá trình bay hơi có làm tăng độ nhớt của chất lỏng hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "evaporation",
+                "viscosity"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "pure_substance_effect": [
+                "không làm thay đổi độ nhớt",
+                "chất tinh khiết",
+                "chất nguyên chất"
+              ],
+              "mixture_effect": [
+                "hỗn hợp",
+                "dung dịch",
+                "thay đổi nồng độ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bản thân quá trình bay hơi không làm trực tiếp thay đổi độ nhớt của một chất tinh khiết hoặc chất nguyên chất.",
+              "Đối với hỗn hợp hoặc dung dịch, sự bay hơi làm thay đổi nồng độ các thành phần, từ đó làm thay đổi độ nhớt của chất lỏng còn lại."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_016",
+    "conversation_id": "conversation_0032",
+    "source": {
+      "text": "[{\"title\": \"Phân tích sức mạnh Itachi vs Tobirama\", \"snippet\": \"Đây là một trận đấu rất cân bằng. Nếu xét phiên bản Edo Tensei và loại bỏ khả năng bất tử, tốc độ của Itachi được đánh giá rất cao, có thể so sánh với Sasuke sau khi nhận sức mạnh từ lục đạo hoặc Naruto chế độ MKCM.\"}]\n\n[{\"title\": \"So sánh sức mạnh nhân vật Anime\", \"snippet\": \"Gojo Satoru được coi là mạnh nhất trong Jujutsu Kaisen với khả năng Vô Hạn (Infinity) khiến đối thủ không thể chạm tới. Saitama có tiềm năng vô hạn và chưa bao giờ bộc lộ toàn bộ sức mạnh ngay cả khi đấu với Garou thức tỉnh.\"}]\n\n[{\"title\": \"Signal vs WhatsApp: Ứng dụng nào bảo mật hơn?\", \"snippet\": \"WhatsApp phổ biến nhất với hơn 2 tỷ người dùng và có mã hóa đầu cuối. Tuy nhiên, Signal được đánh giá cao hơn về các tính năng bảo mật cập nhật và quyền riêng tư tuyệt đối vì không thu thập dữ liệu người dùng.\"}]\n\n[{\"title\": \"Đánh giá SurveyMonkey và SoGoSurvey\", \"snippet\": \"SurveyMonkey không chỉ là phần mềm khảo sát mà còn cung cấp công cụ email, cộng tác và marketing. Cả hai đều uy tín nhưng lựa chọn tùy thuộc vào mục tiêu nghiên cứu và tính năng cụ thể của doanh nghiệp.\"}]\n\n[{\"title\": \"So sánh trình soạn thảo mã nguồn\", \"snippet\": \"VS Code hiện đại, dễ học, nhiều plugin và hỗ trợ chỉnh sửa chung (shared editing). Emacs và Vim có đường cong học tập dốc nhưng cực kỳ mạnh mẽ cho những người đã thành thạo.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tranh luận với bạn bè về anime. Theo bạn, nếu Itachi Uchiha đối đầu với Tobirama Senju thì ai sẽ thắng?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh sức mạnh và khả năng chiến thắng giữa Itachi Uchiha và Tobirama Senju trong anime Naruto.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Itachi Uchiha",
+                "Tobirama Senju"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "match_balance": [
+                "cân bằng",
+                "kèo đấu cân bằng",
+                "ngang sức"
+              ],
+              "speed_comparison": [
+                "tốc độ của Itachi",
+                "tốc độ được đánh giá rất cao"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trận đấu giữa Itachi Uchiha và Tobirama Senju là một kèo đấu cực kỳ cân bằng.",
+              "Tốc độ của Itachi được đánh giá rất cao và có thể so sánh với Sasuke hậu Kage War hoặc Naruto chế độ MKCM."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe hấp dẫn thật! Vậy còn một kèo 'khủng' hơn: Gojo Satoru, Saitama và Goku, nếu ba người này đánh nhau thì ai là người mạnh nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh sức mạnh của ba nhân vật anime Gojo Satoru, Saitama và Goku.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Gojo",
+                "Saitama",
+                "Goku"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "gojo_ability": [
+                "Vô Hạn",
+                "Infinity"
+              ],
+              "saitama_potential": [
+                "phá vỡ giới hạn",
+                "tiềm năng vô hạn"
+              ],
+              "goku_power": [
+                "sức mạnh cấp độ vũ trụ",
+                "phá hủy hành tinh"
+              ]
+            },
+            "golden_reference_claims": [
+              "Gojo Satoru sở hữu năng lực Vô Hạn khiến các đòn tấn công khó có thể chạm tới.",
+              "Saitama có tiềm năng phá vỡ giới hạn và chưa bao giờ bộc lộ toàn bộ sức mạnh thực sự.",
+              "Goku sở hữu sức mạnh cấp độ vũ trụ với khả năng phá hủy các hành tinh."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Đổi chủ đề một chút nhé, mình đang phân vân giữa WhatsApp, Signal và Telegram. Theo bạn ứng dụng nào sẽ 'thắng' trong cuộc đua nhắn tin bảo mật?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh tính bảo mật và mức độ ưu tiên giữa WhatsApp, Signal và Telegram để chọn ứng dụng nhắn tin phù hợp.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "WhatsApp",
+                "Signal",
+                "Telegram",
+                "bảo mật"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "popularity": [
+                "WhatsApp",
+                "2 tỷ người dùng",
+                "phổ biến nhất"
+              ],
+              "privacy": [
+                "Signal",
+                "bảo mật hơn",
+                "không thu thập dữ liệu"
+              ],
+              "features": [
+                "Telegram",
+                "nhóm cộng đồng lớn",
+                "đám mây"
+              ]
+            },
+            "golden_reference_claims": [
+              "WhatsApp dẫn đầu về độ phổ biến với hơn 2 tỷ người dùng toàn cầu và có trang bị mã hóa đầu cuối.",
+              "Signal được đánh giá cao nhất về quyền riêng tư và bảo mật tuyệt đối nhờ triết lý không thu thập dữ liệu người dùng.",
+              "Telegram mạnh về các nhóm cộng đồng lớn, bot và khả năng đồng bộ đám mây linh hoạt."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Mình cũng đang làm khảo sát cho công việc, thấy có SoGoSurvey và SurveyMonkey. Hai cái này cái nào tốt hơn vậy bạn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh phần mềm khảo sát trực tuyến SoGoSurvey và SurveyMonkey để phục vụ công việc.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "SoGoSurvey",
+                "SurveyMonkey",
+                "so sánh"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "surveymonkey_features": [
+                "email",
+                "cộng tác",
+                "marketing",
+                "phân tích dữ liệu"
+              ],
+              "sogosurvey_features": [
+                "khảo sát thuần túy",
+                "chi phí",
+                "ngân sách tối ưu"
+              ]
+            },
+            "golden_reference_claims": [
+              "SurveyMonkey cung cấp hệ sinh thái toàn diện bao gồm công cụ email, cộng tác và marketing.",
+              "Cả SoGoSurvey và SurveyMonkey đều là những phần mềm khảo sát trực tuyến uy tín và phổ biến.",
+              "Việc lựa chọn giữa SoGoSurvey và SurveyMonkey phụ thuộc vào mục tiêu nghiên cứu và ngân sách cụ thể của doanh nghiệp."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Câu hỏi cuối cùng, mình là lập trình viên mới. Mình thấy mọi người nhắc nhiều đến VS Code, VIM và Emacs. Liệu VS Code có thực sự tốt hơn VIM hay Emacs không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh VS Code, Vim và Emacs để xem cái nào tốt hơn cho lập trình viên mới",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "VS Code",
+                "Vim",
+                "Emacs"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "vs_code_features": [
+                "hiện đại",
+                "dễ học",
+                "dễ cài đặt",
+                "plugin",
+                "shared editing"
+              ],
+              "vim_emacs_features": [
+                "đường cong học tập dốc",
+                "khó học",
+                "tùy biến",
+                "bàn phím",
+                "mạnh mẽ"
+              ],
+              "recommendation": [
+                "VS Code",
+                "lập trình viên mới",
+                "bắt đầu"
+              ]
+            },
+            "golden_reference_claims": [
+              "VS Code là lựa chọn tuyệt vời cho người mới bắt đầu vì tính hiện đại, dễ cài đặt và hệ sinh thái phong phú.",
+              "Vim và Emacs có đường cong học tập dốc nhưng cực kỳ mạnh mẽ và tối ưu khi đã thành thạo.",
+              "Lập trình viên mới nên bắt đầu với VS Code để tập trung vào việc học code."
+            ]
+          }
+        }
+      ]
+    }
+  }
+]
