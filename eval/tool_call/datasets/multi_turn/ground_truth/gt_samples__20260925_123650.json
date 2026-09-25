@@ -1,0 +1,3714 @@
+[
+  {
+    "sample_id": "sample_001",
+    "conversation_id": "conversation_0001",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn khôi phục dữ liệu trên Samsung Galaxy\", \"snippet\": \"Để khôi phục ghi chú hoặc ảnh đã xóa trên Samsung Galaxy, người dùng có thể kiểm tra Thùng rác (Trash) trong ứng dụng hoặc sử dụng các công cụ khôi phục dữ liệu trực tuyến chuyên dụng nếu dữ liệu đã bị xóa vĩnh viễn.\"}]\n\n[{\"title\": \"So sánh chi tiết OnePlus 6 và Samsung S8\", \"snippet\": \"Về kết nối di động, cả hai tương đương với LTE-A Cat16. Tuy nhiên, Samsung S8 vượt trội về màn hình với công nghệ Super AMOLED, độ phân giải 1440 x 2960 pixels và mật độ điểm ảnh cao (~570 ppi).\"}]\n\n[{\"title\": \"Top ứng dụng vẽ trên Android cho người không dùng bút\", \"snippet\": \"SketchBook cung cấp đa dạng cọ vẽ, bút chì, marker và cho phép nhập ảnh làm mẫu. Adobe Illustrator Draw tập trung vào vẽ vector, phù hợp cho việc tạo hình đồ họa chính xác.\"}]\n\n[{\"title\": \"Thông số chống nước của Samsung S20 Ultra\", \"snippet\": \"S20 Ultra đạt chuẩn IP68, có thể chịu được nước ở độ sâu 1.5m trong 30 phút. Tuy nhiên, chuẩn này chủ yếu bảo vệ máy trước các tai nạn như đổ nước, không khuyến khích tiếp xúc thường xuyên với xà phòng hoặc áp lực nước mạnh.\"}]\n\n[{\"title\": \"Cách khắc phục lỗi sạc pin trên dòng Samsung J series\", \"snippet\": \"Vệ sinh cổng sạc bằng bàn chải mềm để loại bỏ bụi bẩn. Khởi động lại máy hàng tuần và giữ dung lượng bộ nhớ trống dưới 80% để giảm tải cho hệ thống, tránh gây nóng máy và hao pin.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình lỡ tay xóa mất ghi chú trong ứng dụng Samsung Notes trên điện thoại Galaxy, có cách nào để khôi phục lại không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Khôi phục ghi chú đã xóa trong ứng dụng Samsung Notes trên điện thoại Galaxy",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "khôi phục",
+                "Samsung Notes",
+                "đã xóa"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "trash_bin_check": [
+                "kiểm tra Thùng rác",
+                "Thùng rác",
+                "Trash"
+              ],
+              "data_recovery_tools": [
+                "công cụ khôi phục dữ liệu",
+                "phần mềm chuyên dụng",
+                "khôi phục dữ liệu trực tuyến"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người dùng có thể kiểm tra mục 'Thùng rác' (Trash) trong ứng dụng Samsung Notes để khôi phục các ghi chú đã bị xóa tạm thời.",
+              "Có thể sử dụng các công cụ khôi phục dữ liệu trực tuyến hoặc phần mềm chuyên dụng nếu dữ liệu đã bị xóa vĩnh viễn trên Samsung Galaxy."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Mình đang phân vân giữa OnePlus 6 và Samsung Galaxy S8, theo bạn mình nên mua máy nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh giữa điện thoại OnePlus 6 và Samsung Galaxy S8 để đưa ra tư vấn mua hàng",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "OnePlus 6",
+                "Samsung Galaxy S8"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "connectivity": [
+                "LTE-A Cat16",
+                "kết nối di động",
+                "thu sóng"
+              ],
+              "display_quality": [
+                "Super AMOLED",
+                "độ phân giải 1440 x 2960 pixels",
+                "màn hình"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cả OnePlus 6 và Samsung Galaxy S8 đều tương đương nhau về khả năng kết nối di động với LTE-A Cat16.",
+              "Samsung Galaxy S8 vượt trội về màn hình với công nghệ Super AMOLED và độ phân giải 1440 x 2960 pixels."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Mình có một chiếc máy tính bảng Samsung Galaxy nhưng không có bút stylus, bạn gợi ý cho mình ứng dụng vẽ phác thảo nào tốt mà không cần bút không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm ứng dụng vẽ phác thảo trên máy tính bảng Samsung không cần dùng bút stylus",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "ứng dụng vẽ",
+                "Samsung tablet",
+                "không dùng bút",
+                "without stylus"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "sketchbook_app": [
+                "SketchBook",
+                "Autodesk SketchBook"
+              ],
+              "illustrator_draw_app": [
+                "Adobe Illustrator Draw",
+                "Illustrator Draw"
+              ]
+            },
+            "golden_reference_claims": [
+              "SketchBook là ứng dụng vẽ cung cấp đa dạng cọ vẽ, bút chì, marker và cho phép nhập ảnh làm mẫu.",
+              "Adobe Illustrator Draw là ứng dụng tập trung vào vẽ vector, phù hợp cho việc tạo hình đồ họa chính xác."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Chiếc Samsung Galaxy S20 Ultra của mình có chống nước không? Mình có thể mang máy vào phòng tắm khi tắm không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Kiểm tra khả năng chống nước của Samsung Galaxy S20 Ultra và việc có nên mang vào phòng tắm hay không.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Samsung Galaxy S20 Ultra",
+                "IP68",
+                "chống nước"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "mình",
+              "expected_target": [
+                "Samsung Galaxy S20 Ultra"
+              ]
+            },
+            "required_slots": {
+              "water_resistance_standard": [
+                "IP68",
+                "kháng nước IP68"
+              ],
+              "shower_recommendation": [
+                "không khuyến khích",
+                "không nên mang vào phòng tắm",
+                "để máy bên ngoài"
+              ]
+            },
+            "golden_reference_claims": [
+              "Samsung Galaxy S20 Ultra đạt chuẩn kháng nước IP68, có thể chịu được nước ở độ sâu 1.5m trong 30 phút.",
+              "Không nên mang máy vào phòng tắm do áp lực nước từ vòi sen và hóa chất trong xà phòng có thể làm hỏng gioăng chống nước."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình có một chiếc Samsung J7 cũ và dạo này nó sạc rất chập chờn, làm sao để khắc phục lỗi sạc này nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm cách khắc phục lỗi sạc chập chờn trên Samsung Galaxy J7",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Samsung J7",
+                "lỗi sạc",
+                "charging problem"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "nó",
+              "expected_target": [
+                "Samsung J7",
+                "Samsung Galaxy J7"
+              ]
+            },
+            "required_slots": {
+              "cleaning_port": [
+                "vệ sinh cổng sạc",
+                "bàn chải mềm",
+                "loại bỏ bụi bẩn"
+              ],
+              "system_maintenance": [
+                "khởi động lại máy",
+                "dung lượng bộ nhớ",
+                "dưới 80%"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vệ sinh cổng sạc bằng bàn chải mềm để loại bỏ bụi bẩn giúp cải thiện tình trạng tiếp xúc kém khi sạc Samsung J7.",
+              "Khởi động lại máy thường xuyên và giữ dung lượng bộ nhớ trống dưới 80% giúp giảm tải cho hệ thống và tránh làm nóng máy khi sạc."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_002",
+    "conversation_id": "conversation_0002",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn khôi phục tài khoản khi mất mật khẩu\", \"snippet\": \"Đối với các trường hợp mất mật khẩu hoặc mất SIM đăng ký, người dùng thường tìm đến các công cụ khôi phục tài khoản trực tuyến hoặc quy trình xác minh danh tính của nhà cung cấp dịch vụ để lấy lại quyền truy cập.\"}]\n\n[{\"title\": \"Thông tin mật khẩu file nén Far Cry 2\", \"snippet\": \"Mật khẩu cho file Far Cry 2- Razor1911 tùy thuộc vào trang web tải về. Ví dụ, nếu tải từ PCGames-Download.com, mật khẩu thường là Telecharger-JeuxPC.com.\"}]\n\n[{\"title\": \"Hỗ trợ khôi phục mật khẩu RocketMail\", \"snippet\": \"Sử dụng liên kết 'Forgot Password' trên trang đăng nhập RocketMail, nhập tên người dùng hoặc email để đặt lại. Nếu không khả dụng, hãy sử dụng liên kết 'Password Assistance' để cung cấp thêm thông tin xác minh.\"}]\n\n[{\"title\": \"Khôi phục mật khẩu Apple ID và Mở khóa iPhone\", \"snippet\": \"Không thể khôi phục mật khẩu trực tiếp từ iPhone mà chỉ có thể đặt lại (reset) mật khẩu và khôi phục từ bản sao lưu. Nếu không có bản sao lưu, tùy chọn duy nhất là xóa toàn bộ dữ liệu máy (wipe) để thiết lập lại.\"}]\n\n[{\"title\": \"Tiêu chí lựa chọn dịch vụ Email Marketing chuyên nghiệp\", \"snippet\": \"Một dịch vụ tốt cần có: giao diện kéo thả dễ dùng, khả năng gửi email hàng loạt cá nhân hóa (marketing automation), quản lý phân đoạn khách hàng, theo dõi hiệu suất và đảm bảo tỷ lệ vào inbox cao (không bị đánh dấu spam).\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình lỡ quên mật khẩu email rồi, giờ mình phải làm sao để lấy lại nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách khôi phục lại mật khẩu email khi bị quên.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "khôi phục mật khẩu email",
+                "recover email password"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "recovery_method": [
+                "tính năng quên mật khẩu",
+                "forgot password",
+                "công cụ khôi phục tài khoản"
+              ],
+              "verification_process": [
+                "xác minh danh tính",
+                "chứng minh quyền sở hữu",
+                "khôi phục tài khoản"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cách đơn giản nhất để lấy lại mật khẩu email là sử dụng tính năng 'Quên mật khẩu' trên trang đăng nhập.",
+              "Người dùng có thể cần thực hiện quy trình xác minh danh tính hoặc sử dụng công cụ hỗ trợ khôi phục để chứng minh quyền sở hữu tài khoản nếu mất SIM hoặc không còn email khôi phục."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "À, mình cũng đang gặp một vấn đề khác. Mình tải file game Far Cry 2 bản Razor 1911 về nhưng nó bị khóa bằng WinRAR, bạn có biết mật khẩu giải nén là gì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm mật khẩu giải nén file WinRAR của game Far Cry 2 bản Razor 1911",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Far Cry 2",
+                "Razor 1911",
+                "WinRAR",
+                "password",
+                "mật khẩu"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "password_source": [
+                "tùy thuộc vào trang web",
+                "trang web tải về",
+                "nguồn tải"
+              ],
+              "example_password": [
+                "Telecharger-JeuxPC.com",
+                "mật khẩu giải nén"
+              ]
+            },
+            "golden_reference_claims": [
+              "Mật khẩu giải nén file Far Cry 2 bản Razor 1911 phụ thuộc vào trang web mà người dùng đã tải file về.",
+              "Nếu tải từ trang PCGames-Download.com, mật khẩu giải nén thường là Telecharger-JeuxPC.com."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Còn đối với tài khoản RocketMail thì sao? Nếu mình quên mật khẩu RocketMail thì có cách nào lấy lại không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm cách khôi phục mật khẩu tài khoản RocketMail khi bị quên.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "RocketMail",
+                "password",
+                "mật khẩu",
+                "khôi phục"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "tài khoản RocketMail",
+              "expected_target": [
+                "RocketMail",
+                "tài khoản RocketMail"
+              ]
+            },
+            "required_slots": {
+              "forgot_password_link": [
+                "Forgot Password",
+                "Quên mật khẩu",
+                "liên kết quên mật khẩu"
+              ],
+              "password_assistance": [
+                "Password Assistance",
+                "Hỗ trợ mật khẩu",
+                "liên kết hỗ trợ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sử dụng liên kết 'Forgot Password' trên trang đăng nhập RocketMail và nhập tên người dùng hoặc email để đặt lại mật khẩu.",
+              "Sử dụng liên kết 'Password Assistance' để cung cấp thêm thông tin xác minh nếu tùy chọn quên mật khẩu không khả dụng."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Mình cũng đang dùng iPhone và vừa nhận ra mình quên luôn mật khẩu Apple ID. Trường hợp này thì reset như thế nào cho đúng?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách đặt lại (reset) mật khẩu Apple ID khi quên trên iPhone",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "reset Apple ID password",
+                "quên mật khẩu Apple ID"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "reset_method": [
+                "cài đặt trên iPhone",
+                "iforgot.apple.com",
+                "trang web iforgot"
+              ],
+              "backup_warning": [
+                "bản sao lưu",
+                "khôi phục từ bản sao lưu"
+              ],
+              "data_wipe": [
+                "xóa toàn bộ dữ liệu",
+                "wipe",
+                "thiết lập lại từ đầu"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bạn không thể xem lại mật khẩu Apple ID cũ mà chỉ có thể đặt lại mật khẩu mới thông qua cài đặt iPhone hoặc trang iforgot.apple.com.",
+              "Nếu thiết bị bị khóa hoàn toàn và không có bản sao lưu, giải pháp cuối cùng là phải xóa toàn bộ dữ liệu trên máy để thiết lập lại từ đầu."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Tiện đây mình đang tìm hiểu về marketing, bạn có thể tư vấn cho mình đơn vị cung cấp dịch vụ quản lý chiến dịch email (email campaign management) nào tốt nhất hiện nay không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tư vấn tiêu chí chọn nhà cung cấp dịch vụ quản lý chiến dịch email marketing tốt nhất.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "email campaign management",
+                "email marketing"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "usability": [
+                "giao diện dễ sử dụng",
+                "kéo-thả",
+                "drag & drop"
+              ],
+              "automation": [
+                "tự động hóa",
+                "marketing automation",
+                "cá nhân hóa"
+              ],
+              "deliverability": [
+                "độ tin cậy",
+                "tỷ lệ vào inbox",
+                "không bị đánh dấu spam"
+              ]
+            },
+            "golden_reference_claims": [
+              "Dịch vụ email marketing tốt cần có giao diện kéo-thả dễ sử dụng và tính năng tự động hóa cá nhân hóa.",
+              "Khả năng phân đoạn người dùng và theo dõi hiệu suất là yếu tố cốt lõi của công cụ.",
+              "Độ tin cậy và tỷ lệ vào hộp thư đến (deliverability) là yếu tố quan trọng nhất tránh bị đánh dấu spam."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_003",
+    "conversation_id": "conversation_0003",
+    "source": {
+      "text": "[{\"title\": \"The 10 Percent Brain Myth - WIRED\", \"snippet\": \"Quan niệm cho rằng con người chỉ sử dụng 10% não bộ là một hiểu lầm phổ biến. Thực tế, các nghiên cứu hình ảnh học cho thấy hầu hết mọi phần của não bộ đều hoạt động trong suốt một ngày, ngay cả khi chúng ta đang ngủ.\"}]\n\n[{\"title\": \"What is a Proxy Server? - Tech Guide\", \"snippet\": \"Một proxy server đóng vai trò là trung gian giữa thiết bị của người dùng và internet. Thay vì kết nối trực tiếp với website, thiết bị gửi yêu cầu đến proxy, sau đó proxy chuyển tiếp yêu cầu đó đến trang web mục tiêu, tải dữ liệu về và gửi lại cho người dùng.\"}]\n\n[{\"title\": \"Introduction to Bootstrap - Official Docs\", \"snippet\": \"Bootstrap là một framework front-end mã nguồn mở miễn phí dùng để phát triển các trang web và ứng dụng web responsive (tương thích nhiều thiết bị). Nó cung cấp các khối mã sẵn có giúp tăng tốc độ phát triển giao diện.\"}]\n\n[{\"title\": \"Serverless Architecture: Pros and Cons\", \"snippet\": \"Không nên dùng serverless cho: 1. Mã nguồn yêu cầu hiệu suất cực cao cần can thiệp sâu vào phần cứng; 2. Hệ thống có lưu lượng yêu cầu quá lớn và liên tục (chi phí sẽ tăng vọt); 3. Xử lý dữ liệu nặng/ETL cần quản lý đĩa cứng bền vững (persistent disk) tốc độ cao.\"}]\n\n[{\"title\": \"Understanding Baluns in Antenna Systems\", \"snippet\": \"Việc dùng balun phụ thuộc vào yêu cầu hệ thống. Một số hệ thống cần balun để cân bằng dòng điện nhưng bị bỏ qua do hiệu suất giảm không đáng kể. Một số khác không cần vì chiều dài đường truyền, cách định tuyến và nối đất đã khiến đường truyền hoạt động như một hệ thống cân bằng.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình có một thắc mắc là nếu con người có thể sử dụng được 100% công suất của não bộ thì điều gì sẽ xảy ra?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải đáp thắc mắc về giả thuyết con người sử dụng 100% công suất não bộ.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "sử dụng 100% não bộ",
+                "10 percent brain myth"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "brain_capacity_myth": [
+                "hiểu lầm phổ biến",
+                "myth",
+                "chỉ sử dụng 10%"
+              ],
+              "actual_brain_usage": [
+                "hầu hết mọi phần của não bộ đều hoạt động",
+                "vận hành toàn bộ hệ thống não bộ",
+                "sử dụng gần như toàn bộ não bộ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Quan niệm con người chỉ sử dụng 10% não bộ là một hiểu lầm phổ biến.",
+              "Các nghiên cứu khoa học cho thấy hầu hết mọi phần của não bộ đều hoạt động trong suốt cả ngày."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "À ra vậy. Chuyển sang chủ đề công nghệ một chút, mình nghe nói nhiều về 'proxy'. Bạn giải thích giúp mình proxy là gì và cách nó hoạt động như thế nào được không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu định nghĩa của proxy server và cách thức hoạt động của nó.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "proxy server",
+                "là gì",
+                "how proxy server works"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition": [
+                "người trung gian",
+                "trung gian giữa thiết bị",
+                "intermediate"
+              ],
+              "working_mechanism": [
+                "gửi yêu cầu",
+                "chuyển tiếp",
+                "tải dữ liệu về"
+              ]
+            },
+            "golden_reference_claims": [
+              "Proxy server đóng vai trò là người trung gian giữa thiết bị của người dùng và internet.",
+              "Thiết bị gửi yêu cầu đến proxy, sau đó proxy chuyển tiếp yêu cầu đến website mục tiêu và gửi lại dữ liệu cho người dùng."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Hiểu rồi, cảm ơn bạn. Mình đang tập làm web, mình thấy mọi người hay nhắc đến Bootstrap. Bootstrap là gì và tại sao mình nên dùng nó?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu định nghĩa Bootstrap và lý do nên sử dụng framework này trong lập trình web.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Bootstrap",
+                "là gì",
+                "lợi ích",
+                "framework"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition": [
+                "framework front-end",
+                "mã nguồn mở",
+                "phát triển trang web"
+              ],
+              "responsiveness": [
+                "responsive",
+                "tương thích nhiều thiết bị",
+                "mọi kích thước màn hình"
+              ],
+              "benefits": [
+                "tăng tốc độ phát triển",
+                "khối mã sẵn có",
+                "tiết kiệm thời gian"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bootstrap là một framework front-end mã nguồn mở miễn phí dùng để xây dựng các trang web và ứng dụng web.",
+              "Bootstrap giúp tạo ra các giao diện responsive tự động tương thích với nhiều kích thước màn hình khác nhau.",
+              "Lý do nên dùng Bootstrap là vì nó cung cấp các khối mã có sẵn giúp tăng tốc độ phát triển giao diện một cách nhanh chóng."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Vậy nếu mình muốn triển khai backend theo hướng serverless thì có lưu ý gì không? Có trường hợp nào mình KHÔNG nên dùng serverless không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu các lưu ý khi triển khai backend serverless và các trường hợp không nên sử dụng serverless.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "when not to use serverless",
+                "serverless limitations"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "performance_limitation": [
+                "yêu cầu hiệu suất cực cao",
+                "can thiệp sâu vào phần cứng",
+                "quản lý đĩa cứng tốc độ cao"
+              ],
+              "high_traffic_cost": [
+                "lưu lượng truy cập quá lớn",
+                "request khổng lồ và liên tục",
+                "chi phí tăng vọt"
+              ],
+              "heavy_data_processing": [
+                "xử lý dữ liệu nặng",
+                "ETL",
+                "data locality"
+              ]
+            },
+            "golden_reference_claims": [
+              "Không nên dùng serverless cho các hệ thống yêu cầu hiệu suất cực cao cần can thiệp sâu vào phần cứng hoặc quản lý đĩa cứng bền vững tốc độ cao.",
+              "Không nên dùng serverless cho hệ thống có lượng request khổng lồ và liên tục vì chi phí sẽ tăng vọt.",
+              "Không nên dùng serverless cho các tác vụ xử lý dữ liệu nặng hoặc ETL đòi hỏi sự ổn định về mạng và vị trí lưu trữ dữ liệu."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Câu hỏi cuối cùng nhé, mình đang tìm hiểu về anten. Tại sao một số anten dipole lại sử dụng Balun, trong khi một số khác thì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do tại sao một số anten dipole sử dụng Balun trong khi số khác thì không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "balun",
+                "dipole antenna"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "performance_tradeoff": [
+                "hiệu suất giảm không đáng kể",
+                "tối ưu hóa hiệu suất",
+                "chấp nhận mức tạm ổn"
+              ],
+              "system_physical_factors": [
+                "chiều dài đường truyền",
+                "cách định tuyến",
+                "nối đất",
+                "routing",
+                "grounding"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một số hệ thống cần Balun để cân bằng dòng điện nhưng người thiết kế có thể bỏ qua nếu sự sụt giảm hiệu suất không đáng kể.",
+              "Một số hệ thống không cần Balun do chiều dài đường truyền, cách đi dây và phương pháp nối đất đã giúp đường truyền hoạt động như một hệ thống cân bằng."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_004",
+    "conversation_id": "conversation_0004",
+    "source": {
+      "text": "[{\"title\": \"Cách xác định danh tính qua số điện thoại\", \"snippet\": \"Có nhiều cách để tìm tên người sở hữu số điện thoại, trong đó an toàn và dễ dàng nhất là sử dụng các công cụ tra cứu trực tuyến chuyên dụng giúp quét dữ liệu công khai để hiển thị tên người dùng.\"}]\n\n[{\"title\": \"Hướng dẫn xử lý khi bị lừa đảo qua mạng\", \"snippet\": \"Khi gặp trường hợp lừa đảo, người dân nên trình báo ngay cho cơ quan cảnh sát phòng chống tội phạm công nghệ cao. Việc tự ý theo dõi vị trí có thể gây nguy hiểm cho bản thân vì đối tượng có thể ở gần và gây hại.\"}]\n\n[{\"title\": \"Định nghĩa về số IMEI\", \"snippet\": \"IMEI (International Mobile Equipment Identity) là mã số định danh quốc tế cho thiết bị di động (GSM, WCDMA, iDEN). Mỗi máy thường có một số IMEI duy nhất (máy 2 SIM sẽ có 2 số). IMEI dùng để định danh thiết bị, không có mối liên hệ cố định với người thuê bao.\"}]\n\n[{\"title\": \"Quy định về bảo mật lịch sử cuộc gọi\", \"snippet\": \"Nhà cung cấp dịch vụ viễn thông lưu trữ hồ sơ chi tiết cuộc gọi (CDR). Việc truy cập thông tin này phụ thuộc vào quy định pháp luật, chính sách nhà mạng và sự đồng ý của người dùng.\"}]\n\n[{\"title\": \"Hướng dẫn về số chỉ nhịp trong âm nhạc\", \"snippet\": \"Số trên cho biết số phách trong một ô nhịp. Số dưới cho biết loại nốt nhạc nào được tính là một phách (ví dụ: số 4 nghĩa là nốt đen được tính là một phách).\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình muốn biết làm cách nào để tìm tên của một người khi chỉ có số điện thoại của họ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm cách xác định tên của người sở hữu khi chỉ có số điện thoại.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "tìm tên qua số điện thoại",
+                "find name by phone number"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "search_method": [
+                "công cụ tra cứu trực tuyến",
+                "trang web tra cứu",
+                "quét cơ sở dữ liệu công khai"
+              ],
+              "action_steps": [
+                "nhập số điện thoại",
+                "làm theo hướng dẫn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cách đơn giản và an toàn nhất để tìm tên qua số điện thoại là sử dụng các công cụ tra cứu trực tuyến.",
+              "Các công cụ này hoạt động bằng cách quét các cơ sở dữ liệu công khai hoặc danh bạ chia sẻ.",
+              "Người dùng chỉ cần truy cập trang web tra cứu, nhập số điện thoại cần tìm và làm theo hướng dẫn."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nếu mình nghi ngờ đó là kẻ lừa đảo, mình có cách nào theo dõi vị trí trực tiếp của họ qua số điện thoại không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách theo dõi vị trí trực tiếp của số điện thoại lừa đảo và lời khuyên xử lý an toàn",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "theo dõi vị trí",
+                "lừa đảo",
+                "số điện thoại"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "đó",
+              "expected_target": [
+                "kẻ lừa đảo",
+                "chủ nhân số điện thoại"
+              ]
+            },
+            "required_slots": {
+              "safety_warning": [
+                "tuyệt đối không tự tìm cách",
+                "không nên tự ý theo dõi",
+                "gây nguy hiểm cho bản thân"
+              ],
+              "actionable_advice": [
+                "trình báo ngay vụ việc cho cơ quan công an",
+                "phòng chống tội phạm công nghệ cao",
+                "cơ quan chức năng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người dùng không nên tự ý theo dõi vị trí trực tiếp của kẻ lừa đảo qua số điện thoại để tránh gây nguy hiểm cho bản thân.",
+              "Cần trình báo ngay vụ việc lừa đảo cho cơ quan công an hoặc đơn vị phòng chống tội phạm công nghệ cao để được hỗ trợ xử lý."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiện cho mình hỏi, nếu mình có số IMEI của máy thì có thể lấy được hóa đơn mua hàng không? Mà thực ra số IMEI là gì vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích khái niệm số IMEI và hỏi khả năng tra cứu hóa đơn mua hàng từ số IMEI.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "IMEI là gì",
+                "lấy hóa đơn từ số IMEI"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "imei_definition": [
+                "International Mobile Equipment Identity",
+                "mã số định danh quốc tế",
+                "số chứng minh thư của chiếc điện thoại"
+              ],
+              "invoice_retrieval": [
+                "không thể trực tiếp lấy hóa đơn",
+                "nhà sản xuất",
+                "cửa hàng bán lẻ",
+                "hệ thống quản lý"
+              ]
+            },
+            "golden_reference_claims": [
+              "IMEI là mã số định danh quốc tế duy nhất cho mỗi thiết bị di động, dùng để định danh thiết bị chứ không liên kết cố định với thông tin cá nhân của người đăng ký SIM.",
+              "Không thể trực tiếp lấy hóa đơn chỉ bằng số IMEI qua công cụ công khai, nhưng có thể cung cấp IMEI cho nhà sản xuất hoặc cửa hàng bán lẻ để họ tra cứu trong hệ thống quản lý."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Vậy còn lịch sử cuộc gọi thì sao? Mình có thể xem lịch sử cuộc gọi của một số điện thoại bất kỳ không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem có thể xem lịch sử cuộc gọi của một số điện thoại bất kỳ không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "lịch sử cuộc gọi",
+                "call history",
+                "số điện thoại"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "data_storage": [
+                "hồ sơ chi tiết cuộc gọi",
+                "CDR",
+                "nhà cung cấp dịch vụ viễn thông"
+              ],
+              "access_condition": [
+                "sự đồng ý của chủ sở hữu",
+                "cơ quan pháp luật",
+                "yêu cầu điều tra"
+              ],
+              "security_warning": [
+                "lừa đảo",
+                "đánh cắp thông tin",
+                "cẩn thận"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc truy cập lịch sử cuộc gọi phụ thuộc vào quy định pháp luật, chính sách nhà mạng và được lưu trữ dưới dạng Hồ sơ chi tiết cuộc gọi (CDR).",
+              "Để xem lịch sử cuộc gọi cần có sự đồng ý của chủ sở hữu hoặc yêu cầu chính thức từ cơ quan pháp luật.",
+              "Các trang web quảng cáo dịch vụ xem lịch sử cuộc gọi miễn phí thường là lừa đảo hoặc đánh cắp thông tin."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cảm ơn bạn về các thông tin công nghệ. Chuyển sang một chủ đề khác, mình là một tay guitar 25 năm kinh nghiệm nhưng giờ mới học lý thuyết âm nhạc. Mình hiểu số trên trong số chỉ nhịp (time signature) nhưng số dưới thì mình vẫn thấy mơ hồ, giá trị thực tế của nó là gì vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu giá trị và ý nghĩa thực tế của số dưới trong số chỉ nhịp (time signature) trong âm nhạc.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "số dưới",
+                "số chỉ nhịp",
+                "bottom number",
+                "time signature"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "beat_unit": [
+                "giá trị của nốt nhạc",
+                "loại nốt nhạc",
+                "được tính là một phách",
+                "nốt đen"
+              ],
+              "notation_purpose": [
+                "ghi chép",
+                "đọc nhạc phổ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Số dưới trong số chỉ nhịp xác định giá trị của nốt nhạc được tính là một phách.",
+              "Số dưới là một phân số của nốt tròn, ví dụ số 4 nghĩa là nốt đen tương ứng với 1/4 nốt tròn được tính là một phách."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_005",
+    "conversation_id": "conversation_0005",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn sử dụng WhatsApp\", \"snippet\": \"Để thực hiện cuộc gọi nhóm, người dùng có thể bắt đầu một cuộc gọi cá nhân và sau đó thêm người tham gia, hoặc tạo một nhóm chat và chọn biểu tượng cuộc gọi từ trong nhóm đó.\"}]\n\n[{\"title\": \"Vai trò của AI trong biên tập nội dung\", \"snippet\": \"Grammarly hoạt động dựa trên thuật toán nhận diện mẫu (pattern recognition). Tuy nhiên, biên tập viên con người có khả năng xử lý các sắc thái ngôn ngữ (nuance), phong cách viết và ngữ cảnh phức tạp mà AI chưa thể thay thế.\"}]\n\n[{\"title\": \"Stack Overflow: Why are Java 8 lambdas invoked using invokedynamic?\", \"snippet\": \"Java lambdas không đơn thuần là anonymous inner classes. Chúng sử dụng chỉ thị bytecode 'invokedynamic' để cho phép JVM trì hoãn việc liên kết phương thức cho đến khi thực thi, giúp tối ưu hiệu suất và linh hoạt hơn.\"}]\n\n[{\"title\": \"Fantasy Creature Tropes\", \"snippet\": \"Ma cà rồng thường gắn liền với sự quyến rũ nhưng nguy hiểm (cắn), trong khi tiên cá gắn liền với sự bí ẩn của đại dương.\"}]\n\n[{\"title\": \"WhatsApp Terms of Service - Virtual Numbers\", \"snippet\": \"WhatsApp không chính thức hỗ trợ các số điện thoại ảo (virtual numbers) không được đăng ký thông qua nhà mạng di động chính thống. Tuy nhiên, một số dịch vụ cung cấp số ảo vẫn có thể hoạt động tùy thời điểm.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình muốn biết cách thực hiện cuộc gọi nhóm trên WhatsApp thì làm thế nào nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách thực hiện cuộc gọi nhóm trên ứng dụng WhatsApp",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "cuộc gọi nhóm",
+                "WhatsApp",
+                "group calls"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "call_from_individual": [
+                "bắt đầu một cuộc gọi cá nhân",
+                "thêm người tham gia",
+                "cuộc gọi cá nhân"
+              ],
+              "call_from_group": [
+                "tạo một nhóm chat",
+                "biểu tượng cuộc gọi",
+                "nhóm chat sẵn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người dùng có thể thực hiện cuộc gọi nhóm trên WhatsApp bằng cách bắt đầu cuộc gọi cá nhân rồi thêm người tham gia.",
+              "Người dùng có thể thực hiện cuộc gọi nhóm bằng cách mở nhóm chat sẵn và chọn biểu tượng cuộc gọi hoặc camera."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Tiện nói về công cụ hỗ trợ, bạn nghĩ sao về Grammarly? Liệu nó có thể khiến các biên tập viên chuyên nghiệp trở nên lỗi thời không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá tác động của Grammarly và khả năng thay thế biên tập viên chuyên nghiệp của công cụ này.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Grammarly",
+                "professional editors",
+                "AI writing tools impact"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "limitation_of_grammarly": [
+                "thuật toán nhận diện mẫu",
+                "pattern recognition",
+                "khuôn mẫu có sẵn"
+              ],
+              "role_of_editor": [
+                "xử lý sắc thái ngôn ngữ",
+                "ngữ cảnh phức tạp",
+                "nuance",
+                "cảm xúc"
+              ]
+            },
+            "golden_reference_claims": [
+              "Grammarly hoạt động dựa trên thuật toán nhận diện mẫu và các khuôn mẫu đã được lập trình sẵn.",
+              "Biên tập viên con người có khả năng xử lý các sắc thái ngôn ngữ, phong cách viết và ngữ cảnh phức tạp mà AI chưa thể thay thế.",
+              "Grammarly khó có thể khiến các biên tập viên chuyên nghiệp trở nên lỗi thời."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Mình cũng đang tìm hiểu về lập trình. Bạn giải thích giúp mình cơ chế hoạt động nội bộ của Java lambdas khi gọi đến các functional interfaces được không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích cơ chế hoạt động nội bộ của Java lambdas khi gọi đến các functional interfaces.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Java lambdas",
+                "functional interfaces",
+                "internal working",
+                "invokedynamic"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "bytecode_mechanism": [
+                "invokedynamic",
+                "chỉ thị bytecode",
+                "bytecode"
+              ],
+              "runtime_behavior": [
+                "thời điểm chạy",
+                "runtime",
+                "trì hoãn việc liên kết"
+              ]
+            },
+            "golden_reference_claims": [
+              "Java lambdas sử dụng chỉ thị bytecode invokedynamic thay vì đơn thuần tạo ra anonymous inner classes.",
+              "Chỉ thị invokedynamic cho phép JVM liên kết phương thức và tạo mã thực thi một cách linh hoạt tại thời điểm chạy để tối ưu hiệu suất."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Hơi lạc đề một chút cho vui nhé, nếu phải chọn, bạn thích hẹn hò với một ma cà rồng hay một nàng tiên cá hơn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi ý kiến hài hước và so sánh giả định giữa việc hẹn hò với ma cà rồng hay nàng tiên cá.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "vampire",
+                "mermaid",
+                "dating",
+                "tropes"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "vampire_dating_trait": [
+                "ma cà rồng",
+                "vampire",
+                "cắn",
+                "cổ"
+              ],
+              "mermaid_dating_trait": [
+                "tiên cá",
+                "mermaid",
+                "đại dương",
+                "bơi"
+              ]
+            },
+            "golden_reference_claims": [
+              "Hẹn hò với ma cà rồng có thể gặp rủi ro bị họ cắn vào cổ.",
+              "Hẹn hò với tiên cá đòi hỏi phải biết bơi hoặc sử dụng tàu ngầm vì họ sống ở đại dương."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Quay lại chuyện WhatsApp lúc nãy, mình nghe nói có thể lấy số điện thoại WhatsApp miễn phí, điều này có thật không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem có thể lấy số điện thoại WhatsApp miễn phí hay không và tính hợp lệ của chúng.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "free WhatsApp number",
+                "virtual number"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "WhatsApp",
+              "expected_target": [
+                "WhatsApp",
+                "cuộc gọi nhóm trên WhatsApp"
+              ]
+            },
+            "required_slots": {
+              "official_policy": [
+                "không chính thức hỗ trợ",
+                "yêu cầu số điện thoại thực tế",
+                "không cho phép sử dụng số ảo"
+              ],
+              "practical_reality": [
+                "vẫn có một số nhà cung cấp",
+                "có thể vượt qua bước xác minh",
+                "tiềm ẩn rủi ro khóa tài khoản"
+              ]
+            },
+            "golden_reference_claims": [
+              "WhatsApp không chính thức hỗ trợ các số điện thoại ảo và yêu cầu đăng ký qua nhà mạng di động.",
+              "Một số dịch vụ số ảo vẫn có thể dùng để vượt qua bước xác minh nhưng tài khoản có thể bị khóa bất cứ lúc nào."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_006",
+    "conversation_id": "conversation_0006",
+    "source": {
+      "text": "[{\"title\": \"Phê bình về Thuyết Đa trí tuệ của Howard Gardner\", \"snippet\": \"Nhiều ý kiến cho rằng việc tin vào thuyết đa trí tuệ của Gardner là một sai lầm vì nó không dựa trên cơ sở khoa học mà chỉ là những khẳng định. Việc giáo viên tin rằng học sinh 'tự nhiên giỏi cái này nhưng không giỏi cái kia' có thể dẫn đến việc bỏ qua tiềm năng phát triển của trẻ.\"}]\n\n[{\"title\": \"Thành tựu và Tầm ảnh hưởng của Shah Rukh Khan\", \"snippet\": \"Shah Rukh Khan là nghệ sĩ Ấn Độ thứ hai sau Mahatma Gandhi có tượng sáp tại bảo tàng Musée Grévin (Paris). Năm 2008, Newsweek xếp ông là một trong 50 người quyền lực nhất thế giới (vị trí 41), là ngôi sao điện ảnh duy nhất trong danh sách này.\"}]\n\n[{\"title\": \"Di sản của nền văn minh Sumer\", \"snippet\": \"Sumer đã phát minh ra bánh xe (dùng cho gốm và xe kéo), thuần hóa ngũ cốc để nông nghiệp, sản xuất bia và rượu làm chất sát trùng. Họ phát triển hệ thống toán học tiên tiến và chữ viết, cho phép kiến thức được lưu truyền qua nhiều thế hệ thay vì chỉ truyền miệng.\"}]\n\n[{\"title\": \"Khó khăn khi sống trong ký túc xá\", \"snippet\": \"Xung đột với bạn cùng phòng là nỗi sợ phổ biến, đặc biệt khi có sự khác biệt về tính cách (hướng nội và hướng ngoại). Những tình huống như bị khóa cửa bên ngoài hoặc không có thông tin liên lạc của bạn cùng phòng gây ra sự bất tiện và lo lắng.\"}]\n\n[{\"title\": \"Sự phản bội về tài chính trong hôn nhân\", \"snippet\": \"Ngoài ngoại tình, việc che giấu những khoản nợ lớn hoặc bí mật tài chính nghiêm trọng được coi là một sự phản bội lòng tin sâu sắc, gây khủng hoảng cho đối phương khi sự thật bị phơi bày.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Theo bạn, vấn đề lớn nhất của hệ thống giáo dục hiện đại ngày nay là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác định vấn đề lớn nhất của hệ thống giáo dục hiện đại ngày nay.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "vấn đề giáo dục hiện đại",
+                "thuyết đa trí tuệ",
+                "Howard Gardner"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "educational_issue": [
+                "hiểu lầm về năng lực bẩm sinh",
+                "vấn đề nghiêm trọng của hệ thống giáo dục",
+                "định hướng sai"
+              ],
+              "theory_critique": [
+                "thuyết đa trí tuệ của Howard Gardner",
+                "không dựa trên cơ sở khoa học",
+                "khẳng định mang tính chủ quan"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một trong những vấn đề của giáo dục hiện đại là sự hiểu lầm về năng lực bẩm sinh của học sinh.",
+              "Nhiều người vẫn tin theo thuyết đa trí tuệ của Howard Gardner cho rằng học sinh giỏi lĩnh vực này và kém lĩnh vực khác.",
+              "Thuyết đa trí tuệ không phải là lý thuyết khoa học được chứng minh mà chỉ là những khẳng định mang tính chủ quan."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Đổi chủ đề một chút nhé, tại sao Shah Rukh Khan lại được coi là siêu sao lớn nhất tại Ấn Độ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do tại sao Shah Rukh Khan được coi là siêu sao lớn nhất tại Ấn Độ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Shah Rukh Khan",
+                "superstar",
+                "India"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "wax_statue": [
+                "tượng sáp",
+                "Musée Grévin",
+                "Mahatma Gandhi"
+              ],
+              "newsweek_ranking": [
+                "Newsweek",
+                "50 người quyền lực nhất thế giới",
+                "vị trí 41"
+              ]
+            },
+            "golden_reference_claims": [
+              "Shah Rukh Khan là nghệ sĩ Ấn Độ thứ hai sau Mahatma Gandhi có tượng sáp tại bảo tàng Musée Grévin ở Paris.",
+              "Năm 2008, tạp chí Newsweek xếp Shah Rukh Khan vào danh sách 50 người quyền lực nhất thế giới ở vị trí 41 với tư cách là ngôi sao điện ảnh duy nhất."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Quay lại với lịch sử, nền văn minh Sumer cổ đại đã để lại những di sản gì cho thế giới hiện đại?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các di sản của nền văn minh Sumer cổ đại để lại cho thế giới hiện đại",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "ancient",
+                "Sumeria",
+                "legacy",
+                "inventions"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "lịch sử",
+              "expected_target": [
+                "lịch sử nhân loại",
+                "nền văn minh Sumer cổ đại"
+              ]
+            },
+            "required_slots": {
+              "inventions_and_discoveries": [
+                "bánh xe",
+                "wheel",
+                "thuần hóa ngũ cốc",
+                "sản xuất bia",
+                "chất sát trùng"
+              ],
+              "intellectual_heritage": [
+                "toán học",
+                "mathematics",
+                "chữ viết",
+                "writing system"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nền văn minh Sumer cổ đại đã phát minh ra bánh xe ứng dụng trong làm gốm và vận tải.",
+              "Sumer đã phát triển hệ thống toán học tiên tiến và sáng tạo ra hệ thống chữ viết giúp lưu truyền tri thức qua nhiều thế hệ.",
+              "Người Sumer có các thành tựu về nông nghiệp như thuần hóa ngũ cốc, sản xuất bia và sử dụng cồn làm chất sát trùng."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Nghe có vẻ xa xôi quá, hãy nói về chuyện đời thường hơn. Nếu phải sống trong ký túc xá, điều gì khiến bạn lo sợ nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về những nỗi sợ hãi hoặc khó khăn lớn nhất khi sống trong ký túc xá.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "hostel life",
+                "challenges",
+                "roommate conflicts"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "roommate_conflict": [
+                "xung đột với bạn cùng phòng",
+                "khác biệt về tính cách",
+                "hướng nội và hướng ngoại"
+              ],
+              "inconvenience": [
+                "bị khóa cửa bên ngoài",
+                "không có thông tin liên lạc",
+                "bất tiện và lo lắng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Xung đột với bạn cùng phòng do khác biệt tính cách là nỗi sợ phổ biến khi sống trong ký túc xá.",
+              "Những tình huống như bị khóa cửa bên ngoài và không có số điện thoại liên lạc gây ra sự bất lực và lo lắng."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, ngoài việc ngoại tình, theo bạn điều gì được coi là sự phản bội lớn nhất trong một mối quan hệ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác định các hình thức phản bội lớn nhất trong một mối quan hệ ngoài việc ngoại tình.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "betrayal",
+                "relationship",
+                "financial"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "betrayal_type": [
+                "lừa dối về tài chính",
+                "phản bội tài chính",
+                "financial betrayal"
+              ],
+              "trust_impact": [
+                "đổ vỡ lòng tin",
+                "mất lòng tin",
+                "khủng hoảng lòng tin"
+              ]
+            },
+            "golden_reference_claims": [
+              "Ngoài ngoại tình, sự lừa dối về tài chính được coi là một hình thức phản bội lòng tin sâu sắc trong mối quan hệ.",
+              "Việc bí mật giấu các khoản nợ lớn gây ra khủng hoảng nghiêm trọng khi sự thật bị phơi bày."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_007",
+    "conversation_id": "conversation_0007",
+    "source": {
+      "text": "[{\"title\": \"The Presence of Shiva in Vedic Literature\", \"snippet\": \"In the Veda Samhita, the word 'shiva' primarily appears as an adjective meaning 'auspicious'. Most references to the deity later identified as Lord Shiva are actually to Rudra. The equation of Rudra with Lord Shiva became prominent in Puranic literature, written 500 to 1000 years after the Vedas.\"}]\n\n[{\"title\": \"Significance of Mahashivaratri\", \"snippet\": \"Mahashivaratri celebrates the marriage of Lord Shiva and Goddess Parvati (Shakti). It is believed that on this night, Mahadeva and Parvati married and consummated their union, marking a divine union of consciousness and energy.\"}]\n\n[{\"title\": \"Nature and Allegory in Thirukkural\", \"snippet\": \"The poet mentions the Anicham flower, noting its extreme sensitivity; it is said to wither simply by the act of smelling it. This is used as an allegory for how a guest can be hurt by even a slight improper demeanor from a host.\"}]\n\n[{\"title\": \"Sri Lalitha Kalyanam Concept\", \"snippet\": \"Sri Lalithambika is considered the 'Siva Shakti aikya roopam', meaning Shiva and Shakti are both integrated within her form. In the context of Lalitha Kalyanam, Kameswara Shiva appears alongside her, but she is often seen as the embodiment of both energies.\"}]\n\n[{\"title\": \"The Prophecy of Stone Dragons in ASOIAF\", \"snippet\": \"Melisandre believes in a prophecy that Azor Ahai will 'wake dragons out of stone'. She attempts rituals involving king's blood to achieve this, though the physical nature of these stone dragons remains mysterious and unconfirmed in the text.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Có đúng là Thần Shiva không được nhắc đến trong kinh Veda không bạn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác thực thông tin về việc Thần Shiva có được nhắc đến trong kinh Veda hay không.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Shiva",
+                "Vedas",
+                "Rudra"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "vedic_term_usage": [
+                "tính từ",
+                "may mắn",
+                "cát tường",
+                "adjective",
+                "auspicious"
+              ],
+              "rudra_association": [
+                "Rudra",
+                "vị thần",
+                "đồng nhất"
+              ],
+              "puranic_literature": [
+                "Puranic",
+                "văn học Puranic",
+                "500 đến 1000 năm"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong kinh Veda Samhita, từ 'shiva' xuất hiện chủ yếu dưới dạng tính từ mang nghĩa 'may mắn' chứ không phải là tên một vị thần độc lập.",
+              "Các tham chiếu đến vị thần sau này được gọi là Thần Shiva trong kinh Veda thực chất là chỉ Rudra.",
+              "Sự đồng nhất giữa Rudra và Thần Shiva chỉ trở nên phổ biến trong văn học Puranic ra đời sau đó từ 500 đến 1000 năm."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy ngày lễ Shivaratri (Đêm của Thần Shiva) có nguồn gốc từ đâu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguồn gốc của ngày lễ Mahashivaratri (Đêm của Thần Shiva).",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Mahashivaratri",
+                "marriage",
+                "Shiva",
+                "Shakti"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "ngày lễ Shivaratri (Đêm của Thần Shiva)",
+              "expected_target": [
+                "Thần Shiva",
+                "Shiva"
+              ]
+            },
+            "required_slots": {
+              "festival_origin": [
+                "hôn nhân",
+                "marriage",
+                "đám cưới"
+              ],
+              "deities_involved": [
+                "Thần Shiva",
+                "Shakti",
+                "Parvati",
+                "Mahadeva"
+              ]
+            },
+            "golden_reference_claims": [
+              "Ngày lễ Mahashivaratri gắn liền với truyền thuyết cuộc hôn nhân giữa Thần Shiva và Nữ thần Shakti (Parvati).",
+              "Ngày lễ này kỷ niệm sự hợp nhất thiêng liêng tượng trưng cho sự giao thoa giữa ý thức và năng lượng trong vũ trụ."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tôi đang tìm hiểu thêm về văn hóa Ấn Độ, bạn có biết trong tác phẩm Thirukkural có nhắc đến loài hoa nào không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các loài hoa được nhắc đến trong tác phẩm Thirukkural của văn hóa Ấn Độ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Thirukkural",
+                "flowers",
+                "Anicham"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "flower_name": [
+                "hoa Anicham",
+                "Anicham flower"
+              ],
+              "flower_characteristic": [
+                "cực kỳ nhạy cảm",
+                "héo rũ khi ngửi",
+                "extreme sensitivity",
+                "wither by smelling"
+              ],
+              "allegory_meaning": [
+                "phép ẩn dụ",
+                "tổn thương vị khách",
+                "thái độ không đúng mực",
+                "allegory for how a guest can be hurt"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tác phẩm Thirukkural nhắc đến hoa Anicham như một loài hoa cực kỳ nhạy cảm và có thể héo rũ chỉ bằng hành động ngửi.",
+              "Loài hoa Anicham được dùng làm phép ẩn dụ cho việc một vị khách có thể bị tổn thương bởi thái độ không đúng mực của chủ nhà."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Bạn có thể chia sẻ cho tôi hình ảnh hoặc mô tả về lễ cưới của Thần Shiva và Nữ thần Lalitha Maa (đặc biệt là hình dáng Parvati trong hình hài Lalitha) không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về mô tả hoặc hình ảnh lễ cưới của Thần Shiva và Nữ thần Lalitha, đặc biệt là hình thái kết hợp của Nữ thần Parvati/Lalitha.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Lalitha Kalyanam",
+                "Siva Shakti",
+                "Kameswara"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "philosophical_concept": [
+                "Siva Shakti aikya roopam",
+                "sự hợp nhất",
+                "thể thống nhất"
+              ],
+              "divine_figures": [
+                "Lalithambika",
+                "Kameswara Shiva",
+                "Shiva và Shakti"
+              ]
+            },
+            "golden_reference_claims": [
+              "Lễ cưới của Thần Shiva và Nữ thần Lalitha gắn liền với triết lý 'Siva Shakti aikya roopam'.",
+              "Nữ thần Lalithambika được xem là sự hợp nhất của cả Shiva và Shakti trong cùng một hình hài.",
+              "Trong các mô tả tâm linh, Thần Kameswara Shiva xuất hiện cùng Lalithambika như hai mặt của một thể thống nhất."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Đổi chủ đề một chút, tôi đang đọc 'A Song of Ice and Fire', bạn có biết những 'con rồng đá' được nhắc đến trong truyện là gì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu ý nghĩa của 'con rồng đá' trong tác phẩm A Song of Ice and Fire.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "stone dragons",
+                "A Song of Ice and Fire",
+                "Melisandre"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "prophecy_context": [
+                "lời tiên tri",
+                "Azor Ahai",
+                "Melisandre"
+              ],
+              "nature_of_dragons": [
+                "chưa rõ ràng",
+                "bí ẩn",
+                "chưa được xác nhận"
+              ]
+            },
+            "golden_reference_claims": [
+              "Danh tính thực sự của những con rồng đá trong A Song of Ice and Fire vẫn còn là một bí ẩn chưa được giải đáp.",
+              "Melisandre là nhân vật liên quan đến lời tiên tri đánh thức những con rồng ra khỏi đá thông qua các nghi lễ hiến tế máu của nhà vua."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_008",
+    "conversation_id": "conversation_0008",
+    "source": {
+      "text": "[{\"title\": \"Timeline of the Greatest Fastball Pitchers in MLB\", \"snippet\": \"Một dòng thời gian về các cầu thủ ném fastball vĩ đại nhất, bao gồm những 'fireballer' huyền thoại với những cú ném mạnh đến mức khiến trọng tài ngỡ ngàng vì hiệu ứng vật lý, và đặc biệt là Satchel Paige vào năm 1927, một trong những người ném nhanh nhất.\"}]\n\n[{\"title\": \"Understanding Hashish: Composition and History\", \"snippet\": \"Hashish (hay hash) là một dạng cô đặc của cần sa, được tạo ra bằng cách chiết xuất nhựa từ các trichomes (tuyến hạt) của cây Cannabis, chứa các cannabinoid như THC và CBD. Nhựa này sau đó được nén thành khối rắn hoặc dạng bột nhão để hút hoặc hóa hơi.\"}]\n\n[{\"title\": \"Albert Pierrepoint: Britain's Most Famous Executioner\", \"snippet\": \"Albert Pierrepoint là đao phủ nổi tiếng nhất nước Anh, thực hiện thi hành án cho khoảng 500 tù nhân. Ông nổi tiếng vì sự nhanh chóng, hiệu quả và thái độ bình tĩnh, luôn cố gắng hoàn thiện kỹ thuật treo cổ để giảm thiểu đau đớn cho phạm nhân.\"}]\n\n[{\"title\": \"The Giant Galleys of the Hellenistic Era\", \"snippet\": \"Trong thời kỳ Hellenistic, các tàu chiến polyremes hạng nặng như hexaremes và septiremes phổ biến. Đỉnh điểm là Tesserakonteres của Ptolemy IV Philopator vào cuối thế kỷ 3 TCN, một siêu tàu galley với 40 hàng chèo.\"}]\n\n[{\"title\": \"MLB 2020 Viewership Outlook\", \"snippet\": \"Dự báo lượng người xem sẽ ổn định. Mặc dù có xung đột giữa cầu thủ và chủ sở hữu gây mất 40-60 trận, nhưng việc thiếu các hoạt động giải trí bình thường và một mùa giải ngắn, cô đọng (khoảng 2 tháng) sẽ tạo ra sự kịch tính và thu hút người hâm mộ.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Trong lịch sử giải MLB, cầu thủ ném bóng (pitcher) nào được coi là có cú ném fastball hiệu quả nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm thông tin về cầu thủ ném bóng (pitcher) sở hữu cú ném fastball hiệu quả nhất trong lịch sử giải MLB.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "fastball",
+                "pitchers",
+                "MLB history"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "historical_context": [
+                "lịch sử giải MLB",
+                "MLB history"
+              ],
+              "key_player": [
+                "Satchel Paige"
+              ],
+              "pitch_characteristic": [
+                "fastball",
+                "ném bóng nhanh"
+              ]
+            },
+            "golden_reference_claims": [
+              "Satchel Paige được ghi nhận là một trong những cầu thủ ném bóng nhanh nhất vào năm 1927 trong lịch sử MLB.",
+              "Việc đánh giá cú ném fastball hiệu quả nhất phụ thuộc vào tiêu chí tốc độ thuần túy hoặc khả năng gây khó khăn cho đối thủ."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Chuyển sang một chủ đề khác nhé, bạn có thể cho tôi biết Hashish là gì và lịch sử của nó ra sao không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu định nghĩa và lịch sử của hashish",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "hashish",
+                "history"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition": [
+                "dạng cô đặc của cần sa",
+                "chiết xuất nhựa từ cây cần sa",
+                "nhựa từ các trichomes"
+              ],
+              "usage": [
+                "hút",
+                "hóa hơi",
+                "nén thành khối rắn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Hashish là một dạng chiết xuất cô đặc từ cây cần sa (Cannabis) được tạo ra từ việc thu thập nhựa trichomes.",
+              "Nhựa hashish chứa các hoạt chất như THC và CBD, thường được nén thành khối rắn để sử dụng bằng cách hút hoặc hóa hơi.",
+              "Việc sử dụng hashish đã có từ hàng ngàn năm trước trong nhiều nền văn hóa."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nghe có vẻ thú vị. Vậy còn trong lịch sử, có ai được coi là đao phủ 'nhân đạo' nhất không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về đao phủ được coi là 'nhân đạo' hoặc có kỹ thuật giảm thiểu đau đớn nhất trong lịch sử.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "humane executioner",
+                "Albert Pierrepoint"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "executioner_name": [
+                "Albert Pierrepoint",
+                "Pierrepoint"
+              ],
+              "execution_count": [
+                "500",
+                "khoảng 500 tù nhân"
+              ],
+              "technique_trait": [
+                "nhanh chóng",
+                "hiệu quả",
+                "giảm thiểu đau đớn",
+                "bình tĩnh"
+              ]
+            },
+            "golden_reference_claims": [
+              "Albert Pierrepoint là đao phủ người Anh được biết đến nhiều nhất với sự chuyên nghiệp và kỹ thuật treo cổ giúp giảm thiểu đau đớn cho phạm nhân.",
+              "Ông đã thực hiện thi hành án cho khoảng 500 tù nhân trong suốt sự nghiệp của mình.",
+              "Pierrepoint nổi tiếng nhờ sự bình tĩnh, chính xác và tốc độ thực hiện cực nhanh."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tôi muốn tìm hiểu thêm về các phương tiện vận tải cổ đại. Những con tàu chạy bằng sức người lớn nhất trong lịch sử là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về những con tàu chạy bằng sức người lớn nhất trong lịch sử loài người.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "largest human-powered vessels",
+                "Tesserakonteres"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "largest_vessel": [
+                "Tesserakonteres",
+                "siêu tàu galley"
+              ],
+              "historical_period": [
+                "Hellenistic Era",
+                "thời kỳ Hellenistic",
+                "thế kỷ 3 TCN"
+              ],
+              "rowing_rows": [
+                "40 hàng chèo",
+                "40 rows"
+              ]
+            },
+            "golden_reference_claims": [
+              "Những con tàu chạy bằng sức người lớn nhất trong lịch sử là các siêu tàu galley thời kỳ Hellenistic.",
+              "Chiếc Tesserakonteres của Ptolemy IV Philopator vào cuối thế kỷ 3 TCN là đỉnh cao với 40 hàng chèo."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Quay lại với MLB một chút, bạn có dự đoán gì về lượng người xem các trận đấu trong mùa hè năm 2020 không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi về dự đoán lượng người xem các trận đấu MLB trong mùa hè năm 2020.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "MLB",
+                "viewership",
+                "2020",
+                "summer"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "MLB",
+              "expected_target": [
+                "MLB",
+                "Major League Baseball"
+              ]
+            },
+            "required_slots": {
+              "viewership_forecast": [
+                "ổn định",
+                "duy trì ở mức ổn định",
+                "stable"
+              ],
+              "supporting_factors": [
+                "thiếu các hoạt động giải trí",
+                "mùa giải ngắn và cô đọng",
+                "tính kịch tính cao"
+              ]
+            },
+            "golden_reference_claims": [
+              "Dự báo cho thấy lượng người xem MLB trong mùa hè năm 2020 sẽ duy trì ở mức ổn định.",
+              "Mùa giải ngắn, cô đọng cùng với việc thiếu các hoạt động giải trí thông thường đã tạo ra tính kịch tính cao, thu hút sự quan tâm của người hâm mộ."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_009",
+    "conversation_id": "conversation_0009",
+    "source": {
+      "text": "[{\"title\": \"Unveiling Mind-Blowing Facts\", \"snippet\": \"Vũ trụ được ước tính khoảng 13,8 tỷ năm tuổi. Một sự thật kinh ngạc khác là số lượng ngôi sao trong vũ trụ quan sát được còn nhiều hơn tổng số hạt cát trên tất cả các bãi biển trên Trái Đất.\"}]\n\n[{\"title\": \"Career paths for voice mimics\", \"snippet\": \"Có nhiều cách để khai thác khả năng giả giọng: lồng tiếng cho radio, phim ảnh, TV, hoặc tham gia các ban nhạc cover (Tribute band). Việc tạo nội dung trên YouTube, TikTok là cách tiếp cận hiện đại để thu hút sự chú ý.\"}]\n\n[{\"title\": \"Uranus: The Sideways Planet\", \"snippet\": \"Thiên Vương Tinh là hành tinh thứ 7 từ Mặt Trời, được Sir William Herschel tìm thấy năm 1781 bằng kính thiên văn. Điểm đặc biệt là trục nghiêng 98 độ, khiến nó như đang 'lăn' quanh Mặt Trời.\"}]\n\n[{\"title\": \"Digital Audio Processing Basics\", \"snippet\": \"Hầu hết các card xử lý âm thanh nhận dạng dạng sóng điện áp biến thiên, lấy mẫu (sample) ở một tốc độ và độ chính xác nhất định, sau đó chuyển đổi thành một chuỗi các giá trị số (digital values) để máy tính xử lý.\"}]\n\n[{\"title\": \"Improving Home Recording Quality\", \"snippet\": \"Nguyên nhân chính gây ra âm thanh tệ thường là do vị trí đặt micro và âm học phòng (room acoustics), không phải do phần mềm. Sàn cứng, tường trống gây ra tiếng vang (echo). Cần nghiên cứu cách đặt mic và xử lý tiêu âm.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Bạn có biết sự thật nào nghe có vẻ vô lý hoặc khó tin nhưng thực chất lại là thật không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Người dùng muốn biết một sự thật vô lý hoặc khó tin nhưng có thật.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "sự thật khó tin",
+                "mind blowing facts"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "universe_age": [
+                "13,8 tỷ năm",
+                "13.8 tỷ năm",
+                "13,8 billion years"
+              ],
+              "star_vs_sand_count": [
+                "số lượng ngôi sao",
+                "nhiều hơn tổng số hạt cát",
+                "hơn tổng số hạt cát trên tất cả các bãi biển"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vũ trụ được ước tính khoảng 13,8 tỷ năm tuổi.",
+              "Số lượng các ngôi sao trong vũ trụ quan sát được nhiều hơn tổng số hạt cát trên tất cả các bãi biển trên Trái Đất."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe thú vị thật! Nhân tiện, tôi thấy mình có giọng hát khá giống ban nhạc The Beatles, tôi có nên tận dụng điều này để kiếm tiền không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi về khả năng tận dụng giọng hát giống ban nhạc The Beatles để kiếm tiền",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "kiếm tiền",
+                "giọng hát",
+                "Beatles tribute band",
+                "voice mimics"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "career_opportunity": [
+                "ban nhạc cover",
+                "tribute band",
+                "lồng tiếng",
+                "voice mimics"
+              ],
+              "content_platform": [
+                "YouTube",
+                "TikTok",
+                "truyền thông xã hội"
+              ]
+            },
+            "golden_reference_claims": [
+              "Khả năng mô phỏng giọng hát The Beatles có thể mang lại thu nhập thông qua việc lồng tiếng hoặc tham gia ban nhạc cover (Tribute band).",
+              "Người dùng có thể quay video thu âm và đăng tải lên YouTube hoặc TikTok để quảng bá bản thân và thu hút sự chú ý."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tôi thích những thứ mang tính biểu tượng. Nói về vũ trụ lúc nãy, bạn có biết sự thật nào thú vị về hành tinh Thiên Vương Tinh (Uranus) không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm thông tin và sự thật thú vị về hành tinh Thiên Vương Tinh (Uranus)",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Uranus",
+                "Thiên Vương Tinh",
+                "đặc điểm",
+                "facts"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "axial_tilt": [
+                "trục nghiêng 98 độ",
+                "98 degrees tilt",
+                "gần như nằm ngang"
+              ],
+              "orbit_behavior": [
+                "lăn quanh Mặt Trời",
+                "rolling around the Sun"
+              ],
+              "discovery": [
+                "Sir William Herschel",
+                "năm 1781",
+                "kính thiên văn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thiên Vương Tinh là hành tinh thứ 7 tính từ Mặt Trời và được phát hiện vào năm 1781 bởi Sir William Herschel bằng kính thiên văn.",
+              "Thiên Vương Tinh có trục nghiêng 98 độ khiến nó nằm ngang và di chuyển như đang lăn quanh Mặt Trời."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại chuyện âm thanh một chút, tôi tò mò là bộ xử lý âm thanh (sound processor) thực sự hoạt động như thế nào để xử lý tín hiệu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách bộ xử lý âm thanh hoạt động để xử lý tín hiệu.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "sound processor",
+                "analog to digital",
+                "sampling"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "chuyện âm thanh",
+              "expected_target": [
+                "âm thanh",
+                "giọng hát",
+                "The Beatles"
+              ]
+            },
+            "required_slots": {
+              "conversion_mechanism": [
+                "chuyển đổi tín hiệu tương tự sang kỹ thuật số",
+                "analog to digital",
+                "chuỗi giá trị số"
+              ],
+              "sampling_process": [
+                "lấy mẫu",
+                "sampling",
+                "tốc độ và độ chính xác"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bộ xử lý âm thanh hoạt động bằng cách chuyển đổi tín hiệu tương tự sang kỹ thuật số.",
+              "Card âm thanh tiếp nhận dạng sóng điện áp biến thiên từ micro và thực hiện lấy mẫu tại một tốc độ nhất định.",
+              "Kết quả xử lý là một chuỗi các giá trị số đại diện cho biên độ sóng âm giúp máy tính lưu trữ và xử lý."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Hóa ra là vậy. Nhưng sao khi tôi dùng GarageBand để thu âm thì chất lượng âm thanh lại tệ thế nhỉ? Có phải do phần mềm không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Lý giải nguyên nhân chất lượng âm thanh thu âm trong GarageBand kém và tư vấn khắc phục.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "GarageBand",
+                "sound quality",
+                "room acoustics"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "phần mềm",
+              "expected_target": [
+                "GarageBand",
+                "bộ xử lý âm thanh"
+              ]
+            },
+            "required_slots": {
+              "root_cause": [
+                "vị trí đặt micro",
+                "âm học phòng",
+                "room acoustics",
+                "microphone placement"
+              ],
+              "solution": [
+                "xử lý tiêu âm",
+                "đặt micro đúng vị trí",
+                "tiêu âm cho phòng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nguyên nhân chính khiến chất lượng thu âm trong GarageBand kém không phải do phần mềm mà do vị trí đặt micro và âm học phòng.",
+              "Phòng có sàn, tường và trần bằng vật liệu cứng gây ra tiếng vang (echo), ảnh hưởng xấu đến bản thu.",
+              "Có thể cải thiện chất lượng bản thu bằng cách đặt micro đúng vị trí và xử lý tiêu âm cho phòng."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_010",
+    "conversation_id": "conversation_0010",
+    "source": {
+      "text": "[{\"title\": \"Tổng quan về Thuyết Tế bào\", \"snippet\": \"Thuyết tế bào là nền tảng của sinh học hiện đại, khẳng định rằng: mọi sinh vật đều được cấu tạo từ một hoặc nhiều tế bào; tế bào là đơn vị cơ bản của sự sống; và mọi tế bào đều được sinh ra từ các tế bào có trước.\"}]\n\n[{\"title\": \"Iwasawa Theory - Wolfram MathWorld\", \"snippet\": \"Iwasawa theory is an advanced part of number theory that relates ideal class groups to analytic p-adic zeta functions, linking disconnected mathematical objects like the ideal class group of K and special values of the Riemann zeta function.\"}]\n\n[{\"title\": \"Cấu tạo cơ bản của máy tính\", \"snippet\": \"Computer components are broadly divided into Hardware (physical parts like CPU, RAM, motherboard) and Software (programs like OS, applications). However, the interaction between them is what allows the system to function.\"}]\n\n[{\"title\": \"Introduction to String Theory\", \"snippet\": \"String theories attempt to understand the nature of the vacuum through quantum mechanical methods. They model a zero-dimensional point in space as a 1-dimensional string to resolve mathematical problems associated with zero-dimensional points.\"}]\n\n[{\"title\": \"Molecular Orbital Theory - Chemistry LibreTexts\", \"snippet\": \"A non-bonding molecular orbital (NBMO) is a molecular orbital for which the addition or removal of an electron does not change the energy of the molecule. They result from the linear combination of atomic orbitals.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm hiểu về một số kiến thức cơ bản. Bạn có thể cho mình biết ba thành phần chính của thuyết tế bào là gì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu ba thành phần chính của thuyết tế bào.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "thành phần",
+                "thuyết tế bào",
+                "cell theory"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "component_1": [
+                "mọi sinh vật đều được cấu tạo từ tế bào",
+                "một hoặc nhiều tế bào",
+                "sinh vật sống đều được cấu tạo từ"
+              ],
+              "component_2": [
+                "đơn vị cơ bản của sự sống",
+                "đơn vị cấu trúc và chức năng cơ bản"
+              ],
+              "component_3": [
+                "tế bào đều được sinh ra từ các tế bào có trước",
+                "phân chia tế bào"
+              ]
+            },
+            "golden_reference_claims": [
+              "Mọi sinh vật sống đều được cấu tạo từ một hoặc nhiều tế bào.",
+              "Tế bào là đơn vị cấu trúc và chức năng cơ bản nhất của mọi sinh vật.",
+              "Tất cả các tế bào đều được sinh ra từ những tế bào đã tồn tại trước đó thông qua quá trình phân chia."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe có vẻ thú vị. Chuyển sang một lĩnh vực khác khó hơn, bạn có thể giải thích cho mình Lý thuyết Iwasawa (Iwasawa Theory) trong toán học là gì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích khái niệm Lý thuyết Iwasawa trong toán học.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Iwasawa theory",
+                "lý thuyết iwasawa"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "mathematical_field": [
+                "lý thuyết số",
+                "number theory"
+              ],
+              "core_concept": [
+                "nhóm lớp lý tưởng",
+                "ideal class groups",
+                "hàm zeta",
+                "zeta functions"
+              ]
+            },
+            "golden_reference_claims": [
+              "Lý thuyết Iwasawa là một phần nâng cao của lý thuyết số.",
+              "Lý thuyết này thiết lập mối liên hệ giữa các nhóm lớp lý tưởng và các giá trị đặc biệt của hàm zeta."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Toán học thực sự phức tạp quá. Mình muốn quay lại thứ gì đó gần gũi hơn. Có phải tất cả các thành phần của một chiếc máy tính chỉ bao gồm phần cứng và phần mềm không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác định xem máy tính có phải chỉ bao gồm phần cứng và phần mềm hay không và tìm hiểu các thành phần cấu tạo.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "thành phần máy tính",
+                "phần cứng",
+                "phần mềm",
+                "computer components"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "hardware_component": [
+                "phần cứng",
+                "hardware",
+                "thành phần vật lý",
+                "CPU",
+                "RAM"
+              ],
+              "software_component": [
+                "phần mềm",
+                "software",
+                "chương trình",
+                "hệ điều hành"
+              ],
+              "additional_component": [
+                "con người",
+                "user",
+                "dữ liệu",
+                "data"
+              ]
+            },
+            "golden_reference_claims": [
+              "Máy tính về cơ bản được chia thành hai nhóm chính là phần cứng và phần mềm.",
+              "Phần cứng là các thành phần vật lý có thể chạm vào như CPU, RAM, ổ cứng.",
+              "Phần mềm là các chương trình và ứng dụng chạy trên phần cứng như hệ điều hành.",
+              "Ngoài phần cứng và phần mềm, con người và dữ liệu cũng là các thành phần không thể thiếu để tạo nên hệ thống máy tính hoàn chỉnh."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Vậy còn trong vật lý lý thuyết, mình thường nghe nói về Lý thuyết Dây (String Theory). Lý thuyết này thực chất nói về điều gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về ý nghĩa và bản chất của Lý thuyết Dây trong vật lý lý thuyết.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Lý thuyết Dây",
+                "String Theory"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Lý thuyết này",
+              "expected_target": [
+                "Lý thuyết Dây",
+                "String Theory"
+              ]
+            },
+            "required_slots": {
+              "core_definition": [
+                "sợi dây một chiều",
+                "1-dimensional string",
+                "hạt cơ bản là sợi dây"
+              ],
+              "mathematical_purpose": [
+                "giải quyết vấn đề toán học",
+                "giải quyết bế tắc toán học",
+                "điểm 0 chiều"
+              ]
+            },
+            "golden_reference_claims": [
+              "Lý thuyết Dây mô hình hóa các hạt cơ bản từ những 'điểm' 0 chiều thành những 'sợi dây' một chiều siêu nhỏ.",
+              "Lý thuyết Dây giúp giải quyết các khó khăn và bế tắc về mặt toán học liên quan đến các điểm không có kích thước trong vật lý lượng tử."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình có một câu hỏi về hóa học. Trong Lý thuyết Orbital Phân tử (Molecular Orbital theory), các orbital phân tử không liên kết (nonbonding molecular orbitals) là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu định nghĩa và đặc điểm của orbital phân tử không liên kết (nonbonding molecular orbitals) trong Lý thuyết Orbital Phân tử.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "orbital phân tử không liên kết",
+                "nonbonding molecular orbitals"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition": [
+                "orbital mà khi thêm hoặc bớt electron năng lượng không đổi",
+                "orbital không làm thay đổi năng lượng phân tử",
+                "non-bonding molecular orbital"
+              ],
+              "formation": [
+                "tổ hợp tuyến tính của các orbital nguyên tử",
+                "linear combination of atomic orbitals"
+              ],
+              "bonding_effect": [
+                "không đóng góp vào việc tạo ra hay phá vỡ liên kết",
+                "không làm giảm hay tăng năng lượng liên kết"
+              ]
+            },
+            "golden_reference_claims": [
+              "Orbital phân tử không liên kết là loại orbital mà việc thêm hoặc bớt một electron không làm thay đổi năng lượng tổng thể của phân tử.",
+              "Các orbital này hình thành từ sự tổ hợp tuyến tính của các orbital nguyên tử nhưng không đóng góp vào việc tạo ra hay phá vỡ liên kết hóa học."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_011",
+    "conversation_id": "conversation_0011",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn các chương trình Tiếp thị liên kết tiềm năng\", \"snippet\": \"Có nhiều loại chương trình affiliate từ khóa học trực tuyến, trình xây dựng website đến marketing và kinh doanh. Một ví dụ điển hình là HubSpot với mức hoa hồng 30% định kỳ trong 1 năm, thời hạn cookie 180 ngày, thanh toán qua PayPal hoặc chuyển khoản trực tiếp.\"}]\n\n[{\"title\": \"Những sai lầm thường gặp trong Tiếp thị liên kết\", \"snippet\": \"Nhiều người gặp tình trạng có lượt click vào link nhưng không có đơn hàng. Điều này thường do sai lầm trong cách quảng bá sản phẩm, không nhắm đúng đối tượng mục tiêu hoặc thiếu chiến lược chuyển đổi hiệu quả.\"}]\n\n[{\"title\": \"Cơ hội kiếm tiền trực tuyến không vốn năm 2023\", \"snippet\": \"Trong bối cảnh kỹ thuật số hiện nay, việc kiếm tiền online không cần vốn đầu tư ban đầu trở nên phổ biến hơn. Điều này giúp giảm thiểu rủi ro và tạo cơ hội bình đẳng cho mọi đối tượng thông qua nhiều kênh tạo thu nhập linh hoạt.\"}]\n\n[{\"title\": \"Kiếm tiền từ Blog: Từ đam mê đến thu nhập 7 con số\", \"snippet\": \"Blogging không chỉ là viết nhật ký trực tuyến mà là một sự nghiệp tiềm năng. Với những chiến lược đúng đắn, blogger có thể kiếm được thu nhập lên đến 7 con số (USD) bằng cách biến đam mê thành lợi nhuận.\"}]\n\n[{\"title\": \"Cách kiếm tiền qua điện thoại cho sinh viên\", \"snippet\": \"Sinh viên có thể tham gia các khảo sát trả phí trên Survey Junkie, Swagbucks, hoặc Vindale Research. Ngoài ra, các ứng dụng làm microtasks như xem video, tải app, chụp ảnh sản phẩm cũng là lựa chọn phổ biến.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình muốn tìm hiểu về tiếp thị liên kết. Làm thế nào để có thể kiếm tiền từ Affiliate Marketing vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về tiếp thị liên kết (Affiliate Marketing) và cách kiếm tiền từ hình thức này.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "affiliate marketing",
+                "cách kiếm tiền"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition": [
+                "tiếp thị liên kết",
+                "affiliate marketing",
+                "quảng bá sản phẩm"
+              ],
+              "commission_example": [
+                "HubSpot",
+                "30%",
+                "hoa hồng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tiếp thị liên kết (Affiliate Marketing) là hình thức quảng bá sản phẩm hoặc dịch vụ của đối tác để nhận hoa hồng trên mỗi đơn hàng hoặc hành động thành công qua link riêng.",
+              "HubSpot là một ví dụ về chương trình affiliate với mức hoa hồng 30% định kỳ trong 1 năm và thời hạn cookie 180 ngày."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Mình cũng đã thử làm rồi nhưng không thấy ra tiền. Tại sao mình lại không kiếm được tiền từ affiliate marketing nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên nhân không kiếm được tiền từ affiliate marketing dù đã thử làm",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "affiliate",
+                "sai lầm",
+                "không có đơn hàng"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "target_audience": [
+                "sai đối tượng mục tiêu",
+                "không đúng đối tượng",
+                "khách hàng không có nhu cầu"
+              ],
+              "trust_issue": [
+                "thiếu niềm tin",
+                "không tin tưởng",
+                "uy tín"
+              ],
+              "promotion_strategy": [
+                "chiến lược quảng bá sai",
+                "rải link",
+                "thiếu giá trị"
+              ]
+            },
+            "golden_reference_claims": [
+              "Có lượt click nhưng không có đơn hàng thường do sai lầm trong cách quảng bá và không nhắm đúng đối tượng mục tiêu.",
+              "Thiếu niềm tin từ người dùng và chiến lược chỉ rải link thay vì cung cấp giá trị là nguyên nhân chính dẫn đến không có doanh thu."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nếu mình không có vốn ban đầu thì sao? Có cách nào kiếm tiền online mà không cần đầu tư trong năm 2023 không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu các phương pháp kiếm tiền trực tuyến không cần vốn đầu tư ban đầu trong năm 2023.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "kiếm tiền online không cần vốn",
+                "make money online without investment"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "feasibility": [
+                "hoàn toàn có thể",
+                "có cách",
+                "nhiều cơ hội"
+              ],
+              "methods": [
+                "freelancer",
+                "viết lách",
+                "thiết kế",
+                "sáng tạo nội dung"
+              ]
+            },
+            "golden_reference_claims": [
+              "Có thể kiếm tiền online mà không cần vốn đầu tư ban đầu trong năm 2023.",
+              "Việc không cần đầu tư giúp giảm thiểu rủi ro cho người tham gia.",
+              "Có thể tận dụng các kỹ năng như viết lách, thiết kế, quản lý mạng xã hội hoặc sáng tạo nội dung."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Vậy tiềm năng thu nhập từ việc kiếm tiền online là bao nhiêu? Ví dụ như viết blog thì có thể kiếm được nhiều không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về tiềm năng thu nhập từ kiếm tiền online, đặc biệt là hình thức viết blog.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "blogging",
+                "thu nhập",
+                "viết blog"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "income_potential": [
+                "không có giới hạn",
+                "tiềm năng lớn",
+                "7 con số"
+              ],
+              "monetization_methods": [
+                "quảng cáo",
+                "bài viết tài trợ",
+                "tiếp thị liên kết"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tiềm năng thu nhập từ kiếm tiền online là không có giới hạn, tùy thuộc vào quy mô và chiến lược của bạn.",
+              "Viết blog là một sự nghiệp tiềm năng, có thể kiếm được thu nhập lên đến 7 con số (USD) khi áp dụng đúng chiến lược và xây dựng nội dung chất lượng.",
+              "Có thể kiếm tiền từ blog thông qua các hình thức như quảng cáo, bài viết tài trợ hoặc tiếp thị liên kết."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Mình là sinh viên và không có nhiều thời gian, có cách nào dễ dàng và an toàn để kiếm thêm tiền ngay trên điện thoại không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm các cách kiếm tiền dễ dàng và an toàn trên điện thoại dành cho sinh viên ít thời gian.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "kiếm tiền trên điện thoại",
+                "sinh viên",
+                "make money on phone"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "online_surveys": [
+                "khảo sát trực tuyến",
+                "Survey Junkie",
+                "Swagbucks",
+                "Vindale Research"
+              ],
+              "micro_tasks": [
+                "nhiệm vụ nhỏ",
+                "microtasks",
+                "xem video",
+                "tải app"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sinh viên có thể kiếm tiền trên điện thoại bằng cách tham gia các khảo sát trực tuyến trên Survey Junkie, Swagbucks hoặc Vindale Research.",
+              "Các ứng dụng làm nhiệm vụ nhỏ (microtasks) như xem video hoặc tải app cũng là cách kiếm tiền đơn giản và an toàn."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_012",
+    "conversation_id": "conversation_0012",
+    "source": {
+      "text": "[{\"title\": \"The Best Hotels within the World: 2021 Readers' Choice Awards\", \"snippet\": \"Trong cuộc khảo sát Giải thưởng Lựa chọn của Độc giả lần thứ 34, những người dùng đã bình chọn cho các khách sạn yêu thích nhất toàn cầu, tiêu biểu như Hotel Santa Caterina, phản ánh xu hướng lựa chọn nơi lưu trú khi du lịch mở cửa trở lại.\"}]\n\n[{\"title\": \"Complete guide to saving money on hotels\", \"snippet\": \"Nguyên tắc cơ bản để tiết kiệm chi phí khách sạn là không bỏ lỡ các lựa chọn. Bước đầu tiên là tìm kiếm trên các trang web có độ bao phủ rộng để đảm bảo không bỏ sót những khách sạn tốt hơn hoặc rẻ hơn ở ngay gần đó trước khi chốt đặt phòng.\"}]\n\n[{\"title\": \"Difference between hotel amenities and facilities\", \"snippet\": \"Tiện nghi (amenities) là những thứ mang lại sự thoải mái và tận hưởng cho khách, trong khi cơ sở vật chất (facilities) là những nơi hoặc thiết bị được xây dựng để đáp ứng nhu cầu cụ thể. Một kỳ nghỉ thoải mái đòi hỏi các dịch vụ làm mới bản thân phải tiện lợi, được trang bị tốt và sẵn sàng phục vụ nhanh chóng.\"}]\n\n[{\"title\": \"Worst hotel experience at Camp Noel Resort\", \"snippet\": \"Một khách hàng chia sẻ trải nghiệm tồi tệ tại Camp Noel Resort (Munnar, Kerala) từ 15-17/7/2016. Dù vị trí tuyệt đẹp giữa thung lũng và núi non, nhưng dịch vụ khách hàng cực kỳ kém, gây ảnh hưởng nghiêm trọng đến chuyến đi và gây thất thoát số tiền 25,000 INR.\"}]\n\n[{\"title\": \"Luxury Hotel Standards: 5-star vs 7-star\", \"snippet\": \"Khách sạn 5 sao có trang trí xa hoa, có gym, spa, bể bơi, vườn và khu mua sắm, thậm chí cung cấp dịch vụ limousine, dắt chó đi dạo hoặc y tế. Tuy nhiên, thực tế không có tổ chức công lập nào chính thức cấp chứng nhận '7 sao'; đây thường là cách gọi để nhấn mạnh sự siêu sang trọng vượt trên tiêu chuẩn 5 sao.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang lên kế hoạch cho chuyến du lịch sắp tới. Bạn có thể gợi ý cho mình một số khách sạn tốt nhất thế giới hoặc những nơi được đánh giá cao không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Yêu cầu gợi ý các khách sạn tốt nhất thế giới hoặc những nơi được đánh giá cao.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "best hotels",
+                "khách sạn tốt nhất",
+                "world"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "award_source": [
+                "Readers' Choice Awards",
+                "Giải thưởng Lựa chọn của Độc giả"
+              ],
+              "hotel_example": [
+                "Hotel Santa Caterina"
+              ]
+            },
+            "golden_reference_claims": [
+              "Giải thưởng Lựa chọn của Độc giả (Readers' Choice Awards) năm 2021 vinh danh nhiều khách sạn hàng đầu thế giới.",
+              "Hotel Santa Caterina là một trong những khách sạn được bình chọn và đánh giá cao."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe có vẻ hấp dẫn nhưng những khách sạn cao cấp thường rất đắt. Bạn có bí quyết nào để săn được phòng khách sạn với giá ưu đãi không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi bí quyết hoặc cách thức để săn phòng khách sạn với giá ưu đãi, tiết kiệm chi phí.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "discounts on hotel rooms",
+                "cách đặt phòng khách sạn giá rẻ"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "saving_principle": [
+                "không bỏ lỡ",
+                "nguyên tắc cơ bản để tiết kiệm"
+              ],
+              "search_platforms": [
+                "trang web có độ bao phủ rộng",
+                "Agoda",
+                "Booking.com",
+                "Expedia"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nguyên tắc cơ bản để tiết kiệm chi phí khách sạn là không bỏ lỡ các lựa chọn và tìm kiếm trên các nền tảng có độ bao phủ rộng.",
+              "Người dùng nên so sánh giá và kiểm tra các khách sạn xung quanh trong cùng khu vực trước khi chốt đặt phòng."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nếu mình muốn tiết kiệm hơn và chọn khách sạn 3 sao thì thường sẽ có những tiện nghi hay dịch vụ gì cơ bản nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các tiện nghi và dịch vụ cơ bản của khách sạn 3 sao để tiết kiệm chi phí.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "amenities",
+                "three star hotel",
+                "tiện nghi",
+                "khách sạn 3 sao"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "amenities_definition": [
+                "tiện nghi",
+                "amenities",
+                "vật dụng cá nhân"
+              ],
+              "facilities_definition": [
+                "cơ sở vật chất",
+                "facilities",
+                "nhà hàng nhỏ",
+                "wifi miễn phí"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tiện nghi (amenities) là những vật dụng mang lại sự thoải mái như đồ vệ sinh cá nhân, khăn tắm, trà hoặc cà phê trong phòng.",
+              "Cơ sở vật chất (facilities) của khách sạn 3 sao thường bao gồm nhà hàng nhỏ, wifi miễn phí và phòng gym cơ bản."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Mình từng nghe nói có những khách sạn 5 sao nhưng dịch vụ lại rất tệ. Bạn có ví dụ nào về những trải nghiệm tồi tệ tại các khách sạn cao cấp không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm ví dụ về trải nghiệm tồi tệ tại các khách sạn/resort cao cấp.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "worst five star hotel service experience",
+                "trải nghiệm tệ tại khách sạn 5 sao"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "hotel_name": [
+                "Camp Noel Resort"
+              ],
+              "location": [
+                "Munnar",
+                "Kerala",
+                "Ấn Độ"
+              ],
+              "negative_experience": [
+                "dịch vụ khách hàng cực kỳ kém",
+                "tệ nhất từ trước đến nay"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một khách hàng từng có trải nghiệm tồi tệ tại Camp Noel Resort ở Munnar, Ấn Độ.",
+              "Dù resort có vị trí tuyệt đẹp nhưng dịch vụ khách hàng cực kỳ kém, gây thất thoát số tiền 25,000 INR."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Nhắc đến số sao, mình thấy có cả khách sạn 7 sao. Vậy thực chất sự khác biệt giữa khách sạn 5 sao và 7 sao là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu sự khác biệt thực tế giữa khách sạn 5 sao và khách sạn 7 sao",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "5 star and 7 star hotel",
+                "7 sao"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "5_star_standards": [
+                "khách sạn 5 sao",
+                "tiêu chuẩn cao nhất",
+                "xa hoa"
+              ],
+              "7_star_reality": [
+                "không có tổ chức chính thức",
+                "chứng nhận 7 sao",
+                "siêu sang trọng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Khách sạn 5 sao vốn đã là tiêu chuẩn cao nhất về sự xa hoa với đầy đủ các tiện ích và dịch vụ cao cấp.",
+              "Thực tế không có tổ chức xếp hạng khách sạn chính thức nào trên thế giới cấp chứng nhận 7 sao.",
+              "Thuật ngữ '7 sao' chỉ là cách gọi của truyền thông hoặc khách sạn để mô tả mức độ siêu sang trọng vượt trên tiêu chuẩn 5 sao."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_013",
+    "conversation_id": "conversation_0013",
+    "source": {
+      "text": "[{\"title\": \"Language Politics in India\", \"snippet\": \"Tranh cãi về ngôn ngữ thường xảy ra khi một người coi ngôn ngữ là công cụ để phô trương quyền lực hoặc niềm kiêu hãnh thay vì là công cụ giao tiếp, hoặc khi họ dễ dàng tin vào những lời cáo buộc và tin đồn từ các thành phần gây rối.\"}]\n\n[{\"title\": \"Evolution of Hindi and Urdu\", \"snippet\": \"Tiếng Hindi tiêu chuẩn thực sự bắt nguồn từ tiếng Urdu tiêu chuẩn. Nó ra đời từ phong trào Hindi vào thế kỷ 19 thời thuộc địa, do tầng lớp Brahmin dẫn dắt nhằm thay thế các từ gốc Ba Tư hoặc Ả Rập bằng các từ mượn từ tiếng Phạn (Sanskrit).\"}]\n\n[{\"title\": \"Cultural Diversity of Karnataka\", \"snippet\": \"Karnataka là nơi giao thoa của nhiều nền văn hóa, tạo nên sự thống nhất trong đa dạng nên ít xảy ra xung đột vùng miền gây chú ý. Ngoài ra, ngành công nghiệp điện ảnh Kannada có sức lan tỏa thấp hơn so với điện ảnh Tamil và Telugu.\"}]\n\n[{\"title\": \"Foreign Perspectives on Indian Society\", \"snippet\": \"Người nước ngoài thường ngưỡng mộ tinh thần học tập cực kỳ chăm chỉ của người Ấn và sự ủng hộ tuyệt đối từ cha mẹ. Ngoài ra, khả năng nói được nhiều ngôn ngữ một cách tự nhiên là một đặc điểm gây kinh ngạc.\"}]\n\n[{\"title\": \"Hindi Slang Dictionary\", \"snippet\": \"Từ 'chutiya' thường được dùng khi tức giận để gọi ai đó. Ý nghĩa của nó khá phức tạp, thường dùng để ám chỉ người mà người nói cho là kém cỏi hơn hoặc ngốc nghếch. Ví dụ, nó thường được thốt ra khi ai đó bị kẹt trong giao thông hỗn loạn ở Ấn Độ.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Mình thấy có nhiều tranh cãi về việc tiếng Hindi được dùng để thống nhất người dân Ấn Độ hay thực chất là gây chia rẽ? Bạn nghĩ sao?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu góc nhìn và nguyên nhân gây tranh cãi về việc tiếng Hindi dùng để thống nhất hay chia rẽ Ấn Độ.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Hindi language",
+                "unity vs division",
+                "India"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "language_role": [
+                "công cụ giao tiếp thuần túy",
+                "biểu tượng của sự kiêu hãnh",
+                "công cụ phô trương quyền lực"
+              ],
+              "controversy_cause": [
+                "tin đồn và cáo buộc sai lệch",
+                "các nhóm gây rối",
+                "nhạy cảm và phản ứng gay gắt"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc tiếng Hindi gây thống nhất hay chia rẽ tại Ấn Độ phụ thuộc vào góc nhìn của mỗi người.",
+              "Tranh cãi thường nảy sinh khi ngôn ngữ trở thành biểu tượng quyền lực, niềm kiêu hãnh thay vì công cụ giao tiếp.",
+              "Các tin đồn và cáo buộc từ nhóm gây rối làm gia tăng sự nhạy cảm và phản ứng gay gắt về vấn đề ngôn ngữ."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy còn tiếng Urdu thì sao? Có đúng là tiếng Urdu chính là nguồn gốc của tiếng Hindi hiện đại không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu mối quan hệ giữa tiếng Urdu và tiếng Hindi, cụ thể là nguồn gốc của tiếng Hindi hiện đại từ tiếng Urdu.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Standard Hindi",
+                "Standard Urdu",
+                "origin"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "tiếng Urdu",
+              "expected_target": [
+                "tiếng Urdu",
+                "Urdu tiêu chuẩn"
+              ]
+            },
+            "required_slots": {
+              "historical_origin": [
+                "bắt nguồn từ tiếng Urdu tiêu chuẩn",
+                "nguồn gốc từ tiếng Urdu",
+                "ra đời từ tiếng Urdu"
+              ],
+              "19th_century_movement": [
+                "phong trào Hindi thế kỷ 19",
+                "thời kỳ thuộc địa",
+                "tầng lớp Brahmin"
+              ],
+              "vocabulary_shift": [
+                "thay thế từ Ba Tư Ả Rập",
+                "từ mượn tiếng Phạn",
+                "Sanskrit"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tiếng Hindi tiêu chuẩn bắt nguồn từ tiếng Urdu tiêu chuẩn.",
+              "Vào thế kỷ 19 thời thuộc địa, phong trào Hindi do tầng lớp Brahmin dẫn dắt đã thay thế các từ gốc Ba Tư hoặc Ả Rập bằng từ mượn tiếng Phạn."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nhắc đến ngôn ngữ, mình thấy người Kannada ở miền Nam Ấn Độ dường như ít được biết đến hơn so với các nhóm khác. Tại sao vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do tại sao người Kannada ở miền Nam Ấn Độ ít được biết đến rộng rãi so với các nhóm khác.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Kannada",
+                "Karnataka",
+                "culture",
+                "soft power"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "cultural_diversity": [
+                "đa dạng văn hóa",
+                "thống nhất trong đa dạng",
+                "ít xung đột vùng miền"
+              ],
+              "soft_power_cinema": [
+                "điện ảnh",
+                "phim Tamil",
+                "phim Telugu",
+                "sức lan tỏa"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người Kannada ít được biết đến rộng rãi một phần do bang Karnataka có sự đa dạng văn hóa nội tại, ít xảy ra xung đột vùng miền gây chú ý.",
+              "Ngành công nghiệp điện ảnh Kannada có sức lan tỏa và tầm ảnh hưởng thấp hơn so với điện ảnh Tamil và Telugu."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Ngoài ngôn ngữ, người nước ngoài thường ấn tượng hoặc đánh giá cao điều gì nhất ở người Ấn Độ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu những điều người nước ngoài thường ấn tượng hoặc đánh giá cao nhất ở người Ấn Độ ngoài ngôn ngữ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "positive traits",
+                "Indians",
+                "foreigners"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "study_spirit": [
+                "tinh thần học tập",
+                "chăm chỉ",
+                "mọt sách",
+                "học tập cực kỳ chăm chỉ"
+              ],
+              "multilingualism": [
+                "khả năng đa ngôn ngữ",
+                "nói được nhiều ngôn ngữ",
+                "đa ngôn ngữ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người nước ngoài thường ấn tượng với tinh thần học tập và làm việc cực kỳ chăm chỉ của người Ấn Độ cùng sự ủng hộ tuyệt đối từ gia đình.",
+              "Khả năng nói được nhiều ngôn ngữ một cách tự nhiên của người Ấn Độ là một đặc điểm gây kinh ngạc đối với người nước ngoài."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Mình có nghe thấy từ 'chutiya' trong tiếng Hindi, từ này nghĩa là gì và dùng trong ngữ cảnh nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu ý nghĩa và ngữ cảnh sử dụng của từ lóng 'chutiya' trong tiếng Hindi.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "chutiya",
+                "meaning",
+                "Hindi",
+                "slang"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "word_definition": [
+                "ngốc nghếch",
+                "kém cỏi",
+                "không cùng đẳng cấp",
+                "chutiya"
+              ],
+              "usage_context": [
+                "tức giận",
+                "tắc đường",
+                "căng thẳng",
+                "mắng mỏ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Từ 'chutiya' trong tiếng Hindi là một từ lóng có ý nghĩa ám chỉ người ngốc nghếch hoặc kém cỏi.",
+              "Từ này thường được dùng khi tức giận hoặc trong các tình huống căng thẳng như bị kẹt xe tại Ấn Độ."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_014",
+    "conversation_id": "conversation_0014",
+    "source": {
+      "text": "[{\"title\": \"Hiểu về hệ thống kinh tế hỗn hợp của Mỹ\", \"snippet\": \"Hoa Kỳ thực chất là một xã hội tư bản nhưng vận hành trên một nền tảng các dịch vụ xã hội chủ nghĩa cơ bản giúp gắn kết đất nước, ví dụ như hệ thống cứu hỏa và cảnh sát công cộng được chi trả bằng thuế.\"}]\n\n[{\"title\": \"Khảo sát của Hiệp hội Khoa học Chính trị về các Tổng thống\", \"snippet\": \"Một số khảo sát từ Hiệp hội Khoa học Chính trị đã xếp hạng Donald Trump ở mức rất thấp trong lịch sử tổng thống Mỹ do các chính sách về thuế quan, thái độ với NATO và cách xử lý đại dịch Covid-19.\"}]\n\n[{\"title\": \"Chi tiết về máy chủ email cá nhân của Hillary Clinton\", \"snippet\": \"Máy chủ của bà Clinton được cho là đã ngừng hoạt động vào khoảng giữa năm 2015. Có báo cáo cho rằng khoảng 5 quốc gia đã xâm nhập vào máy chủ này và tải xuống các email, bao gồm cả những email bị mất.\"}]\n\n[{\"title\": \"Đặc điểm văn hóa và xã hội Armenia\", \"snippet\": \"Một quốc gia không phải là một khối đồng nhất mà là một bức tranh khảm gồm nhiều người với những ý tưởng, truyền thống và lối sống khác nhau.\"}]\n\n[{\"title\": \"Sai số trong dự đoán bầu cử 2016\", \"snippet\": \"Thuật toán chỉ tốt bằng người tạo ra chúng. Các lập trình viên có niềm tin và ý thức hệ chính trị riêng, điều này có thể dẫn đến sai số trong mô hình dự đoán nếu họ bị ảnh hưởng bởi thiên kiến.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tôi có một người thân theo quan điểm bảo thủ nói rằng nếu Hillary Clinton thắng cử tổng thống, bà ấy sẽ biến Hoa Kỳ thành một quốc gia xã hội chủ nghĩa. Điều này có đúng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ nhận định về việc Hillary Clinton có biến Mỹ thành quốc gia xã hội chủ nghĩa hay không.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "socialism",
+                "United States",
+                "Hillary Clinton"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "economic_system": [
+                "kinh tế hỗn hợp",
+                "mixed economy",
+                "xã hội tư bản"
+              ],
+              "public_services": [
+                "dịch vụ xã hội chủ nghĩa cơ bản",
+                "cảnh sát",
+                "cứu hỏa",
+                "dịch vụ công"
+              ]
+            },
+            "golden_reference_claims": [
+              "Hoa Kỳ vốn đã vận hành như một nền kinh tế hỗn hợp bao gồm cả yếu tố tư bản và các dịch vụ xã hội chủ nghĩa cơ bản.",
+              "Các dịch vụ công như cảnh sát và cứu hỏa được chi trả bằng thuế là minh chứng cho các yếu tố xã hội chủ nghĩa được công nhận rộng rãi tại Mỹ.",
+              "Việc cho rằng một cá nhân có thể đột ngột biến toàn bộ hệ thống thành quốc gia xã hội chủ nghĩa là cái nhìn chưa đầy đủ về cấu trúc nước Mỹ."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy theo bạn, liệu Hillary Clinton có thể là một Tổng thống tốt hơn Donald Trump không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh năng lực hoặc đánh giá tiềm năng làm tổng thống giữa Hillary Clinton và Donald Trump",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Hillary Clinton",
+                "Donald Trump",
+                "presidency comparison"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Hillary Clinton",
+              "expected_target": [
+                "Hillary Clinton"
+              ]
+            },
+            "required_slots": {
+              "trump_ranking": [
+                "xếp hạng thấp",
+                "tệ nhất lịch sử",
+                "lowest ranking"
+              ],
+              "trump_criticism": [
+                "thuế quan",
+                "NATO",
+                "Covid-19"
+              ],
+              "clinton_evaluation": [
+                "am hiểu sâu sắc",
+                "kinh nghiệm đối ngoại",
+                "vận hành chính phủ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Hiệp hội Khoa học Chính trị xếp hạng Donald Trump ở mức rất thấp trong lịch sử tổng thống Mỹ.",
+              "Donald Trump bị phê phán vì các chính sách thuế quan, thái độ với NATO và cách xử lý đại dịch Covid-19.",
+              "Bà Hillary Clinton được đánh giá cao hơn về sự am hiểu vận hành chính phủ và kinh nghiệm chính sách đối ngoại."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tôi có nghe nói về vụ máy chủ email của bà Clinton, FBI đã xử lý việc đó như thế nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách FBI xử lý vụ bê bối máy chủ email cá nhân của Hillary Clinton.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Hillary Clinton",
+                "email server",
+                "FBI"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "vụ máy chủ email của bà Clinton",
+              "expected_target": [
+                "Hillary Clinton",
+                "máy chủ email cá nhân"
+              ]
+            },
+            "required_slots": {
+              "server_status": [
+                "ngừng hoạt động từ giữa năm 2015",
+                "offline",
+                "đã đóng"
+              ],
+              "security_breach": [
+                "5 quốc gia xâm nhập",
+                "tải xuống các email",
+                "lỗ hổng bảo mật"
+              ]
+            },
+            "golden_reference_claims": [
+              "Máy chủ email cá nhân của bà Hillary Clinton đã ngừng hoạt động vào khoảng giữa năm 2015.",
+              "Các báo cáo chỉ ra có khoảng 5 quốc gia đã xâm nhập và tải xuống dữ liệu email từ máy chủ này."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Chuyển sang một chủ đề khác, tại sao Armenia lại là một quốc gia bảo thủ như vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do tại sao Armenia được coi là một quốc gia bảo thủ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Armenia",
+                "conservative"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition_of_conservative": [
+                "định nghĩa về bảo thủ",
+                "xem xét lại định nghĩa"
+              ],
+              "diversity_of_society": [
+                "bức tranh khảm",
+                "không phải là một khối đồng nhất",
+                "nhiều nhóm người"
+              ]
+            },
+            "golden_reference_claims": [
+              "Armenia không phải là một khối đồng nhất mà là một bức tranh khảm gồm nhiều nhóm người với các quan điểm và truyền thống đa dạng.",
+              "Việc dán nhãn toàn bộ Armenia là quốc gia bảo thủ là sự đơn giản hóa quá mức và bỏ qua các luồng tư tưởng tiến bộ song song."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Quay lại cuộc bầu cử năm 2016, tại sao các thuật toán dự đoán bà Clinton thắng áp đảo lại sai bét như vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích nguyên nhân tại sao các thuật toán dự đoán kết quả bầu cử tổng thống Mỹ năm 2016 lại sai sót lớn.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "2016 election prediction",
+                "algorithms",
+                "bias"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "cuộc bầu cử năm 2016",
+              "expected_target": [
+                "bầu cử tổng thống 2016",
+                "Hillary Clinton",
+                "Donald Trump"
+              ]
+            },
+            "required_slots": {
+              "human_factor": [
+                "lập trình viên",
+                "nhà khoa học dữ liệu",
+                "con người"
+              ],
+              "political_bias": [
+                "thiên kiến",
+                "ý thức hệ chính trị",
+                "niềm tin"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thuật toán dự đoán năm 2016 thất bại vì chỉ tốt bằng chính người tạo ra chúng.",
+              "Các lập trình viên mang theo niềm tin và ý thức hệ chính trị riêng tạo ra sai số và điểm mù trong mô hình.",
+              "Các mô hình dự đoán đã tạo ra kịch bản thắng áp đảo không sát với thực tế do ảnh hưởng của thiên kiến."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_015",
+    "conversation_id": "conversation_0015",
+    "source": {
+      "text": "[{\"title\": \"Top Startup Ideas for Indian Market\", \"snippet\": \"Grocery delivery apps have witnessed phenomenal growth. Factors like lockdowns, demand for high-quality groceries, hassle-free app usage, prompt delivery, and competitive rates have led to a strong preference for online grocery shopping over traditional errands.\"}]\n\n[{\"title\": \"Authentic Bolognese Sauce Secrets\", \"snippet\": \"In parts of Italy, the sauce starts with a battuto, a flavor pack made with minced carrots, celery, onion and salt pork. Once cooked together, it is called soffritto. Other versions use sautéed onion, garlic, browned meats, tomato paste, crushed tomatoes and basil.\"}]\n\n[{\"title\": \"The Strange World of Welwitschia\", \"snippet\": \"The Welwitschia is perhaps the most unique tree. It looks like an untidy pile of dirty sheets, is among the shortest trees in the world (often shorter than 1.55m), can have a circumference of up to 8m, and notably has no branches.\"}]\n\n[{\"title\": \"The Beauty of Telugu Language\", \"snippet\": \"Telugu is a Dravidian language, ranking 3rd by number of native speakers in India. Etymologically, 'Telugu' or 'Tenugu' (tene/the-n = honey, agu = is) means 'sweet as honey', reflecting the perceived sweetness of the language.\"}]\n\n[{\"title\": \"Strategic Fundraising for Large School Projects\", \"snippet\": \"Building a gym is a major project requiring major donors. 80-90% of funds typically come from 10-20% of donors. Success requires a strategic plan and one-on-one meetings between school heads, trustees, and high-net-worth prospects for significant gifts.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm kiếm một vài ý tưởng khởi nghiệp độc đáo và tiềm năng tại thị trường Ấn Độ, bạn có gợi ý nào không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm ý tưởng khởi nghiệp độc đáo và có tiềm năng phát triển tại thị trường Ấn Độ",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "startup ideas",
+                "India",
+                "ý tưởng khởi nghiệp",
+                "Ấn Độ"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "startup_idea": [
+                "grocery delivery app",
+                "ứng dụng giao hàng tạp hóa",
+                "giao hàng trực tuyến"
+              ],
+              "success_factors": [
+                "chất lượng hàng hóa",
+                "giao hàng nhanh",
+                "giá cạnh tranh",
+                "quality groceries",
+                "prompt delivery"
+              ]
+            },
+            "golden_reference_claims": [
+              "Ứng dụng giao hàng tạp hóa là một ý tưởng khởi nghiệp đang tăng trưởng vượt bậc tại thị trường Ấn Độ.",
+              "Thành công trong lĩnh vực giao hàng tạp hóa trực tuyến phụ thuộc vào chất lượng hàng hóa, trải nghiệm ứng dụng, tốc độ giao hàng và giá cả cạnh tranh."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe thú vị thật! Chuyển sang một chủ đề khác nhé, mình đang tìm hiểu về ẩm thực. Bạn cho mình hỏi thành phần nào tạo nên sự độc đáo cho món mì Ý Spaghetti Bolognese?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu thành phần độc đáo và công thức tạo nên món mì Ý Spaghetti Bolognese.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "spaghetti bolognese",
+                "unique ingredients",
+                "soffritto",
+                "bolognese sauce"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "base_sauce": [
+                "battuto",
+                "soffritto",
+                "hỗn hợp hương vị"
+              ],
+              "ingredients": [
+                "cà rốt",
+                "cần tây",
+                "hành tây",
+                "thịt lợn muối",
+                "cà chua"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sốt Spaghetti Bolognese bắt đầu với battuto, gồm cà rốt, cần tây, hành tây băm nhỏ và thịt lợn muối, khi xào chín gọi là soffritto.",
+              "Món ăn kết hợp thêm hành, tỏi, thịt áp chảo vàng, cà chua cô đặc, cà chua nghiền và lá húng tây (basil)."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Thật chi tiết! Mình cũng rất thích thiên nhiên. Theo bạn, loài cây nào được coi là độc đáo nhất thế giới?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm thông tin về loài cây được coi là độc đáo nhất thế giới.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "most unique tree",
+                "Welwitschia"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "tree_name": [
+                "Welwitschia"
+              ],
+              "appearance": [
+                "đống tấm trải giường bẩn",
+                "untidy pile of dirty sheets",
+                "vẻ ngoài kỳ lạ"
+              ],
+              "characteristics": [
+                "không có cành",
+                "no branches",
+                "thấp nhất thế giới",
+                "chu vi thân lên tới 8m"
+              ]
+            },
+            "golden_reference_claims": [
+              "Loài cây Welwitschia được coi là loài cây độc đáo nhất thế giới với vẻ ngoài trông giống một đống tấm trải giường bẩn.",
+              "Welwitschia là một trong những loài cây thấp nhất thế giới nhưng có chu vi thân lên tới 8m và hoàn toàn không có cành."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Thế giới tự nhiên đúng là kỳ diệu. Nhân tiện nói về sự đa dạng, mình nghe nói tiếng Telugu của Ấn Độ có nhiều điều thú vị, bạn có biết sự thật độc đáo nào về ngôn ngữ này không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu các sự thật độc đáo về ngôn ngữ tiếng Telugu của Ấn Độ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Telugu language",
+                "unique facts"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "language_family": [
+                "Dravidian",
+                "hệ Dravidian"
+              ],
+              "speaker_ranking": [
+                "thứ 3",
+                "3rd",
+                "đứng thứ 3"
+              ],
+              "etymology_meaning": [
+                "ngọt ngào như mật ong",
+                "sweet as honey",
+                "mật ong"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tiếng Telugu là một ngôn ngữ thuộc hệ Dravidian và đứng thứ 3 về số lượng người nói bản địa tại Ấn Độ.",
+              "Từ 'Telugu' hoặc 'Tenugu' có nguồn gốc mang ý nghĩa là 'ngọt ngào như mật ong'."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cảm ơn bạn vì những thông tin thú vị. Cuối cùng, mình đang giúp một trường tư thục lên kế hoạch gây quỹ để xây dựng phòng gym, bạn có ý tưởng nào hiệu quả cho việc này không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm ý tưởng và chiến lược gây quỹ hiệu quả cho trường tư thục để xây dựng phòng gym.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "fundraising ideas",
+                "school gym",
+                "fundraising strategies"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "major_donors_ratio": [
+                "80-90% tổng số tiền",
+                "10-20% số lượng nhà tài trợ",
+                "major donors",
+                "nhà tài trợ lớn"
+              ],
+              "fundraising_strategy": [
+                "gặp gỡ trực tiếp",
+                "1-on-1 meetings",
+                "kế hoạch chiến lược",
+                "strategic plan"
+              ]
+            },
+            "golden_reference_claims": [
+              "Xây dựng phòng gym là dự án lớn cần chiến lược tiếp cận nhà tài trợ lớn (major donors) thay vì chỉ dựa vào hoạt động nhỏ lẻ.",
+              "Khoảng 80-90% số vốn thường đến từ 10-20% nhà tài trợ, do đó cần tổ chức các cuộc gặp gỡ trực tiếp (1-on-1) với các cá nhân tài chính cao."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_016",
+    "conversation_id": "conversation_0016",
+    "source": {
+      "text": "[{\"title\": \"Phân tích sức mạnh Mike Tyson và Tyson Fury\", \"snippet\": \"Mike Tyson thời đỉnh cao (1988) có tốc độ, sức mạnh cú đấm và kỹ năng vượt trội hơn hẳn. Ngay cả Tyson Fury cũng từng thừa nhận rằng Mike có thể knock-out mình ngay trong hiệp một. Lợi thế duy nhất của Fury là thể hình lớn hơn (nặng hơn khoảng 40kg và cao hơn nhiều), nhưng trong boxing, sự chênh lệch kích thước thường bị khỏa lấp bởi tốc độ và kỹ thuật.\"}]\n\n[{\"title\": \"So sánh năng lực Killua và Todoroki\", \"snippet\": \"Todoroki sở hữu năng lực Half-Cold Half-Hot, cho phép tạo ra lửa bên trái và băng bên phải, có thể đóng băng cả tòa nhà. Tuy nhiên, nếu tính Killua sau kỳ thi Hunter, cậu ấy sở hữu Nen - một hệ thống năng lượng cực kỳ mạnh mẽ khiến trận đấu trở nên một chiều. Nếu chỉ tính Killua trước khi học Nen, cuộc chiến sẽ cân bằng hơn nhưng tốc độ của Killua vẫn là một lợi thế lớn.\"}]\n\n[{\"title\": \"Cuộc chiến giữa Spinosaurus và Deinosuchus\", \"snippet\": \"Spinosaurus thường được coi là lớn hơn với trọng lượng ước tính từ 7 đến 12 tấn, trong khi Deinosuchus nặng khoảng 6 tấn (tuy nhiên một số loài Deinosuchus lớn nhất cũng có thể đạt kích thước tương đương). Spinosaurus có lợi thế về chiều dài và tầm với, trong khi Deinosuchus là một loài cá sấu khổng lồ với lực cắn cực mạnh.\"}]\n\n[{\"title\": \"Xu hướng phát triển ứng dụng giao đồ ăn 2020\", \"snippet\": \"Các ứng dụng giao đồ ăn theo yêu cầu như UberEats, DoorDash, Swiggy đang tạo ra cuộc cách mạng. Việc sử dụng các bản clone (mã nguồn mô phỏng) như UberEats clone script từ các đơn vị như JustinBiz giúp doanh nghiệp triển khai nhanh chóng. Thị trường này dự kiến tăng trưởng khoảng 30%.\"}]\n\n[{\"title\": \"Đánh giá GoPro năm 2020\", \"snippet\": \"Các mẫu từ Hero 7 đến Hero 8 đều rất đáng mua. GoPro Hero 8 Black là lựa chọn hàng đầu với trọng lượng 124g, chống nước 10m không cần vỏ, quay 4K/60fps, 2.7K/120fps và 1080/240fps, độ phân giải ảnh 12MP, pin dùng từ 1-3 giờ.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang phân vân một kèo đấu giả tưởng: Nếu Mike Tyson năm 1988 đối đầu với Tyson Fury năm 2020, ai sẽ là người chiến thắng?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh và dự đoán kết quả trận đấu giả tưởng giữa Mike Tyson (1988) và Tyson Fury (2020).",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Mike Tyson 1988",
+                "Tyson Fury 2020"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "mike_tyson_advantages": [
+                "tốc độ",
+                "kỹ năng",
+                "sức mạnh cú đấm"
+              ],
+              "tyson_fury_advantages": [
+                "thể hình",
+                "nặng hơn 40kg",
+                "cao hơn"
+              ],
+              "match_prediction": [
+                "Mike Tyson 1988 giành chiến thắng",
+                "Mike Tyson có thể knock-out"
+              ]
+            },
+            "golden_reference_claims": [
+              "Mike Tyson năm 1988 được đánh giá cao hơn về tốc độ, kỹ năng và sức mạnh cú đấm.",
+              "Tyson Fury có lợi thế tuyệt đối về thể hình, cao hơn và nặng hơn khoảng 40kg.",
+              "Mike Tyson 1988 nhiều khả năng sẽ giành chiến thắng trong trận đấu này."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe hấp dẫn thật! Vậy chuyển sang anime nhé, bạn nghĩ Killua Zoldyck hay Shoto Todoroki mạnh hơn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh sức mạnh giữa hai nhân vật anime Killua Zoldyck và Shoto Todoroki",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Killua Zoldyck",
+                "Shoto Todoroki",
+                "vs"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "killua_abilities": [
+                "Nen",
+                "tốc độ",
+                "kỹ năng ám sát"
+              ],
+              "todoroki_abilities": [
+                "Half-Cold Half-Hot",
+                "băng và lửa",
+                "tấn công diện rộng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Killua sở hữu Nen và tốc độ vượt trội giúp cậu có lợi thế lớn về sự linh hoạt sau kỳ thi Hunter.",
+              "Shoto Todoroki sở hữu năng lực Half-Cold Half-Hot với khả năng tạo ra các đợt tấn công diện rộng bằng băng và lửa đủ sức đóng băng cả một tòa nhà."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiếp tục với chủ đề sinh vật cổ đại đi. Giữa Spinosaurus và Deinosuchus, con nào sẽ thắng nếu đối đầu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh sức mạnh và khả năng chiến đấu giữa Spinosaurus và Deinosuchus",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Spinosaurus",
+                "Deinosuchus"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "weight_comparison": [
+                "7 đến 12 tấn",
+                "7-12 tấn",
+                "6 tấn",
+                "trọng lượng ước tính"
+              ],
+              "combat_advantages": [
+                "tầm với",
+                "kích thước tổng thể",
+                "lực cắn",
+                "môi trường"
+              ]
+            },
+            "golden_reference_claims": [
+              "Spinosaurus có trọng lượng ước tính từ 7 đến 12 tấn, lớn hơn Deinosuchus có trọng lượng khoảng 6 tấn.",
+              "Spinosaurus có lợi thế về chiều dài, tầm với và kích thước tổng thể, trong khi Deinosuchus sở hữu lực cắn cực mạnh.",
+              "Kết quả cuộc đối đầu phụ thuộc vào môi trường chiến đấu giữa vùng nước nông và nước sâu."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Thay đổi không khí chút, mình đang muốn khởi nghiệp mảng giao đồ ăn. Bạn biết mã nguồn (clone) UberEATS nào tốt nhất năm 2020 không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm thông tin về các mã nguồn hoặc giải pháp clone UberEATS tốt nhất trong năm 2020 để khởi nghiệp giao đồ ăn.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "UberEats clone",
+                "2020"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "market_trend": [
+                "tăng trưởng khoảng 30%",
+                "on-demand food delivery",
+                "bùng nổ"
+              ],
+              "solution_type": [
+                "UberEats clone",
+                "mã nguồn mô phỏng",
+                "clone script"
+              ],
+              "provider_example": [
+                "JustinBiz"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong năm 2020, thị trường ứng dụng giao đồ ăn theo yêu cầu dự kiến tăng trưởng khoảng 30%.",
+              "Các giải pháp UberEats clone giúp doanh nghiệp triển khai nhanh chóng các tính năng cốt lõi như quản lý đơn hàng, theo dõi tài xế và thanh toán trực tuyến."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình định mua một chiếc GoPro để quay vlog trong năm 2020 này, nên chọn mẫu nào là tốt nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tư vấn chọn mua mẫu GoPro tốt nhất để quay vlog trong năm 2020.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "GoPro",
+                "2020",
+                "best",
+                "Hero 8 Black"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "recommended_model": [
+                "GoPro Hero 8 Black",
+                "Hero 8"
+              ],
+              "key_specifications": [
+                "4K/60fps",
+                "124g",
+                "12MP",
+                "chống nước 10m"
+              ]
+            },
+            "golden_reference_claims": [
+              "GoPro Hero 8 Black là lựa chọn hàng đầu và tốt nhất cho việc quay vlog trong năm 2020.",
+              "GoPro Hero 8 Black có trọng lượng 124g, chống nước 10m không cần vỏ và hỗ trợ quay video 4K/60fps, ảnh 12MP."
+            ]
+          }
+        }
+      ]
+    }
+  }
+]

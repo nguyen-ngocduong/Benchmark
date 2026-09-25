@@ -46,6 +46,15 @@ from openai import AsyncOpenAI
 
 load_dotenv()
 
+WORKSPACE_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+if str(WORKSPACE_ROOT) not in sys.path:
+    sys.path.insert(0, str(WORKSPACE_ROOT))
+
+try:
+    from eval.tool_call.scripts.enrich_mentor_multiturn import enrich_batch_dataset
+except ImportError:
+    enrich_batch_dataset = None
+
 
 # ==============================================================================
 # Helper: Atomic Claim Extraction & Cleaning
@@ -226,15 +235,37 @@ class DeterministicValidator:
 # ==============================================================================
 
 class AtomicClaimVerifier:
-    """Decomposes response into atomic claims and verifies grounding against evidence."""
+    """Decomposes response into atomic claims and verifies grounding against evidence using MODEL (e.g. gemma-4-31B-it)."""
 
-    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None, enabled: bool = True):
-        self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
-        self.model = model or os.environ.get("EVAL_CLAIM_MODEL") or os.environ.get("GEMINI_MODEL") or "gemini-3.5-flash-lite"
+    def __init__(
+        self,
+        base_url: Optional[str] = None,
+        model: Optional[str] = None,
+        api_key: Optional[str] = None,
+        enabled: bool = True
+    ):
+        self.base_url = (
+            base_url
+            or os.environ.get("BASE_URL")
+            or os.environ.get("LLM_BASE_URL")
+            or "https://more-starring-administration-cemetery.trycloudflare.com/v1"
+        )
+        self.model = (
+            model
+            or os.environ.get("MODEL")
+            or os.environ.get("LLM_MODEL")
+            or "gemma-4-31B-it"
+        )
+        self.api_key = (
+            api_key
+            or os.environ.get("OPENAI_API_KEY")
+            or os.environ.get("LLM_API_KEY")
+            or "EMPTY"
+        )
         self.client = None
-        if self.api_key and enabled:
+        if enabled and self.base_url:
             self.client = AsyncOpenAI(
-                base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
+                base_url=self.base_url,
                 api_key=self.api_key
             )
 
@@ -304,13 +335,16 @@ Trả về CHỈ DUY NHẤT một chuỗi JSON hợp lệ theo format:
                 temperature=0.0
             )
             raw_text = res.choices[0].message.content.strip()
-            match = re.search(r'\{[\s\S]*\}', raw_text)
-            parsed = json.loads(match.group()) if match else json.loads(raw_text)
+            clean_text = re.sub(r'<thought>[\s\S]*?</thought>', '', raw_text, flags=re.IGNORECASE).strip()
+            clean_text = re.sub(r'^```(?:json)?\n?', '', clean_text)
+            clean_text = re.sub(r'\n?```$', '', clean_text)
+            match = re.search(r'\{[\s\S]*\}', clean_text)
+            parsed = json.loads(match.group()) if match else json.loads(clean_text)
             claims = parsed.get("claims", [])
             return self._compute_claim_metrics(claims)
 
         except Exception as e:
-            print(f"⚠️ [AtomicClaimVerifier] Warning: LLM claim verification failed ({e}), falling back to heuristic.")
+            print(f"⚠️ [AtomicClaimVerifier] Warning: LLM claim verification with {self.model} failed ({e}), falling back to heuristic.")
             return self._heuristic_fallback(answer_text, evidence_text)
 
     def _compute_claim_metrics(self, claims: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -516,11 +550,20 @@ class BinEvalEvaluator:
         # Q3.1: Grounded facts
         ground_prec = claim_eval.get("grounded_claim_precision")
         ground_pass = (ground_prec is not None and ground_prec >= 0.70) if ground_prec is not None else True
+        supported_quotes = [
+            c.get("evidence_quote") for c in claim_eval.get("claims", [])
+            if c.get("label") == "SUPPORTED" and c.get("evidence_quote")
+        ]
+        reason_q1 = f"Tỷ lệ luận điểm có bằng chứng đạt {ground_prec*100:.0f}%" if ground_prec is not None else "Không có claim phát sinh"
+        if supported_quotes:
+            sample_quote = supported_quotes[0][:90] + ("..." if len(supported_quotes[0]) > 90 else "")
+            reason_q1 += f" | Bằng chứng: \"{sample_quote}\""
+
         fact_questions.append({
             "id": "grounding_pass",
             "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
             "verdict": "YES" if ground_pass else "NO",
-            "reason": f"Tỷ lệ luận điểm có bằng chứng đạt {ground_prec*100:.0f}%" if ground_prec is not None else "Không có claim phát sinh"
+            "reason": reason_q1
         })
 
         # Q3.2: No contradiction / Hallucination-free
@@ -866,7 +909,10 @@ def normalize_trajectory_record(record: Dict[str, Any], gt_map: Dict[str, Any]) 
             first_user_msg = norm_rec["turns"][0].get("user_message", "").strip()
 
         matched_sid = None
-        if first_user_msg:
+        if cid and cid in gt_map:
+            matched_sid = cid
+
+        if not matched_sid and first_user_msg:
             for sid, gt in gt_map.items():
                 gt_turns = gt.get("scenario", {}).get("turns", [])
                 gt_first = gt_turns[0].get("user_message", "").strip() if gt_turns else ""
@@ -958,24 +1004,214 @@ def normalize_trajectory_record(record: Dict[str, Any], gt_map: Dict[str, Any]) 
 
 
 # ==============================================================================
-# 4. Main Entrypoint & Report Generation
+# 4. Batch Evaluator & Main Entrypoint
 # ==============================================================================
+
+async def evaluate_single_batch(
+    batch_file: Path,
+    output_dir: Path,
+    evaluator: TrajectoryEvaluator,
+    model_name: str,
+    enrich_model: str = "gemini-3.5-flash-lite",
+    auto_enrich: bool = True,
+    force_enrich: bool = False
+) -> Dict[str, Any]:
+    print(f"\n{'='*75}")
+    print(f"📦 EVALUATING BATCH FILE: {batch_file.name}")
+    print(f"{'='*75}")
+
+    m = re.search(r"samples__(.+)\.json", batch_file.name)
+    if m:
+        out_filename = f"eval__{m.group(1)}.json"
+    else:
+        out_filename = f"eval__{batch_file.stem}.json"
+
+    out_path = output_dir / out_filename
+
+    # Step 1: Ground Truth handling (enrich with Gemini 3.5 Flash Lite if missing or force_enrich)
+    gt_dir = WORKSPACE_ROOT / "eval/tool_call/datasets/multi_turn/ground_truth"
+    gt_dir.mkdir(parents=True, exist_ok=True)
+    gt_path = gt_dir / f"gt_{batch_file.name}"
+
+    if auto_enrich and (not gt_path.exists() or force_enrich):
+        if enrich_batch_dataset is None:
+            print(f"❌ enrich_batch_dataset could not be imported.")
+            return {}
+        print(f"🔄 Enriching Ground Truth with {enrich_model} for {batch_file.name}...")
+        scenarios, gt_path = await enrich_batch_dataset(
+            input_file=str(batch_file),
+            output_file=str(gt_path),
+            model=enrich_model,
+            force=force_enrich
+        )
+    elif not gt_path.exists():
+        print(f"❌ Ground truth file not found at {gt_path.name} and auto-enrich is disabled.")
+        return {}
+
+    with open(gt_path, "r", encoding="utf-8") as f:
+        gt_scenarios = json.load(f)
+
+    gt_map = {}
+    for s in gt_scenarios:
+        if s.get("sample_id"):
+            gt_map[s["sample_id"]] = s
+        if s.get("conversation_id"):
+            gt_map[s["conversation_id"]] = s
+
+    # Step 2: Load raw batch conversations
+    with open(batch_file, "r", encoding="utf-8") as f:
+        raw_items = json.load(f)
+    if isinstance(raw_items, dict):
+        raw_items = raw_items.get("conversations", raw_items.get("samples", [raw_items]))
+
+    trajectories = [normalize_trajectory_record(t, gt_map) for t in raw_items]
+    print(f"📋 Loaded {len(trajectories)} scenario trajectory/trajectories from batch")
+
+    # Step 3: Evaluate scenarios
+    eval_results = []
+    for traj in trajectories:
+        sid = traj.get("sample_id")
+        scenario_gt = gt_map.get(sid, {})
+        print(f"🔍 Evaluating scenario: {sid}...")
+        res = await evaluator.evaluate_scenario(traj, scenario_gt)
+        eval_results.append(res)
+        cm = res["conversation_metrics"]
+        print(f"  ✓ Task Success: {cm['task_success']} | Tool Acc: {cm['tool_decision_accuracy']*100:.0f}% | Slot Acc: {cm['context_slot_accuracy']*100:.0f}% | Grounded: {cm['grounded_claim_precision']*100:.1f}%")
+
+    # Step 4: Aggregate metrics
+    def avg_metric(key: str) -> float:
+        vals = [r["conversation_metrics"][key] for r in eval_results if r.get("conversation_metrics", {}).get(key) is not None]
+        return round(sum(vals) / len(vals), 3) if vals else 0.0
+
+    summary_metrics = {
+        "task_success_rate": avg_metric("task_success"),
+
+        # A. Tool Use
+        "tool_decision_accuracy": avg_metric("tool_decision_accuracy"),
+        "tool_argument_accuracy": avg_metric("tool_argument_accuracy"),
+        "tool_switching_accuracy": avg_metric("tool_switching_accuracy"),
+        "missing_tool_call_rate": avg_metric("missing_tool_call_rate"),
+        "unnecessary_tool_call_rate": avg_metric("unnecessary_tool_call_rate"),
+
+        # B. Multi-Turn
+        "context_slot_accuracy": avg_metric("context_slot_accuracy"),
+        "coreference_accuracy": avg_metric("coreference_accuracy"),
+        "follow_up_understanding": avg_metric("follow_up_understanding"),
+        "state_tracking_accuracy": avg_metric("state_tracking_accuracy"),
+        "cross_turn_consistency": avg_metric("cross_turn_consistency"),
+
+        # C. Answer Quality
+        "result_summarization_score": avg_metric("result_summarization_score"),
+        "final_answer_quality": avg_metric("final_answer_quality"),
+        "grounded_claim_precision": avg_metric("grounded_claim_precision"),
+        "unsupported_claim_rate": avg_metric("unsupported_claim_rate"),
+        "contradiction_rate": avg_metric("contradiction_rate"),
+
+        # D. BinEval Checklist (Binary Scoring)
+        "bineval_tool_score": avg_metric("bineval_tool_score"),
+        "bineval_context_score": avg_metric("bineval_context_score"),
+        "bineval_factuality_score": avg_metric("bineval_factuality_score"),
+        "bineval_overall_score": avg_metric("bineval_overall_score")
+    }
+
+    report = {
+        "batch_file": batch_file.name,
+        "model": model_name,
+        "evaluation_timestamp": datetime.now().isoformat(),
+        "total_scenarios": len(eval_results),
+        "summary_metrics": summary_metrics,
+        "scenarios": eval_results
+    }
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=2)
+
+    print(f"\n{'='*75}")
+    print(f"🏁 BATCH EVALUATION COMPLETE FOR {batch_file.name}")
+    print(f"🏆 Task Success Rate:              {summary_metrics['task_success_rate']*100:.1f}%")
+    print(f"🎯 BinEval Overall Score:          {summary_metrics['bineval_overall_score']*100:.1f}%")
+    print(f"📁 Evaluation report saved to:     {out_path.resolve()}")
+    print(f"{'='*75}\n")
+    return report
+
 
 async def main_async():
     parser = argparse.ArgumentParser(description="Multi-Turn Trajectory Evaluator with 3-Pillar Taxonomy")
-    parser.add_argument("--model", type=str, default=os.environ.get("MODEL", "gemma4:e2b"), help="Model name (or set MODEL in .env)")
+    parser.add_argument("--model", type=str, default=os.environ.get("MODEL", "gemma-4-31B-it"), help="Model name (or set MODEL in .env)")
     parser.add_argument("--trajectory", type=str, default=None, help="Path to agent_output.jsonl")
     parser.add_argument("--dataset", type=str, default="eval/tool_call/datasets/multi_turn/samples.json")
     parser.add_argument("--output", type=str, default=None, help="Output JSON path")
-    parser.add_argument("--skip-llm-claim-eval", action="store_true", help="Skip Gemini claim verification")
-    parser.add_argument("--claim-model", type=str, default=os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite"), help="Model for atomic claim evaluation (default: gemini-3.5-flash-lite)")
+    parser.add_argument("--batch-file", type=str, default=None, help="Path to single batch file (e.g. eval/tool_call/datasets/multi_turn/batches/samples__20260925_123650.json)")
+    parser.add_argument("--batch-dir", type=str, default=None, help="Directory containing batch files (e.g. eval/tool_call/datasets/multi_turn/batches)")
+    parser.add_argument("--output-dir", type=str, default="eval/tool_call/results/eval", help="Directory where batch evaluation results will be saved (default: eval/tool_call/results/eval)")
+    parser.add_argument("--skip-llm-claim-eval", action="store_true", help="Skip LLM claim verification")
+    parser.add_argument("--claim-model", type=str, default=os.environ.get("MODEL", "gemma-4-31B-it"), help="Model for atomic claim evaluation (default from .env: gemma-4-31B-it)")
+    parser.add_argument("--claim-base-url", type=str, default=os.environ.get("BASE_URL", "https://more-starring-administration-cemetery.trycloudflare.com/v1"), help="Base URL for claim evaluation model")
+    parser.add_argument("--enrich-model", type=str, default="gemini-3.5-flash-lite", help="Model to enrich Ground Truth (default: gemini-3.5-flash-lite)")
+    parser.add_argument("--no-auto-enrich", action="store_true", help="Disable automatic Ground Truth enrichment if missing")
+    parser.add_argument("--force-enrich", action="store_true", help="Force re-enrichment of Ground Truth even if cache exists")
     parser.add_argument("--sample-id", type=str, default=None, help="Evaluate only a specific sample_id (e.g. sample_013)")
     parser.add_argument("--from-sample", type=str, default=None, help="Evaluate starting from a specific sample_id onwards (e.g. sample_011)")
     parser.add_argument("--to-sample", type=str, default=None, help="Evaluate up to a specific sample_id (e.g. sample_013)")
 
     args = parser.parse_args()
-    WORKSPACE_ROOT = Path(__file__).resolve().parent.parent.parent.parent
-    
+
+    claim_verifier = AtomicClaimVerifier(
+        base_url=args.claim_base_url,
+        model=args.claim_model,
+        enabled=not args.skip_llm_claim_eval
+    )
+    evaluator = TrajectoryEvaluator(claim_verifier=claim_verifier)
+
+    # ── Branch 1: Batch Mode Evaluation ───────────────────────────────────────
+    if args.batch_file or args.batch_dir:
+        output_dir = Path(args.output_dir)
+        if not output_dir.is_absolute():
+            output_dir = (WORKSPACE_ROOT / output_dir).resolve()
+
+        if args.batch_file:
+            b_path = Path(args.batch_file)
+            if not b_path.is_absolute():
+                b_path = (WORKSPACE_ROOT / b_path).resolve()
+            if not b_path.exists():
+                print(f"❌ Batch file not found: {b_path}")
+                sys.exit(1)
+            await evaluate_single_batch(
+                batch_file=b_path,
+                output_dir=output_dir,
+                evaluator=evaluator,
+                model_name=args.model,
+                enrich_model=args.enrich_model,
+                auto_enrich=not args.no_auto_enrich,
+                force_enrich=args.force_enrich
+            )
+            return
+
+        if args.batch_dir:
+            b_dir = Path(args.batch_dir)
+            if not b_dir.is_absolute():
+                b_dir = (WORKSPACE_ROOT / b_dir).resolve()
+            if not b_dir.exists():
+                print(f"❌ Batch directory not found: {b_dir}")
+                sys.exit(1)
+            batch_files = sorted(list(b_dir.glob("samples__*.json")))
+            if not batch_files:
+                batch_files = sorted(list(b_dir.glob("*.json")))
+            print(f"📂 Found {len(batch_files)} batch file(s) in {b_dir}")
+            for bf in batch_files:
+                await evaluate_single_batch(
+                    batch_file=bf,
+                    output_dir=output_dir,
+                    evaluator=evaluator,
+                    model_name=args.model,
+                    enrich_model=args.enrich_model,
+                    auto_enrich=not args.no_auto_enrich,
+                    force_enrich=args.force_enrich
+                )
+            return
+
+    # ── Branch 2: Standard Single-Trajectory Evaluation ────────────────────────
     if args.trajectory:
         traj_path = Path(args.trajectory)
     else:
@@ -1040,9 +1276,6 @@ async def main_async():
     print(f"📂 Trajectory source: {traj_path}")
     print(f"📋 Loaded {len(trajectories)} scenario trajectory/trajectories to evaluate")
     print(f"{'='*75}\n")
-
-    claim_verifier = AtomicClaimVerifier(model=args.claim_model, enabled=not args.skip_llm_claim_eval)
-    evaluator = TrajectoryEvaluator(claim_verifier=claim_verifier)
 
     eval_results = []
     for traj in trajectories:

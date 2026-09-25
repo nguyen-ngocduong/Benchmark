@@ -24,7 +24,7 @@ import os
 import re
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 from dotenv import load_dotenv
 
 project_root = Path(__file__).resolve().parent.parent.parent.parent
@@ -36,19 +36,17 @@ from eval.tool_call.core.chat_client import chat_completion_async
 load_dotenv()
 
 DEFAULT_BASE_URL = (
-    os.environ.get("LLM_BASE_URL")
-    or os.environ.get("GEMINI_BASE_URL")
+    os.environ.get("GEMINI_BASE_URL")
     or "https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 DEFAULT_API_KEY = (
-    os.environ.get("LLM_API_KEY")
-    or os.environ.get("GEMINI_API_KEY")
+    os.environ.get("GEMINI_API_KEY")
+    or os.environ.get("LLM_API_KEY")
     or os.environ.get("OPENAI_API_KEY")
     or "EMPTY"
 )
 DEFAULT_MODEL = (
-    os.environ.get("LLM_MODEL")
-    or os.environ.get("GEMINI_MODEL")
+    os.environ.get("GEMINI_MODEL")
     or "gemini-3.5-flash-lite"
 )
 
@@ -339,6 +337,12 @@ async def convert_and_enrich_mentor_dataset(
             max_num = max(max_num, int(m.group(1)))
 
     # Map existing user first turn messages to sample_id to prevent duplicates
+    # Map existing conversation_id and user first turn messages to sample_id to prevent duplicates / enable overwrite
+    existing_conv_map = {}
+    for sc in existing_scenarios:
+        if sc.get("conversation_id"):
+            existing_conv_map[sc["conversation_id"]] = sc.get("sample_id")
+
     existing_first_turns = {}
     for sc in existing_scenarios:
         t_list = sc.get("scenario", {}).get("turns", [])
@@ -360,7 +364,9 @@ async def convert_and_enrich_mentor_dataset(
                 u_first = m.get("content", "").strip().lower()
                 break
 
-        if explicit_sample_id and str(explicit_sample_id).startswith("sample_"):
+        if conv_id and conv_id in existing_conv_map:
+            assigned_id = existing_conv_map[conv_id]
+        elif explicit_sample_id and str(explicit_sample_id).startswith("sample_"):
             assigned_id = str(explicit_sample_id)
         elif u_first in existing_first_turns and str(existing_first_turns[u_first]).startswith("sample_"):
             assigned_id = existing_first_turns[u_first]
@@ -381,7 +387,7 @@ async def convert_and_enrich_mentor_dataset(
     if sample_id:
         matched = [
             it for it in prepared_items
-            if it["id"] == sample_id or str(it["index"]) == str(sample_id)
+            if it["id"] == sample_id or str(it["index"]) == str(sample_id) or str(it.get("conversation_id")) == str(sample_id)
         ]
         if matched:
             prepared_items = matched
@@ -429,17 +435,19 @@ async def convert_and_enrich_mentor_dataset(
         conv_idx = item["index"]
         target_id = item["id"]
         conv = item["data"]
+        curr_conv_id = item.get("conversation_id") or conv.get("conversation_id") or conv.get("id") or target_id
 
         messages = conv.get("messages", [])
         if not messages:
-            print(f"⚠️ Conversation #{conv_idx} ({target_id}) has no messages, skipping.")
+            print(f"⚠️ Conversation #{conv_idx} ({target_id} / {curr_conv_id}) has no messages, skipping.")
             continue
 
-        if target_id in existing_ids and not force and not sample_id:
+        is_targeted = bool(sample_id or from_sample or to_sample or force)
+        if target_id in existing_ids and not is_targeted:
             print(f"⏭️ Skipping {target_id} (already exists in {output_path.name}).")
             continue
 
-        print(f"⏳ Processing Conversation #{conv_idx} -> Target ID: {target_id}")
+        print(f"⏳ Processing Conversation #{conv_idx} ({curr_conv_id}) -> Target ID: {target_id}")
         raw_turns = parse_messages_into_turns(messages)
         print(f"   Parsed {len(raw_turns)} turn(s). Enriching Ground Truth with LLM...")
 
@@ -516,6 +524,7 @@ async def convert_and_enrich_mentor_dataset(
         source_text = "\n\n".join(all_snippets) if all_snippets else raw_turns[0]["user_message"]
         scenario = {
             "sample_id": target_id,
+            "conversation_id": curr_conv_id,
             "source": {
                 "text": source_text,
                 "label": 0
@@ -526,15 +535,20 @@ async def convert_and_enrich_mentor_dataset(
             }
         }
 
-        # Update in-place if exists, otherwise append
-        existing_match_idx = next((i for i, x in enumerate(results) if x.get("sample_id") == target_id), None)
+        # Update in-place if exists (matching by conversation_id OR sample_id), otherwise append
+        existing_match_idx = next(
+            (i for i, x in enumerate(results) 
+             if (curr_conv_id and x.get("conversation_id") == curr_conv_id) 
+             or x.get("sample_id") == target_id), 
+            None
+        )
         if existing_match_idx is not None:
             results[existing_match_idx] = scenario
-            print(f"   🔄 Updated existing {target_id} in-place.")
+            print(f"   🔄 Ghi đè kịch bản có sẵn ({target_id} / {curr_conv_id}) in-place.")
         else:
             results.append(scenario)
             existing_ids.add(target_id)
-            print(f"   ➕ Appended new scenario {target_id}.")
+            print(f"   ➕ Thêm mới kịch bản {target_id} ({curr_conv_id}).")
 
         # Incremental save
         output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -548,6 +562,51 @@ async def convert_and_enrich_mentor_dataset(
     print(f"   • Total scenarios in {output_path.name}: {len(results)}")
     print(f"   • Output location: {output_path}")
     print(f"{'='*70}\n")
+    return results
+
+
+async def enrich_batch_dataset(
+    input_file: str,
+    output_file: Optional[str] = None,
+    base_url: str = DEFAULT_BASE_URL,
+    model: str = DEFAULT_MODEL,
+    api_key: str = DEFAULT_API_KEY,
+    temperature: float = 0.1,
+    force: bool = False
+) -> Tuple[List[Dict[str, Any]], Path]:
+    """
+    Enriches a batch of multi-turn conversations using Gemini 3.5 Flash Lite
+    and produces standardized Ground Truth scenarios.
+    """
+    input_path = Path(input_file).resolve()
+    if output_file:
+        output_path = Path(output_file).resolve()
+    else:
+        gt_dir = project_root / "eval/tool_call/datasets/multi_turn/ground_truth"
+        gt_dir.mkdir(parents=True, exist_ok=True)
+        output_path = gt_dir / f"gt_{input_path.name}"
+
+    if output_path.exists() and not force:
+        try:
+            with open(output_path, "r", encoding="utf-8") as f:
+                cached = json.load(f)
+                if isinstance(cached, list) and len(cached) > 0:
+                    print(f"✅ Found existing enriched Ground Truth ({len(cached)} scenarios) at: {output_path.name}")
+                    return cached, output_path
+        except Exception:
+            pass
+
+    print(f"✨ Enriching Ground Truth with {model} for batch: {input_path.name}")
+    scenarios = await convert_and_enrich_mentor_dataset(
+        input_file=str(input_path),
+        output_file=str(output_path),
+        base_url=base_url,
+        model=model,
+        api_key=api_key,
+        temperature=temperature,
+        force=force
+    )
+    return scenarios, output_path
 
 
 def main():
@@ -611,9 +670,19 @@ def main():
 
     args = parser.parse_args()
 
+    input_path = Path(args.input)
+    output_file = args.output
+
+    # If input is a batch file from batches/ or starts with samples__, and user didn't specify a custom --output,
+    # auto-route to eval/tool_call/datasets/multi_turn/ground_truth/gt_<batch_filename>
+    if args.output == "eval/tool_call/datasets/multi_turn/samples.json" and ("batches" in str(input_path) or input_path.name.startswith("samples__")):
+        gt_dir = project_root / "eval/tool_call/datasets/multi_turn/ground_truth"
+        gt_dir.mkdir(parents=True, exist_ok=True)
+        output_file = str(gt_dir / f"gt_{input_path.name}")
+
     asyncio.run(convert_and_enrich_mentor_dataset(
-        input_file=args.input,
-        output_file=args.output,
+        input_file=str(input_path),
+        output_file=output_file,
         sample_id=args.sample_id,
         from_sample=args.from_sample,
         to_sample=args.to_sample,
