@@ -1,0 +1,846 @@
+{
+  "model": "CLM-v0.1-8B",
+  "evaluation_date": "2026-09-28 05:30:35",
+  "total_samples": 64,
+  "correct": 64,
+  "incorrect": 0,
+  "errors": 0,
+  "accuracy": 1.0,
+  "avg_latency": 0.002156425267457962,
+  "min_latency": 0.001931905746459961,
+  "max_latency": 0.006485462188720703,
+  "details": [
+    {
+      "sample_id": "conversation_0001",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8694851072728027,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.006485462188720703
+    },
+    {
+      "sample_id": "conversation_0002",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.6843534848914448,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0025365352630615234
+    },
+    {
+      "sample_id": "conversation_0003",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9003537136245376,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020475387573242188
+    },
+    {
+      "sample_id": "conversation_0004",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.7384968647445512,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.00212860107421875
+    },
+    {
+      "sample_id": "conversation_0005",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.667433943580048,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002008676528930664
+    },
+    {
+      "sample_id": "conversation_0006",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9613643710784482,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019903182983398438
+    },
+    {
+      "sample_id": "conversation_0007",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9307911025266379,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002012014389038086
+    },
+    {
+      "sample_id": "conversation_0008",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9536790787263035,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.001968860626220703
+    },
+    {
+      "sample_id": "conversation_0009",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9604139156345831,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020012855529785156
+    },
+    {
+      "sample_id": "conversation_0010",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9311664603936479,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019931793212890625
+    },
+    {
+      "sample_id": "conversation_0011",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8593030327138604,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002091646194458008
+    },
+    {
+      "sample_id": "conversation_0012",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9126767590547094,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020792484283447266
+    },
+    {
+      "sample_id": "conversation_0013",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9500042285707222,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002025604248046875
+    },
+    {
+      "sample_id": "conversation_0014",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9616101153226838,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002022266387939453
+    },
+    {
+      "sample_id": "conversation_0015",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9046888106486731,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0021047592163085938
+    },
+    {
+      "sample_id": "conversation_0016",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.960134564347396,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0021169185638427734
+    },
+    {
+      "sample_id": "conversation_0017",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.820082096882276,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002121448516845703
+    },
+    {
+      "sample_id": "conversation_0018",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9231802312867943,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020258426666259766
+    },
+    {
+      "sample_id": "conversation_0019",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9635143763633128,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0023076534271240234
+    },
+    {
+      "sample_id": "conversation_0020",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8395424362185862,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0023741722106933594
+    },
+    {
+      "sample_id": "conversation_0021",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9189655423947214,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0023615360260009766
+    },
+    {
+      "sample_id": "conversation_0022",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9453589780249917,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0031785964965820312
+    },
+    {
+      "sample_id": "conversation_0023",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8593856765124793,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0024018287658691406
+    },
+    {
+      "sample_id": "conversation_0024",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9374643477421588,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002095460891723633
+    },
+    {
+      "sample_id": "conversation_0025",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8873856643057189,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020880699157714844
+    },
+    {
+      "sample_id": "conversation_0026",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9600628271359438,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0022373199462890625
+    },
+    {
+      "sample_id": "conversation_0027",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9458062720023888,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0021932125091552734
+    },
+    {
+      "sample_id": "conversation_0028",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8944817584165543,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002012491226196289
+    },
+    {
+      "sample_id": "conversation_0029",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8317812223589474,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.001992464065551758
+    },
+    {
+      "sample_id": "conversation_0030",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8308613583646797,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019876956939697266
+    },
+    {
+      "sample_id": "conversation_0031",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9087708167989299,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020627975463867188
+    },
+    {
+      "sample_id": "conversation_0032",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8786132193198629,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020720958709716797
+    },
+    {
+      "sample_id": "conversation_0033",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9199613970261753,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002061605453491211
+    },
+    {
+      "sample_id": "conversation_0034",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9031975724704097,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020809173583984375
+    },
+    {
+      "sample_id": "conversation_0035",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9041573123099331,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0021126270294189453
+    },
+    {
+      "sample_id": "conversation_0036",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9305792221080327,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002173900604248047
+    },
+    {
+      "sample_id": "conversation_0037",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9217475672822908,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002056121826171875
+    },
+    {
+      "sample_id": "conversation_0038",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.880265398081654,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002017498016357422
+    },
+    {
+      "sample_id": "conversation_0039",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9048731940293199,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002032041549682617
+    },
+    {
+      "sample_id": "conversation_0040",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.949170340344818,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020470619201660156
+    },
+    {
+      "sample_id": "conversation_0041",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8924672681282798,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002029895782470703
+    },
+    {
+      "sample_id": "conversation_0042",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9412992342638486,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.001990795135498047
+    },
+    {
+      "sample_id": "conversation_0043",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8531804075176,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019376277923583984
+    },
+    {
+      "sample_id": "conversation_0044",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9728328029363711,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002175569534301758
+    },
+    {
+      "sample_id": "conversation_0045",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9442217270007014,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020647048950195312
+    },
+    {
+      "sample_id": "conversation_0046",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9388922530140968,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020661354064941406
+    },
+    {
+      "sample_id": "conversation_0047",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9269934646204054,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002089262008666992
+    },
+    {
+      "sample_id": "conversation_0048",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9419314095147896,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002043485641479492
+    },
+    {
+      "sample_id": "conversation_0049",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9521698184225471,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.001955747604370117
+    },
+    {
+      "sample_id": "conversation_0050",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8654095608037692,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0021140575408935547
+    },
+    {
+      "sample_id": "conversation_0051",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8617447003333706,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020618438720703125
+    },
+    {
+      "sample_id": "conversation_0052",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9571919148240744,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.001931905746459961
+    },
+    {
+      "sample_id": "conversation_0053",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9642735866531609,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019481182098388672
+    },
+    {
+      "sample_id": "conversation_0054",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8501604492223275,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019414424896240234
+    },
+    {
+      "sample_id": "conversation_0055",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8960157254776758,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.002170085906982422
+    },
+    {
+      "sample_id": "conversation_0056",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.47672999715609976,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019621849060058594
+    },
+    {
+      "sample_id": "conversation_0057",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9384340151394696,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019464492797851562
+    },
+    {
+      "sample_id": "conversation_0058",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9401945797487725,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019485950469970703
+    },
+    {
+      "sample_id": "conversation_0059",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.968655059596741,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.001962423324584961
+    },
+    {
+      "sample_id": "conversation_0060",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9419119112862537,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0020439624786376953
+    },
+    {
+      "sample_id": "conversation_0061",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9331450106520305,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019822120666503906
+    },
+    {
+      "sample_id": "conversation_0062",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.919528827990785,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.001983165740966797
+    },
+    {
+      "sample_id": "conversation_0063",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.9168488373125929,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019783973693847656
+    },
+    {
+      "sample_id": "conversation_0064",
+      "predicted": "web_search",
+      "actual": "web_search",
+      "correct": true,
+      "probability": 0.8426354837481708,
+      "all_criteria": [
+        "web_search",
+        "get_weather",
+        "get_gold_price"
+      ],
+      "latency": 0.0019757747650146484
+    }
+  ]
+}

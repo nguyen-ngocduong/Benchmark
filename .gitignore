@@ -4,3 +4,4 @@ eval/tool_call/datasets/multi_turn/batches
 eval/tool_call/datasets/multi_turn/batch_generated_samples.json
 eval/tool_call/datasets/multi_turn/.batch_gen_cache.jsonl
 eval/tool_call/datasets/multi_turn/.topic_clusters_cache.json
+new.txt

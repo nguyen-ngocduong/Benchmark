@@ -1,0 +1,3599 @@
+{
+  "model": "CLM-v0.1-8B",
+  "model_type": "Contrastive Language Model (System One)",
+  "base_model": "Qwen/Qwen3-8B-AWQ",
+  "evaluation_date": "2026-09-28 08:09:47",
+  "dataset_path": "/content/drive/MyDrive/vinfast/jev_clm//batches/",
+  "max_conversations": 64,
+  "total_conversations": 64,
+  "total_turns": 320,
+  "correct": 289,
+  "incorrect": 31,
+  "errors": 0,
+  "accuracy": 0.903125,
+  "accuracy_percent": 90.3125,
+  "latency": {
+    "mean_ms": 265.01421108841896,
+    "min_ms": 58.161020278930664,
+    "max_ms": 588.8113975524902,
+    "std_ms": 107.16359225352878
+  },
+  "probability": {
+    "mean": 0.4875614222100183,
+    "std": 0.18012983362973983,
+    "min": 0.057213536160399814,
+    "max": 0.9214094920622329
+  },
+  "accuracy_by_turn": {
+    "turn_1": {
+      "total": 64,
+      "correct": 62,
+      "incorrect": 2,
+      "accuracy": 0.96875,
+      "avg_probability": 0.612481108747836,
+      "avg_latency_ms": 78.44478636980057
+    },
+    "turn_2": {
+      "total": 64,
+      "correct": 50,
+      "incorrect": 14,
+      "accuracy": 0.78125,
+      "avg_probability": 0.42822663402070565,
+      "avg_latency_ms": 246.17714434862137
+    },
+    "turn_3": {
+      "total": 64,
+      "correct": 58,
+      "incorrect": 6,
+      "accuracy": 0.90625,
+      "avg_probability": 0.4461508999203687,
+      "avg_latency_ms": 287.56287693977356
+    },
+    "turn_4": {
+      "total": 64,
+      "correct": 59,
+      "incorrect": 5,
+      "accuracy": 0.921875,
+      "avg_probability": 0.471076499205693,
+      "avg_latency_ms": 336.36248111724854
+    },
+    "turn_5": {
+      "total": 64,
+      "correct": 60,
+      "incorrect": 4,
+      "accuracy": 0.9375,
+      "avg_probability": 0.47987196915548835,
+      "avg_latency_ms": 376.5237666666508
+    }
+  },
+  "actual_tool_distribution": {
+    "web_search": 320
+  },
+  "predicted_tool_distribution": {
+    "web_search": 289,
+    "get_gold_price": 30,
+    "get_weather": 1
+  },
+  "conversations": [
+    {
+      "conversation_id": "conversation_0001",
+      "topic": "Hỗ trợ Kỹ thuật & Tư vấn Thiết bị Samsung (Samsung Device Support & Consulting)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.55135959448038,
+          "latency": 0.12878656387329102,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.28710210648401624,
+          "latency": 0.2678985595703125,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.646807779020812,
+          "latency": 0.28716278076171875,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.45803557549140017,
+          "latency": 0.29294896125793457,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6591738743326763,
+          "latency": 0.3727285861968994,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0002",
+      "topic": "Quản lý Tài khoản & Tiếp thị Email (Account Management & Email Marketing)",
+      "total_turns": 5,
+      "correct_turns": 2,
+      "incorrect_turns": 3,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7770567636310811,
+          "latency": 0.06006169319152832,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.2792638770618465,
+          "latency": 0.2144181728363037,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.25400541885709293,
+          "latency": 0.25092029571533203,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.22029431528494242,
+          "latency": 0.26661157608032227,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.41792900348063067,
+          "latency": 0.31954050064086914,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0003",
+      "topic": "Kiến thức Tổng hợp: Khoa học, Công nghệ & Kỹ thuật (General Knowledge: Science, Tech & Engineering)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.8021036856830036,
+          "latency": 0.07924079895019531,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.8018651641249339,
+          "latency": 0.22329306602478027,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.8203200694335646,
+          "latency": 0.2676117420196533,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.751162207246618,
+          "latency": 0.29285335540771484,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6214882817387097,
+          "latency": 0.3699917793273926,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0004",
+      "topic": "Tra cứu Thông tin Thiết bị & Lý thuyết Âm nhạc (Device Information & Music Theory)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.563595676168221,
+          "latency": 0.058161020278930664,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3439022522063101,
+          "latency": 0.21292328834533691,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4501391763416077,
+          "latency": 0.26123762130737305,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.18584088745280075,
+          "latency": 0.30220818519592285,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.26673576208383326,
+          "latency": 0.3945307731628418,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0005",
+      "topic": "Hỗ trợ Đa lĩnh vực: Công nghệ, Ngôn ngữ và Giải trí (General Knowledge & Tech Support)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6405243742059984,
+          "latency": 0.06142282485961914,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.25105805997158903,
+          "latency": 0.21534132957458496,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6419851726592553,
+          "latency": 0.25849246978759766,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4965889713275877,
+          "latency": 0.28981876373291016,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6348791079121552,
+          "latency": 0.3593876361846924,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0006",
+      "topic": "Thảo luận Đa chủ đề về Giáo dục, Văn hóa và Đời sống (Multi-topic Discussion on Education, Culture & Life)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.726074743344762,
+          "latency": 0.06149482727050781,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.35492167960642784,
+          "latency": 0.21996164321899414,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5282240978316042,
+          "latency": 0.27263593673706055,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7136607010377571,
+          "latency": 0.3112950325012207,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6875863875672921,
+          "latency": 0.3514130115509033,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0007",
+      "topic": "Thần thoại Ấn Độ và Văn học (Indian Mythology & Literature)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.481862503652081,
+          "latency": 0.09507369995117188,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5707469033475799,
+          "latency": 0.22961759567260742,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4326029205734131,
+          "latency": 0.24866557121276855,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.628321608104714,
+          "latency": 0.32767343521118164,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4999390878850402,
+          "latency": 0.38057827949523926,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0008",
+      "topic": "Kiến thức Tổng hợp: Thể thao, Lịch sử và Văn hóa (General Knowledge: Sports, History & Culture)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.27753242640750153,
+          "latency": 0.08163118362426758,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.3152499480424447,
+          "latency": 0.24193525314331055,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3494208744710992,
+          "latency": 0.26968884468078613,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.32927578188997486,
+          "latency": 0.3135654926300049,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4914010825834521,
+          "latency": 0.3770911693572998,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0009",
+      "topic": "Kiến thức Tổng hợp & Kỹ thuật Âm thanh (General Knowledge & Audio Engineering)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.24482507106748536,
+          "latency": 0.09740734100341797,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7107395780864463,
+          "latency": 0.2215428352355957,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.25753386116751825,
+          "latency": 0.2733418941497803,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5424492112243158,
+          "latency": 0.3322327136993408,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4792136588658456,
+          "latency": 0.33462047576904297,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0010",
+      "topic": "Kiến thức Đa ngành: Khoa học, Toán học và Công nghệ (Multidisciplinary Knowledge)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6729993481427375,
+          "latency": 0.06043052673339844,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5104846886154534,
+          "latency": 0.2104661464691162,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3124211654695402,
+          "latency": 0.26578712463378906,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4786834608403005,
+          "latency": 0.3274803161621094,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6846050900956242,
+          "latency": 0.34975218772888184,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0011",
+      "topic": "Kiếm tiền trực tuyến & Tiếp thị liên kết (Online Money Making & Affiliate Marketing)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.8357380322514509,
+          "latency": 0.06046557426452637,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3559908781094056,
+          "latency": 0.23060250282287598,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.40744976806757954,
+          "latency": 0.26868200302124023,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.23155499853732947,
+          "latency": 0.3105316162109375,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.33769549670904786,
+          "latency": 0.3497004508972168,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0012",
+      "topic": "Kinh nghiệm & Tiêu chuẩn Khách sạn (Hotel Experience & Standards)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6755275301197856,
+          "latency": 0.08019709587097168,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5871808400464393,
+          "latency": 0.23585820198059082,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6754061430563977,
+          "latency": 0.257488489151001,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5204006090925093,
+          "latency": 0.33581113815307617,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5974867097181353,
+          "latency": 0.35841822624206543,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0013",
+      "topic": "Văn hóa và Ngôn ngữ Ấn Độ (Indian Culture & Languages)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5387451915079849,
+          "latency": 0.07696413993835449,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4745843773310714,
+          "latency": 0.22564005851745605,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7092079386938235,
+          "latency": 0.28487730026245117,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5949267539214642,
+          "latency": 0.3024935722351074,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4930355500177013,
+          "latency": 0.331862211227417,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0014",
+      "topic": "Chính trị Hoa Kỳ & Phân tích Xã hội (US Politics & Social Analysis)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5354634341026135,
+          "latency": 0.0812540054321289,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6073409788237283,
+          "latency": 0.2381582260131836,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5649707442254612,
+          "latency": 0.2643728256225586,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4294841598610499,
+          "latency": 0.3123965263366699,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.494762109933485,
+          "latency": 0.35300111770629883,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0015",
+      "topic": "Khám phá những điều độc đáo và Ý tưởng sáng tạo (Unique Ideas & Discoveries)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6593031872795764,
+          "latency": 0.059229135513305664,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5652794986095421,
+          "latency": 0.23465585708618164,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3739418230971926,
+          "latency": 0.30327630043029785,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6010478148132737,
+          "latency": 0.33367395401000977,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.641906801971901,
+          "latency": 0.3798713684082031,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0016",
+      "topic": "So sánh và Tư vấn Lựa chọn (Comparison & Recommendations)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5275412676655725,
+          "latency": 0.08085250854492188,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.5927961354399762,
+          "latency": 0.2397165298461914,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.19927243493225327,
+          "latency": 0.2816164493560791,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.42568415861278197,
+          "latency": 0.3562643527984619,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.41677389765694145,
+          "latency": 0.3765714168548584,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0017",
+      "topic": "Ngôn ngữ học và Triết học Ấn Độ (Indian Linguistics & Philosophy)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.49556346650600386,
+          "latency": 0.059500932693481445,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4752571761489599,
+          "latency": 0.24138641357421875,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5247048402916694,
+          "latency": 0.2639641761779785,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6916041446092331,
+          "latency": 0.45713114738464355,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7116548248349186,
+          "latency": 0.5888113975524902,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0018",
+      "topic": "Vũ trụ Điện ảnh & Truyện tranh Marvel (Marvel Cinematic Universe & Comics)",
+      "total_turns": 5,
+      "correct_turns": 2,
+      "incorrect_turns": 3,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.7335115809003555,
+          "latency": 0.09142923355102539,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.24563696651775174,
+          "latency": 0.37506818771362305,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.19720756665836675,
+          "latency": 0.25891613960266113,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.3034885463094035,
+          "latency": 0.28980207443237305,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.16081547973802812,
+          "latency": 0.3465230464935303,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0019",
+      "topic": "Kiến thức Tổng hợp Đa lĩnh vực (General Knowledge)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5878872933118634,
+          "latency": 0.07704925537109375,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5838402609683561,
+          "latency": 0.23260498046875,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.404798659484078,
+          "latency": 0.3104274272918701,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4027401680471911,
+          "latency": 0.2998483180999756,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6666538951041912,
+          "latency": 0.35991406440734863,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0020",
+      "topic": "Thể thao & Đọc sách (Sports & Reading)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.35098655055981665,
+          "latency": 0.06720471382141113,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6533030559985253,
+          "latency": 0.24701857566833496,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7675388689192663,
+          "latency": 0.27471303939819336,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6225929035589858,
+          "latency": 0.320523738861084,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.20636933111118966,
+          "latency": 0.3924863338470459,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0021",
+      "topic": "Phân tích Tâm lý, Lịch sử và Văn hóa Đại chúng (Psychology, History & Pop Culture Analysis)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7105997966174091,
+          "latency": 0.07855486869812012,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.49060874370113927,
+          "latency": 0.26517748832702637,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4704472632987486,
+          "latency": 0.3071744441986084,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6567077739214616,
+          "latency": 0.31955957412719727,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.411751604237596,
+          "latency": 0.4038271903991699,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0022",
+      "topic": "Hỏi đáp Đa chủ đề (General Knowledge & Opinions)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.9214094920622329,
+          "latency": 0.06183171272277832,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.21932326486760684,
+          "latency": 0.2606699466705322,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.47416037322092586,
+          "latency": 0.2849276065826416,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5363012960237418,
+          "latency": 0.36135220527648926,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.8108276339755536,
+          "latency": 0.3542144298553467,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0023",
+      "topic": "Kiến thức Tổng hợp: Lịch sử, Văn hóa, Văn học và Tài chính (General Knowledge: History, Culture, Literature & Finance)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6944889184153874,
+          "latency": 0.0801091194152832,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2554454673249566,
+          "latency": 0.2299365997314453,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5043322609491496,
+          "latency": 0.28342628479003906,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6733828197739,
+          "latency": 0.31088709831237793,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5045947502523627,
+          "latency": 0.35897254943847656,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0024",
+      "topic": "Tiến hóa, Tương lai Nhân loại và Xã hội (Human Evolution, Future & Society)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6733256388870634,
+          "latency": 0.06159472465515137,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5277787353955836,
+          "latency": 0.24031567573547363,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.554567999599199,
+          "latency": 0.2825748920440674,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6405924917740552,
+          "latency": 0.3774533271789551,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6644858344324412,
+          "latency": 0.38704395294189453,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0025",
+      "topic": "Tư vấn Đa lĩnh vực: Học thuật, Nông nghiệp, Tài chính & Khởi nghiệp (General Consultancy)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.9067226119116768,
+          "latency": 0.0850076675415039,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.20909299967675254,
+          "latency": 0.262190580368042,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.48995307046165676,
+          "latency": 0.2893948554992676,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2678359540855021,
+          "latency": 0.355771541595459,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3653207287954907,
+          "latency": 0.3807716369628906,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0026",
+      "topic": "Kiến thức Tổng hợp & Đời sống (General Knowledge & Life)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6451325321239914,
+          "latency": 0.08003020286560059,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5254571121800837,
+          "latency": 0.24473142623901367,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.581874572649485,
+          "latency": 0.28458547592163086,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6802862676844323,
+          "latency": 0.3250305652618408,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7339669592438056,
+          "latency": 0.3752448558807373,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0027",
+      "topic": "Tra cứu Thông tin Đa lĩnh vực (General Knowledge Inquiry)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7287996511466892,
+          "latency": 0.0600428581237793,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.438107297241693,
+          "latency": 0.2392868995666504,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.23300695938444282,
+          "latency": 0.26955270767211914,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4984622563811894,
+          "latency": 0.30320215225219727,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2781585420812539,
+          "latency": 0.36032533645629883,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0028",
+      "topic": "Vật lý Nguyên tử và Ngôn ngữ học Lịch sử (Atomic Physics & Historical Linguistics)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4475217501558699,
+          "latency": 0.09412503242492676,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.18699842923139204,
+          "latency": 0.2576615810394287,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5000594617247257,
+          "latency": 0.3365345001220703,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4457070802839973,
+          "latency": 0.3755497932434082,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.44854537386729937,
+          "latency": 0.39246582984924316,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0029",
+      "topic": "Phân tích Nhân vật và Điện ảnh (Character Analysis & Cinema)",
+      "total_turns": 5,
+      "correct_turns": 1,
+      "incorrect_turns": 4,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.28146322627273407,
+          "latency": 0.08423018455505371,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.6046354682293761,
+          "latency": 0.25428009033203125,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.8448147546869077,
+          "latency": 0.3045492172241211,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.638394660588642,
+          "latency": 0.3472025394439697,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.16381640930533442,
+          "latency": 0.3766603469848633,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0030",
+      "topic": "Lịch sử và Ngôn ngữ Hy Lạp Cổ đại (Ancient Greek History & Linguistics)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5071177050906046,
+          "latency": 0.0942075252532959,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.49029344076156295,
+          "latency": 0.26642727851867676,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3323607856238029,
+          "latency": 0.3160514831542969,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.26499461893261567,
+          "latency": 0.4230024814605713,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.24469657101159487,
+          "latency": 0.39315247535705566,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0031",
+      "topic": "Kiến thức Đa lĩnh vực: Tâm linh, Công nghệ và Khoa học (General Knowledge: Spirituality, Tech & Science)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6206887056552753,
+          "latency": 0.08205008506774902,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6637189045156573,
+          "latency": 0.25801777839660645,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6484935493602451,
+          "latency": 0.32141828536987305,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.514836614773899,
+          "latency": 0.37087392807006836,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6191174010617009,
+          "latency": 0.374647855758667,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0032",
+      "topic": "So sánh và Đối chiếu Đa lĩnh vực (Comparative Analysis Across Domains)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.41274179791522936,
+          "latency": 0.0793614387512207,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.15817907927382602,
+          "latency": 0.26558995246887207,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.42940749165540376,
+          "latency": 0.3144261837005615,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6559568753994953,
+          "latency": 0.33629274368286133,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7355784638169877,
+          "latency": 0.37671732902526855,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0033",
+      "topic": "Tư vấn Đa lĩnh vực: Sức khỏe, Giao tiếp và Kỹ năng (General Life Advice & Skills)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7966746129322562,
+          "latency": 0.1068410873413086,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6281722468006614,
+          "latency": 0.2837815284729004,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6499425034901591,
+          "latency": 0.33762121200561523,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.40431101223787147,
+          "latency": 0.4035501480102539,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5513647284891097,
+          "latency": 0.4615800380706787,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0034",
+      "topic": "Kinh nghiệm Nghề nghiệp và Tư duy Chuyên môn (Professional Experiences & Expert Mindsets)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6969343283397844,
+          "latency": 0.06480026245117188,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4687309384361404,
+          "latency": 0.26123547554016113,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.30763977242516344,
+          "latency": 0.3068106174468994,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6132777622026991,
+          "latency": 0.37396860122680664,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6115802945060245,
+          "latency": 0.40642833709716797,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0035",
+      "topic": "Kiến thức Đa ngành: UX, Khởi nghiệp, Viết lách, Vật lý & Sinh học (Multidisciplinary Knowledge)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.8251554732492443,
+          "latency": 0.08693790435791016,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5440673106563385,
+          "latency": 0.250063419342041,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5994955834157789,
+          "latency": 0.28769373893737793,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.20713950410979676,
+          "latency": 0.38585400581359863,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5001132796493809,
+          "latency": 0.456829309463501,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0036",
+      "topic": "Kiến thức Tổng hợp: Quân sự, Chính trị & Xã hội (General Knowledge: Military, Politics & Society)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.43288943377564687,
+          "latency": 0.08020973205566406,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.27902619552720004,
+          "latency": 0.2355024814605713,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.1845075237658415,
+          "latency": 0.28893256187438965,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.39286317295707424,
+          "latency": 0.31618380546569824,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.469694103833822,
+          "latency": 0.3793201446533203,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0037",
+      "topic": "Lịch sử, Pháp luật và Định hướng Học thuật (History, Law & Academic Orientation)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4729730609973708,
+          "latency": 0.08706331253051758,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.2715725054549287,
+          "latency": 0.26178956031799316,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.19693850715828087,
+          "latency": 0.30512285232543945,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.46301943188466405,
+          "latency": 0.4056377410888672,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6201984327930551,
+          "latency": 0.439908504486084,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0038",
+      "topic": "Tư vấn Đa lĩnh vực: Du lịch, Đời sống và Kỹ năng (General Life Advice & Tips)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3175377980310339,
+          "latency": 0.0968008041381836,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.29035984335830317,
+          "latency": 0.23493456840515137,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.18126140974320842,
+          "latency": 0.30576181411743164,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4509549718415608,
+          "latency": 0.32049083709716797,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4397139917159819,
+          "latency": 0.3696446418762207,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0039",
+      "topic": "Kiến thức về Vũ khí & Quy định sử dụng (Weaponry & Firearms Regulations)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4923932532729366,
+          "latency": 0.09702706336975098,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2721285321122812,
+          "latency": 0.2703585624694824,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.16502013153676504,
+          "latency": 0.3329007625579834,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.16192371330230887,
+          "latency": 0.34875941276550293,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2799582441539374,
+          "latency": 0.42649197578430176,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0040",
+      "topic": "Kiến thức Tổng hợp: Khoa học, Điện ảnh, Công nghệ và Chính trị (General Knowledge: Science, Cinema, Tech & Politics)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4331648326061561,
+          "latency": 0.07957243919372559,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.13756185891953415,
+          "latency": 0.2663419246673584,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7179752626219981,
+          "latency": 0.3270721435546875,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5478647391162204,
+          "latency": 0.35578036308288574,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3415947832304179,
+          "latency": 0.401796817779541,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0041",
+      "topic": "Tra cứu Thông tin về các Chương trình Đa lĩnh vực (General Programs Inquiry)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7606432298110654,
+          "latency": 0.08438992500305176,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5037148204524309,
+          "latency": 0.2693052291870117,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.18414826628737557,
+          "latency": 0.2766251564025879,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.42508001688169555,
+          "latency": 0.32561612129211426,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.25597442467924797,
+          "latency": 0.3828144073486328,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0042",
+      "topic": "Kiểm soát Vũ khí & Lịch sử Quân sự (Gun Control & Military History)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6312257398268026,
+          "latency": 0.07945394515991211,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.19584071119267332,
+          "latency": 0.24617218971252441,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3737874147822975,
+          "latency": 0.27281904220581055,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.33169796437159416,
+          "latency": 0.30504846572875977,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.17217890956235815,
+          "latency": 0.36621618270874023,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0043",
+      "topic": "Khám phá Đa lĩnh vực: Từ Vũ trụ, Sự nghiệp đến Đời sống (General Knowledge & Life Exploration)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.33674884904453933,
+          "latency": 0.06035494804382324,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6362500360237486,
+          "latency": 0.2510411739349365,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.18035479148947947,
+          "latency": 0.27532219886779785,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5032910960554329,
+          "latency": 0.3028442859649658,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6181418095698673,
+          "latency": 0.38436150550842285,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0044",
+      "topic": "Phân tích Yếu tố Thành công & Thất bại (Analysis of Success & Failure Factors)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7756315751705504,
+          "latency": 0.05967450141906738,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7012992923548498,
+          "latency": 0.24001336097717285,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6592252581218208,
+          "latency": 0.2790052890777588,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5836996691693046,
+          "latency": 0.33794689178466797,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4873147170066209,
+          "latency": 0.3912501335144043,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0045",
+      "topic": "Kiếm tiền Online & Quản lý Tài chính (Online Earning & Financial Management)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.850225460640138,
+          "latency": 0.08099246025085449,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.47556286899891165,
+          "latency": 0.2534606456756592,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.24275416211381734,
+          "latency": 0.2993123531341553,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4494630221505649,
+          "latency": 0.369182825088501,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6204796310746671,
+          "latency": 0.36293458938598633,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0046",
+      "topic": "Lịch sử, Địa lý và Du lịch Thế giới (World History, Geography & Travel)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.492676998075705,
+          "latency": 0.05966067314147949,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4339920482287714,
+          "latency": 0.2481520175933838,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3615146706088628,
+          "latency": 0.2551884651184082,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2747833650130909,
+          "latency": 0.28022074699401855,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "get_weather",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.18336882128391085,
+          "latency": 0.3098006248474121,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0047",
+      "topic": "Xây dựng và Phát triển Kênh YouTube (YouTube Channel Growth & Monetization)",
+      "total_turns": 5,
+      "correct_turns": 2,
+      "incorrect_turns": 3,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.8639830075975181,
+          "latency": 0.08952641487121582,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.43591976421967715,
+          "latency": 0.2372283935546875,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.4766948979943265,
+          "latency": 0.28151488304138184,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.3810843804019664,
+          "latency": 0.3385171890258789,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.326242300414642,
+          "latency": 0.3776130676269531,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0048",
+      "topic": "Phân tích Kinh tế Toàn cầu và Xã hội (Global Economics & Social Analysis)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6074592848578665,
+          "latency": 0.09427523612976074,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.343764739791831,
+          "latency": 0.25761961936950684,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5485260188607208,
+          "latency": 0.32564878463745117,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4823283864138592,
+          "latency": 0.35016727447509766,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4908758939736672,
+          "latency": 0.3861095905303955,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0049",
+      "topic": "An toàn và Công nghệ Ô tô (Automotive Safety & Technology)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7522289488605562,
+          "latency": 0.08280754089355469,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.46907834131623916,
+          "latency": 0.24236631393432617,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5615622821475356,
+          "latency": 0.27707695960998535,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4282591686719022,
+          "latency": 0.33596014976501465,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.47187884278633335,
+          "latency": 0.3841850757598877,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0050",
+      "topic": "Kiến thức Đa lĩnh vực: Tâm lý, Kỹ thuật & Đời sống (General Knowledge: Psychology, Engineering & Life)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7865051507306575,
+          "latency": 0.09212088584899902,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5862450614043285,
+          "latency": 0.25498461723327637,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5771548249059774,
+          "latency": 0.3222174644470215,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.523863646215071,
+          "latency": 0.37801575660705566,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.48555073808634175,
+          "latency": 0.3737223148345947,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0051",
+      "topic": "So sánh và Đánh giá Công cụ & Lối sống (Comparative Analysis of Tools & Lifestyle)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7782176875657286,
+          "latency": 0.08455109596252441,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5105368635854852,
+          "latency": 0.2595181465148926,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.31768807339621996,
+          "latency": 0.28291869163513184,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.49315299363409293,
+          "latency": 0.3378744125366211,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5886472568720562,
+          "latency": 0.3783295154571533,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0052",
+      "topic": "Thiền định, Triết học và Hành vi Động vật (Meditation, Philosophy & Animal Behavior)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7219352780080832,
+          "latency": 0.09245181083679199,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2681924733525044,
+          "latency": 0.24489116668701172,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6234613835011039,
+          "latency": 0.3099365234375,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6362008899097602,
+          "latency": 0.38394737243652344,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6690923586672269,
+          "latency": 0.3810408115386963,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0053",
+      "topic": "Kiến thức Đa lĩnh vực: Công nghệ, Nghệ thuật và Xã hội (General Knowledge: Tech, Arts & Society)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6056143440397261,
+          "latency": 0.06086421012878418,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5098028270078061,
+          "latency": 0.224534273147583,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.47785808326004514,
+          "latency": 0.2598459720611572,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.47730857957787043,
+          "latency": 0.34073901176452637,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6073515202392723,
+          "latency": 0.3450741767883301,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0054",
+      "topic": "Công cụ Lập trình và Kỹ thuật (Programming Tools & Engineering)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6698601930751291,
+          "latency": 0.07765054702758789,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5386658240024039,
+          "latency": 0.2171783447265625,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3956487710978111,
+          "latency": 0.26290416717529297,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6412817747098615,
+          "latency": 0.28156113624572754,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7005548878307016,
+          "latency": 0.28679919242858887,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0055",
+      "topic": "Chăm sóc Thú cưng & Động vật cảnh (Pet Care & Exotic Animals)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7049413789550572,
+          "latency": 0.0652151107788086,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2623037396764896,
+          "latency": 0.2229597568511963,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.25252118938984053,
+          "latency": 0.2723512649536133,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.15989963740201973,
+          "latency": 0.3138110637664795,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3373678871481336,
+          "latency": 0.37290143966674805,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0056",
+      "topic": "Hỏi đáp Đa chủ đề (General Knowledge & Miscellaneous)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6329723359120681,
+          "latency": 0.06157517433166504,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.45336825871048847,
+          "latency": 0.2606215476989746,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6102775550170274,
+          "latency": 0.30994486808776855,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.36753274446022316,
+          "latency": 0.3377108573913574,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3305460309136202,
+          "latency": 0.40499258041381836,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0057",
+      "topic": "Giải trí và Kiến thức Tổng hợp (Entertainment & General Knowledge)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.662602414281367,
+          "latency": 0.09261894226074219,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5367468245633361,
+          "latency": 0.25845837593078613,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.4781954330056001,
+          "latency": 0.3254408836364746,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.40816411286413906,
+          "latency": 0.36044907569885254,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3232534471285352,
+          "latency": 0.3875846862792969,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0058",
+      "topic": "Tư vấn Mô hình Kinh doanh và Định hướng Nghề nghiệp (Business Models & Career Guidance)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7570417042906166,
+          "latency": 0.08356142044067383,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5657066683278391,
+          "latency": 0.2319178581237793,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.24937782152833393,
+          "latency": 0.26150941848754883,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5209523565339309,
+          "latency": 0.3416321277618408,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5208040382792182,
+          "latency": 0.3693830966949463,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0059",
+      "topic": "Khám phá Văn hóa & Môi trường Xã hội (Exploring Culture & Social Environments)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3848204193823368,
+          "latency": 0.07912039756774902,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.43246388161618404,
+          "latency": 0.2347240447998047,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.47592303992011453,
+          "latency": 0.2905857563018799,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5009044893424159,
+          "latency": 0.30270862579345703,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.48727470453872057,
+          "latency": 0.3417997360229492,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0060",
+      "topic": "Tư vấn Đa lĩnh vực & Xu hướng (General Consulting & Trends)",
+      "total_turns": 5,
+      "correct_turns": 4,
+      "incorrect_turns": 1,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5424382835119926,
+          "latency": 0.0833888053894043,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "get_gold_price",
+          "actual": "web_search",
+          "correct": false,
+          "probability": 0.1049475173268622,
+          "latency": 0.2558257579803467,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2715428386015912,
+          "latency": 0.2736318111419678,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2035066972772001,
+          "latency": 0.3423008918762207,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.22738305266303543,
+          "latency": 0.371701717376709,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0061",
+      "topic": "Sức khỏe Cột sống và Đời sống (Spinal Health & Lifestyle)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7560674675366228,
+          "latency": 0.06516575813293457,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.22699609569520418,
+          "latency": 0.23444914817810059,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.47530037492362154,
+          "latency": 0.3104851245880127,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5114412132132058,
+          "latency": 0.36641597747802734,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.25212432667788437,
+          "latency": 0.3119361400604248,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0062",
+      "topic": "So sánh Đa lĩnh vực và Sáng tạo (Comparative Analysis & Creativity)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6872866131489085,
+          "latency": 0.09138178825378418,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5179876511755701,
+          "latency": 0.25564098358154297,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.5970423763643573,
+          "latency": 0.328916072845459,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.7634022811631416,
+          "latency": 0.32562851905822754,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6902263524354463,
+          "latency": 0.37552499771118164,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0063",
+      "topic": "Vũ trụ học & Sức mạnh Siêu anh hùng (Cosmology & Superhero Power Scaling)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.30823546788248024,
+          "latency": 0.06052041053771973,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.250303024583304,
+          "latency": 0.2374415397644043,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.20511131149835365,
+          "latency": 0.280148983001709,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.057213536160399814,
+          "latency": 0.2967953681945801,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.26320404936967046,
+          "latency": 0.35669755935668945,
+          "error": null
+        }
+      ]
+    },
+    {
+      "conversation_id": "conversation_0064",
+      "topic": "Khoa học, Toán học và Các Lý thuyết Hệ thống (Science, Mathematics & System Theories)",
+      "total_turns": 5,
+      "correct_turns": 5,
+      "incorrect_turns": 0,
+      "errors": 0,
+      "turns": [
+        {
+          "turn_index": 0,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.43349278720912254,
+          "latency": 0.08088922500610352,
+          "error": null
+        },
+        {
+          "turn_index": 1,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.2190124445124027,
+          "latency": 0.25043249130249023,
+          "error": null
+        },
+        {
+          "turn_index": 2,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.3737681960638807,
+          "latency": 0.26026391983032227,
+          "error": null
+        },
+        {
+          "turn_index": 3,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6817339330328469,
+          "latency": 0.3805375099182129,
+          "error": null
+        },
+        {
+          "turn_index": 4,
+          "predicted": "web_search",
+          "actual": "web_search",
+          "correct": true,
+          "probability": 0.6367864609561296,
+          "latency": 0.37191033363342285,
+          "error": null
+        }
+      ]
+    }
+  ]
+}
