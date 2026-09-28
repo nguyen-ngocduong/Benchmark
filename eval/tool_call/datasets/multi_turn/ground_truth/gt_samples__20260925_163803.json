@@ -1,0 +1,3723 @@
+[
+  {
+    "sample_id": "sample_001",
+    "conversation_id": "conversation_0033",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn chế độ ăn Keto cho người mới bắt đầu\", \"snippet\": \"Nguyên tắc cốt lõi và đơn giản nhất của Keto là cắt giảm tối đa lượng carbohydrate (carbs) để cơ thể chuyển sang trạng thái ketosis, đốt cháy mỡ thừa làm năng lượng thay vì đường.\"}]\n\n[{\"title\": \"Những lỗi giao tiếp phổ biến trên Tinder\", \"snippet\": \"Các cách mở đầu tệ nhất bao gồm: quá vồ vập về tình dục (ví dụ: nói về nhu cầu sinh lý, yêu cầu xem ảnh nhạy cảm), quá hời hợt (chỉ chào 'Hi'), hoặc đặt những câu hỏi giống như phỏng vấn xin việc (ví dụ: 'Bạn làm nghề gì?').\"}]\n\n[{\"title\": \"Tiêu chuẩn hình thể trong môn chèo thuyền\", \"snippet\": \"Không có một con số lý tưởng tuyệt đối cho mọi vận động viên chèo thuyền vì tùy thuộc vào loại hình chèo. Tuy nhiên, những người cao hơn thường có lợi thế về cơ học nhờ sải tay dài, giúp tăng độ dài sải chèo, tạo ra nhiều lực và đòn bẩy hơn.\"}]\n\n[{\"title\": \"Tại sao bạn không thể tuân thủ chế độ ăn kiêng\", \"snippet\": \"Vấn đề thường không nằm ở sự kỷ luật của bạn mà nằm ở chính kế hoạch ăn kiêng. Cơ thể động vật có cơ chế tự điều chỉnh cân nặng; nếu chế độ ăn quá khắc nghiệt hoặc thiếu hụt dưỡng chất, cơ thể sẽ phát tín hiệu thèm ăn mạnh mẽ để bù đắp.\"}]\n\n[{\"title\": \"Lộ trình học PHP cho người mới bắt đầu\", \"snippet\": \"Cách tốt nhất để học lập trình là 'nhúng mình' vào thực tế (diving deep). Bắt đầu bằng việc cài đặt môi trường, học cú pháp cơ bản và thực hành xây dựng các dự án nhỏ ngay lập tức thay vì chỉ đọc lý thuyết.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình là nữ, 33 tuổi, cao 1m57 và nặng khoảng 90kg. Mình thấy mình đang bị thừa cân khá nhiều so với chiều cao. Mình muốn bắt đầu chế độ ăn Ketogenic, bạn có thể hướng dẫn mình cách đơn giản nhất để bắt đầu, các nguyên tắc cơ bản và hiệu quả của nó không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách bắt đầu đơn giản, nguyên tắc cơ bản và hiệu quả của chế độ ăn Ketogenic (Keto).",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "ketogenic",
+                "cho người mới bắt đầu",
+                "nguyên tắc cơ bản"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "cach_bat_dau": [
+                "cắt giảm tối đa lượng carbohydrate",
+                "cắt giảm tinh bột và đường",
+                "cắt giảm carbs"
+              ],
+              "nguyen_tac_co_ban": [
+                "ketosis",
+                "đốt cháy mỡ thừa",
+                "đốt chất béo thay vì đường"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cách đơn giản nhất để bắt đầu chế độ ăn Ketogenic là cắt giảm tối đa lượng Carbohydrate gồm tinh bột và đường.",
+              "Nguyên tắc cơ bản của Keto là đưa cơ thể vào trạng thái ketosis để chuyển sang đốt chất béo làm năng lượng thay vì dùng đường từ carbs.",
+              "Chế độ ăn Keto giúp giảm cân nhanh chóng trong giai đoạn đầu và kiểm soát cơn thèm ăn."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Cảm ơn bạn. Ngoài việc ăn uống, mình cũng muốn cải thiện kỹ năng giao tiếp. Mình mới dùng Tinder, bạn có thể chia sẻ cho mình biết những cách mở đầu câu chuyện tệ nhất mà mình nên tránh để không gây ấn tượng xấu không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu các cách mở đầu cuộc trò chuyện tệ nhất trên Tinder cần tránh để không gây ấn tượng xấu.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "worst tinder openers",
+                "sai lầm",
+                "bắt đầu trò chuyện"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "sexual_content": [
+                "quá vồ vập về tình dục",
+                "nói về nhu cầu sinh lý",
+                "ảnh nhạy cảm"
+              ],
+              "superficial_greeting": [
+                "quá hời hợt",
+                "chỉ chào hi",
+                "chào bạn"
+              ],
+              "interview_style": [
+                "phỏng vấn xin việc",
+                "bạn làm nghề gì",
+                "câu hỏi khô khan"
+              ]
+            },
+            "golden_reference_claims": [
+              "Các cách mở đầu tệ nhất trên Tinder bao gồm việc quá vồ vập về tình dục hoặc yêu cầu xem ảnh nhạy cảm.",
+              "Tránh những câu chào quá hời hợt như 'Hi' hoặc đặt câu hỏi giống như phỏng vấn xin việc như hỏi về công việc ngay từ đầu."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Mình cũng đang cân nhắc tập một môn thể thao để hỗ trợ giảm cân, mình thấy môn chèo thuyền (rowing) khá hay. Vậy đối với môn này, chiều cao và cân nặng lý tưởng thường là bao nhiêu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về chiều cao và cân nặng lý tưởng đối với môn chèo thuyền (rowing).",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "rowing",
+                "height",
+                "weight",
+                "chèo thuyền"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "ideal_body_standards": [
+                "không có con số chính xác tuyệt đối",
+                "tùy thuộc vào loại hình chèo",
+                "không có một con số lý tưởng tuyệt đối"
+              ],
+              "mechanical_advantages": [
+                "chiều cao tốt",
+                "sải tay dài",
+                "tạo ra lực đẩy mạnh hơn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Không có một con số chính xác tuyệt đối về chiều cao và cân nặng lý tưởng cho tất cả mọi người tập chèo thuyền vì tùy thuộc vào vị trí và loại hình chèo.",
+              "Những người có chiều cao tốt và sải tay dài có lợi thế cơ học giúp sải chèo dài hơn và tạo ra lực đẩy hiệu quả hơn.",
+              "Kỹ thuật, sức mạnh cơ bắp và sự bền bỉ là những yếu tố then chốt quyết định thành công bên cạnh hình thể."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Nghe có vẻ khả quan. Nhưng mình có một vấn đề là mình thường rất khó duy trì chế độ ăn kiêng. Mình luôn có xu hướng ăn nhiều hơn dự định và rồi bỏ cuộc. Làm sao để mình có thể kiên trì theo đuổi một chế độ ăn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách thức và tâm lý để kiên trì theo đuổi chế độ ăn kiêng, khắc phục xu hướng ăn nhiều hơn dự định.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "stick to a diet",
+                "overeating",
+                "dieting psychology"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "diet_plan_issue": [
+                "kế hoạch ăn kiêng",
+                "chế độ ăn quá khắc nghiệt",
+                "thiếu hụt dưỡng chất"
+              ],
+              "survival_mechanism": [
+                "cơ chế tự điều chỉnh",
+                "phản xạ sinh tồn",
+                "phát tín hiệu thèm ăn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vấn đề không nằm ở sự kỷ luật mà thường nằm ở chính kế hoạch ăn kiêng quá khắc nghiệt.",
+              "Cơ thể có cơ chế sinh tồn tự nhiên, sẽ phát tín hiệu thèm ăn mạnh mẽ nếu bị thiếu hụt dưỡng chất hoặc cắt giảm calo quá sâu."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Mình hiểu rồi, cảm ơn bạn rất nhiều về những lời khuyên. Cuối cùng, mình muốn học thêm một kỹ năng mới để phát triển sự nghiệp, mình định học lập trình PHP. Bạn có thể hướng dẫn mình cách tốt nhất để bắt đầu học PHP không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi cách tốt nhất để bắt đầu học lập trình PHP nhằm phát triển sự nghiệp.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "learn PHP",
+                "bắt đầu học PHP"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "learning_method": [
+                "học đi đôi với hành",
+                "learning by doing",
+                "nhúng mình vào thực tế"
+              ],
+              "practice_project": [
+                "xây dựng dự án nhỏ",
+                "dự án nhỏ",
+                "trang web đơn giản"
+              ]
+            },
+            "golden_reference_claims": [
+              "Phương pháp hiệu quả nhất để học lập trình PHP là 'học đi đôi với hành' thay vì chỉ đọc lý thuyết.",
+              "Người học nên cài đặt môi trường lập trình như XAMPP hoặc WAMP để viết những dòng code đầu tiên.",
+              "Việc xây dựng các dự án nhỏ và tự giải quyết lỗi (bugs) giúp tiến bộ nhanh chóng."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_002",
+    "conversation_id": "conversation_0034",
+    "source": {
+      "text": "[{\"title\": \"Trải nghiệm về cơn co giật giả (Pseudo-seizures)\", \"snippet\": \"Một bệnh nhân bị xơ cứng rải rác (MS) và đau dây thần kinh tam thoa (TN) từng bị chẩn đoán là có cơn co giật giả (pseudo seizure) tại phòng cấp cứu sau khi gặp tình trạng chóng mặt nghiêm trọng và biến dạng thị giác cực độ.\"}]\n\n[{\"title\": \"Tầm quan trọng của triết học cổ điển\", \"snippet\": \"Những người mới học triết học thường bỏ qua các tác phẩm kinh điển của Socrates, Plato và Aristotle, dẫn đến việc không hiểu rõ sự trỗi dậy của Lý tính, Chủ nghĩa Hoài nghi và Chủ nghĩa Lý tưởng Đức.\"}, {\"title\": \"Sai lầm khi đánh giá Marx và Nietzsche\", \"snippet\": \"Người mới thường đánh giá quá cao Marx và Nietzsche mà không hiểu được tiến trình lịch sử dẫn đến văn học hậu hiện đại, khiến họ coi hai ông là những gã khổng lồ xuất hiện ngẫu nhiên do định mệnh kinh tế hoặc ý chí.\"}]\n\n[{\"title\": \"Tiêu chuẩn Đạo đức của Hiệp hội Y khoa Thú y Hoa Kỳ (AVMA)\", \"snippet\": \"Bác sĩ thú y chỉ được chịu ảnh hưởng bởi phúc lợi của bệnh nhân, nhu cầu của khách hàng, an toàn công cộng và niềm tin của công chúng; phải tránh xung đột lợi ích.\"}, {\"title\": \"Chuẩn mực chăm sóc lâm sàng thú y\", \"snippet\": \"Cung cấp chăm sóc lâm sàng có năng lực trong mối quan hệ bác sĩ-khách hàng-bệnh nhân (VCPR) với lòng trắc ẩn và tôn trọng phúc lợi động vật cũng như sức khỏe con người.\"}]\n\n[{\"title\": \"Những bài học đắt giá trong đầu tư\", \"snippet\": \"Nếu bạn không biết ai là kẻ ngốc trong một giao dịch phức tạp, thì khả năng cao kẻ ngốc đó chính là bạn. Nếu một sản phẩm quá phức tạp, có thể người bán đang kiếm rất nhiều tiền từ bạn.\"}, {\"title\": \"Quản trị rủi ro và chi phí đầu tư\", \"snippet\": \"Phí hàng năm, thuế lãi vốn ngắn hạn và phí hiệu quả có thể tàn phá lợi nhuận. Đừng đầu tư nhiều hơn số tiền bạn có thể chấp nhận mất.\"}]\n\n[{\"title\": \"Câu chuyện về vị khách lạ tại London\", \"snippet\": \"Một nhân viên đại lý cho thuê nhà tại Camden, London những năm 90 kể về một cô gái trẻ ăn mặc kiểu Goth, vẻ ngoài bình thản, không đe dọa nhưng mang lại cảm giác bất an khi vào hỏi đường.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Trong ngành y, có bao giờ bạn gặp trường hợp bệnh nhân giả vờ bị bệnh hoặc giả vờ có triệu chứng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về hiện tượng bệnh nhân giả vờ triệu chứng hoặc các trường hợp thực tế có triệu chứng dễ bị hiểu nhầm là giả vờ trong ngành y.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "bệnh nhân giả vờ",
+                "pseudo seizure"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "medical_condition": [
+                "xơ cứng rải rác",
+                "MS",
+                "multiple sclerosis",
+                "đau dây thần kinh tam thoa",
+                "TN"
+              ],
+              "symptom_misdiagnosis": [
+                "cơn co giật giả",
+                "pseudo seizure",
+                "chóng mặt",
+                "biến dạng thị giác"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong y khoa, có những trường hợp triệu chứng trông giống như giả vờ nhưng thực chất là do bệnh lý phức tạp.",
+              "Bệnh nhân bị xơ cứng rải rác (MS) và đau dây thần kinh tam thoa (TN) từng bị nhầm là có cơn co giật giả tại phòng cấp cứu khi gặp tình trạng chóng mặt dữ dội và biến dạng thị giác."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Chuyển sang một lĩnh vực khác, theo bạn những triết gia mới vào nghề thường mắc phải những sai lầm gì mà những người dày dạn kinh nghiệm không mắc phải?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu những sai lầm phổ biến của các triết gia mới vào nghề so với những người dày dạn kinh nghiệm.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "sai lầm",
+                "triết gia",
+                "philosophers mistakes"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "classical_works": [
+                "tác phẩm kinh điển",
+                "Socrates, Plato và Aristotle",
+                "chủ nghĩa lý tưởng Đức"
+              ],
+              "historical_context": [
+                "bối cảnh lịch sử",
+                "Marx và Nietzsche",
+                "văn học hậu hiện đại"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sai lầm phổ biến nhất của các triết gia mới vào nghề là thiếu nền tảng về các tác phẩm kinh điển như Socrates, Plato và Aristotle.",
+              "Người mới thường đánh giá quá cao Marx và Nietzsche mà không hiểu rõ bối cảnh lịch sử và tiến trình tư tưởng dẫn đến văn học hậu hiện đại."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Vậy còn trong lĩnh vực thú y thì sao? Có những nguyên tắc đạo đức nghề nghiệp nào mà các bác sĩ thú y (ví dụ như thành viên AVMA) phải tuân thủ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các nguyên tắc đạo đức nghề nghiệp của bác sĩ thú y theo chuẩn của AVMA.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "AVMA",
+                "veterinary",
+                "ethics",
+                "đạo đức thú y"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "trong lĩnh vực thú y",
+              "expected_target": [
+                "thú y",
+                "bác sĩ thú y",
+                "AVMA"
+              ]
+            },
+            "required_slots": {
+              "core_principles": [
+                "phúc lợi của bệnh nhân",
+                "nhu cầu của khách hàng",
+                "an toàn công cộng",
+                "tránh xung đột lợi ích"
+              ],
+              "clinical_care_framework": [
+                "VCPR",
+                "chăm sóc lâm sàng",
+                "mối quan hệ bác sĩ-khách hàng-bệnh nhân",
+                "lòng trắc ẩn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bác sĩ thú y thuộc AVMA phải chịu ảnh hưởng bởi phúc lợi của bệnh nhân, nhu cầu khách hàng, an toàn công cộng và tránh xung đột lợi ích.",
+              "Bác sĩ thú y phải cung cấp dịch vụ chăm sóc lâm sàng có năng lực trong khuôn khổ VCPR với lòng trắc ẩn và tôn trọng phúc lợi động vật."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tôi thấy mỗi ngành đều có những bài học xương máu. Trong đầu tư tài chính, những bài học khó khăn hoặc giá trị nhất mà một nhà đầu tư thường rút ra khi họ trở nên kinh nghiệm hơn là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu những bài học kinh nghiệm cốt lõi của các nhà đầu tư tài chính dày dạn kinh nghiệm.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "bài học",
+                "nhà đầu tư",
+                "investor",
+                "lessons"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "risk_management": [
+                "quản trị rủi ro",
+                "chấp nhận mất",
+                "đầu tư số tiền"
+              ],
+              "transaction_complexity": [
+                "giao dịch phức tạp",
+                "sản phẩm quá phức tạp",
+                "kẻ ngốc"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nếu tham gia một giao dịch phức tạp mà không biết ai là kẻ ngốc, khả năng cao bạn chính là kẻ ngốc đó.",
+              "Các loại phí hàng năm, thuế lãi vốn ngắn hạn và phí hiệu quả có thể tàn phá lợi nhuận đầu tư.",
+              "Không nên đầu tư nhiều hơn số tiền bạn có thể chấp nhận mất."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, quay lại chuyện tương tác với con người, bạn có bao giờ cảm thấy sợ hãi một khách hàng hoặc bệnh nhân nào đó chưa? Tại sao?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm câu chuyện hoặc trải nghiệm thực tế về cảm giác sợ hãi đối với khách hàng hoặc bệnh nhân để trả lời câu hỏi tương tác con người.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "scary client experience",
+                "trải nghiệm sợ hãi khách hàng"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "incident_location": [
+                "Camden, London",
+                "đại lý cho thuê nhà tại Camden"
+              ],
+              "client_description": [
+                "cô gái trẻ ăn mặc kiểu Goth",
+                "gothic style",
+                "đồ đen, tóc sẫm màu, da nhợt nhạt"
+              ],
+              "feeling_evoked": [
+                "cảm giác bất an",
+                "sợ hãi",
+                "không đến từ hành động hung hăng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cảm giác sợ hãi đôi khi bắt nguồn từ trực giác chứ không phải từ hành động hung hăng rõ rệt.",
+              "Nhân viên đại lý cho thuê nhà tại Camden, London vào những năm 90 từng cảm thấy bất an khi một cô gái trẻ ăn mặc phong cách Goth bước vào hỏi đường.",
+              "Mặc dù cô gái rất bình thản và không đe dọa, sự tương phản và bầu không khí cô ấy mang lại đã tạo ra cảm giác khó tả."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_003",
+    "conversation_id": "conversation_0035",
+    "source": {
+      "text": "[{\"title\": \"Don't Make Me Think - Wikipedia\", \"snippet\": \"Cuốn sách của Steve Krug về tương tác người-máy và khả năng sử dụng web. Luận điểm chính là một chương trình phần mềm hoặc trang web tốt phải cho phép người dùng hoàn thành các tác vụ dự định một cách dễ dàng và trực tiếp nhất có thể. Krug nhấn mạnh khái niệm 'satisficing' - người dùng thường chọn giải pháp đầu tiên khả thi mà họ tìm thấy.\"}]\n\n[{\"title\": \"Entrepreneur vs Entrepreneurial Mindset\", \"snippet\": \"Doanh nhân là người thực hiện kinh doanh bằng các phương pháp mới, có tầm nhìn và tạo ra tác động đến cuộc sống con người thông qua việc cung cấp giải pháp cho các vấn đề. Tư duy khởi nghiệp là cách suy nghĩ, không ngại thất bại, sẵn sàng chấp nhận rủi ro để thành công ngay cả khi một số kế hoạch không đạt kết quả.\"}]\n\n[{\"title\": \"Interview with Gitanjali Kolanad\", \"snippet\": \"Một bài học quan trọng từ tác giả Gitanjali Kolanad là: 'Con đường của bạn được tạo ra bằng cách bước đi'. Việc hoàn thành một cuốn sách hay bất kỳ mục tiêu nào đòi hỏi sự bắt tay vào làm thực tế thay vì chỉ lập kế hoạch.\"}]\n\n[{\"title\": \"Kinematic Equations Derivation\", \"snippet\": \"v = u + at được dẫn ra từ định nghĩa gia tốc: a = (v - u) / t. s = ut + 1/2at^2 có thể được dẫn ra từ đồ thị vận tốc-thời gian (v-t graph), trong đó diện tích dưới đường đồ thị chính là quãng đường.\"}]\n\n[{\"title\": \"De-extinction possibilities\", \"snippet\": \"Hiện nay chưa thể hồi sinh voi ma mút dù đã giải mã bộ gene và có loài gần gũi là voi châu Á để làm mẹ mang thai hộ thông qua CRISPR. Với khủng long, trường hợp này khó hơn nhiều vì không có loài hiện đại nào đủ gần gũi về mặt di truyền để làm vật chủ.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, tôi đang bắt đầu khởi nghiệp trong lĩnh vực công nghệ. Bạn có thể chia sẻ một số nguyên tắc cơ bản về UX (trải nghiệm người dùng) mà một nhà khởi nghiệp phần mềm cần phải biết không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên tắc cơ bản về UX (trải nghiệm người dùng) dành cho nhà khởi nghiệp công nghệ.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "UX basics",
+                "software entrepreneurs",
+                "Don't Make Me Think"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "core_principle": [
+                "Đừng bắt người dùng phải suy nghĩ",
+                "Don't Make Me Think",
+                "tương tác người-máy"
+              ],
+              "user_behavior": [
+                "satisficing",
+                "giải pháp đầu tiên khả thi",
+                "chọn giải pháp đủ tốt"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nguyên tắc cốt lõi về UX là 'Đừng bắt người dùng phải suy nghĩ' (Don't Make Me Think) do Steve Krug đề xuất.",
+              "Người dùng có xu hướng 'satisficing', tức là chọn giải pháp đầu tiên khả thi mà họ tìm thấy thay vì tìm kiếm giải pháp tối ưu nhất."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nói về khởi nghiệp, tôi thường nghe thấy hai khái niệm là 'doanh nhân' và 'tư duy khởi nghiệp'. Hai điều này khác nhau như thế nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Phân biệt khái niệm 'doanh nhân' và 'tư duy khởi nghiệp'",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "entrepreneur",
+                "entrepreneurial mindset"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "doanh_nhan_definition": [
+                "Doanh nhân",
+                "vận hành kinh doanh",
+                "tạo ra tác động",
+                "giải pháp cho các vấn đề"
+              ],
+              "tu_duy_khoi_nghiep_definition": [
+                "Tư duy khởi nghiệp",
+                "không ngại thất bại",
+                "chấp nhận rủi ro",
+                "cách suy nghĩ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Doanh nhân là người trực tiếp vận hành kinh doanh bằng các phương pháp mới, hiện thực hóa tầm nhìn và tạo ra tác động thực tế bằng cách cung cấp giải pháp cho các vấn đề.",
+              "Tư duy khởi nghiệp là cách tiếp cận vấn đề, thể hiện qua khả năng suy nghĩ sáng tạo, không sợ thất bại và sẵn sàng chấp nhận rủi ro có tính toán để đạt được thành công."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tôi cũng đang tập viết lách để xây dựng thương hiệu cá nhân. Theo bạn, điều quan trọng nhất mà một người viết cần biết là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu điều quan trọng nhất mà một người viết lách cần biết để xây dựng thương hiệu cá nhân.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "advice for writers",
+                "writing tips"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "core_lesson": [
+                "con đường của bạn được tạo ra bằng cách bước đi",
+                "hành động",
+                "bắt tay vào làm thực tế"
+              ],
+              "action_advice": [
+                "đặt bút viết",
+                "viết",
+                "không chờ đợi cảm hứng hoàn hảo"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một bài học quan trọng cho người viết là 'Con đường của bạn được tạo ra bằng cách bước đi'.",
+              "Việc hoàn thành một mục tiêu viết lách đòi hỏi sự bắt tay vào làm thực tế thay vì chỉ lập kế hoạch hay chờ đợi cảm hứng."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Đổi chủ đề một chút sang khoa học nhé. Tôi đang ôn tập vật lý, bạn có thể hướng dẫn tôi cách thiết lập các phương trình động học trong hai chiều như $V_x = U_x + a_x t$ và $X = X_0 + U_x t + 1/2 a_x t^2$ không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hướng dẫn cách thiết lập và dẫn ra các phương trình động học trong hai chiều cho vật lý",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "kinematic equations",
+                "derivation",
+                "v = u + at"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "velocity_equation": [
+                "V_x = U_x + a_x t",
+                "v = u + at"
+              ],
+              "displacement_equation": [
+                "X = X_0 + U_x t + 1/2 a_x t^2",
+                "s = ut + 1/2at^2"
+              ],
+              "acceleration_definition": [
+                "định nghĩa gia tốc",
+                "acceleration definition"
+              ]
+            },
+            "golden_reference_claims": [
+              "Phương trình V_x = U_x + a_x t được dẫn ra từ định nghĩa gia tốc a_x = (V_x - U_x) / t.",
+              "Phương trình X = X_0 + U_x t + 1/2 a_x t^2 có thể được dẫn ra bằng cách tính diện tích dưới đồ thị vận tốc - thời gian (v-t)."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, một câu hỏi giả tưởng: Nếu chúng ta có một chuỗi DNA hoàn chỉnh của khủng long, liệu công nghệ hiện nay có thể giúp chúng ta ấp nở một con khủng long không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu khả năng ấp nở khủng long từ DNA hoàn chỉnh bằng công nghệ hiện tại.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "dinosaur",
+                "DNA",
+                "technology",
+                "hatch"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "current_tech_capability": [
+                "chưa thể",
+                "không thể",
+                "cannot",
+                "not possible"
+              ],
+              "lack_of_host_species": [
+                "không có loài hiện đại",
+                "không có vật chủ",
+                "no living relative",
+                "no surrogate"
+              ]
+            },
+            "golden_reference_claims": [
+              "Công nghệ hiện tại chưa thể hồi sinh hoặc ấp nở khủng long ngay cả khi có chuỗi DNA hoàn chỉnh.",
+              "Khủng long không có loài động vật hiện đại nào đủ gần gũi về mặt di truyền để đóng vai trò là vật chủ hoặc mẹ mang thai hộ."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_004",
+    "conversation_id": "conversation_0036",
+    "source": {
+      "text": "[{\"title\": \"US Navy Aircraft Designation System\", \"snippet\": \"Trong hệ thống định danh máy bay của Hải quân Mỹ, chữ 'V' thường được cho là viết tắt của 'VOLPLANE' (một thuật ngữ cũ chỉ máy bay) để phân biệt với các đơn vị mặt đất, mặc dù có nhiều tranh luận về nguồn gốc chính xác của nó.\"}]\n\n[{\"title\": \"Brexit Analysis: The Aftermath of Parliament's Vote\", \"snippet\": \"Sau khi thỏa thuận của Theresa May bị bác bỏ, Anh đối mặt với kịch bản 'No Deal' (không thỏa thuận) hoặc gia hạn thời gian rút lui. Điều này có thể dẫn đến việc tổ chức bầu cử châu Âu hoặc một cuộc trưng cầu dân ý mới về các lựa chọn rút lui.\"}]\n\n[{\"title\": \"Inter-service Transfers in US Military\", \"snippet\": \"Chương trình 'Operation Blue to Green' cho phép thành viên Hải quân và Không quân xuất ngũ sớm để nhập ngũ vào Lục quân, đặc biệt là những người ở các chuyên ngành đang dư thừa nhân lực nhưng Lục quân lại đang thiếu.\"}]\n\n[{\"title\": \"Global Perspectives on Abortion Laws\", \"snippet\": \"Trong khi nhiều quốc gia công nghiệp hóa phương Tây có luật phá thai tự do, Mỹ lại có sự chia rẽ sâu sắc về mặt chính trị và tôn giáo. Một số nước như Ireland (trước đây) hay Malta vẫn hạn chế nghiêm ngặt, trong khi Canada hầu như không có luật hạn chế phá thai.\"}]\n\n[{\"title\": \"Ask A Fighter Pilot: Hand Signals On The Flight Deck\", \"snippet\": \"Việc giơ tay của phi công trước khi cất cánh không phải là lời chào quân đội chính thức, mà là tín hiệu báo cho chỉ huy điều khiển máy phóng (catapult) rằng phi công đã sẵn sàng.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tôi thấy trong các từ viết tắt của Hải quân Hoa Kỳ thường có chữ 'V' (ví dụ như VFA, VAL, VAQ), chữ 'V' này có ý nghĩa gì vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu ý nghĩa của chữ 'V' trong các từ viết tắt của Hải quân Hoa Kỳ (như VFA, VAL, VAQ).",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "V in US Navy abbreviations",
+                "VFA VAL VAQ"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "letter_v_meaning": [
+                "VOLPLANE",
+                "thuật ngữ cũ chỉ máy bay",
+                "phân biệt với các đơn vị mặt đất"
+              ],
+              "naval_examples": [
+                "VFA",
+                "VAL",
+                "VAQ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Chữ 'V' trong các từ viết tắt của Hải quân Hoa Kỳ là ký hiệu phân loại hàng không.",
+              "Nguồn gốc của chữ 'V' được cho là bắt nguồn từ thuật ngữ 'VOLPLANE' để phân biệt với các đơn vị mặt đất."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Chuyển sang một chủ đề khác nhé. Tôi đang theo dõi tin tức về Brexit, vậy điều gì sẽ xảy ra sau khi thỏa thuận rút lui của bà Theresa May bị Quốc hội bác bỏ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu hậu quả xảy ra sau khi thỏa thuận Brexit của bà Theresa May bị Quốc hội bác bỏ",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Brexit",
+                "Theresa May",
+                "rejected",
+                "consequences"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "no_deal_scenario": [
+                "No Deal",
+                "không có thỏa thuận",
+                "rời EU mà không có thỏa thuận"
+              ],
+              "extension_scenario": [
+                "gia hạn",
+                "gia hạn thời gian rút lui",
+                "bầu cử châu Âu"
+              ],
+              "referendum_scenario": [
+                "trưng cầu dân ý",
+                "trưng cầu dân ý mới"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sau khi thỏa thuận rút lui của bà Theresa May bị Quốc hội bác bỏ, Anh đối mặt với kịch bản 'No Deal' hoặc phải gia hạn thời gian rút lui.",
+              "Việc gia hạn thời gian rút lui buộc Vương quốc Anh phải tham gia các cuộc bầu cử châu Âu sắp tới.",
+              "Một giải pháp tiềm năng được đưa ra là tổ chức trưng cầu dân ý mới để người dân lựa chọn các phương án rút lui khả thi."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Quay lại chuyện quân đội, nếu một người nhập ngũ vào Hải quân nhưng sau đó phát hiện mình bị say sóng kinh niên thì họ có thể xin chuyển sang Lục quân được không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu khả năng chuyển từ Hải quân sang Lục quân Hoa Kỳ khi bị say sóng kinh niên.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "transfer",
+                "US Navy",
+                "Army",
+                "Blue to Green"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Hải quân",
+              "expected_target": [
+                "Hải quân Hoa Kỳ",
+                "US Navy"
+              ]
+            },
+            "required_slots": {
+              "transfer_program": [
+                "Operation Blue to Green",
+                "chương trình Blue to Green",
+                "chương trình xuất ngũ sớm"
+              ],
+              "feasibility_condition": [
+                "nhu cầu nhân sự",
+                "dư thừa nhân lực",
+                "thiếu hụt"
+              ]
+            },
+            "golden_reference_claims": [
+              "Có chương trình 'Operation Blue to Green' cho phép thành viên Hải quân chuyển sang Lục quân thông qua hình thức xuất ngũ sớm và tái nhập ngũ.",
+              "Việc chuyển quân chủng không phổ biến chỉ vì lý do say sóng mà phụ thuộc lớn vào nhu cầu nhân sự của các quân chủng."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tôi cũng thắc mắc về vấn đề xã hội, tại sao vấn đề phá thai lại trở thành một cuộc tranh luận gay gắt và quan trọng đến vậy ở Mỹ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do tại sao vấn đề phá thai lại trở thành cuộc tranh luận gay gắt và quan trọng ở Mỹ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "abortion debate",
+                "USA"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "causes_of_debate": [
+                "tôn giáo, đạo đức và quyền chính trị",
+                "niềm tin tôn giáo",
+                "chính trị và tôn giáo"
+              ],
+              "us_vs_other_countries": [
+                "chia rẽ sâu sắc",
+                "nhiều quốc gia phát triển khác",
+                "Canada gần như không có luật hạn chế"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vấn đề phá thai ở Mỹ là sự giao thoa giữa niềm tin tôn giáo, đạo đức và quyền chính trị.",
+              "Mỹ có sự chia rẽ sâu sắc về vấn đề phá thai trong khi nhiều quốc gia phương Tây có luật tự do hoặc hạn chế nhất định.",
+              "Phá thai là một trong những chủ đề chính trị nóng bỏng ảnh hưởng đến bầu cử và chính sách pháp luật tại Mỹ."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Câu hỏi cuối cùng, tôi có xem một clip thấy các phi công Hải quân chào bằng tay trái, tại sao họ lại làm vậy thay vì tay phải như bình thường?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích lý do phi công Hải quân chào hoặc ra hiệu bằng tay trái",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "navy pilots",
+                "salute",
+                "left hand",
+                "catapult"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "signal_nature": [
+                "không phải là lời chào",
+                "tín hiệu",
+                "not a military salute",
+                "hand signal"
+              ],
+              "recipient_target": [
+                "chỉ huy điều khiển máy phóng",
+                "catapult officer",
+                "shooter"
+              ],
+              "readiness_purpose": [
+                "sẵn sàng cất cánh",
+                "ready for launch",
+                "ready to take off"
+              ]
+            },
+            "golden_reference_claims": [
+              "Hành động giơ tay của phi công Hải quân không phải là lời chào quân đội theo nghi thức chính thức.",
+              "Đó là tín hiệu giao tiếp báo cho chỉ huy điều khiển máy phóng (catapult) trên tàu sân bay rằng phi công đã sẵn sàng cất cánh."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_005",
+    "conversation_id": "conversation_0037",
+    "source": {
+      "text": "[{\"title\": \"The Origins of the Second Amendment\", \"snippet\": \"Quyền sở hữu vũ khí thực chất bắt nguồn từ mâu thuẫn với Chính phủ Anh, không phải chính phủ Mỹ. Các thuộc địa Mỹ thời kỳ đầu (thế kỷ 17) được thiết lập với các hiến chương khẳng định họ giữ mọi quyền hợp pháp của người Anh, nhưng không chịu sự quản lý của Nghị viện Anh mà chỉ trung thành với Nhà vua.\"}]\n\n[{\"title\": \"Gun Ownership Laws and Criminal Records\", \"snippet\": \"Theo nguyên tắc pháp lý, mọi cá nhân đều có quyền sở hữu vũ khí cho đến khi họ bị kết án bởi một bồi thẩm đoàn tại tòa án. Việc tước bỏ công cụ không giải quyết được gốc rễ của tội phạm.\"}]\n\n[{\"title\": \"The Legacy of the StG 44\", \"snippet\": \"Stg 44 Sturmgewehr của Đức được coi là 'ông tổ' của các loại súng trường tấn công hiện đại. Do số lượng sản xuất ít và xuất hiện muộn trong chiến tranh, chủ yếu ở Mặt trận phía Đông, nó trở thành mục tiêu săn đón hàng đầu của các nhà sưu tập.\"}]\n\n[{\"title\": \"Understanding the Dobbs Decision\", \"snippet\": \"Phán quyết Dobbs không tuyên bố quyền riêng tư không tồn tại, mà khẳng định rằng việc phá thai không phải là một quyền riêng tư được Hiến pháp bảo vệ.\"}]\n\n[{\"title\": \"Is a PhD Right for You?\", \"snippet\": \"PhD không chỉ đòi hỏi tài năng mà là sự kết hợp của tính tò mò, khả năng quan sát, giải quyết vấn đề, kiên trì và đam mê đóng góp cho học thuật. Kinh nghiệm nghiên cứu thực tế là cách tốt nhất để kiểm tra xem bản thân có phù hợp hay không.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Cho mình hỏi, chính phủ Mỹ đã từng làm điều gì tồi tệ đến mức khiến người dân Mỹ quyết định rằng họ cần có quyền sở hữu vũ khí không bị hạn chế như hiện nay?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên nhân lịch sử hình thành quyền sở hữu vũ khí tại Mỹ và vai trò của chính phủ Mỹ hoặc Anh trong việc này.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "quyền sở hữu vũ khí Mỹ",
+                "Second Amendment",
+                "Chính phủ Anh"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "historical_origin": [
+                "Chính phủ Anh",
+                "Nghị viện Anh",
+                "Nhà vua Anh"
+              ],
+              "purpose_of_arms": [
+                "tự vệ",
+                "chống lại sự áp bức",
+                "bảo vệ quyền lợi"
+              ]
+            },
+            "golden_reference_claims": [
+              "Quyền sở hữu vũ khí ở Mỹ thực chất bắt nguồn từ mâu thuẫn với Chính phủ Anh chứ không phải chính phủ Mỹ.",
+              "Các thuộc địa Mỹ thời kỳ đầu chỉ trung thành với Nhà vua Anh nhưng không chịu sự quản lý của Nghị viện Anh.",
+              "Nhu cầu tự vệ trước sự áp đặt của Anh đã hình thành nên tư tưởng về quyền sở hữu vũ khí."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy nếu xét về góc độ hiện tại, ví dụ như nhân vật Joker (do Joaquin Phoenix đóng), bạn có nghĩ một người như vậy vẫn nên có quyền sở hữu vũ khí không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ quyền sở hữu vũ khí đối với những người có vấn đề tâm lý hoặc cá biệt như nhân vật Joker.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "right to bear arms",
+                "crime conviction",
+                "gun control"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "một người như vậy",
+              "expected_target": [
+                "nhân vật Joker",
+                "Joaquin Phoenix",
+                "người có vấn đề tâm lý"
+              ]
+            },
+            "required_slots": {
+              "legal_right": [
+                "quyền sở hữu vũ khí",
+                "bị kết án",
+                "tòa án"
+              ],
+              "crime_root_cause": [
+                "căn nguyên của tội phạm",
+                "giải quyết được gốc rễ",
+                "tước bỏ công cụ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Mọi cá nhân đều có quyền sở hữu vũ khí cho đến khi họ bị kết án bởi một bồi thẩm đoàn tại tòa án.",
+              "Việc chỉ tập trung tước bỏ vũ khí không thực sự giải quyết được căn nguyên của tội phạm."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nhắc đến vũ khí, mình thấy nhiều người thích sưu tầm súng cổ. Trong Thế chiến II, loại súng nhỏ nào được các nhà sưu tập săn đón nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm loại súng nhỏ trong Thế chiến II được các nhà sưu tập săn đón nhiều nhất.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "WWII",
+                "small arms",
+                "collectible",
+                "Stg 44"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "weapon_name": [
+                "Stg 44",
+                "Sturmgewehr",
+                "StG 44 Sturmgewehr"
+              ],
+              "rarity_reason": [
+                "số lượng sản xuất ít",
+                "xuất hiện muộn",
+                "sản xuất với số lượng tương đối ít"
+              ]
+            },
+            "golden_reference_claims": [
+              "Khẩu Stg 44 Sturmgewehr của Đức là mẫu súng nhỏ từ Thế chiến II được các nhà sưu tập săn đón nhiều nhất.",
+              "Stg 44 được coi là 'ông tổ' của các loại súng trường tấn công hiện đại.",
+              "Súng trở nên quý hiếm do được sản xuất với số lượng ít vào giai đoạn cuối chiến tranh và chủ yếu phục vụ tại Mặt trận phía Đông."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại chuyện pháp luật một chút, mình thấy có mâu thuẫn khi Thẩm phán Kavanaugh nói người Mỹ có quyền riêng tư khi bị biểu tình tại nhà hàng, trong khi ông là một phần của đa số Tòa án Tối cao đã lật ngược phán quyết Roe v. Wade với lý do Hiến pháp không trao quyền riêng tư. Tại sao lại như vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ mâu thuẫn giữa lập trường của Thẩm phán Kavanaugh về quyền riêng tư trong đời sống cá nhân và phán quyết lật ngược Roe v. Wade của Tòa án Tối cao.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Dobbs",
+                "privacy",
+                "Kavanaugh",
+                "Roe v Wade"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "phán quyết Roe v. Wade",
+              "expected_target": [
+                "phán quyết Roe v. Wade",
+                "Roe v. Wade"
+              ]
+            },
+            "required_slots": {
+              "dobbs_ruling_clarification": [
+                "phán quyết Dobbs không tuyên bố quyền riêng tư không tồn tại",
+                "khẳng định việc phá thai không phải là quyền riêng tư được Hiến pháp bảo vệ"
+              ],
+              "consistency_explanation": [
+                "không hề mâu thuẫn",
+                "quyền riêng tư vẫn tồn tại trong nhiều khía cạnh khác"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tòa án Tối cao trong phán quyết Dobbs không tuyên bố rằng quyền riêng tư nói chung không tồn tại trong Hiến pháp.",
+              "Phán quyết Dobbs chỉ khẳng định việc phá thai không nằm trong phạm vi quyền riêng tư được Hiến pháp bảo vệ.",
+              "Việc Thẩm phán Kavanaugh khẳng định quyền riêng tư cá nhân không mâu thuẫn với lập trường của ông trong phán quyết về phá thai."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Những chủ đề này thật hóc búa, chắc phải học lên cao mới nghiên cứu sâu được. Mình đang phân vân không biết có nên theo đuổi bằng Tiến sĩ (PhD) hay không, làm sao để quyết định đây bạn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xin lời khuyên và cách để quyết định xem có nên theo đuổi bằng Tiến sĩ (PhD) hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "PhD",
+                "decide",
+                "research experience"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "phd_qualities": [
+                "tính tò mò",
+                "kiên trì",
+                "giải quyết vấn đề",
+                "bền bỉ"
+              ],
+              "practical_experience": [
+                "kinh nghiệm nghiên cứu thực tế",
+                "tham gia vào các dự án nghiên cứu"
+              ]
+            },
+            "golden_reference_claims": [
+              "Học PhD đòi hỏi sự kết hợp của tính tò mò, khả năng quan sát, giải quyết vấn đề, kiên trì và đam mê đóng góp cho học thuật.",
+              "Kinh nghiệm nghiên cứu thực tế qua việc tham gia các dự án là cách tốt nhất để kiểm tra xem bản thân có phù hợp với PhD hay không."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_006",
+    "conversation_id": "conversation_0038",
+    "source": {
+      "text": "[{\"title\": \"10 Things Travellers Should Know Before Visiting Bhutan\", \"snippet\": \"Visiting the Land of the Thunder Dragon is a wonderful yet challenging experience. It differs from other trips due to its unique regulations and environment, requiring travelers to be mentally and physically prepared for a journey that is as tough as it is beautiful.\"}]\n\n[{\"title\": \"How to make your first date memorable\", \"snippet\": \"To avoid awkward small talk, choose a great location, a good time of day, and prepare interesting questions. The goal should not be just to secure a second date, but to have fun and ensure both parties feel the time was worthwhile.\"}]\n\n[{\"title\": \"Twilight Lore: Volturi Travel\", \"snippet\": \"The Volturi travel from Italy to the US by plane. It is implied they have extensive connections and monetary assets accumulated over centuries. Similar to the Cullens' connection with Jenkins for passports, the Volturi use their power and wealth to facilitate international travel.\"}]\n\n[{\"title\": \"Introduction to Competitive Programming\", \"snippet\": \"Competitive programming is a mental sport that improves problem-solving abilities under constraints. It teaches how to approach problems efficiently, think analytically, and analyze space and time complexity. Various websites provide preparation resources.\"}]\n\n[{\"title\": \"Free Motion Quilting Guide\", \"snippet\": \"For smoother quilting, practice is key. Using a flush work space or an extension bed/sewing cabinet (like Koala Cabinets) helps support the quilt, preventing it from dragging and ensuring smoother movement.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình là người Ấn Độ và đang lên kế hoạch đi du lịch Bhutan. Bạn có lời khuyên hay lưu ý gì cho mình không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm thông tin và lời khuyên du lịch Bhutan dành cho công dân Ấn Độ.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "travel tips",
+                "Indians",
+                "Bhutan"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "bhutan_character": [
+                "vùng đất của Rồng Sấm",
+                "Land of the Thunder Dragon"
+              ],
+              "trip_nature": [
+                "tuyệt vời nhưng đầy thử thách",
+                "wonderful yet challenging"
+              ],
+              "preparation": [
+                "chuẩn bị tâm lý và sức khỏe",
+                "mentally and physically prepared"
+              ]
+            },
+            "golden_reference_claims": [
+              "Du lịch đến Bhutan là một trải nghiệm tuyệt vời nhưng cũng đầy thử thách.",
+              "Chuyến đi đòi hỏi sự chuẩn bị tốt về cả tâm lý và sức khỏe do địa hình và quy định đặc thù."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Cảm ơn bạn. Tiện thể, mình sắp có một buổi hẹn hò đầu tiên, mình hơi lo lắng. Bạn có mẹo nào để buổi hẹn diễn ra suôn sẻ không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xin lời khuyên và mẹo để chuẩn bị cho buổi hẹn hò đầu tiên suôn sẻ và bớt lo lắng.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "first date tips",
+                "hẹn hò đầu tiên"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "venue_and_timing": [
+                "chọn một địa điểm thoải mái",
+                "thời điểm phù hợp",
+                "choose a great location",
+                "good time of day"
+              ],
+              "mindset_and_goal": [
+                "cùng cảm thấy vui vẻ",
+                "thời gian bên nhau là xứng đáng",
+                "have fun",
+                "time was worthwhile"
+              ]
+            },
+            "golden_reference_claims": [
+              "Để buổi hẹn hò đầu tiên bớt gượng gạo, nên chọn địa điểm thoải mái, thời điểm phù hợp và chuẩn bị câu hỏi thú vị.",
+              "Mục tiêu của buổi hẹn là giúp cả hai cùng cảm thấy vui vẻ thay vì áp lực phải có buổi hẹn thứ hai."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nghe hợp lý đấy! À, mình đang đọc truyện Twilight, mình thắc mắc là trong phần Breaking Dawn, gia tộc Volturi đã di chuyển từ Ý sang gặp nhà Cullen ở Mỹ bằng cách nào nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu phương thức di chuyển của gia tộc Volturi từ Ý sang Mỹ trong tiểu thuyết Breaking Dawn.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Volturi",
+                "travel",
+                "Breaking Dawn"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "gia tộc Volturi",
+              "expected_target": [
+                "gia tộc Volturi",
+                "Volturi"
+              ]
+            },
+            "required_slots": {
+              "transportation_method": [
+                "máy bay",
+                "plane"
+              ],
+              "underlying_reason": [
+                "quyền lực và sự giàu có",
+                "power and wealth",
+                "mối quan hệ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Gia tộc Volturi di chuyển từ Ý sang Mỹ bằng máy bay trong phần Breaking Dawn.",
+              "Việc di chuyển quốc tế của họ được hỗ trợ bởi quyền lực, sự giàu có và các mối quan hệ tích lũy qua nhiều thế kỷ."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Thú vị thật. Quay lại chuyện phát triển bản thân, mình mới bắt đầu tìm hiểu về lập trình thi đấu (competitive programming). Bạn có lời khuyên nào cho người mới bắt đầu như mình không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xin lời khuyên và lộ trình cho người mới bắt đầu học lập trình thi đấu (competitive programming).",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "competitive programming",
+                "lập trình thi đấu"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "mindset_and_complexity": [
+                "tư duy",
+                "độ phức tạp",
+                "time complexity",
+                "space complexity"
+              ],
+              "practice_resources": [
+                "Codeforces",
+                "LeetCode",
+                "HackerRank",
+                "trang web luyện tập"
+              ]
+            },
+            "golden_reference_claims": [
+              "Lập trình thi đấu là một môn thể thao trí tuệ giúp cải thiện khả năng giải quyết vấn đề và phân tích độ phức tạp thời gian, không gian.",
+              "Người mới bắt đầu nên tập trung rèn luyện tư duy phân tích, tiếp cận bài toán tối ưu và sử dụng các nền tảng luyện tập như Codeforces, LeetCode, hoặc HackerRank."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình đang tập may vá, cụ thể là kỹ thuật quilting tự do (free motion quilting). Làm sao để các đường may mượt mà hơn bạn nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm mẹo và kỹ thuật để may free motion quilting mượt mà hơn.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "free motion quilting",
+                "smoother",
+                "mượt mà"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "workspace_surface": [
+                "bề mặt làm việc",
+                "flush work space",
+                "bàn mở rộng",
+                "extension bed"
+              ],
+              "practice_and_relaxation": [
+                "luyện tập",
+                "thả lỏng",
+                "practice"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sử dụng bàn mở rộng hoặc tủ may chuyên dụng giúp nâng đỡ tấm chăn và ngăn tình trạng kéo lê, giúp đường may mượt mà hơn.",
+              "Luyện tập kiên trì kết hợp với việc giữ tinh thần thoải mái, thả lỏng cơ thể giúp các chuyển động tay tự nhiên hơn."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_007",
+    "conversation_id": "conversation_0039",
+    "source": {
+      "text": "[{\"title\": \"Hiểu về cơ chế nạp đạn của vũ khí hiện đại\", \"snippet\": \"Băng đạn (Magazine) là bộ phận nạp đạn cho hầu hết vũ khí hiện đại (trừ súng ổ quay), bao gồm một ống, hộp hoặc tang trống với lò xo và một bộ phận đẩy (follower). Băng đạn có thể tháo rời hoặc cố định bên trong súng (như M1 Garand), có hình dạng thẳng, cong, một hàng hoặc hai hàng đạn.\"}]\n\n[{\"title\": \"Quy định về vũ khí cho sĩ quan cấp tướng Hoa Kỳ\", \"snippet\": \"Các sĩ quan cấp Tướng (General Officers) thường mang theo súng ngắn. Họ được cấp các mẫu súng đặc biệt dành riêng cho cấp bậc của mình hoặc có thể yêu cầu cấp. Truyền thống này có từ Thế chiến II, ví dụ như mẫu Colt 1903 Pocket Hammerless cỡ .32 ACP từng được cấp cho Tướng Douglas MacArthur.\"}]\n\n[{\"title\": \"Tâm lý học trong huấn luyện cảnh sát\", \"snippet\": \"Việc rút súng nhanh thường xuất phát từ nỗi sợ hãi. Ngay từ khi ở học viện, cảnh sát được huấn luyện rằng họ luôn gặp nguy hiểm và tính mạng của họ là quan trọng nhất. Sự kết hợp giữa huấn luyện khắt khe và áp lực từ tin tức tiêu cực khiến họ dễ nhìn nhận mọi tình huống là mối đe dọa.\"}]\n\n[{\"title\": \"Thông số kỹ thuật pháo FlaK 40 của Đức\", \"snippet\": \"Khẩu 12.8 cm FlaK 40 có tầm bắn tối đa đáng kinh ngạc là 14.800 mét (khoảng 48.556 feet). Đây là một trong những khẩu pháo phòng không hạng nặng nhất, thường được lắp đặt theo cặp (twin mounts) trên các tháp pháo FlaK Towers.\"}]\n\n[{\"title\": \"Quyền sở hữu súng của nông dân\", \"snippet\": \"Nhiều ý kiến cho rằng việc cấm nông dân sở hữu súng là vi phạm quyền hiến pháp. Nông dân cần súng để bảo vệ mùa màng khỏi động vật hoang dã và tự vệ trong môi trường nông thôn hẻo lánh.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình muốn tìm hiểu về súng. Bạn có thể giải thích giúp mình các thuật ngữ cơ bản liên quan đến súng không? Ví dụ như băng đạn (magazine), kẹp đạn (clip), súng trường tấn công (assault rifle) là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu và giải thích các thuật ngữ cơ bản liên quan đến súng như băng đạn, kẹp đạn và súng trường tấn công.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "thuật ngữ về súng",
+                "magazine",
+                "clip"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "magazine_definition": [
+                "băng đạn",
+                "magazine",
+                "bộ phận chứa đạn"
+              ],
+              "magazine_types": [
+                "băng đạn tháo rời",
+                "băng đạn cố định"
+              ]
+            },
+            "golden_reference_claims": [
+              "Băng đạn (Magazine) là bộ phận chứa đạn để nạp vào buồng súng trong các vũ khí hiện đại ngoại trừ súng ổ quay.",
+              "Cấu tạo của băng đạn bao gồm vỏ, lò xo và bộ phận đẩy (follower) để đẩy viên đạn lên trên.",
+              "Băng đạn có hai loại chính là băng đạn tháo rời và băng đạn cố định gắn liền với thân súng."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy còn đối với quân đội Mỹ thì sao? Các binh sĩ hoặc sĩ quan của họ có được phép giữ súng riêng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu quy định và quyền sở hữu súng riêng của binh sĩ và sĩ quan trong quân đội Mỹ.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "US soldiers",
+                "keeping guns",
+                "General Officers",
+                "pistols"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "quân đội Mỹ",
+              "expected_target": [
+                "quân đội Hoa Kỳ",
+                "US Army"
+              ]
+            },
+            "required_slots": {
+              "officer_privileges": [
+                "sĩ quan cấp tướng",
+                "General Officers",
+                "mang theo súng ngắn"
+              ],
+              "historical_tradition": [
+                "Thế chiến II",
+                "World War II",
+                "Colt 1903"
+              ]
+            },
+            "golden_reference_claims": [
+              "Các sĩ quan cấp Tướng trong quân đội Hoa Kỳ thường được phép mang theo súng ngắn.",
+              "Truyền thống cấp súng đặc biệt cho các sĩ quan cấp tướng có từ thời Thế chiến II, ví dụ như mẫu Colt 1903 Pocket Hammerless."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nhắc đến súng, mình thấy trong nhiều video, cảnh sát thường rút súng rất nhanh khi đối mặt với người dân. Tại sao họ lại có xu hướng nóng vội rút súng như vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích nguyên nhân cảnh sát thường có xu hướng rút súng nhanh khi đối mặt với người dân.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "police draw guns",
+                "training and fear",
+                "cảnh sát rút súng"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "root_cause": [
+                "nỗi sợ hãi",
+                "sợ hãi",
+                "fear"
+              ],
+              "training_factor": [
+                "huấn luyện",
+                "học viện",
+                "đối mặt nguy hiểm",
+                "training"
+              ],
+              "threat_perception": [
+                "mối đe dọa",
+                "cảnh giác quá mức",
+                "threat"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc rút súng nhanh của cảnh sát thường xuất phát từ nguyên nhân cốt lõi là nỗi sợ hãi.",
+              "Ngay từ khi ở học viện, cảnh sát được huấn luyện rằng họ luôn gặp nguy hiểm và phải đặt tính mạng lên hàng đầu.",
+              "Sự kết hợp giữa huấn luyện khắt khe và áp lực từ tin tức khiến họ dễ nhìn nhận mọi tình huống là mối đe dọa."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại với vũ khí quân sự, mình có đọc về pháo phòng không của Đức thời Thế chiến II. Những khẩu pháo đó có thể bắn cao đến mức nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về độ cao tối đa (tầm bắn cao) của pháo phòng không Đức trong Thế chiến II.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "German antiaircraft guns",
+                "FlaK 40",
+                "max height",
+                "range"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "gun_model": [
+                "12.8 cm FlaK 40",
+                "FlaK 40"
+              ],
+              "max_altitude": [
+                "14.800 mét",
+                "14.800 meters",
+                "48.556 feet"
+              ]
+            },
+            "golden_reference_claims": [
+              "Đức phát triển pháo phòng không hạng nặng 12.8 cm FlaK 40 trong Thế chiến II.",
+              "Khẩu pháo này có tầm bắn tối đa lên tới 14.800 mét (khoảng 48.556 feet)."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình muốn hỏi về góc độ pháp lý và đạo đức. Theo bạn, có nên cấm nông dân sở hữu súng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu góc độ pháp lý và đạo đức về việc có nên cấm nông dân sở hữu súng hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "farmers",
+                "gun",
+                "owning"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "crop_protection": [
+                "bảo vệ mùa màng",
+                "ngăn chặn động vật hoang dã",
+                "bảo vệ cây trồng"
+              ],
+              "self_defense": [
+                "tự vệ",
+                "vùng nông thôn hẻo lánh",
+                "xa khu dân cư"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc cấm nông dân sở hữu súng tại nhiều nơi, đặc biệt là Mỹ, bị coi là vi phạm quyền Hiến pháp.",
+              "Nông dân cần súng để bảo vệ mùa màng khỏi động vật hoang dã và tự vệ ở các vùng nông thôn hẻo lánh."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_008",
+    "conversation_id": "conversation_0040",
+    "source": {
+      "text": "[{\"title\": \"Khái niệm về Vật chất tối và Không gian Lượng tử\", \"snippet\": \"Vật chất tối, cùng với Không gian Lượng tử và Hấp dẫn Lượng tử, là tập hợp các bước sóng cực dài nằm ở dải thấp nhất của phổ bước sóng. Những sóng này có năng lượng rất thấp và chủ yếu là khối lượng lượng tử, tương tác với các sóng không-thời gian xoắn ốc quỹ đạo phân cực và sóng hấp dẫn. Khi các sóng này vướng víu lượng tử, chúng tạo thành các WIMP (Hạt nặng tương tác yếu).\"}]\n\n[{\"title\": \"Phân tích tâm lý nhân vật Anakin Skywalker\", \"snippet\": \"Sự sa ngã của Anakin bắt nguồn từ tuổi thơ nô lệ tại Tatooine, nỗi đau mất Qui-Gon Jinn - người hiểu và dẫn dắt anh tốt hơn Obi-Wan, và cú sốc khi chứng kiến mẹ mình qua đời trong vòng tay. Việc trả thù tàn khốc đối với làng Tusken là một bước ngoặt lớn trong tâm lý của anh.\"}]\n\n[{\"title\": \"Hướng dẫn thiết lập email cá nhân hóa\", \"snippet\": \"Để có địa chỉ email theo tên miền riêng, người dùng hiện nay cần phải mua một tên miền (domain name) từ các nhà cung cấp. Sau khi sở hữu tên miền, bạn có thể thiết lập dịch vụ email cho tên miền đó. Trước đây có một số dịch vụ miễn phí như của AOL nhưng hiện tại hầu hết đều yêu cầu trả phí để duy trì quyền sở hữu tên miền.\"}]\n\n[{\"title\": \"Chi tiết về cánh tay giả của Kawaki\", \"snippet\": \"Isshiki có thể triệu hồi Kawaki nhờ vào cánh tay giả mà Kawaki đang đeo. Cánh tay này vốn được bộ phận khoa học chế tạo riêng cho Naruto để hấp thụ Ninjutsu và vận hành bằng chakra của Naruto. Vì cánh tay phản ứng với chakra của người được thiết kế, Isshiki đã lợi dụng điều này để điều khiển/triệu hồi.\"}]\n\n[{\"title\": \"Sự nghiệp chính trị của Jayalalithaa\", \"snippet\": \"Jayalalithaa được kính trọng như 'Amma' tại bang Tamil Nadu và dẫn dắt đảng giành chiến thắng liên tiếp. Tuy nhiên, sự nghiệp của bà bị hoen ố bởi vụ án tài sản không minh bạch (disproportionate assets case) do Subramanian Swamy khởi xướng, gây ảnh hưởng nghiêm trọng đến hình ảnh cá nhân và chính trị.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm hiểu về vũ trụ. Bạn có thể giải thích vật chất tối là gì, nó được cấu tạo từ đâu và liệu con người có thể tạo ra nó không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích khái niệm vật chất tối, cấu tạo và khả năng con người tạo ra nó.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "vật chất tối",
+                "dark matter"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "khai_niem_vat_chat_toi": [
+                "bước sóng cực dài",
+                "năng lượng rất thấp",
+                "khối lượng lượng tử"
+              ],
+              "cau_tao": [
+                "WIMP",
+                "hạt nặng tương tác yếu",
+                "vướng víu lượng tử"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vật chất tối tồn tại dưới dạng các bước sóng cực dài ở vùng thấp nhất của phổ bước sóng với năng lượng rất thấp và khối lượng lượng tử lớn.",
+              "Vật chất tối chịu tác động của sóng hấp dẫn và sóng không-thời gian xoắn ốc quỹ đạo phân cực.",
+              "Hiện tượng vướng víu lượng tử tạo nên các WIMP (hạt nặng tương tác yếu) từ vật chất tối."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe có vẻ phức tạp nhỉ. Chuyển sang chủ đề giải trí một chút, trong phim Star Wars, tại sao Anakin Skywalker lại dễ dàng bị sa ngã sang phe bóng tối (dark side) như vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên nhân khiến Anakin Skywalker sa ngã sang phe bóng tối trong phim Star Wars.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Anakin Skywalker",
+                "dark side",
+                "sa ngã"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "childhood_trauma": [
+                "tuổi thơ nô lệ",
+                "Tatooine",
+                "kiếp nô lệ"
+              ],
+              "mother_death": [
+                "mẹ qua đời",
+                "mẹ mất",
+                "làng Tusken"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sự sa ngã của Anakin Skywalker bắt nguồn từ tuổi thơ nô lệ tại Tatooine và nỗi đau mất mẹ.",
+              "Hành động trả thù tàn khốc đối với làng Tusken sau cái chết của mẹ là một bước ngoặt tâm lý quan trọng.",
+              "Những tổn thương tâm lý sâu sắc này đã tạo cơ hội cho phe bóng tối dễ dàng thao túng anh."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Đúng là một bi kịch. À, mình đang muốn chuyên nghiệp hóa công việc, làm sao để mình có thể tạo một địa chỉ email với tên miền riêng (mailing address) cho bản thân?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách tạo địa chỉ email với tên miền riêng cho cá nhân.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "email",
+                "tên miền riêng",
+                "custom domain"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "domain_purchase": [
+                "mua một tên miền",
+                "domain name",
+                "nhà cung cấp tên miền"
+              ],
+              "email_hosting": [
+                "dịch vụ email",
+                "email hosting",
+                "thiết lập dịch vụ email"
+              ],
+              "cost": [
+                "trả phí",
+                "mất phí",
+                "không miễn phí"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người dùng cần mua một tên miền từ các nhà cung cấp để có địa chỉ email theo tên miền riêng.",
+              "Sau khi có tên miền, cần đăng ký dịch vụ email hosting để thiết lập hòm thư.",
+              "Việc duy trì quyền sở hữu tên miền và dịch vụ email hiện nay yêu cầu phải trả phí."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Cảm ơn bạn. Mình cũng là fan anime, bạn có biết trong Boruto, tại sao Isshiki lại có thể triệu hồi Kawaki từ xa không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích lý do Isshiki có thể triệu hồi Kawaki từ xa trong Boruto.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Isshiki",
+                "Kawaki",
+                "triệu hồi",
+                "cánh tay giả"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Isshiki",
+              "expected_target": [
+                "Isshiki",
+                "Isshiki Otsutsuki"
+              ]
+            },
+            "required_slots": {
+              "summoning_mechanism": [
+                "cánh tay giả",
+                "cánh tay nhân tạo",
+                "thiết bị giả"
+              ],
+              "chakra_source": [
+                "chakra của Naruto",
+                "năng lượng của Naruto"
+              ]
+            },
+            "golden_reference_claims": [
+              "Isshiki có thể triệu hồi Kawaki từ xa nhờ vào cánh tay giả mà Kawaki đang sử dụng.",
+              "Cánh tay giả này được chế tạo riêng cho Naruto và vận hành bằng chakra của Naruto.",
+              "Isshiki đã lợi dụng cơ chế phản ứng chakra của cánh tay giả để thực hiện việc triệu hồi."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình có đọc về chính trị Ấn Độ và thấy nhắc đến Jayalalithaa. Những 'mặt tối' hay tranh cãi xung quanh bà ấy là gì vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về những tranh cãi và mặt tối trong sự nghiệp chính trị của Jayalalithaa.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Jayalalithaa",
+                "dark side",
+                "disproportionate assets"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "bà ấy",
+              "expected_target": [
+                "Jayalalithaa",
+                "Amma"
+              ]
+            },
+            "required_slots": {
+              "public_image": [
+                "Amma",
+                "được kính trọng",
+                "Mẹ"
+              ],
+              "controversy": [
+                "vụ án tài sản không minh bạch",
+                "disproportionate assets case"
+              ]
+            },
+            "golden_reference_claims": [
+              "Jayalalithaa được người dân bang Tamil Nadu gọi là 'Amma' và lãnh đạo đảng giành chiến thắng nhiều kỳ bầu cử liên tiếp.",
+              "Sự nghiệp của bà vướng vào vụ kiện tài sản không minh bạch (disproportionate assets case) do Subramanian Swamy khởi xướng."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_009",
+    "conversation_id": "conversation_0041",
+    "source": {
+      "text": "[{\"title\": \"Australia's Migration and Humanitarian Programs\", \"snippet\": \"Australian open migration typically grants between 150,000 to 300,000 visas based on criteria like age, English proficiency, and qualifications. In contrast, the Humanitarian program is much smaller, usually allocating 10,000 to 15,000 visas, often distributed by country (e.g., increased allocation for Afghans).\"}]\n\n[{\"title\": \"Assistive Technology for Visually Impaired Developers\", \"snippet\": \"Visually impaired programmers often use a combination of screen magnifiers and text-to-speech (TTS) software. For example, tools like MAGic (by Freedom Scientific) help those with low vision enlarge text, while screen readers convert code into audible speech.\"}]\n\n[{\"title\": \"Top Photo Editing Software for Professionals\", \"snippet\": \"Adobe Photoshop is widely considered the most powerful picture editing software. For professional workflows, photographers often use a combination of Adobe Lightroom for batch processing and Photoshop for detailed retouching and image masking.\"}]\n\n[{\"title\": \"Understanding Non-Profit Organization (NGO) Frameworks\", \"snippet\": \"NGOs are non-profit organizations characterized by a non-profit nature, flexible work environments, and a focus on community involvement. Core values often include promoting volunteering, sustainable environmental development, and creating a positive global impact.\"}]\n\n[{\"title\": \"Lost Worlds World Creators Program\", \"snippet\": \"The World Creators Program by Lost Worlds rewards NFT artists for creating location-based gNFT drops. Participants have the chance to win 5,000 LOST tokens and other rewards by submitting art that brings real-world utility to the NFT space.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm hiểu về nhập cư Úc. Cho mình hỏi thông thường thì chương trình Di trú (Migration Program) hay chương trình Nhân đạo (Humanitarian Program) sẽ cấp nhiều visa hơn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh số lượng visa được cấp giữa chương trình Di trú và chương trình Nhân đạo của Úc.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Migration Program",
+                "Humanitarian Program",
+                "visa numbers"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "migration_program_visas": [
+                "150,000 to 300,000 visas",
+                "150.000 đến 300.000 visa",
+                "chương trình di trú lớn hơn"
+              ],
+              "humanitarian_program_visas": [
+                "10,000 to 15,000 visas",
+                "10.000 đến 15.000 visa",
+                "chương trình nhân đạo nhỏ hơn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Chương trình Di trú (Migration Program) của Úc có quy mô lớn hơn nhiều và thường cấp từ 150.000 đến 300.000 visa mỗi năm.",
+              "Chương trình Nhân đạo có quy mô nhỏ hơn, thường chỉ cấp từ 10.000 đến 15.000 visa mỗi năm."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Thú vị thật. Chuyển sang một chủ đề khác, mình tò mò không biết những lập trình viên bị khiếm thị thì họ làm thế nào để viết code được nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách lập trình viên bị khiếm thị viết code và sử dụng công nghệ hỗ trợ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "visually impaired programmers",
+                "code",
+                "assistive technology"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "magnifiers_and_tts": [
+                "phần mềm phóng đại màn hình",
+                "screen magnifiers",
+                "text-to-speech",
+                "chuyển văn bản thành giọng nói"
+              ],
+              "screen_readers": [
+                "trình đọc màn hình",
+                "screen readers"
+              ]
+            },
+            "golden_reference_claims": [
+              "Lập trình viên khiếm thị hoặc suy giảm thị lực sử dụng các công nghệ hỗ trợ để viết code.",
+              "Họ thường kết hợp sử dụng phần mềm phóng đại màn hình và công nghệ chuyển văn bản thành giọng nói hoặc trình đọc màn hình để nghe cấu trúc code."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Vậy còn đối với những người làm nghệ thuật số, ví dụ như nhiếp ảnh gia, họ thường dùng phần mềm nào để chỉnh sửa ảnh chuyên nghiệp nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu phần mềm chỉnh sửa ảnh chuyên nghiệp nhất thường được các nhiếp ảnh gia sử dụng.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "photo editing software",
+                "photographers",
+                "Adobe Photoshop",
+                "Lightroom"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "primary_software": [
+                "Adobe Photoshop",
+                "Photoshop",
+                "phần mềm chỉnh sửa ảnh mạnh mẽ"
+              ],
+              "workflow_combination": [
+                "Adobe Lightroom",
+                "Lightroom",
+                "chỉnh màu hàng loạt",
+                "quản lý thư viện ảnh"
+              ]
+            },
+            "golden_reference_claims": [
+              "Adobe Photoshop được coi là phần mềm chỉnh sửa ảnh chuyên nghiệp mạnh mẽ nhất cho phép can thiệp chi tiết và tạo mặt nạ (masking).",
+              "Các nhiếp ảnh gia thường kết hợp sử dụng Adobe Lightroom để quản lý và chỉnh màu hàng loạt với Adobe Photoshop để chỉnh sửa chi tiết."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Mình cũng đang định tham gia một tổ chức phi chính phủ. Bạn có thể cho mình biết một số điều khoản hoặc điều kiện cơ bản mà các chương trình của NGO thường áp dụng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các điều khoản và điều kiện cơ bản hoặc nguyên tắc hoạt động của các chương trình thuộc tổ chức phi chính phủ (NGO).",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "NGO programs",
+                "terms and conditions",
+                "operational principles"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "các chương trình của NGO",
+              "expected_target": [
+                "tổ chức phi chính phủ",
+                "NGO",
+                "Non-Profit Organization"
+              ]
+            },
+            "required_slots": {
+              "non_profit_nature": [
+                "phi lợi nhuận",
+                "non-profit nature",
+                "phục vụ cộng đồng"
+              ],
+              "work_environment": [
+                "môi trường làm việc linh hoạt",
+                "flexible work environments"
+              ],
+              "core_values": [
+                "phát triển bền vững",
+                "sustainable environmental development",
+                "tác động tích cực"
+              ]
+            },
+            "golden_reference_claims": [
+              "Các tổ chức phi chính phủ (NGO) hoạt động dựa trên bản chất phi lợi nhuận với mục tiêu phục vụ cộng đồng.",
+              "Môi trường làm việc của NGO thường có tính linh hoạt cao và khuyến khích tinh thần tình nguyện.",
+              "Các chương trình của NGO tập trung vào phát triển bền vững và tạo ra tác động xã hội tích cực."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình thấy gần đây NFT đang hot, có chương trình nào đặc biệt để khen thưởng cho các nghệ sĩ và nhà sáng tạo NFT không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm thông tin về các chương trình khen thưởng, phần thưởng dành cho nghệ sĩ và nhà sáng tạo NFT.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "rewards programs",
+                "NFT artists",
+                "World Creators Program"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "program_name": [
+                "World Creators Program",
+                "Lost Worlds World Creators Program"
+              ],
+              "reward_details": [
+                "5,000 LOST tokens",
+                "5.000 token LOST",
+                "5000 LOST"
+              ],
+              "program_focus": [
+                "location-based gNFT",
+                "tiện ích thực tế",
+                "real-world utility"
+              ]
+            },
+            "golden_reference_claims": [
+              "World Creators Program của Lost Worlds là một chương trình khen thưởng dành cho các nghệ sĩ NFT.",
+              "Chương trình tập trung vào việc tạo ra các gNFT dựa trên vị trí địa lý mang lại tiện ích thực tế.",
+              "Người tham gia có cơ hội giành được 5.000 token LOST cùng các phần thưởng giá trị khác."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_010",
+    "conversation_id": "conversation_0042",
+    "source": {
+      "text": "[{\"title\": \"Phân tích về quan điểm chính trị và quyền sở hữu súng\", \"snippet\": \"Nhiều ý kiến cho rằng sự đối lập với kiểm soát súng không chỉ dựa trên dữ liệu mà còn gắn liền với hệ tư tưởng chính trị, niềm tin tôn giáo và quan điểm về quyền tự do cá nhân tại Mỹ.\"}]\n\n[{\"title\": \"Giải mã ngôn ngữ pháp lý của Tu chính án thứ hai\", \"snippet\": \"Cụm từ 'shall not be infringed' được hiểu là một mệnh lệnh bắt buộc, cấm tuyệt đối mọi hành động xâm phạm, thu hẹp hoặc cản trở quyền sở hữu vũ khí.\"}]\n\n[{\"title\": \"Kể lại trải nghiệm tự vệ bằng súng tại Kentucky\", \"snippet\": \"Một trường hợp thực tế tại Kentucky, chủ nhà đã sử dụng súng shotgun 12 gauge để ứng phó khi nghe thấy tiếng động lạ và tiếng hét kinh hoàng của hàng xóm, từ đó ngăn chặn kịp thời một vụ đột nhập/tấn công.\"}]\n\n[{\"title\": \"Hướng dẫn chọn súng tự vệ tại gia\", \"snippet\": \"Súng ngắn ổ quay (revolver) cỡ .38 Special với nòng 4 inch được đánh giá cao vì độ tin cậy, dễ sử dụng và cơ chế cò súng nặng đóng vai trò như một chốt an toàn tự nhiên.\"}]\n\n[{\"title\": \"So sánh hỏa lực hải quân Thế chiến II\", \"snippet\": \"Pháo Type 94 18 inch trên thiết giáp hạm Yamato của Nhật là lớn nhất lịch sử với tầm bắn 27km, nhưng tại trận Samar, chúng đã bị đánh bại bởi các loại pháo 5 inch phổ biến hơn của Mỹ.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tại sao những người ủng hộ quyền sở hữu súng thường phớt lờ hoặc phủ nhận hàng loạt nghiên cứu chứng minh rằng việc kiểm soát súng mang lại hiệu quả?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Lý giải nguyên nhân những người ủng hộ quyền sở hữu súng phớt lờ hoặc phủ nhận các nghiên cứu về hiệu quả của việc kiểm soát súng.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "gun control studies",
+                "arguments against gun control"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "ideology_and_politics": [
+                "hệ tư tưởng chính trị",
+                "giá trị bảo thủ",
+                "chính trị"
+              ],
+              "personal_freedom": [
+                "quyền tự do cá nhân",
+                "quyền cơ bản",
+                "quyền tự do tuyệt đối"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sự đối lập với kiểm soát súng gắn liền với hệ tư tưởng chính trị và quan điểm về quyền tự do cá nhân.",
+              "Nhiều người coi việc kiểm soát súng là sự xâm phạm vào quyền cơ bản của công dân.",
+              "Quan điểm này thường đi kèm với các giá trị bảo thủ và niềm tin tôn giáo."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy tại sao một số người lại tin rằng Tu chính án thứ hai của Hoa Kỳ cho phép họ sở hữu bất kỳ loại súng nào, kể cả những loại vũ khí hạng nặng?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ lý do một số người tin rằng Tu chính án thứ hai cho phép sở hữu mọi loại súng, kể cả vũ khí hạng nặng.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Second Amendment",
+                "shall not be infringed",
+                "interpretation"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "constitutional_phrase": [
+                "shall not be infringed",
+                "không được xâm phạm"
+              ],
+              "absolute_interpretation": [
+                "mệnh lệnh bắt buộc",
+                "cấm tuyệt đối",
+                "không có chỗ cho sự thương lượng"
+              ],
+              "weapon_scope": [
+                "bất kỳ quy định nào hạn chế",
+                "vi phạm hiến pháp"
+              ]
+            },
+            "golden_reference_claims": [
+              "Niềm tin này xuất phát từ cách diễn giải cụm từ 'shall not be infringed' trong Tu chính án thứ hai như một mệnh lệnh bắt buộc.",
+              "Những người ủng hộ coi cụm từ này là sự cấm tuyệt đối mọi hành động xâm phạm, hạn chế hay thu hẹp quyền sở hữu vũ khí."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nhưng thực tế có nhiều trường hợp chủ súng thực sự ngăn chặn được tội phạm không, hay đó chỉ là lý thuyết?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác thực xem có trường hợp thực tế nào chủ súng ngăn chặn được tội phạm hay không.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "defensive gun use",
+                "guns stopping crime"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "đó",
+              "expected_target": [
+                "chủ súng ngăn chặn được tội phạm",
+                "defensive gun use",
+                "vụ tự vệ bằng súng"
+              ]
+            },
+            "required_slots": {
+              "real_world_examples": [
+                "trường hợp cụ thể",
+                "Kentucky",
+                "shotgun"
+              ],
+              "defensive_purpose": [
+                "ngăn chặn tội phạm",
+                "tự vệ",
+                "phản ứng kịp thời"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trên thực tế có những trường hợp cụ thể việc sở hữu súng giúp ngăn chặn tội phạm.",
+              "Ví dụ tại Kentucky, chủ nhà đã dùng súng shotgun phản ứng kịp thời khi nghe tiếng động đột nhập và tiếng kêu cứu.",
+              "Súng được xem là công cụ tự vệ hiệu quả trong các tình huống khẩn cấp khi lực lượng chức năng chưa kịp có mặt."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Nếu một người muốn trang bị súng để bảo vệ gia đình tại nhà, thì loại súng nào được coi là lựa chọn tốt và an toàn nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm loại súng tốt và an toàn nhất để bảo vệ gia đình tại nhà.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "súng ngắn ổ quay",
+                "revolver",
+                "38 Special",
+                "bảo vệ gia đình",
+                "home defense"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "recommended_weapon": [
+                "súng ngắn ổ quay",
+                "revolver",
+                ".38 Special"
+              ],
+              "safety_mechanism": [
+                "lực kéo cò súng nặng",
+                "chốt an toàn tự nhiên",
+                "cơ chế cò súng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Súng ngắn ổ quay (revolver) cỡ .38 Special với nòng 4 inch là lựa chọn được đánh giá cao cho việc bảo vệ gia đình.",
+              "Lực kéo cò súng nặng và dài của súng tác động kép đóng vai trò như một chốt an toàn tự nhiên giúp tránh cướp cò ngoài ý muốn."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Chuyển sang chủ đề vũ khí quân sự, trong Thế chiến II, loại pháo hải quân nào được coi là mạnh nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu loại pháo hải quân mạnh nhất trong Thế chiến II.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "naval",
+                "gun",
+                "WWII",
+                "Yamato"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "strongest_naval_gun": [
+                "Pháo Type 94 18 inch",
+                "Type 94 18 inch",
+                "pháo Yamato"
+              ],
+              "battle_context": [
+                "trận Samar",
+                "Samar"
+              ]
+            },
+            "golden_reference_claims": [
+              "Pháo Type 94 18 inch trên thiết giáp hạm Yamato của Nhật Bản là loại pháo hải quân lớn nhất từng được lắp trên chiến hạm trong Thế chiến II.",
+              "Tại trận Samar, pháo Type 94 đã bị đánh bại bởi các loại pháo 5 inch của Hải quân Hoa Kỳ."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_011",
+    "conversation_id": "conversation_0043",
+    "source": {
+      "text": "[{\"title\": \"Bằng chứng về sự sống ngoài hành tinh\", \"snippet\": \"Có nhiều giả thuyết cho rằng người ngoài hành tinh đã tìm thấy Trái Đất từ rất lâu. Các bằng chứng vật lý thường bị thu hồi, nhưng dấu vết phóng xạ tại các điểm hạ cánh là bằng chứng khó chối cãi nhất.\"}, {\"title\": \"Nghiên cứu của Stanton T. Friedman và Jacques Vallee\", \"snippet\": \"Nhà vật lý hạt nhân Stanton T. Friedman và nhà thiên văn học Jacques Vallee đã thu thập báo cáo về khoảng 4.000 dấu vết hạ cánh của các vật thể lạ trên Trái Đất.\"}]\n\n[{\"title\": \"Tác động của kỳ thi ESE đối với sự nghiệp\", \"snippet\": \"ESE là một trong những kỳ thi khó nhất với hàng trăm nghìn thí sinh cạnh tranh cho số ít vị trí. Vượt qua kỳ thi này là minh chứng cho sự kỷ luật và nỗ lực phi thường.\"}, {\"title\": \"Cuộc sống của một Sĩ quan Nhóm A\", \"snippet\": \"Nhiều người mơ về cuộc sống ổn định của một Sĩ quan Nhóm A (Group A Officer) với các đặc quyền của công chức chính phủ sau khi đỗ ESE.\"}]\n\n[{\"title\": \"Cách tìm kiếm và định vị hacker\", \"snippet\": \"Việc tự định vị hacker là rất khó. Giải pháp hiệu quả là thuê các chuyên gia bảo mật hoặc hacker mũ trắng (ethical hackers) để giải quyết các vấn đề kỹ thuật.\"}, {\"title\": \"Dấu hiệu bị tấn công mạng\", \"snippet\": \"Các dấu hiệu như email lạ, giao dịch tín dụng bất thường là lý do khiến nhiều người muốn truy tìm danh tính và vị trí của kẻ tấn công.\"}]\n\n[{\"title\": \"Hướng dẫn sơ cứu cá vàng\", \"snippet\": \"Đặt cá vào bình nước mát từ bể để cung cấp oxy. Làm sạch bụi bẩn trên thân cá và nhẹ nhàng mở mang cá để hỗ trợ hô hấp.\"}, {\"title\": \"Hồi sức cho cá bị khô\", \"snippet\": \"Ngay cả khi cá có vẻ bị khô, việc đưa trở lại môi trường nước của bể ngay lập tức có thể giúp cá hồi phục.\"}]\n\n[{\"title\": \"Triết lý về mục đích sống qua thiết kế sinh học\", \"snippet\": \"Sự sắp đặt của các bộ phận cơ thể (lông mày bảo vệ mắt, mũi trên miệng) cho thấy mọi chi tiết đều có mục đích và sự thông tuệ của tạo hóa.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Bạn có nghĩ rằng chúng ta sẽ tìm thấy sự sống ngoài Trái Đất không? Nếu có thì khi nào và ở đâu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu khả năng tìm thấy sự sống ngoài Trái Đất, thời điểm và địa điểm cụ thể dựa trên các giả thuyết và bằng chứng.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "extraterrestrial life",
+                "evidence",
+                "landing marks"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "radioactive_effects": [
+                "hiệu ứng phóng xạ",
+                "dấu vết phóng xạ",
+                "radioactive effects"
+              ],
+              "researchers": [
+                "Stanton T. Friedman",
+                "Jacques Vallee",
+                "nhà vật lý hạt nhân",
+                "nhà thiên văn học"
+              ]
+            },
+            "golden_reference_claims": [
+              "Các chuyên gia cho rằng dấu vết phóng xạ tại các điểm hạ cánh là bằng chứng khó chối cãi về sự sống ngoài Trái Đất.",
+              "Nhà vật lý hạt nhân Stanton T. Friedman và nhà thiên văn học Jacques Vallee đã thu thập khoảng 4.000 báo cáo về dấu vết hạ cánh của các vật thể lạ trên Trái Đất."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Chuyển sang một chủ đề thực tế hơn, cuộc sống sẽ thay đổi thế nào sau khi vượt qua một kỳ thi khốc liệt như ESE (Kỳ thi Dịch vụ Kỹ thuật)?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về sự thay đổi cuộc sống và sự nghiệp sau khi vượt qua kỳ thi khốc liệt ESE.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "ESE exam",
+                "Engineering Services Examination",
+                "life after cracking"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "competition_level": [
+                "kỳ thi khốc liệt",
+                "hàng trăm nghìn thí sinh cạnh tranh",
+                "khó nhất"
+              ],
+              "career_impact": [
+                "Sĩ quan Nhóm A",
+                "Group A Officer",
+                "công chức chính phủ",
+                "ổn định và quyền lực"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vượt qua kỳ thi ESE là một bước ngoặt lớn, chứng minh sự kỷ luật và nỗ lực phi thường do tỷ lệ cạnh tranh cực kỳ khốc liệt.",
+              "Người đỗ ESE có cơ hội trở thành Sĩ quan Nhóm A với cuộc sống ổn định và các đặc quyền của công chức chính phủ."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nếu tôi bị tấn công mạng, làm thế nào để có thể xác định được vị trí vật lý của một hacker?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách xác định vị trí vật lý của một hacker khi bị tấn công mạng",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "locate a hacker physically",
+                "ethical hackers",
+                "cybersecurity"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "difficulty": [
+                "cực kỳ khó khăn",
+                "rất khó",
+                "khó"
+              ],
+              "solution": [
+                "thuê chuyên gia bảo mật",
+                "hacker mũ trắng",
+                "ethical hackers"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc tự mình xác định vị trí vật lý của một hacker là cực kỳ khó khăn do họ sử dụng các kỹ thuật ẩn danh phức tạp.",
+              "Giải pháp hiệu quả nhất là thuê các chuyên gia bảo mật hoặc hacker mũ trắng để hỗ trợ truy vết và giải quyết sự cố."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tôi có một câu hỏi hơi kỳ lạ, nếu chẳng may cá vàng của tôi bị ngất hoặc có vẻ như đã chết, có cách nào để cứu sống nó không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách sơ cứu và cứu sống cá vàng khi có vẻ như đã chết hoặc ngất",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "revive",
+                "goldfish",
+                "emergency",
+                "cá vàng"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "water_revival": [
+                "đặt cá vào nước mát",
+                "bình nước",
+                "môi trường nước"
+              ],
+              "gill_support": [
+                "mở mang cá",
+                "hỗ trợ hô hấp"
+              ]
+            },
+            "golden_reference_claims": [
+              "Đặt cá vàng vào bình chứa nước mát lấy từ bể để cung cấp oxy và giúp cá hồi phục.",
+              "Nhẹ nhàng mở mang cá bằng tay để hỗ trợ lưu thông nước và hô hấp."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, tôi thường cảm thấy lạc lõng. Theo bạn, việc tìm ra mục đích sống của một con người khó khăn đến mức nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về mức độ khó khăn khi tìm kiếm mục đích sống của con người dựa trên triết lý thiết kế sinh học.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "finding life purpose",
+                "design"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "biological_design_purpose": [
+                "lông mày bảo vệ mắt",
+                "mũi trên miệng",
+                "mọi chi tiết đều có mục đích"
+              ],
+              "meaning_of_life": [
+                "mục đích sống",
+                "sự hiện diện mang mục đích ý nghĩa"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sự sắp đặt của các bộ phận cơ thể cho thấy mọi chi tiết đều có mục đích và sự thông tuệ.",
+              "Lông mày nằm trên mắt để ngăn mồ hôi muối chảy vào làm hỏng mắt.",
+              "Sự hiện diện của con người trên thế giới này chắc chắn mang một mục đích ý nghĩa."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_012",
+    "conversation_id": "conversation_0044",
+    "source": {
+      "text": "[{\"title\": \"25 Phẩm chất lãnh đạo giúp bạn trở thành nhà quản lý giỏi\", \"snippet\": \"Lãnh đạo là khả năng gây ảnh hưởng để đám đông tin tưởng, hành động và làm việc kiên trì vì lợi ích chung. Trở thành một nhà lãnh đạo giỏi không hề dễ dàng; đòi hỏi phải sở hữu những phẩm chất hiệu quả để đạt được các mục tiêu và mục đích cao hơn.\"}]\n\n[{\"title\": \"Hướng dẫn khởi nghiệp Digital Marketing tại Nigeria\", \"snippet\": \"Trong ngành digital marketing, bạn không nhất thiết phải có bằng cấp hay chứng chỉ để bắt đầu vì không có 'người gác cổng' ngăn cản. Tuy nhiên, bạn cần kỹ năng và kinh nghiệm thực tế. Bước đầu tiên quan trọng là hãy tự tạo website cho riêng mình để thực hành và chứng minh năng lực với nhà tuyển dụng.\"}]\n\n[{\"title\": \"Phân tích chiến lược của JioMeet đối với Zoom và Google Meet\", \"snippet\": \"Việc ra mắt JioMeet là một bước đi chiến lược chính xác của Mukesh Ambani nhằm cạnh tranh gay gắt với Google Meet và Zoom. JioMeet có giao diện đơn giản, tương đồng với Zoom nhưng sử dụng tông màu xanh đậm đặc trưng, tạo ra sự quen thuộc cho người dùng.\"}]\n\n[{\"title\": \"Bí mật về việc tạo ra quân đội Clone trong Star Wars\", \"snippet\": \"Người Kaminoans ban đầu được ủy thác bởi Jedi Master Sifo-Dyas để tạo ra quân đội Clone cho Cộng hòa. Sau đó, Dooku (trong vai Darth Tyranus) đã tiếp quản kế hoạch, sát hại Sifo-Dyas và cung cấp Jango Fett làm mẫu clone. Người Kaminoans không hề biết mối liên hệ giữa Dooku và Tyranus.\"}]\n\n[{\"title\": \"Phân tích thất bại của Target tại thị trường Canada\", \"snippet\": \"Thất bại của Target tại Canada không phải do khác biệt văn hóa mà do sai lầm về giá cả. Target không cung cấp được mức giá cạnh tranh, thậm chí giá sản phẩm cao hơn đáng kể so với các đối thủ tại Canada dù sản phẩm tương tự, dẫn đến việc người tiêu dùng quay lưng.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang muốn phát triển bản thân. Theo bạn, một nhà lãnh đạo thành công cần có những phẩm chất gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các phẩm chất cần có của một nhà lãnh đạo thành công để phát triển bản thân.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "phẩm chất",
+                "lãnh đạo",
+                "thành công"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "leadership_definition": [
+                "khả năng gây ảnh hưởng",
+                "gây ảnh hưởng để đám đông tin tưởng",
+                "dẫn dắt đội ngũ"
+              ],
+              "core_qualities": [
+                "phẩm chất",
+                "truyền cảm hứng",
+                "sự kiên định",
+                "khả năng thấu hiểu"
+              ]
+            },
+            "golden_reference_claims": [
+              "Lãnh đạo là khả năng gây ảnh hưởng để đám đông tin tưởng, hành động và làm việc kiên trì vì lợi ích chung.",
+              "Một nhà lãnh đạo giỏi cần sở hữu các phẩm chất như truyền cảm hứng, sự kiên định và khả năng thấu hiểu đội ngũ."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe rất thú vị. Vậy nếu mình muốn áp dụng tư duy thành công đó vào một lĩnh vực cụ thể, ví dụ như Digital Marketing tại thị trường Nigeria, thì mình nên bắt đầu từ đâu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách thức và bước khởi đầu để làm Digital Marketing tại thị trường Nigeria.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "digital marketing",
+                "Nigeria"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "tư duy thành công đó",
+              "expected_target": [
+                "tư duy thành công",
+                "phẩm chất lãnh đạo",
+                "khả năng gây ảnh hưởng"
+              ]
+            },
+            "required_slots": {
+              "entry_barrier": [
+                "rào cản gia nhập thấp",
+                "không cần bằng cấp",
+                "không có người gác cổng"
+              ],
+              "first_step": [
+                "tự tạo website",
+                "xây dựng website cho riêng mình",
+                "tự xây dựng website"
+              ],
+              "purpose": [
+                "thực hành",
+                "chứng minh năng lực",
+                "thuyết phục doanh nghiệp tuyển dụng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Lĩnh vực Digital Marketing tại Nigeria có rào cản gia nhập thấp và không bắt buộc phải có bằng cấp chuyên môn hay chứng chỉ.",
+              "Bước khởi đầu thực tế nhất là tự xây dựng một website riêng để thực hành và chứng minh năng lực thực chiến."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nói về chiến lược thâm nhập thị trường, mình thấy JioMeet cũng đang cố gắng thành công trong mảng hội họp trực tuyến. Bạn đánh giá thế nào về khả năng thành công của ứng dụng này?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá khả năng thành công và chiến lược thâm nhập thị trường của ứng dụng JioMeet trong mảng hội họp trực tuyến.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "JioMeet",
+                "Zoom",
+                "chiến lược",
+                "thành công"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "market_strategy": [
+                "chiến lược",
+                "Mukesh Ambani",
+                "cạnh tranh"
+              ],
+              "interface_design": [
+                "giao diện",
+                "Zoom",
+                "đơn giản",
+                "quen thuộc"
+              ]
+            },
+            "golden_reference_claims": [
+              "JioMeet có tiềm năng thành công lớn nhờ chiến lược đánh trúng nhu cầu thị trường của Mukesh Ambani.",
+              "Ứng dụng được thiết kế để cạnh tranh trực tiếp với Zoom và Google Meet.",
+              "JioMeet sở hữu giao diện đơn giản và trực quan, tương tự như Zoom giúp người dùng dễ dàng chuyển đổi."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Nhắc đến chiến lược và sự thao túng, mình chợt nhớ đến phim Star Wars. Trong phim, liệu người Kaminoans có biết họ đang làm việc cho Count Dooku và ông ta là lãnh đạo của Liên minh các Hệ sao Độc lập không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác định xem người Kaminoans có biết họ đang làm việc cho Count Dooku và ông ta là lãnh đạo Liên minh các Hệ sao Độc lập trong Star Wars hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Kaminoans",
+                "Count Dooku",
+                "Sifo-Dyas",
+                "Star Wars"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "knowledge_of_dooku": [
+                "không biết",
+                "không hề biết",
+                "không nhận ra"
+              ],
+              "original_commissioner": [
+                "Sifo-Dyas",
+                "Jedi Master Sifo-Dyas"
+              ],
+              "identity_masking": [
+                "Darth Tyranus",
+                "giả danh",
+                "che đậy"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người Kaminoans không hề biết họ đang phục vụ Count Dooku với tư cách là lãnh đạo của Liên minh các Hệ sao Độc lập.",
+              "Dự án tạo ra quân đội Clone ban đầu được ủy thác bởi Jedi Master Sifo-Dyas cho Cộng hòa.",
+              "Sau khi Sifo-Dyas bị sát hại, Dooku đã tiếp quản dự án dưới danh tính Darth Tyranus nên người Kaminoans không nhận ra họ là một người."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Thật là một sự thao túng tinh vi. Quay lại chuyện kinh doanh thực tế, tại sao một thương hiệu lớn như Target lại thành công rực rỡ ở Mỹ nhưng lại thất bại thảm hại khi sang Canada?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên nhân thất bại của thương hiệu Target tại thị trường Canada",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Target",
+                "Canada",
+                "failed",
+                "thất bại"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Target",
+              "expected_target": [
+                "thương hiệu Target",
+                "Target"
+              ]
+            },
+            "required_slots": {
+              "primary_reason": [
+                "chiến lược giá",
+                "sai lầm về giá cả",
+                "định giá sản phẩm cao"
+              ],
+              "market_context": [
+                "thị trường Canada",
+                "khách hàng Canada"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thất bại của Target tại Canada bắt nguồn từ sai lầm nghiêm trọng trong chiến lược định giá.",
+              "Target đã định giá sản phẩm cao hơn đáng kể so với các đối thủ địa phương tại Canada.",
+              "Việc không cung cấp mức giá cạnh tranh đã khiến người tiêu dùng Canada quay lưng với thương hiệu."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_013",
+    "conversation_id": "conversation_0045",
+    "source": {
+      "text": "[{\"title\": \"Kiếm tiền thông qua nghiên cứu thị trường với Respondent.io\", \"snippet\": \"Respondent.io là một nền tảng nghiên cứu phổ biến trả tiền thực tế cho người tham gia các nghiên cứu. Khác với các khảo sát trực tuyến thông thường, người dùng có thể kiếm được mức thù lao cao, trung bình khoảng 140 USD/giờ hoặc thậm chí lên tới 100 USD/giờ tùy dự án.\"}]\n\n[{\"title\": \"Chiến lược đầu tư 5.000 bảng cho người mới bắt đầu\", \"snippet\": \"Với 5.000 bảng, cách tiếp cận an toàn là chia nhỏ vào các danh mục đầu tư đa dạng có lịch sử lợi nhuận ổn định. Ví dụ, đầu tư vào chỉ số S&P 500 trong dài hạn (như 35 năm trước) sẽ tạo ra sự khác biệt khổng lồ về tài sản nhờ lãi suất kép.\"}]\n\n[{\"title\": \"Chi tiết gói cước nạp tiền cho thiết bị JioFi 4\", \"snippet\": \"JioFi 4 hỗ trợ kết nối hơn 10 thiết bị, pin 5-6 giờ. Các gói cước phổ biến: Gói 199 Rs có 42GB dùng trong 28 ngày; Gói 399 Rs có 84GB dùng trong 56 ngày; Gói 555 Rs cho dung lượng cao hơn.\"}]\n\n[{\"title\": \"Hướng dẫn kiếm tiền với CPA (Cost Per Action)\", \"snippet\": \"Kiếm tiền CPA là quảng bá một ưu đãi và nhận hoa hồng khi khách hàng thực hiện một hành động cụ thể (điền form, tải app, mua hàng). Quy trình: 1. Chọn mạng lưới CPA phù hợp; 2. Trau dồi kỹ năng marketing CPA thông qua các khóa học chuyên sâu.\"}]\n\n[{\"title\": \"Cách kiếm tiền từ ChatGPT và Blog\", \"snippet\": \"ChatGPT không trực tiếp trả tiền nhưng là công cụ hỗ trợ. Cách kiếm tiền: 1. Tạo chatbot cho doanh nghiệp để thu phí thiết lập/bảo trì; 2. Sử dụng AI để tạo nội dung (bài viết blog, mô tả sản phẩm) rồi bán nội dung đó hoặc xây dựng blog để thu hút quảng cáo.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình muốn bắt đầu làm freelancer nhưng không biết làm sao để có thể kiếm được khoảng 1.000 USD mỗi tháng? Bạn có gợi ý nào không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm gợi ý và phương pháp để kiếm khoảng 1.000 USD mỗi tháng khi mới bắt đầu làm freelancer.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "kiếm tiền freelancer 1000 USD",
+                "Respondent.io"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "target_income": [
+                "1.000 USD/tháng",
+                "1000 USD mỗi tháng",
+                "thu nhập 1.000 USD"
+              ],
+              "platform_suggestion": [
+                "Respondent.io",
+                "nghiên cứu thị trường"
+              ],
+              "hourly_rate": [
+                "140 USD/giờ",
+                "100 USD/giờ",
+                "thù lao cao"
+              ]
+            },
+            "golden_reference_claims": [
+              "Respondent.io là nền tảng nghiên cứu thị trường trả tiền thật cho người tham gia với mức thù lao trung bình khoảng 140 USD/giờ hoặc lên tới 100 USD/giờ.",
+              "Tham gia các nền tảng như Respondent.io giúp freelancer có cơ hội đạt được mức thu nhập 1.000 USD mỗi tháng."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nếu mình tích lũy được một khoản khoảng 5.000 bảng Anh (GBP), mình nên đầu tư vào đâu để hiệu quả lâu dài?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi về gợi ý đầu tư hiệu quả dài hạn với số vốn 5.000 bảng Anh (GBP).",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "invest 5000 GBP",
+                "S&P 500 long term"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "investment_amount": [
+                "5.000 bảng Anh",
+                "5.000 bảng",
+                "5000 GBP"
+              ],
+              "investment_strategy": [
+                "chia nhỏ danh mục",
+                "đa dạng hóa",
+                "quỹ chỉ số",
+                "S&P 500"
+              ],
+              "long_term_effect": [
+                "dài hạn",
+                "lãi suất kép"
+              ]
+            },
+            "golden_reference_claims": [
+              "Với số vốn 5.000 bảng Anh, nên chia nhỏ vào các danh mục đầu tư đa dạng thay vì dồn hết vào một chỗ.",
+              "Đầu tư vào các quỹ chỉ số như S&P 500 là một lựa chọn kinh điển với lịch sử tăng trưởng ổn định.",
+              "Sức mạnh của lãi suất kép trong dài hạn sẽ tạo ra sự thay đổi lớn cho tài sản."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiện thể mình đang tìm hiểu về thiết bị JioFi để làm việc từ xa, bạn cho mình hỏi chi phí hàng tháng của dịch vụ này là bao nhiêu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu chi phí hàng tháng của dịch vụ thiết bị phát wifi di động JioFi.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "JioFi",
+                "monthly cost",
+                "recharge plans"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "device_specs": [
+                "pin 5-6 giờ",
+                "kết nối hơn 10 thiết bị",
+                "nhỏ gọn"
+              ],
+              "plan_199": [
+                "199 Rs",
+                "42GB",
+                "28 ngày"
+              ],
+              "plan_399": [
+                "399 Rs",
+                "84GB",
+                "56 ngày"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thiết bị JioFi 4 có khả năng kết nối hơn 10 thiết bị và thời lượng pin từ 5-6 giờ.",
+              "Gói cước 199 Rs của JioFi cung cấp 42GB dữ liệu sử dụng trong 28 ngày.",
+              "Gói cước 399 Rs của JioFi cung cấp 84GB dữ liệu sử dụng trong 56 ngày."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Mình cũng nghe nói về CPA Lead, hình như đây là một cách kiếm tiền khá hay. Bạn giải thích giúp mình cách vận hành và cách bắt đầu với CPA Lead được không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về mô hình kiếm tiền CPA Lead và cách bắt đầu.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "CPA",
+                "lead",
+                "kiếm tiền",
+                "marketing"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition": [
+                "CPA",
+                "Cost Per Action",
+                "Chi phí cho mỗi hành động",
+                "hoa hồng"
+              ],
+              "action_types": [
+                "điền form",
+                "tải app",
+                "mua hàng"
+              ],
+              "starting_steps": [
+                "chọn mạng lưới CPA",
+                "khóa học chuyên sâu",
+                "marketing CPA"
+              ]
+            },
+            "golden_reference_claims": [
+              "CPA là mô hình tiếp thị liên kết nhận hoa hồng khi khách hàng thực hiện hành động cụ thể như điền form, tải app hoặc mua hàng.",
+              "Cách bắt đầu với CPA bao gồm việc chọn mạng lưới CPA uy tín và trau dồi kỹ năng marketing thông qua các khóa học chuyên sâu."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình thấy nhiều người dùng ChatGPT để viết blog kiếm tiền. Điều này có khả thi không và mình nên triển khai như thế nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu tính khả thi và cách thức triển khai việc sử dụng ChatGPT để viết blog kiếm tiền.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "ChatGPT",
+                "blog",
+                "kiếm tiền",
+                "earn money"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "feasibility": [
+                "khả thi",
+                "hoàn toàn khả thi",
+                "feasible"
+              ],
+              "implementation_methods": [
+                "tạo nội dung",
+                "xây dựng blog",
+                "chatbot",
+                "quảng cáo"
+              ]
+            },
+            "golden_reference_claims": [
+              "Dùng ChatGPT hỗ trợ viết blog kiếm tiền là hoàn toàn khả thi nhưng đây không phải là nguồn thu nhập trực tiếp mà là công cụ tăng năng suất.",
+              "Có thể triển khai bằng cách sử dụng AI để sản xuất nội dung bài viết blog rồi kiếm tiền từ quảng cáo hoặc xây dựng chatbot cho doanh nghiệp.",
+              "Cần có sự kiểm soát và tư duy sáng tạo của con người để đảm bảo nội dung có giá trị cao."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_014",
+    "conversation_id": "conversation_0046",
+    "source": {
+      "text": "[{\"title\": \"Portuguese Empire - Wikipedia\", \"snippet\": \"The Portuguese Empire included various territories such as Angola, Mozambique, Guinea-Bissau, Cape Verde, São Tomé and Príncipe, Timor-Leste, Macau, and Goa. The Azores were a colony from 1427-1766 before becoming a captaincy-general and later an autonomous region.\"}]\n\n[{\"title\": \"Traveler's Journal - Personal Experience\", \"snippet\": \"A seasoned traveler from Australia has visited 45 countries in total, including their birth country Australia (exploring multiple states and territories) and their adopted country, the UK (visiting England, Wales, and Scotland).\"}]\n\n[{\"title\": \"Top 10 Most Beautiful and Interesting Countries to Visit\", \"snippet\": \"The most touristic countries are often those offering a blend of amazing sights, rich cultures, and unique experiences. Top destinations typically include countries with diverse landscapes, historical landmarks, and vibrant festivals.\"}]\n\n[{\"title\": \"Africa Travel Safety Report\", \"snippet\": \"According to the World Economic Forum report, Rwanda and Morocco are among the safest countries in Africa. Morocco is highlighted for its beauty and welcoming people, especially cities like Tangier where the Atlantic meets the Mediterranean.\"}]\n\n[{\"title\": \"Anglo-Dutch Treaty of 1824 - Wikipedia\", \"snippet\": \"The Anglo-Dutch Treaty of 1824 officially divided the Malay archipelago into two spheres of influence: Malaya, ruled by the United Kingdom, and the Dutch East Indies, ruled by the Netherlands.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Bạn có thể cho tôi biết những quốc gia nào từng là thuộc địa của Bồ Đào Nha không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Liệt kê các quốc gia và vùng lãnh thổ từng là thuộc địa của Bồ Đào Nha",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Portuguese colonies",
+                "thuộc địa của Bồ Đào Nha"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "african_colonies": [
+                "Angola",
+                "Mozambique",
+                "Guinea-Bissau",
+                "Cape Verde",
+                "São Tomé and Príncipe"
+              ],
+              "asian_territories": [
+                "Timor-Leste",
+                "Macau",
+                "Goa"
+              ]
+            },
+            "golden_reference_claims": [
+              "Đế chế Bồ Đào Nha từng bao gồm nhiều thuộc địa tại châu Phi như Angola, Mozambique, Guinea-Bissau, Cape Verde và São Tomé and Príncipe.",
+              "Bồ Đào Nha cũng từng cai trị các vùng lãnh thổ ở châu Á như Timor-Leste, Macau và Goa."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe thú vị thật. Nếu là một người đam mê xê dịch, bạn nghĩ một người có thể đi du lịch được bao nhiêu nước? Bạn có ví dụ nào về những người đi nhiều không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu số lượng quốc gia mà một người đam mê xê dịch có thể đi du lịch và ví dụ thực tế về những người đi nhiều.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "traveler",
+                "countries visited",
+                "number of countries"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "travel_limit_factors": [
+                "thời gian",
+                "điều kiện cá nhân",
+                "time",
+                "personal conditions"
+              ],
+              "example_traveler_experience": [
+                "45 quốc gia",
+                "45 countries",
+                "Úc",
+                "Australia",
+                "Vương quốc Anh",
+                "UK"
+              ]
+            },
+            "golden_reference_claims": [
+              "Số lượng quốc gia một người có thể đi du lịch phụ thuộc vào thời gian và điều kiện cá nhân.",
+              "Có những trường hợp ghi nhận người đi du lịch đã đi qua 45 quốc gia, bao gồm cả Úc và Vương quốc Anh."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Vậy theo bạn, đâu là những quốc gia thu hút khách du lịch nhất thế giới hiện nay?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác định những quốc gia thu hút lượng khách du lịch lớn nhất trên thế giới hiện nay.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "most touristic countries",
+                "top travel destinations"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "tourism_appeal": [
+                "cảnh quan thiên nhiên",
+                "văn hóa đặc sắc",
+                "trải nghiệm độc đáo",
+                "danh lam thắng cảnh"
+              ],
+              "top_destinations": [
+                "10 quốc gia nổi bật",
+                "điểm đến hàng đầu",
+                "quốc gia thu hút khách du lịch"
+              ]
+            },
+            "golden_reference_claims": [
+              "Những quốc gia thu hút khách du lịch nhất thế giới là những nơi sở hữu sự kết hợp giữa cảnh quan thiên nhiên, văn hóa đặc sắc và trải nghiệm độc đáo.",
+              "Danh sách điểm đến hàng đầu thường bao gồm các quốc gia nổi bật về vẻ đẹp kiến trúc, lễ hội truyền thống và danh lam thắng cảnh toàn cầu."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tôi đang cân nhắc đi du lịch châu Phi, nhưng hơi lo về vấn đề an ninh. Những nước nào ở châu Phi được coi là an toàn nhất cho khách du lịch?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm các quốc gia an toàn nhất tại châu Phi cho khách du lịch.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "safest countries",
+                "Africa",
+                "World Economic Forum"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "safe_countries": [
+                "Rwanda",
+                "Morocco",
+                "Rwanda và Morocco"
+              ],
+              "source_reference": [
+                "Diễn đàn Kinh tế Thế giới",
+                "World Economic Forum"
+              ]
+            },
+            "golden_reference_claims": [
+              "Rwanda và Morocco là hai trong số những quốc gia an toàn nhất ở châu Phi theo báo cáo của Diễn đàn Kinh tế Thế giới.",
+              "Morocco được đánh giá cao về sự thân thiện của người dân và cảnh quan đẹp, đặc biệt là thành phố Tangier."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Nhắc đến du lịch và địa lý, tôi thắc mắc tại sao Malaysia và Indonesia lại là hai quốc gia riêng biệt dù có nhiều nét tương đồng?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích nguyên nhân lịch sử dẫn đến sự phân chia Malaysia và Indonesia thành hai quốc gia riêng biệt",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Malaysia",
+                "Indonesia",
+                "Hiệp ước Anh-Hà Lan",
+                "Anglo-Dutch Treaty",
+                "1824"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "treaty_name": [
+                "Hiệp ước Anh-Hà Lan 1824",
+                "Anglo-Dutch Treaty of 1824",
+                "Hiệp ước 1824"
+              ],
+              "spheres_of_influence": [
+                "hai vùng ảnh hưởng",
+                "quần đảo Mã Lai",
+                "Malaya và Đông Ấn Hà Lan"
+              ],
+              "colonial_powers": [
+                "Vương quốc Anh",
+                "Hà Lan",
+                "Anh cai trị",
+                "Hà Lan cai trị"
+              ]
+            },
+            "golden_reference_claims": [
+              "Hiệp ước Anh-Hà Lan năm 1824 (Anglo-Dutch Treaty of 1824) đã chính thức phân chia quần đảo Mã Lai thành hai vùng ảnh hưởng.",
+              "Vùng Malaya do Vương quốc Anh cai trị là tiền thân của Malaysia ngày nay.",
+              "Vùng Đông Ấn Hà Lan do Hà Lan cai trị là tiền thân của Indonesia ngày nay."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_015",
+    "conversation_id": "conversation_0047",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn khởi đầu cho Content Creator trên YouTube\", \"snippet\": \"YouTube hiện nay không chỉ là nơi chia sẻ video mà đã trở thành một hiện tượng toàn cầu, nơi các nhà sáng tạo nội dung có thể xây dựng cộng đồng và biến đam mê thành sự nghiệp. Tuy nhiên, con đường này đầy thách thức vì sự cạnh tranh khốc liệt trong biển nội dung khổng lồ.\"}]\n\n[{\"title\": \"Chiến lược tăng trưởng YouTube cho thị trường quốc tế\", \"snippet\": \"Để thành công tại Mỹ, cần: 1. Xác định ngách (niche) cụ thể mà bạn đam mê và có tiềm năng khán giả. 2. Nghiên cứu thị trường: phân tích các kênh thành công cùng ngách về nội dung, phong cách trình bày và cách họ tương tác với người xem để tìm ra điểm khác biệt.\"}]\n\n[{\"title\": \"Chính sách kiếm tiền của YouTube (YouTube Partner Program)\", \"snippet\": \"Điều kiện cơ bản: đạt ít nhất 1.000 người đăng ký và 4.000 giờ xem công khai trong 12 tháng qua. Quy trình: Kích hoạt trong YouTube Studio, thiết lập tài khoản Google AdSense và cung cấp thông tin thuế (tax information).\"}]\n\n[{\"title\": \"Bí quyết thu hút và giữ chân khán giả trên YouTube\", \"snippet\": \"Kết hợp giữa sáng tạo nội dung, tương tác và quảng bá. Tập trung vào chất lượng cao: âm thanh rõ ràng, hình ảnh bắt mắt, nội dung mang lại giá trị (thông tin, giải trí hoặc độc đáo) và nhất quán với ngách đã chọn.\"}]\n\n[{\"title\": \"Xếp hạng các YouTuber hàng đầu thế giới\", \"snippet\": \"PewDiePie là một trong những YouTuber nổi tiếng nhất lịch sử với khoảng 111 triệu người đăng ký. Anh nổi tiếng nhờ các video gaming, vlog và những cuộc đối đầu truyền thông (như với T-Series), đồng thời là một trong những người kiếm tiền nhiều nhất nền tảng.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình muốn bắt đầu xây dựng một kênh YouTube thành công để trở thành một YouTuber chuyên nghiệp thì nên bắt đầu từ đâu?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách thức và bước khởi đầu để xây dựng một kênh YouTube thành công nhằm trở thành YouTuber chuyên nghiệp.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "cách bắt đầu kênh youtube",
+                "successful youtube channel"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "platform_nature": [
+                "hệ sinh thái",
+                "nơi chia sẻ video",
+                "nền tảng chia sẻ video"
+              ],
+              "challenge": [
+                "cạnh tranh khốc liệt",
+                "thách thức",
+                "biển nội dung"
+              ]
+            },
+            "golden_reference_claims": [
+              "YouTube là nền tảng chia sẻ video và hệ sinh thái giúp nhà sáng tạo xây dựng cộng đồng và phát triển sự nghiệp.",
+              "Việc bắt đầu làm YouTuber đối mặt với thử thách lớn do sự cạnh tranh khốc liệt trong lượng nội dung khổng lồ."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy cụ thể mình cần thực hiện những bước thiết yếu nào để phát triển kênh và thu hút người đăng ký, đặc biệt là nếu muốn tiếp cận thị trường khó tính như Hoa Kỳ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu các bước thiết yếu để phát triển kênh YouTube và thu hút người đăng ký tại thị trường Hoa Kỳ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "youtube growth",
+                "thị trường mỹ",
+                "phát triển kênh youtube"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "content_niche": [
+                "ngách nội dung",
+                "niche",
+                "chủ đề cụ thể"
+              ],
+              "market_research": [
+                "nghiên cứu thị trường",
+                "phân tích các kênh thành công",
+                "market research"
+              ]
+            },
+            "golden_reference_claims": [
+              "Để thành công tại thị trường Mỹ, cần xác định ngách nội dung cụ thể mà bản thân đam mê và có tiềm năng khán giả.",
+              "Cần thực hiện nghiên cứu thị trường chi tiết bằng cách phân tích các kênh thành công cùng ngách về nội dung, phong cách và cách tương tác."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Khi kênh đã phát triển, mình cần chuẩn bị những giấy tờ hay điều kiện gì để có thể bật kiếm tiền trên YouTube?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu điều kiện và giấy tờ cần thiết để bật kiếm tiền trên YouTube.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "điều kiện bật kiếm tiền youtube",
+                "youtube monetization"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Kênh",
+              "expected_target": [
+                "kênh YouTube",
+                "channel"
+              ]
+            },
+            "required_slots": {
+              "subscriber_requirement": [
+                "1.000 người đăng ký",
+                "1000 subscribers"
+              ],
+              "watch_time_requirement": [
+                "4.000 giờ xem",
+                "4000 watch hours"
+              ],
+              "payment_method": [
+                "Google AdSense",
+                "tài khoản AdSense"
+              ],
+              "tax_info": [
+                "thông tin thuế",
+                "tax information"
+              ]
+            },
+            "golden_reference_claims": [
+              "Để bật kiếm tiền YouTube, kênh cần đạt tối thiểu 1.000 người đăng ký và 4.000 giờ xem công khai trong 12 tháng qua.",
+              "Người dùng cần thiết lập tài khoản Google AdSense và cung cấp thông tin thuế để nhận thanh toán."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Mình vẫn lo lắng về việc làm sao để giữ chân người xem và khiến họ nhấn nút đăng ký ủng hộ kênh lâu dài?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm thế nào để giữ chân người xem và tăng lượt đăng ký kênh YouTube dài hạn.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "tăng lượt đăng ký youtube",
+                "youtube subscribers"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "content_quality": [
+                "chất lượng sản xuất",
+                "âm thanh rõ ràng",
+                "hình ảnh sắc nét",
+                "chất lượng cao"
+              ],
+              "niche_consistency": [
+                "ngách đã chọn",
+                "nhất quán về chủ đề",
+                "kiên trì với ngách"
+              ],
+              "value_delivery": [
+                "trao giá trị thực",
+                "kiến thức bổ ích",
+                "mang lại giá trị"
+              ],
+              "call_to_action": [
+                "kêu gọi hành động",
+                "đăng ký kênh",
+                "CTA"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thu hút người đăng ký là sự kết hợp giữa chất lượng nội dung và chiến thuật tương tác.",
+              "Cần đầu tư vào chất lượng sản xuất như âm thanh rõ ràng và hình ảnh sắc nét.",
+              "Mỗi video cần mang lại giá trị thực và có hành động kêu gọi người xem đăng ký kênh."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Để có thêm động lực, bạn cho mình biết ai là YouTuber nổi tiếng và thành công nhất thế giới hiện nay không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về YouTuber nổi tiếng và thành công nhất thế giới hiện nay.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "YouTuber",
+                "nổi tiếng nhất",
+                "thế giới"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "youtuber_name": [
+                "PewDiePie",
+                "Felix Kjellberg"
+              ],
+              "subscriber_count": [
+                "111 triệu người đăng ký",
+                "111 triệu subscribers"
+              ]
+            },
+            "golden_reference_claims": [
+              "PewDiePie là một trong những YouTuber nổi tiếng nhất lịch sử với khoảng 111 triệu người đăng ký.",
+              "Anh nổi tiếng nhờ nội dung gaming, vlog và các cuộc đua giành ngôi vương lượt đăng ký trên nền tảng."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_016",
+    "conversation_id": "conversation_0048",
+    "source": {
+      "text": "[{\"title\": \"Phân tích tăng trưởng và thách thức của kinh tế Ấn Độ\", \"snippet\": \"Ấn Độ từng là một trong những nền kinh tế tăng trưởng nhanh nhất thế giới trong 3 thập kỷ. Tuy nhiên, hiện nay xuất hiện dấu hiệu trì trệ: giới trẻ thiếu việc làm, thu nhập nông nghiệp đình trệ, đầu tư doanh nghiệp giảm và hệ thống ngân hàng bị áp lực bởi nợ xấu.\"}]\n\n[{\"title\": \"Dự báo kinh tế vĩ mô S&P Global 2023\", \"snippet\": \"Đại dịch COVID-19 và xung đột Nga-Ukraine đã gây tổn thương nặng nề cho kinh tế toàn cầu. S&P Global Market Intelligence dự báo khả năng suy thoái trong hai quý đầu năm 2023 trước khi phục hồi.\"}]\n\n[{\"title\": \"Tác động hai mặt của việc mất giá tiền tệ tại Thổ Nhĩ Kỳ\", \"snippet\": \"Việc đồng Lira giảm giá khiến hàng xuất khẩu của Thổ Nhĩ Kỳ rẻ hơn, từ đó tăng kim ngạch xuất khẩu (chiếm tỷ trọng lớn trong GDP). Tuy nhiên, điều này cũng khiến hàng nhập khẩu, đặc biệt là năng lượng, trở nên đắt đỏ hơn, gây áp lực lên cán cân vãng lai.\"}]\n\n[{\"title\": \"Đặc điểm tâm lý của mối quan hệ bạn bè\", \"snippet\": \"Tình bạn đặc trưng bởi 5 yếu tố: là mối quan hệ hai chiều (dyadic), có sự công nhận và tình cảm từ cả hai phía, không mang tính bắt buộc (tự nguyện), có tính bình đẳng và không có ràng buộc pháp lý.\"}]\n\n[{\"title\": \"Đánh giá phản ứng của châu Âu với COVID-19\", \"snippet\": \"Chính phủ Ý đã gặp nhiều khó khăn và mắc sai lầm trong giai đoạn đầu, nhưng những nỗ lực sau đó đã bắt đầu có kết quả. Tương tự nhiều nước châu Âu khác, họ vừa phải đối phó với dịch bệnh vừa phải điều chỉnh chiến lược phản ứng.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang theo dõi tin tức và thấy nhiều ý kiến trái chiều. Liệu nền kinh tế Ấn Độ hiện nay có thực sự đang rơi vào khủng hoảng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ tình hình kinh tế hiện tại của Ấn Độ có đang rơi vào khủng hoảng hay không dựa trên các thông tin thời sự và phân tích.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "kinh tế Ấn Độ",
+                "khủng hoảng",
+                "Indian economy"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "growth_history": [
+                "tăng trưởng nhanh nhất thế giới",
+                "ba thập kỷ qua",
+                "growth fastest"
+              ],
+              "economic_challenges": [
+                "thiếu việc làm",
+                "thu nhập nông nghiệp đình trệ",
+                "đầu tư doanh nghiệp giảm",
+                "nợ xấu"
+              ]
+            },
+            "golden_reference_claims": [
+              "Ấn Độ từng là một trong những nền kinh tế tăng trưởng nhanh nhất thế giới trong ba thập kỷ qua.",
+              "Nền kinh tế Ấn Độ hiện đang xuất hiện các dấu hiệu trì trệ như giới trẻ thiếu việc làm, thu nhập nông nghiệp đình trệ, đầu tư doanh nghiệp giảm và áp lực từ nợ xấu."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe có vẻ nghiêm trọng nhỉ. Vậy theo các chuyên gia, liệu Ấn Độ có khả năng sẽ rơi vào suy thoái trong những tháng tới không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu dự báo của các chuyên gia về khả năng suy thoái kinh tế Ấn Độ trong thời gian tới.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Ấn Độ",
+                "suy thoái kinh tế",
+                "India recession forecast"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Ấn Độ",
+              "expected_target": [
+                "Ấn Độ",
+                "nền kinh tế Ấn Độ"
+              ]
+            },
+            "required_slots": {
+              "global_context": [
+                "đại dịch COVID-19",
+                "xung đột Nga-Ukraine",
+                "kinh tế toàn cầu"
+              ],
+              "recession_forecast": [
+                "S&P Global Market Intelligence",
+                "suy thoái trong hai quý đầu năm 2023",
+                "phục hồi"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nền kinh tế thế giới đã chịu cú sốc lớn từ đại dịch COVID-19 và xung đột Nga-Ukraine.",
+              "S&P Global Market Intelligence dự báo khả năng xảy ra suy thoái nhẹ trong hai quý đầu năm 2023 trước khi kinh tế phục hồi."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nhắc đến khủng hoảng, mình thấy Thổ Nhĩ Kỳ có tình trạng lạ là đồng Lira mất giá thê thảm nhưng nền kinh tế dường như vẫn chưa sụp đổ. Tại sao lại như vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích nguyên nhân tại sao nền kinh tế Thổ Nhĩ Kỳ chưa sụp đổ dù đồng Lira mất giá thê thảm.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Thổ Nhĩ Kỳ",
+                "Lira",
+                "mất giá",
+                "kinh tế"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "export_advantage": [
+                "xuất khẩu rẻ hơn",
+                "tăng xuất khẩu",
+                "hàng xuất khẩu giá rẻ"
+              ],
+              "import_pressure": [
+                "nhập khẩu đắt đỏ",
+                "chi phí nhập khẩu cao",
+                "năng lượng đắt đỏ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc đồng Lira giảm giá giúp hàng hóa Thổ Nhĩ Kỳ rẻ hơn, từ đó tăng kim ngạch xuất khẩu.",
+              "Mặt trái của việc mất giá tiền tệ là làm cho hàng nhập khẩu, đặc biệt là năng lượng, trở nên đắt đỏ hơn và gây áp lực lên cán cân vãng lai."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Chúng ta nói nhiều về kinh tế và những con số quá rồi. Hãy chuyển sang chủ đề khác nhẹ nhàng hơn đi. Theo bạn, ý nghĩa thực sự của tình bạn là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về định nghĩa và ý nghĩa thực sự của tình bạn dưới góc độ tâm lý và xã hội học.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "định nghĩa",
+                "tình bạn",
+                "friendship",
+                "psychology"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "friendship_characteristics": [
+                "mối quan hệ hai chiều",
+                "tự nguyện",
+                "bình đẳng",
+                "tình cảm tương hỗ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tình bạn là mối quan hệ hai chiều có sự công nhận và tình cảm từ cả hai phía.",
+              "Tình bạn là mối quan hệ hoàn toàn tự nguyện, không có ràng buộc pháp lý hay bắt buộc.",
+              "Tình bạn mang tính bình đẳng và không có sự phân cấp quyền lực."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình muốn hỏi về quản trị khủng hoảng. Bạn đánh giá thế nào về cách chính phủ Ý điều hành trong cuộc khủng hoảng coronavirus trước đây?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá cách chính phủ Ý quản lý và điều hành trong cuộc khủng hoảng coronavirus.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "chính phủ Ý",
+                "khủng hoảng COVID-19",
+                "coronavirus management",
+                "Italy government"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "early_difficulties": [
+                "giai đoạn đầu",
+                "mắc sai lầm",
+                "gặp nhiều khó khăn",
+                "phản ứng không đủ nhanh"
+              ],
+              "subsequent_efforts": [
+                "nỗ lực sau đó",
+                "kiên trì",
+                "mang lại kết quả"
+              ]
+            },
+            "golden_reference_claims": [
+              "Chính phủ Ý đã gặp nhiều khó khăn và mắc sai lầm trong giai đoạn đầu ứng phó với đại dịch coronavirus.",
+              "Những nỗ lực sau đó và sự kiên trì của chính phủ Ý cuối cùng cũng mang lại kết quả tích cực."
+            ]
+          }
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,3744 @@
+[
+  {
+    "sample_id": "sample_001",
+    "conversation_id": "conversation_0049",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn an toàn giao thông đường bộ\", \"snippet\": \"Hầu hết các vụ tai nạn xảy ra do sự chủ quan và rủi ro mà người lái xe chấp nhận đánh đổi. Việc tuân thủ nghiêm ngặt luật giao thông và nhận thức rõ về nguy hiểm trên đường là yếu tố then chốt để bảo vệ tính mạng.\"}]\n\n[{\"title\": \"KSI Official Discography\", \"snippet\": \"Các bài hát phổ biến của KSI bao gồm 'No Time' (feat. Lil Durk), 'The Moment', và 'Lose' (feat. Lil Wayne) phát hành năm 2021.\"}]\n\n[{\"title\": \"Công nghệ Pin Hybrid\", \"snippet\": \"Xe Plug-in Hybrid (PHEV) dùng pin lớn để chạy thuần điện quãng đường dài (ví dụ 30km cần pin ~7.5kWh). Xe tự sạc (HEV) dùng pin nhỏ làm bộ đệm để tối ưu hiệu suất động cơ.\"}]\n\n[{\"title\": \"Xử lý sự cố mất phanh\", \"snippet\": \"Nếu mất phanh, không nên đạp nhấp nhả (pump) vì sẽ làm thất thoát thêm dầu phanh. Hãy nhấn giữ chặt bàn đạp nếu còn một chút lực, sau đó giảm tốc độ từ từ bằng số hoặc phanh tay.\"}]\n\n[{\"title\": \"Top Luxury Car Brands\", \"snippet\": \"Các thương hiệu như Lamborghini, Aston Martin và Rolls Royce không chỉ là phương tiện mà còn là tác phẩm nghệ thuật dành cho các nhà sưu tập giàu có.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tôi vừa mất em trai trong một vụ tai nạn giao thông. Bạn có thể gợi ý cho tôi danh sách chi tiết nhất về các bước để mọi người có thể phòng tránh tai nạn xe hơi không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm các biện pháp và hướng dẫn chi tiết để phòng tránh tai nạn giao thông đường bộ và tai nạn xe hơi.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "phòng tránh tai nạn giao thông",
+                "car accident prevention"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "empathy_and_condolence": [
+                "xin chia buồn sâu sắc",
+                "mất mát to lớn",
+                "sự mất mát"
+              ],
+              "accident_causes": [
+                "chủ quan",
+                "chấp nhận rủi ro",
+                "thiếu tỉnh táo"
+              ],
+              "prevention_measures": [
+                "thay đổi tư duy lái xe",
+                "luôn cảnh giác",
+                "tuân thủ nghiêm ngặt luật giao thông"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người trợ lý đã gửi lời chia buồn sâu sắc đến người dùng về sự mất mát trong vụ tai nạn giao thông.",
+              "Hầu hết các vụ tai nạn giao thông xảy ra do sự chủ quan và việc người lái xe chấp nhận rủi ro.",
+              "Để phòng tránh tai nạn, người lái xe cần thay đổi tư duy, luôn cảnh giác và không chủ quan khi tham gia giao thông."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Để giảm căng thẳng khi lái xe, tôi muốn nghe nhạc. Gần đây bạn có danh sách nhạc (playlist) nào hay không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Yêu cầu gợi ý danh sách nhạc nghe khi lái xe để giảm căng thẳng.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nhạc nghe khi lái xe",
+                "giảm căng thẳng"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "music_genre": [
+                "sôi động",
+                "hiện đại",
+                "giai điệu"
+              ],
+              "song_recommendations": [
+                "No Time",
+                "The Moment",
+                "Lose",
+                "KSI"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nghe nhạc là phương pháp giúp giữ tâm trạng thoải mái khi lái xe.",
+              "Các bài hát của KSI từ năm 2021 bao gồm 'No Time' (kết hợp với Lil Durk), 'The Moment', và 'Lose' (kết hợp với Lil Wayne)."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nhắc đến xe cộ, tôi đang tìm hiểu về xe hybrid. Tại sao xe hybrid sạc điện (Plug-in Hybrid) lại có pin lớn hơn nhiều so với xe hybrid tự sạc (Self-charging Hybrid)?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do xe hybrid sạc điện (Plug-in Hybrid) có pin lớn hơn xe hybrid tự sạc (Self-charging Hybrid).",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "PHEV",
+                "HEV",
+                "battery size",
+                "pin"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "phev_battery_purpose": [
+                "chạy thuần điện quãng đường dài",
+                "vận hành hoàn toàn bằng điện",
+                "sạc tại nhà"
+              ],
+              "hev_battery_purpose": [
+                "bộ đệm",
+                "tối ưu hiệu suất động cơ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Xe Plug-in Hybrid (PHEV) sử dụng pin lớn để có thể vận hành hoàn toàn bằng điện trong quãng đường dài và sạc điện tại nhà.",
+              "Xe hybrid tự sạc (HEV) sử dụng pin nhỏ đóng vai trò là bộ đệm để tối ưu hóa hiệu suất của động cơ."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Một câu hỏi giả định về an toàn: Nếu chẳng may hệ thống phanh bị hỏng hoặc bị cắt, làm sao để dừng xe an toàn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách xử lý và dừng xe an toàn khi hệ thống phanh bị hỏng hoặc bị cắt.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "mất phanh",
+                "brake failure",
+                "dừng xe an toàn"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "brake_action": [
+                "nhấn giữ chặt bàn đạp",
+                "không đạp nhấp nhả",
+                "không pump phanh"
+              ],
+              "deceleration_method": [
+                "dồn số thấp",
+                "sử dụng phanh tay",
+                "giảm tốc độ từ từ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Khi mất phanh, tuyệt đối không đạp nhấp nhả (pump) vì sẽ làm thất thoát thêm dầu phanh mà hãy nhấn giữ chặt bàn đạp nếu còn một chút lực.",
+              "Có thể giảm tốc độ từ từ và ổn định bằng cách dồn số thấp hoặc sử dụng phanh tay một cách nhẹ nhàng để tránh bị khóa bánh."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, theo bạn thương hiệu xe hơi nào là tốt nhất thế giới hiện nay?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi về thương hiệu xe hơi tốt nhất thế giới hiện nay",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "best car brands",
+                "thương hiệu xe hơi"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "luxury_brands": [
+                "Lamborghini",
+                "Aston Martin",
+                "Rolls Royce"
+              ],
+              "target_audience": [
+                "nhà sưu tập giàu có",
+                "thượng lưu"
+              ]
+            },
+            "golden_reference_claims": [
+              "Lamborghini, Aston Martin và Rolls Royce là các thương hiệu được nhắc đến hàng đầu về sự xa xỉ và đẳng cấp.",
+              "Những dòng xe này hướng đến các nhà sưu tập thượng lưu và có giá cực cao."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_002",
+    "conversation_id": "conversation_0050",
+    "source": {
+      "text": "[{\"title\": \"The World Genius Directory & High IQ Societies\", \"snippet\": \"Những người có IQ trên 150 (sd15) thường gia nhập các câu lạc bộ thiên tài. Tuy nhiên, trí thông minh cao không đảm bảo hạnh phúc; một số người gặp khó khăn trong giao tiếp xã hội hoặc mắc các rối loạn nhân cách như rối loạn nhân cách phân liệt (schizoid personality disorder), dẫn đến việc thiếu hụt bạn bè và kết nối cảm xúc.\"}]\n\n[{\"title\": \"Hướng dẫn chọn xe hai bánh cho người mới\", \"snippet\": \"Xe không số (scooter) có ưu điểm: không cần điều chỉnh côn (clutch), không cần sang số thủ công, thiết kế bình xăng thường khó tiếp cận hơn đối với người lạ (hạn chế mất trộm xăng). Hệ thống phanh thường là phanh tay (lever brake), hiện nay tích hợp thêm CBS hoặc ABS để tăng an toàn.\"}]\n\n[{\"title\": \"Trải nghiệm nuôi dạy trẻ em năng khiếu\", \"snippet\": \"Trẻ có IQ cao thường đặt ra vô số câu hỏi về cách vận hành của thế giới ngay từ khi còn nhỏ (khoảng 5 tuổi), điều này gây áp lực lớn cho cha mẹ vì không phải lúc nào họ cũng có câu trả lời thỏa đáng. Sự chênh lệch về nhận thức giữa trẻ và bạn bè cùng trang lứa cũng tạo ra những khó khăn trong giáo dục.\"}]\n\n[{\"title\": \"Phân tích tâm lý tội phạm và ASPD\", \"snippet\": \"Những người mắc chứng rối loạn nhân cách chống đối xã hội (ASPD/sociopath) vẫn có thể trải qua cảm giác hạnh phúc hoặc nhẹ nhõm. Ví dụ, trong các vụ án hình sự, những bị cáo sociopath có thể cảm thấy thực sự hạnh phúc và phấn khích khi nhận được phán quyết 'không có tội' (not guilty).\"}]\n\n[{\"title\": \"Vật liệu đóng tàu: Thép vs Nhôm vs Gỗ\", \"snippet\": \"Thuyền thép có ưu điểm là bền, chắc chắn, chịu lực tốt và dễ sửa chữa. Tuy nhiên, nhược điểm lớn nhất là rỉ sét, đặc biệt là trong môi trường nước mặn. Việc chống rỉ đòi hỏi chi phí sơn và bảo trì liên tục. Thực tế, dù là tàu chiến Hải quân Mỹ được bảo trì tốt vẫn bị rỉ sét theo thời gian.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình tò mò muốn biết cảm giác khi sở hữu chỉ số IQ 150 sẽ như thế nào? Cuộc sống có dễ dàng hơn không và có những ưu điểm hay nhược điểm gì so với người bình thường?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về trải nghiệm, ưu nhược điểm và thực tế cuộc sống của người sở hữu chỉ số IQ 150.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "IQ 150",
+                "ưu nhược điểm",
+                "thiên tài"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "advantages": [
+                "xử lý thông tin nhanh",
+                "tư duy logic vượt trội",
+                "khả năng xử lý thông tin"
+              ],
+              "disadvantages": [
+                "khó khăn giao tiếp xã hội",
+                "cô độc",
+                "rối loạn nhân cách phân liệt"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người sở hữu chỉ số IQ 150 thuộc nhóm thiên tài với khả năng xử lý thông tin nhanh và tư duy logic vượt trội.",
+              "Trí thông minh cao không đảm bảo hạnh phúc và những người này thường gặp khó khăn trong việc kết nối cảm xúc hay giao tiếp xã hội.",
+              "Một số trường hợp có thể đi kèm với vấn đề tâm lý hoặc rối loạn nhân cách khiến họ cảm thấy cô độc, thiếu hụt bạn bè."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe có vẻ mâu thuẫn nhỉ. Chuyển sang một chủ đề khác thực tế hơn, nếu mình muốn mua xe hai bánh thì xe không số (xe ga) có ưu điểm và nhược điểm gì so với xe có số?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh ưu điểm và nhược điểm giữa xe hai bánh không số (xe ga) và xe có số.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "xe không số",
+                "xe có số",
+                "ưu điểm",
+                "nhược điểm"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "operation_convenience": [
+                "không cần điều chỉnh côn",
+                "không cần sang số thủ công",
+                "vận hành đơn giản",
+                "vặn ga là chạy"
+              ],
+              "security_fuel": [
+                "bình xăng khó tiếp cận",
+                "hạn chế mất trộm xăng"
+              ],
+              "braking_system": [
+                "phanh tay",
+                "CBS",
+                "ABS"
+              ]
+            },
+            "golden_reference_claims": [
+              "Xe không số (xe ga) giúp người lái vận hành đơn giản, không cần điều chỉnh côn hay sang số thủ công.",
+              "Thiết kế bình xăng của xe không số thường khó tiếp cận đối với người lạ, giúp hạn chế tình trạng trộm xăng.",
+              "Hệ thống phanh của xe không số thường là phanh tay, kết hợp với công nghệ CBS hoặc ABS để tăng độ an toàn."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiện nói về sự phát triển, mình thấy nhiều người áp lực khi nuôi con thông minh. Vậy thực tế việc nuôi dạy một đứa trẻ có IQ rất cao sẽ như thế nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về thực tế và áp lực trong việc nuôi dạy trẻ có chỉ số IQ rất cao",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nuôi dạy",
+                "trẻ IQ cao",
+                "thách thức",
+                "thiên tài"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "sự phát triển",
+              "expected_target": [
+                "sở hữu chỉ số IQ 150",
+                "trẻ có IQ cao",
+                "thiên tài"
+              ]
+            },
+            "required_slots": {
+              "parenting_challenge": [
+                "áp lực lớn cho cha mẹ",
+                "thử thách lớn đối với cha mẹ",
+                "quá tải"
+              ],
+              "child_behavior": [
+                "đặt ra vô số câu hỏi",
+                "tò mò cực độ",
+                "hỏi hóc búa"
+              ],
+              "social_gap": [
+                "chênh lệch về nhận thức",
+                "khoảng cách về nhận thức",
+                "hòa nhập với bạn bè"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nuôi dạy trẻ có IQ cao mang lại niềm tự hào nhưng cũng tạo áp lực lớn cho cha mẹ vì trẻ thường xuyên đặt ra vô số câu hỏi hóc búa.",
+              "Trẻ có IQ cao thường có sự chênh lệch về nhận thức so với bạn bè cùng trang lứa, gây khó khăn trong việc giáo dục và hòa nhập."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Nhắc đến tâm lý, mình có đọc được một số tài liệu về rối loạn nhân cách. Liệu một người bị bệnh nhân cách chống đối xã hội (sociopath) có thể cảm thấy hạnh phúc hay trải qua trạng thái hưng cảm không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem người mắc chứng rối loạn nhân cách chống đối xã hội (sociopath) có thể cảm thấy hạnh phúc hoặc trải qua trạng thái hưng cảm không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "sociopath",
+                "hạnh phúc",
+                "hưng cảm",
+                "ASPD"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "happiness_capability": [
+                "vẫn có thể trải qua cảm giác hạnh phúc",
+                "vẫn có khả năng cảm nhận được hạnh phúc",
+                "cảm thấy thực sự hạnh phúc"
+              ],
+              "context_example": [
+                "nhận được phán quyết không có tội",
+                "thắng một vụ kiện",
+                "đạt được mục đích của mình"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người mắc chứng rối loạn nhân cách chống đối xã hội (sociopath hoặc ASPD) vẫn có khả năng cảm nhận được hạnh phúc hoặc nhẹ nhõm.",
+              "Họ có thể cảm thấy hưng phấn và hạnh phúc khi đạt được mục đích, chẳng hạn như nhận phán quyết không có tội tại tòa."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình đang cân nhắc mua một chiếc thuyền để đi du lịch. Bạn thấy mua thuyền bằng thép có ưu và nhược điểm gì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu ưu và nhược điểm của việc mua thuyền bằng thép để đi du lịch.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "thuyền thép",
+                "ưu nhược điểm",
+                "bảo trì"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "advantages": [
+                "bền",
+                "chắc chắn",
+                "chịu lực tốt",
+                "dễ sửa chữa"
+              ],
+              "disadvantages": [
+                "rỉ sét",
+                "nước mặn",
+                "chi phí sơn và bảo trì"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thuyền thép có ưu điểm bền chắc, chịu lực tốt và dễ sửa chữa khi bị hư hỏng vật lý.",
+              "Nhược điểm lớn nhất của thuyền thép là dễ bị rỉ sét, đặc biệt trong môi trường nước mặn.",
+              "Việc chống rỉ cho thuyền thép đòi hỏi chi phí và công sức liên tục cho việc sơn và bảo trì."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_003",
+    "conversation_id": "conversation_0051",
+    "source": {
+      "text": "[{\"title\": \"Angular vs React vs Vue: Lựa chọn Framework JavaScript\", \"snippet\": \"Khi so sánh Angular, React và Vue, cần xem xét các tiêu chí về cấu trúc và mục đích sử dụng. Cả ba đều hỗ trợ phát triển ứng dụng web và di động. Angular cung cấp một khung làm việc toàn diện (full-framework), trong khi React và Vue linh hoạt hơn dưới dạng thư viện/framework nhẹ.\"}]\n\n[{\"title\": \"Tương lai của Web Components trong kỷ nguyên SPA\", \"snippet\": \"HTML, CSS và JavaScript là những thành phần duy nhất được tất cả trình duyệt công nhận. Mặc dù các framework SPA phát triển mạnh, Web Components vẫn giữ vai trò nền tảng. Xu hướng tương lai hướng tới các trình duyệt tuân thủ Web Assembly để tăng cường cấu trúc và tính nghiêm ngặt trong triển khai web.\"}]\n\n[{\"title\": \"Trải nghiệm thực tế về sử dụng chất kích thích\", \"snippet\": \"Sử dụng cần sa có thể tạo cảm giác hưng phấn, tăng khả năng cảm thụ âm nhạc, nghệ thuật và gây thèm ăn. Tuy nhiên, nhược điểm lớn nhất là gây ra trạng thái hoang tưởng (paranoia) và các vấn đề xã hội do tính chất bất hợp pháp của nó ở nhiều nơi.\"}]\n\n[{\"title\": \"So sánh GGPlot2 và Base R cho trực quan hóa dữ liệu\", \"snippet\": \"GGPlot2 cung cấp khả năng kiểm soát cực cao về thẩm mỹ, nhưng khó xây dựng biểu đồ bằng vòng lặp for-loop hơn Base R. Base R có vẻ ngoài tối giản, trong khi GGPlot2 mặc định có nền xám nhưng có thể tùy chỉnh dễ dàng để giống Base R.\"}]\n\n[{\"title\": \"Hướng dẫn sử dụng dụng cụ nấu ăn bằng đất sét\", \"snippet\": \"Nồi đất nguyên chất có tính trơ, không phản ứng với thực phẩm. Nó chứa các khoáng chất tự nhiên như magie và canxi, không chứa độc tố hay hóa chất như một số dụng cụ kim loại, giúp thực phẩm an toàn hơn.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang phân vân giữa Vue.js, React và Angular cho dự án sắp tới. Bạn có thể phân tích giúp mình ưu và nhược điểm của Vue.js khi so với hai framework kia không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh ưu và nhược điểm của Vue.js với React và Angular để tư vấn lựa chọn framework.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Vue.js",
+                "React",
+                "Angular",
+                "so sánh"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "learning_curve": [
+                "đường cong học tập thấp",
+                "dễ tiếp cận",
+                "dễ học"
+              ],
+              "framework_nature": [
+                "framework toàn diện",
+                "thư viện",
+                "linh hoạt"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vue.js được đánh giá cao nhờ đường cong học tập thấp và dễ tiếp cận.",
+              "Angular là một framework toàn diện và chặt chẽ trong khi React là một thư viện tập trung vào view.",
+              "Lựa chọn giữa Vue.js, React và Angular phụ thuộc vào quy mô đội ngũ, yêu cầu hiệu suất và độ phức tạp của ứng dụng."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy còn về Web Components thì sao? Liệu các framework SPA như React và Vue sẽ hỗ trợ tốt trong tương lai, hay mình nên dùng những framework lấy Web Components làm cốt lõi như Polymer.js?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về vai trò của Web Components và khả năng hỗ trợ của các SPA frameworks (React, Vue) so với các framework lấy Web Components làm cốt lõi như Polymer.js.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "SPA frameworks",
+                "Web Components",
+                "React Vue support"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Web Components",
+              "expected_target": [
+                "Web Components",
+                "Polymer.js",
+                "SPA"
+              ]
+            },
+            "required_slots": {
+              "core_technologies": [
+                "HTML, CSS và JavaScript",
+                "HTML CSS JS",
+                "HTML, CSS, JavaScript"
+              ],
+              "future_trend": [
+                "Web Assembly",
+                "Wasm",
+                "trình duyệt tuân thủ Web Assembly"
+              ]
+            },
+            "golden_reference_claims": [
+              "HTML, CSS và JavaScript là những thành phần cốt lõi duy nhất được tất cả trình duyệt công nhận.",
+              "Xu hướng tương lai hướng tới việc sử dụng các trình duyệt tuân thủ Web Assembly (Wasm) để tăng cường hiệu suất và tính chặt chẽ.",
+              "Các framework SPA hiện đại ngày càng cải thiện khả năng tương tác với Web Components, cho phép sử dụng an toàn mà không sợ lạc hậu."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Đổi chủ đề một chút nhé, mình tò mò về sức khỏe. Việc sử dụng rượu bia so với cần sa thì cái nào có nhiều ưu và nhược điểm hơn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh ưu và nhược điểm của việc sử dụng rượu bia và cần sa đối với sức khỏe và đời sống.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "alcohol",
+                "marijuana",
+                "rượu",
+                "cần sa"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "cannabis_effects": [
+                "cần sa",
+                "thư giãn",
+                "hưng phấn",
+                "hoang tưởng",
+                "paranoia"
+              ],
+              "alcohol_effects": [
+                "rượu",
+                "rượu bia",
+                "gan",
+                "tim mạch",
+                "kiểm soát hành vi"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cần sa mang lại cảm giác thư giãn, tăng khả năng cảm thụ nghệ thuật nhưng có nhược điểm là gây hoang tưởng và rắc rối pháp lý.",
+              "Rượu bia có tác động tiêu cực rõ rệt đến sức khỏe vật lý như gan, tim mạch và khả năng kiểm soát hành vi khi say."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại với phân tích dữ liệu, mình đang dùng R. Bạn thấy dùng GGPlot2 có lợi ích và hạn chế gì so với việc dùng Base R để vẽ biểu đồ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh ưu và nhược điểm của GGPlot2 và Base R trong việc vẽ biểu đồ trực quan hóa dữ liệu.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "GGPlot2",
+                "Base R",
+                "pros and cons",
+                "trực quan hóa"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "ggplot2_pros": [
+                "kiểm soát chi tiết thẩm mỹ",
+                "tùy chỉnh gần như mọi thành phần"
+              ],
+              "ggplot2_cons": [
+                "khó xây dựng bằng vòng lặp for-loop",
+                "nền màu xám mặc định"
+              ],
+              "base_r_features": [
+                "vẻ ngoài tối giản",
+                "trực diện hơn"
+              ]
+            },
+            "golden_reference_claims": [
+              "GGPlot2 cung cấp khả năng kiểm soát chi tiết về thẩm mỹ cao hơn nhưng khó xây dựng biểu đồ bằng vòng lặp for-loop so với Base R.",
+              "Base R có vẻ ngoài tối giản và trực diện hơn trong khi GGPlot2 mặc định có nền xám nhưng có thể tùy chỉnh để giống Base R."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình muốn thử nấu ăn kiểu truyền thống. Nấu bằng nồi đất có quy tắc gì đặc biệt không? Ưu và nhược điểm của nó là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu quy tắc và ưu nhược điểm của việc nấu ăn bằng nồi đất truyền thống",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nồi đất",
+                "ưu nhược điểm"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "nó",
+              "expected_target": [
+                "nồi đất",
+                "nấu bằng nồi đất"
+              ]
+            },
+            "required_slots": {
+              "uu_diem_noi_dat": [
+                "tính trơ",
+                "không phản ứng với thực phẩm",
+                "chứa khoáng chất tự nhiên",
+                "giữ nhiệt tốt"
+              ],
+              "nhuoc_diem_noi_dat": [
+                "dễ nứt vỡ",
+                "sốc nhiệt",
+                "cẩn thận khi bảo quản"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nồi đất nguyên chất có tính trơ và không phản ứng hóa học với thực phẩm.",
+              "Nồi đất chứa các khoáng chất tự nhiên như magie và canxi, đảm bảo an toàn cho sức khỏe.",
+              "Nhược điểm của nồi đất là dễ bị nứt vỡ khi gặp sốc nhiệt do thay đổi nhiệt độ đột ngột."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_004",
+    "conversation_id": "conversation_0052",
+    "source": {
+      "text": "[{\"title\": \"Hiểu về Mạng chế độ mặc định (DMN) và Thiền định\", \"snippet\": \"Hầu hết các hình thức thiền định làm gián đoạn hoặc giảm hoạt động lang thang của tâm trí trong Mạng chế độ mặc định (DMN) của não, cơ quan chịu trách nhiệm cho nhiều thứ, bao gồm cả ý thức về bản thân. Việc thực hành đủ lâu có thể thay đổi vĩnh viễn cách DMN hoạt động, dẫn đến trạng thái nhận thức không còn cái tôi.\"}]\n\n[{\"title\": \"Cáo buộc về tổ chức Thiền Vượt ngưỡng\", \"snippet\": \"Một số cựu thành viên cáo buộc tổ chức TM sử dụng chiến thuật bán hàng gây áp lực, thúc đẩy văn hóa bí mật và tuân thủ tuyệt đối, đồng thời gây lo ngại về cách huy động quyên góp từ thành viên.\"}]\n\n[{\"title\": \"Tám nhánh của Astanga-Yoga theo Patanjali\", \"snippet\": \"Patanjali xây dựng một hệ thống khoa học gồm 8 giai đoạn: 1. Yamahas (5 đức hạnh cho cơ thể cảm xúc), 2. Niyamahas (5 kỷ luật cho cơ thể vật lý), 3. Asanas (tư thế), 4. Pranayama (hơi thở), sau đó mới đến Dharana, Dhyana và Samadhi.\"}]\n\n[{\"title\": \"Phân tích triết học về Derrida và Lacan\", \"snippet\": \"Derrida dùng 'transcendental signified' trong bối cảnh đạo đức (như trong On Cosmopolitanism) để chỉ nghĩa không thể nói ra nhưng cần thiết để xoa dịu nạn nhân tội ác chống lại nhân loại. Trong khi đó, 'transcendental signifier' của Lacan mang tính khách quan hơn, ít cảm xúc hơn, giống như một điểm mốc cố định trong cấu trúc.\"}]\n\n[{\"title\": \"Khứu giác của loài mèo và mùi cam quýt\", \"snippet\": \"Mèo có khứu giác cực kỳ nhạy bén. Mùi cam quýt đối với con người là thơm nhưng đối với mèo là quá nồng và gây khó chịu. Điều này có thể được chủ nuôi tận dụng để ngăn mèo vào những khu vực không mong muốn.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tôi thấy phương pháp Thiền Vượt ngưỡng (Transcendental Meditation - TM) có vẻ giống một hình thức lừa đảo vì họ thu phí và đăng ký bản quyền. Điều này là thật hay họ chỉ đang lợi dụng xu hướng thiền định hiện nay?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ bản chất khoa học và đánh giá tính thực hư của phương pháp Thiền Vượt ngưỡng (TM) thay vì lừa đảo.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Transcendental Meditation",
+                "scam or real",
+                "Default Mode Network"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "scientific_mechanism": [
+                "Mạng chế độ mặc định",
+                "Default Mode Network",
+                "DMN"
+              ],
+              "meditation_effect": [
+                "giảm hoạt động lang thang của tâm trí",
+                "trạng thái nhận thức không còn cái tôi",
+                "self-less awareness"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thiền Vượt ngưỡng (TM) tác động vào Mạng chế độ mặc định (DMN) của não bộ.",
+              "Việc thực hành thiền giúp làm giảm hoạt động của DMN, dẫn đến trạng thái nhận thức không còn cái tôi và mang lại sự bình an nội tại."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nhưng tôi vẫn thắc mắc mục đích chính của TM là gì? Có phải là để kiếm tiền không khi họ thu phí hướng dẫn cao như vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ mục đích chính của Thiền Vượt ngưỡng (TM) và vấn đề tài chính, chi phí hướng dẫn cao của tổ chức này.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Transcendental Meditation",
+                "financial",
+                "criticism",
+                "controversies"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "TM",
+              "expected_target": [
+                "Thiền Vượt ngưỡng",
+                "Transcendental Meditation"
+              ]
+            },
+            "required_slots": {
+              "financial_controversies": [
+                "vấn đề tài chính",
+                "chi phí hướng dẫn cao",
+                "thu phí",
+                "quyên góp"
+              ],
+              "member_criticism": [
+                "cáo buộc từ cựu thành viên",
+                "chiến thuật bán hàng",
+                "văn hóa bí mật",
+                "áp lực"
+              ],
+              "pure_meditation_nature": [
+                "thiền định thuần túy",
+                "tự rèn luyện hàng ngày",
+                "cải thiện chất lượng cuộc sống"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một số cựu thành viên cáo buộc tổ chức TM sử dụng chiến thuật bán hàng gây áp lực và duy trì văn hóa bí mật.",
+              "Tổ chức TM vấp phải lo ngại về cách huy động quyên góp và vấn đề tài chính.",
+              "Thiền định thuần túy vốn là sự tự rèn luyện hàng ngày để tìm lại sự điềm tĩnh và cải thiện chất lượng cuộc sống."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nói về thiền định, tôi có đọc về Yogsutra của Patanjali. Tại sao ông ấy lại sắp xếp việc thực hành Yoga và Pranayama (kiểm soát hơi thở) trước khi đến với thiền định?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích lý do Patanjali sắp xếp Asana và Pranayama trước thiền định trong Yogsutra.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Patanjali Yoga Sutras",
+                "Asana",
+                "Pranayama",
+                "Dhyana"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "system_order": [
+                "tám nhánh",
+                "Astanga-Yoga",
+                "8 giai đoạn",
+                "từ thấp lên cao"
+              ],
+              "body_and_breath_prep": [
+                "làm chủ cơ thể vật lý",
+                "làm chủ năng lượng",
+                "cơ thể và hơi thở ổn định"
+              ],
+              "higher_stages": [
+                "Dharana",
+                "Samadhi",
+                "tâm trí tĩnh lặng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Maharishi Patanjali xây dựng hệ thống Astanga-Yoga gồm 8 giai đoạn từ thấp lên cao.",
+              "Việc thực hành Asana (tư thế) và Pranayama (kiểm soát hơi thở) nhằm chuẩn bị nền tảng vững chắc cho cơ thể và hơi thở trước khi bước vào thiền định (Dhyana)."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Chuyển sang một chủ đề trừu tượng hơn, tôi đang tìm hiểu về ngôn ngữ học. 'Cái được biểu đạt siêu việt' (transcendental signified) của Derrida khác gì với 'Cái biểu đạt siêu việt' (transcendental signifier) của Lacan? Bạn cho ví dụ được không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Phân biệt khái niệm 'Cái được biểu đạt siêu việt' của Derrida và 'Cái biểu đạt siêu việt' của Lacan",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Derrida",
+                "Lacan",
+                "transcendental signified",
+                "transcendental signifier"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "derrida_concept": [
+                "cái được biểu đạt siêu việt",
+                "transcendental signified",
+                "bối cảnh đạo đức",
+                "On Cosmopolitanism"
+              ],
+              "lacan_concept": [
+                "cái biểu đạt siêu việt",
+                "transcendental signifier",
+                "mang tính cấu trúc",
+                "khách quan"
+              ],
+              "role_and_meaning": [
+                "không thể diễn tả bằng lời",
+                "điểm neo cố định",
+                "định hình ý nghĩa"
+              ]
+            },
+            "golden_reference_claims": [
+              "Với Derrida, 'cái được biểu đạt siêu việt' thường xuất hiện trong bối cảnh đạo đức nhằm chỉ ý nghĩa không thể diễn tả trọn vẹn bằng lời.",
+              "Trong tác phẩm 'On Cosmopolitanism', Derrida đề cập đến việc xoa dịu những người sống sót sau tội ác chống lại nhân loại.",
+              "'Cái biểu đạt siêu việt' của Lacan mang tính cấu trúc và khách quan hơn, đóng vai trò như điểm neo cố định định hình ý nghĩa trong tâm trí."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, một câu hỏi đời thường hơn: Mèo có thích mùi cam chanh không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem loài mèo có thích mùi cam chanh hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "cats",
+                "citrus",
+                "smell",
+                "mèo",
+                "cam chanh"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "cat_preference": [
+                "không thích",
+                "ghét",
+                "không",
+                "not like"
+              ],
+              "reason": [
+                "khứu giác nhạy bén",
+                "quá nồng",
+                "gây khó chịu"
+              ],
+              "application": [
+                "chất xua đuổi",
+                "ngăn mèo",
+                "deterrent"
+              ]
+            },
+            "golden_reference_claims": [
+              "Mèo thường không thích và rất ghét mùi cam chanh.",
+              "Khứu giác cực kỳ nhạy bén của mèo khiến mùi cam quýt trở nên quá nồng và gây khó chịu cho chúng.",
+              "Mùi cam quýt có thể được tận dụng làm chất xua đuổi tự nhiên để ngăn mèo đến những khu vực không mong muốn."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_005",
+    "conversation_id": "conversation_0053",
+    "source": {
+      "text": "[{\"title\": \"Compiling C files with gcc, step by step\", \"snippet\": \"Để hiểu rõ các bước biên dịch, cần làm rõ các khái niệm lập trình. Việc sử dụng các công cụ như gcc -E hoặc gcc -S giúp phân tích tiền xử lý và kiểm tra phong cách mã nguồn (lint check/checkstyle) để đảm bảo tính nhất quán trong các dự án lớn.\"}]\n\n[{\"title\": \"Metaprogramming in Large Scale Systems\", \"snippet\": \"Hầu hết mọi thư viện cơ bản tại Google (trừ những thư viện cấp thấp nhất) đều sử dụng metaprogramming sâu rộng. Một số hệ thống cho phép viết mã dưới dạng mô tả khai báo, sau đó trình biên dịch sẽ tự động xây dựng các worker cho hệ thống phân tán.\"}]\n\n[{\"title\": \"Contemporary Dance Foundations\", \"snippet\": \"Múa đương đại bắt nguồn từ kỹ thuật ballet và đào tạo múa hiện đại có hệ thống. Tuy nhiên, từ vựng múa của biên đạo cũng rất quan trọng. Tại các học viện như Terence Lewis, học viên có thể được đào tạo song song cả ballet và kỹ thuật hiện đại.\"}]\n\n[{\"title\": \"Understanding Intersex and Gender\", \"snippet\": \"Intersex (liên giới tính) là tình trạng một cá nhân sinh ra với các đặc điểm sinh học của cả nam và nữ. Về mặt sinh học, con người là loài lưỡng hình giới tính (sexually dimorphous). Khái niệm 'gender' (giới) hiện nay thường được dùng linh hoạt theo cảm nhận cá nhân hơn là đặc điểm sinh học.\"}]\n\n[{\"title\": \"Investing in Self-Education\", \"snippet\": \"Đầu tư vào bản thân là cách tốt nhất để đạt được lợi nhuận cao (ROI). Việc tự chọn mentor hoặc khóa học giúp bạn kiểm soát 100% tương lai học tập, thay vì chỉ dựa vào đại học hay đào tạo tại chỗ làm.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tại sao Google lại có hệ thống đặt tên (labeling system) cho các biến và lớp phần mềm phức tạp đến vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do Google áp dụng hệ thống đặt tên và quy tắc mã nguồn phức tạp.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Google",
+                "software naming conventions",
+                "variable labeling system"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "codebase_scale": [
+                "quy mô cực lớn",
+                "hàng ngàn lập trình viên",
+                "codebase lớn"
+              ],
+              "code_consistency": [
+                "tính đồng nhất",
+                "tính nhất quán",
+                "lint check",
+                "checkstyle"
+              ]
+            },
+            "golden_reference_claims": [
+              "Hệ thống đặt tên phức tạp tại Google nhằm phục vụ quản lý mã nguồn ở quy mô cực lớn.",
+              "Các quy tắc nghiêm ngặt giúp công cụ kiểm tra phong cách mã (lint check hoặc checkstyle) quét codebase để phát hiện lỗi và đảm bảo tính đồng nhất."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy còn lập trình siêu cấp (metaprogramming) thì sao? Có phải Google ít sử dụng kỹ thuật này không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu mức độ và cách thức sử dụng kỹ thuật lập trình siêu cấp (metaprogramming) tại Google.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "metaprogramming",
+                "Google"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "lập trình siêu cấp (metaprogramming)",
+              "expected_target": [
+                "metaprogramming",
+                "lập trình siêu cấp",
+                "kỹ thuật này"
+              ]
+            },
+            "required_slots": {
+              "usage_level": [
+                "sử dụng cực kỳ phổ biến",
+                "sử dụng sâu rộng",
+                "gần như trong mọi thư viện cơ bản"
+              ],
+              "application_method": [
+                "mô tả khai báo",
+                "trình biên dịch tự động xây dựng worker",
+                "hệ thống phân tán"
+              ]
+            },
+            "golden_reference_claims": [
+              "Metaprogramming được sử dụng sâu rộng và cực kỳ phổ biến trong hầu hết mọi thư viện cơ bản tại Google.",
+              "Google sử dụng mô tả khai báo để trình biên dịch tự động xây dựng các worker cho hệ thống phân tán."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Thay đổi chủ đề một chút, tôi muốn học múa đương đại nhưng chưa từng học qua ballet. Liệu tôi có thể học trực tiếp múa đương đại mà không cần qua các lớp ballet không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem có thể học múa đương đại trực tiếp mà không cần qua lớp ballet hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "contemporary dance",
+                "without ballet",
+                "ballet experience"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "possibility": [
+                "có thể học",
+                "hoàn toàn có thể",
+                "học trực tiếp"
+              ],
+              "training_method": [
+                "học song song",
+                "đào tạo song song",
+                "từ vựng chuyển động"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người học hoàn toàn có thể bắt đầu múa đương đại mà không cần qua lớp ballet trước đó.",
+              "Múa đương đại có nguồn gốc từ kỹ thuật ballet và múa hiện đại nhưng trọng tâm nằm ở từ vựng chuyển động của biên đạo.",
+              "Nhiều học viện như Terence Lewis cho phép học viên học song song cả kỹ thuật ballet và hiện đại để đạt trình độ tương đương."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Tôi có đọc về khái niệm 'intersexed' (liên giới tính), bạn có thể giải thích rõ hơn nó là gì không? Và tại sao hiện nay lại có nhiều phân loại giới tính (lên đến 58 loại) như vậy? Ai là người đứng sau việc phân loại này và mục đích là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích khái niệm liên giới tính (intersex) và nguyên nhân/mục đích của việc có nhiều phân loại giới tính hiện nay.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "intersex",
+                "gender classification"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "intersex_definition": [
+                "đặc điểm sinh học của cả nam và nữ",
+                "đặc điểm sinh dục không khớp hoàn toàn với định nghĩa điển hình",
+                "sinh ra với các đặc điểm sinh học"
+              ],
+              "gender_vs_sex": [
+                "giới tính sinh học",
+                "bản dạng cá nhân",
+                "khái niệm linh hoạt"
+              ]
+            },
+            "golden_reference_claims": [
+              "'Intersex' (liên giới tính) là tình trạng cá nhân sinh ra với các đặc điểm sinh học của cả nam và nữ hoặc các đặc điểm sinh dục không khớp hoàn toàn với định nghĩa nam/nữ truyền thống.",
+              "Sự gia tăng các phân loại giới tính xuất phát từ việc phân biệt giữa 'sex' (giới tính sinh học cố định) và 'gender' (giới, khái niệm linh hoạt phản ánh bản dạng cá nhân và trạng thái tâm lý).",
+              "Việc phân loại chi tiết nhằm mục đích công nhận sự đa dạng trong trải nghiệm con người, dù vẫn đang gây ra nhiều tranh luận."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, tôi đang cân nhắc việc học thêm. Theo bạn, các lớp học và khóa coaching trực tuyến hiện nay có thực sự xứng đáng với chi phí bỏ ra không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá hiệu quả và chi phí của các khóa học và coaching trực tuyến hiện nay.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "online classes",
+                "coaching",
+                "investment",
+                "ROI"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "investment_roi": [
+                "lợi nhuận cao",
+                "ROI",
+                "return on investment",
+                "đầu tư vào bản thân"
+              ],
+              "control_and_flexibility": [
+                "kiểm soát hoàn toàn",
+                "kiểm soát 100% tương lai học tập",
+                "tự chọn mentor"
+              ]
+            },
+            "golden_reference_claims": [
+              "Đầu tư vào bản thân thông qua các khóa học hoặc coaching trực tuyến mang lại tỷ lệ lợi nhuận (ROI) cao.",
+              "Việc tự chọn mentor hoặc khóa học giúp người học kiểm soát hoàn toàn lộ trình phát triển thay vì chỉ dựa vào đại học hay đào tạo tại chỗ làm."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_006",
+    "conversation_id": "conversation_0054",
+    "source": {
+      "text": "[{\"title\": \"35 Best Free Code Editors\", \"snippet\": \"There are a multitude of code editors on the market. However, Sublime Text and Visual Studio Code are mentioned more often than others and are considered some of the best.\"}]\n\n[{\"title\": \"Resistor Color Code Guide\", \"snippet\": \"5.2 is not a standard resistor value. The E96 series includes 5.23. The color code for 52.3M ohms at 1% is: green - red - orange - green - brown.\"}]\n\n[{\"title\": \"WU Error Codes Support\", \"snippet\": \"C2201 is a general compliance decline, indicating something is amiss in the way it was sent. Depending on the platform, there may be a technical problem.\"}]\n\n[{\"title\": \"MAGIX SOUND FORGE Audio Studio Review\", \"snippet\": \"SOUND FORGE Audio Studio is a professional tool for recording bands, podcasts, digitizing vinyl, and mastering CDs, engineered on a 64-bit design for powerful workflow.\"}]\n\n[{\"title\": \"Programming the ENIAC\", \"snippet\": \"Before machine code in memory, programming was done by patch cables connecting units. Later, machine instructions were keyed or toggled in. The stored program computer idea is credited to John von Neumann and Alan Turing.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Hiện nay có nhiều trình soạn thảo văn bản cho lập trình như Visual Studio Code, Atom, Sublime Text hay Brackets. Theo bạn thì cái nào là tốt nhất?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu và so sánh các trình soạn thảo văn bản tốt nhất cho lập trình.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "best text editor",
+                "programming",
+                "Visual Studio Code",
+                "Sublime Text"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "top_editors": [
+                "Visual Studio Code",
+                "Sublime Text",
+                "VS Code"
+              ],
+              "selection_criteria": [
+                "nhu cầu cụ thể",
+                "luồng công việc",
+                "độ phức tạp và tính năng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Visual Studio Code và Sublime Text là hai trình soạn thảo văn bản được nhắc đến nhiều nhất và đánh giá cao cho lập trình.",
+              "Việc lựa chọn trình soạn thảo tốt nhất phụ thuộc vào nhu cầu cụ thể và luồng công việc của mỗi lập trình viên."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Tôi đang làm một mạch điện, bạn cho tôi hỏi mã màu cho điện trở 52M ohm là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm mã màu và giá trị tiêu chuẩn cho điện trở 52M ohm.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "color code",
+                "52M ohm resistor",
+                "standard resistor values"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "standard_value": [
+                "52.3M ohm",
+                "52.3M"
+              ],
+              "color_code": [
+                "Xanh lá - Đỏ - Cam - Xanh lá - Nâu",
+                "green - red - orange - green - brown"
+              ]
+            },
+            "golden_reference_claims": [
+              "52M ohm không phải là một giá trị điện trở tiêu chuẩn và giá trị gần nhất trong dãy E96 là 52.3M ohm.",
+              "Mã màu cho điện trở 52.3M ohm với sai số 1% là Xanh lá - Đỏ - Cam - Xanh lá - Nâu."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiện thể, tôi vừa gặp một lỗi khi giao dịch qua Western Union, mã lỗi là C2201. Đây là lỗi gì vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tra cứu ý nghĩa của mã lỗi C2201 khi giao dịch qua Western Union.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Western Union",
+                "error code C2201"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "error_meaning": [
+                "từ chối tuân thủ chung",
+                "general compliance decline"
+              ],
+              "action_recommendation": [
+                "liên hệ bộ phận hỗ trợ",
+                "contact support"
+              ]
+            },
+            "golden_reference_claims": [
+              "Mã lỗi C2201 của Western Union là thông báo từ chối tuân thủ chung (general compliance decline).",
+              "Lỗi này cho thấy có vấn đề trong cách thông tin giao dịch được gửi đi hoặc do sự cố kỹ thuật trên nền tảng.",
+              "Người dùng nên liên hệ bộ phận hỗ trợ của Western Union để được kiểm tra chi tiết."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại chuyện công cụ, còn về âm thanh thì sao? Phần mềm chỉnh sửa âm thanh nào phổ biến nhất đối với các chuyên gia trong ngành?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm phần mềm chỉnh sửa âm thanh phổ biến nhất đối với các chuyên gia trong ngành.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "professional",
+                "audio editor",
+                "popular"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "chuyện công cụ",
+              "expected_target": [
+                "trình soạn thảo văn bản",
+                "công cụ",
+                "phần mềm"
+              ]
+            },
+            "required_slots": {
+              "software_name": [
+                "MAGIX SOUND FORGE Audio Studio",
+                "SOUND FORGE"
+              ],
+              "architecture": [
+                "64-bit",
+                "kiến trúc 64-bit"
+              ],
+              "use_cases": [
+                "thu âm ban nhạc",
+                "làm podcast",
+                "số hóa đĩa than",
+                "mastering CD"
+              ]
+            },
+            "golden_reference_claims": [
+              "MAGIX SOUND FORGE Audio Studio là một trong những công cụ chỉnh sửa âm thanh chuyên nghiệp rất phổ biến.",
+              "Phần mềm được thiết kế trên kiến trúc 64-bit với hiệu suất xử lý mạnh mẽ.",
+              "Công cụ phù hợp cho các tác vụ như thu âm ban nhạc, làm podcast, số hóa đĩa than và mastering CD."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Tôi tò mò một chút về lịch sử, ngày xưa người ta có bao giờ lập trình trực tiếp bằng mã máy (machine code) không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lịch sử lập trình và việc sử dụng mã máy trong quá khứ",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "machine code",
+                "programming",
+                "history",
+                "ENIAC"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "early_programming_method": [
+                "patch cables",
+                "dây cắm",
+                "kết nối dây"
+              ],
+              "machine_instructions_input": [
+                "keyed",
+                "toggled",
+                "nhập vào bằng phím",
+                "công tắc gạt"
+              ],
+              "stored_program_pioneers": [
+                "John von Neumann",
+                "Alan Turing"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trước khi có mã máy trong bộ nhớ, việc lập trình máy ENIAC được thực hiện bằng cách kết nối các đơn vị thông qua hệ thống dây cắm (patch cables).",
+              "Sau đó, các hướng dẫn mã máy được nhập vào bằng phím hoặc công tắc gạt.",
+              "Ý tưởng về máy tính có chương trình lưu trữ được ghi nhận cho John von Neumann và Alan Turing."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_007",
+    "conversation_id": "conversation_0055",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn chăm sóc và nhận biết sức khỏe cá cảnh\", \"snippet\": \"Để biết cá có bệnh hay không, hãy quan sát cách chúng bơi, thở, ăn và tương tác với những con cá khác. Một con cá khỏe mạnh thường có sự thèm ăn tốt và bơi lội năng động trong bể.\"}, {\"title\": \"Yêu cầu cơ bản cho các loài cá\", \"snippet\": \"Cần nghiên cứu yêu cầu cụ thể về kích thước bể, nhiệt độ, bảo trì và thức ăn cho từng loài. Cá nước mặn thường đòi hỏi bảo trì khắt khe hơn và không bền bỉ bằng cá nước ngọt.\"}]\n\n[{\"title\": \"Đặc điểm của nhện công và khả năng nuôi nhốt\", \"snippet\": \"Nhện công không phải là thú cưng lý tưởng vì kích thước quá nhỏ (4-5mm), khó theo dõi và khó tìm đủ nguồn thức ăn phù hợp (ruồi giấm không đủ dinh dưỡng).\"}, {\"title\": \"Quy định xuất khẩu động vật từ Úc\", \"snippet\": \"Việc xuất khẩu động vật từ Úc là bất hợp pháp. Thay vì nhập khẩu, bạn có thể tìm các loài nhện tương tự ngay trong vườn nhà hoặc trên các bụi cây.\"}]\n\n[{\"title\": \"Tác động của cá chết đối với chất lượng nước\", \"snippet\": \"Việc để cá chết trong bể giống như việc cho ăn quá nhiều, tạo ra chất hữu cơ dư thừa gây phân hủy. Nếu vượt quá khả năng lọc, nó sẽ gây tăng vọt nồng độ ammonia hoặc làm đục nước.\"}, {\"title\": \"Vai trò của sinh vật dọn bể\", \"snippet\": \"Trong bể lớn có hệ thống lọc mạnh hoặc có nhiều loài cá dọn bể (scavengers), một con cá nhỏ chết có thể không gây vấn đề lớn vì sẽ bị tiêu thụ hết.\"}]\n\n[{\"title\": \"Dấu hiệu cần thay lõi lọc\", \"snippet\": \"Thời điểm tốt nhất để thay là khi bạn nhận thấy dòng chảy của nước bị giảm đáng kể, cho thấy lõi lọc đã bị tắc nghẽn bởi chất bẩn (mulm).\"}, {\"title\": \"Mẹo sử dụng mút lọc thay thế\", \"snippet\": \"Thay vì mua lõi lọc sẵn, có thể dùng mút lọc cắt vừa vặn. Than hoạt tính trong lõi lọc thương mại thường chỉ có tác dụng ngắn hạn và không hiệu quả bằng mút lọc về lâu dài.\"}]\n\n[{\"title\": \"Phản ứng của chó với tiếng ồn\", \"snippet\": \"Một số loài chó rất sợ tiếng ồn lớn (như pháo hoa). Biểu hiện thường thấy là run rẩy, thở gấp, nhảy từ ghế này sang ghế khác, chảy nước dãi và từ chối ra ngoài cho đến khi tiếng ồn chấm dứt.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Làm sao để tôi biết được mấy chú cá cảnh nhà mình đang bị bệnh?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách nhận biết các dấu hiệu bệnh ở cá cảnh.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "dấu hiệu cá cảnh bị bệnh",
+                "pet fish are sick"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "behavior_observation": [
+                "quan sát cách chúng bơi",
+                "cách thở",
+                "thèm ăn tốt",
+                "bơi lội năng động"
+              ],
+              "habitat_requirements": [
+                "yêu cầu cụ thể",
+                "nhiệt độ",
+                "kích thước bể",
+                "môi trường sống"
+              ]
+            },
+            "golden_reference_claims": [
+              "Để nhận biết cá cảnh có bệnh hay không, cần quan sát kỹ các hành vi như cách bơi, cách thở, mức độ thèm ăn và sự tương tác với những con cá khác.",
+              "Cá khỏe mạnh thường có sự thèm ăn tốt và bơi lội năng động trong bể.",
+              "Cần tìm hiểu đặc điểm loài, kích thước bể, nhiệt độ và chế độ dinh dưỡng để đảm bảo môi trường sống đúng chuẩn cho cá."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Tôi thấy nhện công (peacock spider) rất đẹp, liệu tôi có thể nuôi chúng làm thú cưng không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem có thể nuôi nhện công làm thú cưng hay không và các yếu tố liên quan.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nuôi nhện công",
+                "peacock spider pet"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "size_and_feeding": [
+                "kích thước nhỏ",
+                "4-5mm",
+                "thức ăn",
+                "ruồi giấm"
+              ],
+              "legal_aspect": [
+                "xuất khẩu",
+                "Úc",
+                "bất hợp pháp"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nhện công không phải là thú cưng lý tưởng do kích thước quá nhỏ (4-5mm) và khó tìm nguồn thức ăn phù hợp.",
+              "Việc xuất khẩu động vật từ Úc là bất hợp pháp."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nếu chẳng may có một con cá chết trong bể, tôi cứ để vậy có sao không hay phải lấy ra ngay?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu tác động và cách xử lý khi có cá chết trong bể thủy sinh.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "cá chết trong bể",
+                "aquarium",
+                "dead fish"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "một con cá chết",
+              "expected_target": [
+                "cá cảnh",
+                "cá"
+              ]
+            },
+            "required_slots": {
+              "water_quality_impact": [
+                "tăng vọt nồng độ ammonia",
+                "đục nước",
+                "chất hữu cơ dư thừa"
+              ],
+              "removal_advice": [
+                "lấy cá chết ra",
+                "loại bỏ xác cá",
+                "lấy ra ngay"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc để cá chết phân hủy trong bể làm tăng vọt nồng độ ammonia và gây đục nước.",
+              "Bạn nên lấy cá chết ra khỏi bể càng sớm càng tốt để bảo vệ hệ sinh thái.",
+              "Trong bể rất lớn có hệ thống lọc mạnh hoặc nhiều cá dọn bể, một con cá nhỏ chết có thể không gây tác động tức thì."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Vậy tôi nên thay lõi lọc bể cá bao lâu một lần để đảm bảo nước sạch?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác định thời điểm và tần suất thay lõi lọc bể cá để đảm bảo nước sạch",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "thời điểm thay lõi lọc",
+                "fish tank filter cartridge",
+                "thay lõi lọc bể cá bao lâu"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "replacement_timing": [
+                "dòng chảy nước giảm đáng kể",
+                "tắc nghẽn bởi chất bẩn",
+                "không theo lịch trình cố định"
+              ],
+              "filter_tips": [
+                "dùng mút lọc cắt vừa vặn",
+                "than hoạt tính tác dụng ngắn hạn",
+                "bọc mút ở đầu hút"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thời điểm chính xác nhất để thay lõi lọc là khi nhận thấy dòng chảy của nước trong bể bị giảm đi đáng kể do tắc nghẽn chất bẩn.",
+              "Có thể dùng mút lọc thay vì mua lõi lọc sẵn và than hoạt tính thương mại thường chỉ có tác dụng ngắn hạn."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Nhắc đến thú cưng, tôi thấy con vật nhà tôi rất sợ tiếng động lớn, tại sao lại như vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu lý do tại sao thú cưng lại sợ tiếng động lớn.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "thú cưng sợ tiếng động lớn",
+                "pets afraid of loud noises"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "con vật nhà tôi",
+              "expected_target": [
+                "thú cưng",
+                "chó"
+              ]
+            },
+            "required_slots": {
+              "sensitivity": [
+                "thính giác nhạy cảm",
+                "nhạy cảm hơn con người"
+              ],
+              "symptoms": [
+                "run rẩy",
+                "thở gấp",
+                "chảy nước dãi",
+                "hoảng loạn"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thú cưng sợ tiếng động lớn là phản ứng tâm lý và sinh lý phổ biến do chúng có thính giác rất nhạy cảm.",
+              "Các biểu hiện thường gặp khi thú cưng sợ tiếng ồn lớn bao gồm run rẩy, thở gấp, chảy nước dãi và hoảng loạn."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_008",
+    "conversation_id": "conversation_0056",
+    "source": {
+      "text": "[{\"title\": \"Những tình huống thoát phạt giao thông hy hữu trên Quora\", \"snippet\": \"Một luật sư tại Los Angeles chia sẻ rằng trong giai đoạn 2010-2011, ngay sau khi tốt nghiệp trường luật, ông đã nhận tới 11 lần vi phạm giao thông trong vòng 12 tháng do sự bất cẩn hoặc tâm trí vẫn còn đang quay cuồng với các kiến thức luật học.\"}]\n\n[{\"title\": \"Hướng dẫn về danh sách chờ (Waitlist) của đường sắt\", \"snippet\": \"Loại vé PQWL (Pooled Quota Waitlist) có cơ hội xác nhận thấp, ngay cả sau một tháng. Vấn đề chính là nó thường không được đưa vào hệ thống RAC (Reservation Against Cancellation).\"}]\n\n[{\"title\": \"Thực tế về thế giới tương lai\", \"snippet\": \"Nhiều điều từng bị coi là cốt truyện lười biếng của Hollywood như dùng ảnh vệ tinh tìm người mất tích, định vị bằng tam giác vô tuyến, giờ đây đã trở thành hiện thực trong đời sống thường nhật.\"}]\n\n[{\"title\": \"Quy định phân bổ chỗ ngồi cho vé RAC\", \"snippet\": \"Số toa và số ghế sẽ được phân bổ khi lập biểu đồ (charting), thường là 4 giờ trước khi tàu chạy. Vé RAC sẽ có tiền tố 'R' trước số toa, ví dụ RS-3 nghĩa là toa S-3.\"}]\n\n[{\"title\": \"Giả thuyết Dragon Ball Super\", \"snippet\": \"Goku đạt được UI khi ở giới hạn cận kề cái chết. Nếu áp dụng vào giải đấu Vũ trụ 6, kết quả tùy thuộc vào đối thủ là Botamo hay Frost.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Bạn có biết câu chuyện nào về cách 'cao tay' nhất mà một người từng dùng để thoát khỏi việc bị phạt vi phạm giao thông không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm câu chuyện thông minh/độc đáo nhất mà một người từng dùng để thoát phạt vi phạm giao thông.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "thoát phạt vi phạm giao thông",
+                "traffic ticket"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "nhan_vat": [
+                "luật sư tại Los Angeles",
+                "người mới tốt nghiệp trường luật"
+              ],
+              "so_lan_vi_pham": [
+                "11 lần",
+                "11 lần vi phạm"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một luật sư tại Los Angeles đã nhận tới 11 lần vi phạm giao thông trong vòng 12 tháng sau khi tốt nghiệp trường luật.",
+              "Tình huống xảy ra trong giai đoạn 2010-2011 do sự bất cẩn hoặc tâm trí còn mải mê với kiến thức luật học."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Tiện nói về di chuyển, tôi đang có một vé tàu hiển thị trạng thái PQ/WL 25 và PQWL 26. Liệu có cơ hội nào để vé này được xác nhận (confirm) không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi về cơ hội xác nhận của vé tàu trạng thái PQWL (Pooled Quota Waitlist) số thứ tự 25 và 26.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "PQWL",
+                "ticket",
+                "confirmation",
+                "chance"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "confirmation_chance": [
+                "cơ hội thấp",
+                "thấp",
+                "khó được xác nhận",
+                "low chance"
+              ],
+              "pqwl_characteristic": [
+                "không được đưa vào hệ thống RAC",
+                "không chuyển sang RAC",
+                "Pooled Quota Waitlist"
+              ],
+              "alternative_solution": [
+                "đặt vé Tatkaal",
+                "vé đặt gấp",
+                "theo dõi sát sao"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vé tàu có trạng thái PQ/WL 25 và PQWL 26 có cơ hội được xác nhận (confirm) là khá thấp.",
+              "Loại vé PQWL (Pooled Quota Waitlist) thường không được chuyển sang hệ thống RAC.",
+              "Nên cân nhắc đặt vé Tatkaal (vé đặt gấp) trước ngày khởi hành nếu số thứ tự vẫn cao."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nghĩ về những chuyến đi và công nghệ, tôi cứ thắc mắc tại sao cho đến giờ chúng ta vẫn chưa thực sự sống trong một thế giới tương lai như trong phim viễn tưởng nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Lý giải nguyên nhân vì sao con người cảm thấy thế giới hiện tại chưa giống với thế giới tương lai trong phim viễn tưởng.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "futuristic world",
+                "thế giới tương lai",
+                "viễn tưởng và thực tế"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "technological_evolution": [
+                "diễn ra dần dần",
+                "thay đổi từ từ",
+                "len lỏi vào đời sống"
+              ],
+              "past_fiction_now_reality": [
+                "ảnh vệ tinh",
+                "định vị bằng tam giác vô tuyến",
+                "radio triangulation",
+                "từng bị coi là phi lý trong phim"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nhiều công nghệ từng chỉ có trong phim viễn tưởng như ảnh vệ tinh tìm người hay định vị vô tuyến nay đã trở thành hiện thực.",
+              "Con người thực ra đang sống trong thế giới tương lai nhưng không nhận ra vì mọi sự thay đổi diễn ra một cách dần dần."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại chuyện vé tàu một chút, nếu tôi có vé RAC mà chưa thấy ghi số toa (coach number) thì tôi nên lên toa nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi cách xác định số toa khi có vé RAC mà chưa có số toa.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "RAC ticket coach allotment",
+                "cách xem số toa vé RAC"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "chuyện vé tàu",
+              "expected_target": [
+                "vé tàu",
+                "PQ/WL 25",
+                "PQWL 26"
+              ]
+            },
+            "required_slots": {
+              "charting_time": [
+                "lập biểu đồ",
+                "charting",
+                "4 giờ trước khi tàu chạy"
+              ],
+              "rac_coach_identifier": [
+                "tiền tố 'R'",
+                "ký hiệu R",
+                "RS-3"
+              ]
+            },
+            "golden_reference_claims": [
+              "Số toa và số ghế cho vé RAC sẽ được phân bổ chính thức vào thời điểm lập biểu đồ, thường là 4 giờ trước khi tàu khởi hành.",
+              "Vé RAC có thể được nhận diện bằng tiền tố 'R' trước số toa (ví dụ: RS-3)."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, đổi chủ đề sang anime một chút cho vui: Bạn nghĩ sao nếu Goku đạt được Bản năng Vô cực (Ultra Instinct - UI) ngay trong giải đấu giữa Vũ trụ 6 và Vũ trụ 7?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Hỏi ý kiến và phân tích giả thuyết Goku đạt Bản năng Vô cực trong giải đấu giữa Vũ trụ 6 và Vũ trụ 7.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Goku UI Universe 6 tournament",
+                "Ultra Instinct"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "condition_for_ui": [
+                "cận kề cái chết",
+                "giới hạn cuối cùng",
+                "đẩy đến giới hạn"
+              ],
+              "universe_6_opponents": [
+                "Botamo",
+                "Frost"
+              ]
+            },
+            "golden_reference_claims": [
+              "Goku chỉ đạt được Bản năng Vô cực (UI) khi bị đẩy đến giới hạn cận kề cái chết.",
+              "Kết quả giải đấu Vũ trụ 6 sẽ phụ thuộc vào việc Goku đối đầu với Botamo hay Frost."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_009",
+    "conversation_id": "conversation_0057",
+    "source": {
+      "text": "[{\"title\": \"The Outerhaven - Anime Database\", \"snippet\": \"ID:Invaded là một bộ anime xuất sắc kể về một điều tra viên thâm nhập sâu vào tâm trí của tội phạm để phá án. Nhân vật chính có mối thâm thù với những kẻ giết người hàng loạt và thao túng chúng nảy sinh xu hướng tự sát.\"}]\n\n[{\"title\": \"Introduction to Sequences - Mathematical Theory\", \"snippet\": \"Có vô số dãy số khả thi và hàng ngàn dãy đã được nghiên cứu. Một dãy số có thể được xác định bằng một hàm số f(n) cho các giá trị nguyên dương của n. Nếu không có quy luật hàm số cụ thể, không thể khẳng định chắc chắn số tiếp theo là gì.\"}]\n\n[{\"title\": \"Dune Universe Lore - Earth's Status\", \"snippet\": \"Trái Đất gần như bị lãng quên trong các sự kiện của series Dune. Nó thường được gọi là 'Old Earth', 'Old Terra' hoặc 'Terra'. Trái Đất không xuất hiện trực tiếp trong các tiểu thuyết, và có nhiều lý thuyết khác nhau từ nguyên tác của Frank Herbert cho đến Dune Encyclopedia.\"}]\n\n[{\"title\": \"Creative Crossover Concepts\", \"snippet\": \"Sự kết hợp giữa 'Craig of the Creek' và 'Borderlands' sẽ là một sự pha trộn giữa thế giới nhẹ nhàng của Cartoon Network và bối cảnh hậu tận thế, hành động kịch tính của Pandora. Cốt truyện có thể bắt đầu khi nhóm bạn của Craig tìm thấy một cổng không gian bí ẩn tại con suối dẫn đến Pandora.\"}]\n\n[{\"title\": \"Best Netflix TV Series Guide\", \"snippet\": \"Có nhiều trang web cung cấp danh sách các series phổ biến trên Netflix và các nền tảng khác. Người dùng thường tìm kiếm các series có nội dung sâu sắc, chất lượng hình ảnh HD và không bị làm phiền bởi quảng cáo.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, gần đây bạn có xem bộ anime nào hay mà ít người biết đến không? Nếu có thì đánh giá thế nào và có gợi ý cho mình không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Yêu cầu gợi ý và đánh giá một bộ anime hay nhưng ít người biết đến.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "underrated anime",
+                "recommendations"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "anime_name": [
+                "ID:Invaded",
+                "ID Invaded"
+              ],
+              "plot_summary": [
+                "điều tra viên thâm nhập sâu vào tâm trí của tội phạm",
+                "tiềm thức của tội phạm để giải quyết các vụ án"
+              ],
+              "review_evaluation": [
+                "cốt truyện và sự sáng tạo",
+                "tác phẩm cực kỳ thông minh"
+              ]
+            },
+            "golden_reference_claims": [
+              "ID:Invaded là một bộ anime underrated với cốt truyện thông minh và sáng tạo.",
+              "Nhân vật chính là một điều tra viên có khả năng thâm nhập vào tâm trí hoặc tiềm thức của tội phạm để phá án.",
+              "Nhân vật chính có mối thù với những kẻ giết người hàng loạt và thao túng tâm lý khiến chúng tự sát."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Nghe thú vị đấy! À, mình đang gặp một bài toán dãy số, bạn giúp mình tìm số tiếp theo trong dãy này với: 1, 4, 5, 6, 7, 9, 11?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm số tiếp theo trong một dãy số và giải thích tính chất toán học của nó.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "number sequence",
+                "1, 4, 5, 6, 7, 9, 11"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "sequence_rule": [
+                "không có một quy luật duy nhất",
+                "vô số dãy số khả thi",
+                "không có định nghĩa hàm số cụ thể"
+              ],
+              "next_number_explanation": [
+                "số tiếp theo có thể là bất cứ số nào",
+                "tùy thuộc vào quy luật"
+              ]
+            },
+            "golden_reference_claims": [
+              "Dãy số 1, 4, 5, 6, 7, 9, 11 thực tế không có một quy luật duy nhất và chắc chắn để xác định số tiếp theo.",
+              "Trong toán học, một dãy số thường được định nghĩa thông qua hàm số f(n) và có vô số dãy số khả thi nếu không có hàm số cụ thể."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Ra là vậy, toán học đúng là phức tạp thật. Chuyển sang chủ đề giả tưởng một chút, mình đang đọc về series 'Dune', cho mình hỏi chuyện gì đang xảy ra với Trái Đất trong vũ trụ này vậy?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về tình trạng và số phận của Trái Đất trong vũ trụ giả tưởng Dune.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Earth",
+                "Dune",
+                "Old Terra"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "earth_status": [
+                "bị lãng quên",
+                "forgotten",
+                "gần như bị lãng quên"
+              ],
+              "alternative_names": [
+                "Old Earth",
+                "Old Terra",
+                "Terra"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong vũ trụ Dune, Trái Đất gần như đã bị lãng quên hoàn toàn và không xuất hiện trực tiếp trong các tiểu thuyết chính.",
+              "Trái Đất thường được gọi bằng các cái tên như Old Earth, Old Terra hoặc Terra."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Thật khó tin là một hành tinh lớn như vậy lại bị lãng quên. Mà này, bạn thử tưởng tượng xem nếu có một sự kết hợp (crossover) giữa phim hoạt hình 'Craig of the Creek' trên Cartoon Network và series game 'Borderlands' thì sẽ thế nào nhỉ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Yêu cầu tưởng tượng về ý tưởng kết hợp (crossover) giữa hoạt hình 'Craig of the Creek' và game 'Borderlands'.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Craig of the Creek",
+                "Borderlands",
+                "crossover"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "crossover_contrast": [
+                "thế giới nhẹ nhàng",
+                "thế giới trẻ thơ",
+                "hậu tận thế",
+                "bạo lực và đầy màu sắc"
+              ],
+              "plot_concept": [
+                "cổng không gian",
+                "con suối",
+                "Pandora"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sự kết hợp giữa 'Craig of the Creek' và 'Borderlands' tạo ra sự tương phản giữa thế giới trẻ thơ nhẹ nhàng và bối cảnh hậu tận thế kịch tính của Pandora.",
+              "Cốt truyện giả định là nhóm bạn của Craig tìm thấy một cổng không gian bí ẩn tại con suối dẫn đến hành tinh Pandora."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Haha, tưởng tượng thôi đã thấy hài rồi. Cuối cùng, mình đang muốn tìm một vài bộ phim truyền hình (TV series) thực sự đáng xem, bạn có đề xuất nào không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm đề xuất các bộ phim truyền hình (TV series) thực sự đáng xem.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "TV series",
+                "worth watching",
+                "top rated",
+                "recommendations"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "recommendation_source": [
+                "Netflix",
+                "IMDb",
+                "danh sách phim top-rated",
+                "trang web tổng hợp"
+              ],
+              "genre_options": [
+                "kịch tính",
+                "trinh thám",
+                "hài hước"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc chọn phim tùy thuộc vào gu của người xem, nên tham khảo danh sách phim top-rated trên Netflix hoặc IMDb.",
+              "Người dùng có thể cung cấp thêm sở thích về thể loại như kịch tính, trinh thám hay hài hước để nhận được gợi ý cụ thể."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_010",
+    "conversation_id": "conversation_0058",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn chi tiết về Dropshipping cho người mới bắt đầu\", \"snippet\": \"Dropshipping là mô hình kinh doanh mà người bán không cần lưu kho hàng hóa. Tuy nhiên, việc khởi nghiệp không hề dễ dàng do đối mặt với nhiều rủi ro, khó khăn trong marketing, vấn đề kỹ thuật khi xây dựng cửa hàng, chọn ngách sản phẩm và tìm nguồn hàng tiềm năng.\"}]\n\n[{\"title\": \"Cách vận hành Dropshipping trên Shopify\", \"snippet\": \"Shopify hỗ trợ mạnh mẽ cho dropshipping, giúp người dùng khởi nghiệp eCommerce mà không cần quản lý kho bãi. Điều này cho phép chủ shop tập trung thời gian và nguồn lực vào việc phát triển cửa hàng và thúc đẩy doanh số thay vì lo lắng về vận hành kho.\"}]\n\n[{\"title\": \"Phân tích xu hướng đầu tư Tiền mã hóa\", \"snippet\": \"Có nhiều quan điểm về đầu tư crypto: các quỹ lớn thường chọn những đồng coin 'an toàn' sau khi thẩm định kỹ. Ngược lại, nhiều cá nhân đầu tư dựa trên tâm lý FOMO (sợ bỏ lỡ cơ hội), chấp nhận rủi ro cao như chơi xổ số với hy vọng thắng lớn.\"}]\n\n[{\"title\": \"Triển vọng nghề nghiệp ngành Nông nghiệp tại Ấn Độ\", \"snippet\": \"Cả Nông nghiệp và Làm vườn đều có tiềm năng lợi nhuận và triển vọng nghề nghiệp tương đương. Sự chuyên nghiệp hóa trong ngành nông nghiệp Ấn Độ đang tăng, mở ra cơ hội cho các nhà khoa học nông nghiệp trong nhiều lĩnh vực như lâm nghiệp, thủy sản, công nghệ sinh học thực vật và quản lý môi trường.\"}]\n\n[{\"title\": \"Đánh giá hiệu quả quảng cáo trên tạp chí truyền thống\", \"snippet\": \"Quảng cáo tạp chí có thể tác động mạnh đến quyết định mua hàng nhờ khả năng tiếp cận đối tượng mục tiêu chính xác theo sở thích/nhân khẩu học và tận dụng được uy tín, niềm tin của độc giả đối với nguồn tin.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm hiểu về dropshipping. Bạn có thể giải thích dropshipping là gì và liệu mô hình này có thực sự mang lại lợi nhuận không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu định nghĩa của dropshipping và đánh giá khả năng sinh lời của mô hình này.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "dropshipping là gì",
+                "dropshipping có lợi nhuận"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "definition": [
+                "mô hình kinh doanh không cần lưu kho",
+                "người bán trung gian",
+                "nhà cung cấp vận chuyển trực tiếp"
+              ],
+              "profitability_and_challenges": [
+                "có tiềm năng lợi nhuận nhưng không dễ dàng",
+                "khó khăn trong marketing",
+                "tìm ngách sản phẩm",
+                "vấn đề kỹ thuật xây dựng cửa hàng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Dropshipping là mô hình kinh doanh trung gian mà người bán không cần lưu trữ hàng hóa trong kho mà để nhà cung cấp vận chuyển trực tiếp cho khách.",
+              "Mô hình dropshipping có tiềm năng mang lại lợi nhuận nhưng đòi hỏi phải vượt qua nhiều thách thức như tìm ngách sản phẩm, kỹ thuật và marketing."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy nếu mình muốn bắt đầu, Shopify có hỗ trợ làm dropshipping không bạn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác nhận khả năng hỗ trợ dropshipping của nền tảng Shopify.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Shopify",
+                "dropshipping"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "shopify_support": [
+                "Shopify",
+                "nền tảng phổ biến",
+                "hỗ trợ tốt"
+              ],
+              "inventory_management": [
+                "không cần quản lý kho bãi",
+                "loại bỏ rào cản chi phí kho bãi"
+              ],
+              "focus_area": [
+                "phát triển cửa hàng",
+                "thúc đẩy doanh số",
+                "marketing"
+              ]
+            },
+            "golden_reference_claims": [
+              "Shopify là một trong những nền tảng thương mại điện tử hỗ trợ mạnh mẽ và phổ biến nhất cho mô hình dropshipping.",
+              "Dropshipping trên Shopify giúp người dùng loại bỏ rào cản và chi phí quản lý kho bãi.",
+              "Chủ cửa hàng có thể tập trung nguồn lực vào việc marketing và gia tăng doanh số thay vì lo vận hành kho."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Ngoài thương mại điện tử, mình cũng đang cân nhắc đầu tư vào tiền mã hóa. Theo bạn, hiện nay đầu tư vào cryptocurrency còn sinh lời không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem việc đầu tư vào tiền mã hóa hiện nay còn có khả năng sinh lời và rủi ro ra sao.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "đầu tư cryptocurrency",
+                "lợi nhuận",
+                "rủi ro"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "investment_profitability": [
+                "vẫn có khả năng sinh lời",
+                "còn sinh lời",
+                "lợi nhuận vẫn tồn tại"
+              ],
+              "investor_groups": [
+                "Nhóm chuyên nghiệp",
+                "Nhóm đầu cơ",
+                "tâm lý FOMO"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc đầu tư vào tiền mã hóa (cryptocurrency) hiện nay vẫn có khả năng sinh lời nhưng đi kèm với rủi ro rất lớn.",
+              "Các nhà đầu tư lớn thường chọn đồng tiền mã hóa an toàn sau khi thẩm định kỹ, trong khi nhiều cá nhân đầu tư dựa trên tâm lý FOMO và chấp nhận rủi ro cao."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Mình có một người bạn ở Ấn Độ đang phân vân chọn ngành học. Giữa B.Sc Nông nghiệp (Agriculture) và B.Sc Làm vườn (Horticulture), ngành nào có triển vọng thu nhập tốt hơn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh triển vọng thu nhập và nghề nghiệp giữa hai ngành B.Sc Nông nghiệp và B.Sc Làm vườn tại Ấn Độ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Agriculture",
+                "Horticulture",
+                "India",
+                "profitability"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "career_prospects": [
+                "tương đương",
+                "tương tự",
+                "same potential",
+                "equivalent"
+              ],
+              "specialization_fields": [
+                "công nghệ sinh học thực vật",
+                "lâm nghiệp",
+                "thủy sản",
+                "quản lý môi trường"
+              ]
+            },
+            "golden_reference_claims": [
+              "Cả ngành B.Sc Nông nghiệp và B.Sc Làm vườn tại Ấn Độ đều có tiềm năng thu nhập và triển vọng nghề nghiệp tương đương nhau.",
+              "Ngành nông nghiệp Ấn Độ đang chuyên nghiệp hóa mạnh mẽ, làm tăng nhu cầu về các nhà khoa học và chuyên gia có trình độ.",
+              "Sinh viên tốt nghiệp có thể học lên Thạc sĩ để chuyên sâu vào lâm nghiệp, thủy sản, công nghệ sinh học thực vật hoặc quản lý môi trường."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình đang chạy một doanh nghiệp nhỏ. Bạn thấy việc quảng cáo trên tạp chí (magazine advertising) hiện nay có còn hiệu quả và mang lại lợi nhuận không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá hiệu quả và khả năng sinh lời của hình thức quảng cáo trên tạp chí đối với doanh nghiệp nhỏ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "quảng cáo tạp chí",
+                "magazine advertising"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "target_audience": [
+                "đối tượng mục tiêu",
+                "nhân khẩu học",
+                "khách hàng mục tiêu",
+                "sở thích"
+              ],
+              "brand_trust": [
+                "uy tín",
+                "niềm tin",
+                "đáng tin cậy"
+              ]
+            },
+            "golden_reference_claims": [
+              "Quảng cáo tạp chí giúp tiếp cận chính xác đối tượng mục tiêu theo sở thích và nhân khẩu học, từ đó tăng tỷ lệ chuyển đổi đơn hàng.",
+              "Hình thức quảng cáo này tận dụng được uy tín và niềm tin của độc giả đối với ấn phẩm, giúp tăng thiện cảm với thương hiệu."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_011",
+    "conversation_id": "conversation_0059",
+    "source": {
+      "text": "[{\"title\": \"Lepenski Vir - Bình minh của văn minh thế giới\", \"snippet\": \"Khám phá tại Lepenski Vir cho thấy những dấu tích có niên đại lên tới 10.000 năm tuổi, với những bức tượng chân dung đồ sộ đầu tiên trong lịch sử châu Âu, xuất hiện từ rất sớm trên các vùng teras của sông Danube.\"}]\n\n[{\"title\": \"Có thể thuần hóa mèo hoang không?\", \"snippet\": \"Hiệp hội Phòng chống Ngược đãi Động vật Hoa Kỳ (ASPCA) phân biệt giữa 'mèo cộng đồng' (những con mèo từng là thú cưng bị bỏ rơi, vẫn có khả năng giao tiếp với người) và 'mèo hoang' (feral cats) - những con mèo hoàn toàn không có sự tiếp xúc xã hội với con người.\"}]\n\n[{\"title\": \"Nguồn gốc tên gọi Azerbaijan\", \"snippet\": \"Thuật ngữ 'Azerbaijan' được Mehmet Emin Resulzade đưa ra vào đầu thế kỷ 20 để tạo ra một bản sắc chung cho tất cả các nhóm thiểu số trong quốc gia, mặc dù người Turk chiếm đa số. Trước đó, khái niệm này chưa tồn tại phổ biến.\"}]\n\n[{\"title\": \"Đặc điểm văn hóa làm việc tại Big 4\", \"snippet\": \"Các công ty Big 4 nổi tiếng với môi trường làm việc tốc độ nhanh, năng động, đề cao tính chuyên nghiệp, liêm chính và tiêu chuẩn chất lượng công việc cực kỳ cao. Nhân viên phải đảm bảo kết quả chính xác, tuân thủ thời hạn khắt khe và các nguyên tắc đạo đức nghề nghiệp.\"}]\n\n[{\"title\": \"Bài học về quản trị doanh nghiệp\", \"snippet\": \"Những người có kinh nghiệm quản lý lâu năm trong quân đội và kinh doanh thường nhận thấy rằng những sai lầm trong lãnh đạo và văn hóa doanh nghiệp độc hại có thể gây tác động tiêu cực lớn đến sự phát triển của nhân viên.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Cho mình hỏi văn hóa Vinca có cổ xưa hơn nền văn minh Sumer và Ai Cập không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh độ tuổi và niên đại giữa văn hóa Vinca với văn minh Sumer và Ai Cập.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Vinca culture",
+                "Sumer",
+                "Egypt",
+                "Lepenski Vir"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "vinca_lepenski_vir_age": [
+                "10.000 năm",
+                "10,000 năm tuổi",
+                "niên đại lên tới 10.000 năm"
+              ],
+              "comparison_with_sumer_egypt": [
+                "sớm hơn",
+                "xuất hiện sớm hơn",
+                "trước cả Sumer và Ai Cập"
+              ]
+            },
+            "golden_reference_claims": [
+              "Các nền văn hóa tiền sử khu vực văn hóa Vinca và Lepenski Vir có niên đại lên tới 10.000 năm.",
+              "Dấu ấn văn minh sơ khai tại đây xuất hiện sớm hơn so với thời điểm hình thành các nền văn minh Sumer và Ai Cập cổ đại."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Chuyển sang một chủ đề khác nhé, mình đang định nhận nuôi một chú mèo hoang đã lớn tuổi, liệu có thể thuần hóa được không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu khả năng thuần hóa một chú mèo hoang đã lớn tuổi và các yếu tố liên quan.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "mèo hoang",
+                "thuần hóa",
+                "feral cat",
+                "tame"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "cat_classification": [
+                "mèo cộng đồng",
+                "mèo hoang",
+                "community cat",
+                "feral cat"
+              ],
+              "tame_difficulty": [
+                "khó khăn",
+                "mất nhiều thời gian",
+                "bản năng sinh tồn",
+                "khả năng xã hội hóa"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc thuần hóa mèo hoang lớn tuổi phụ thuộc vào việc đó là mèo cộng đồng hay mèo hoang hoàn toàn theo phân loại của ASPCA.",
+              "Mèo cộng đồng có khả năng xã hội hóa và dễ thuần hóa hơn so với mèo hoang hoàn toàn.",
+              "Mèo hoang hoàn toàn lớn tuổi rất khó thuần hóa do bản năng sinh tồn mạnh mẽ và thiếu tiếp xúc với con người."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Nói về sự thích nghi và bản sắc, mình tò mò không biết văn hóa Azerbaijan có đặc điểm gì mang tính Thổ Nhĩ Kỳ (Turkic) ngoài ngôn ngữ không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về các đặc điểm văn hóa mang tính Thổ Nhĩ Kỳ (Turkic) và nguồn gốc tên gọi của Azerbaijan.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Azerbaijani culture Turkic",
+                "origin of the name Azerbaijan"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "turkic_identity": [
+                "yếu tố Turkic",
+                "người Turk",
+                "bản sắc"
+              ],
+              "name_origin": [
+                "Mehmet Emin Resulzade",
+                "thuật ngữ 'Azerbaijan'",
+                "đầu thế kỷ 20"
+              ]
+            },
+            "golden_reference_claims": [
+              "Yếu tố Turkic đóng vai trò chủ đạo trong văn hóa và bản sắc Azerbaijan do người Turk chiếm đa số trong dân cư.",
+              "Thuật ngữ 'Azerbaijan' do Mehmet Emin Resulzade khởi xướng vào đầu thế kỷ 20 nhằm tạo ra một bản sắc chung bao hàm các nhóm thiểu số."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Nhắc đến bản sắc tổ chức, bạn có biết môi trường làm việc tại PwC hay các công ty Big 4 nói chung như thế nào không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về môi trường làm việc và văn hóa tại PwC hoặc các công ty Big 4.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "PwC",
+                "Big 4",
+                "work environment",
+                "culture"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "work_environment": [
+                "cường độ cao",
+                "tốc độ nhanh",
+                "năng động",
+                "high-paced"
+              ],
+              "professional_standards": [
+                "tiêu chuẩn chất lượng",
+                "chuyên nghiệp",
+                "liêm chính"
+              ],
+              "pressure_and_deadlines": [
+                "thời hạn khắt khe",
+                "deadline",
+                "áp lực"
+              ]
+            },
+            "golden_reference_claims": [
+              "Văn hóa tại PwC và các công ty Big 4 là môi trường làm việc cường độ cao và năng động.",
+              "Big 4 đề cao tính chuyên nghiệp với tiêu chuẩn chất lượng công việc khắt khe.",
+              "Nhân viên phải đối mặt với áp lực về thời hạn deadline và sự chính xác trong kết quả công việc."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Nghe có vẻ áp lực quá. Vậy theo bạn, những điều tồi tệ nhất trong văn hóa doanh nghiệp nói chung là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về những mặt tối và điều tồi tệ nhất trong văn hóa doanh nghiệp nói chung.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "corporate culture",
+                "toxic",
+                "worst"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "management_style": [
+                "phong cách lãnh đạo độc đoán",
+                "lãnh đạo thiếu hỗ trợ",
+                "cách quản lý kém"
+              ],
+              "communication_issue": [
+                "thiếu minh bạch trong giao tiếp",
+                "giao tiếp kém",
+                "không minh bạch"
+              ],
+              "work_environment": [
+                "cạnh tranh không lành mạnh",
+                "văn hóa độc hại",
+                "gây kiệt sức"
+              ]
+            },
+            "golden_reference_claims": [
+              "Những mặt tối của văn hóa doanh nghiệp thường nằm ở cách quản lý và tương tác giữa con người.",
+              "Các vấn đề tồi tệ nhất bao gồm sự thiếu minh bạch trong giao tiếp, phong cách lãnh đạo độc đoán và môi trường cạnh tranh không lành mạnh.",
+              "Doanh nghiệp quá chú trọng quy trình mà quên yếu tố con người sẽ tạo ra văn hóa độc hại, gây kiệt sức cho nhân viên."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_012",
+    "conversation_id": "conversation_0060",
+    "source": {
+      "text": "[{\"title\": \"Đánh giá xe hơi phân khúc giá rẻ tại Ấn Độ 2020\", \"snippet\": \"Maruti Suzuki Swift là lựa chọn phổ biến với động cơ xăng 1.2L, công suất 88.50 bhp, mô-men xoắn 113 Nm. Xe có tùy chọn số sàn 5 cấp hoặc AMT, mức tiêu thụ nhiên liệu ấn tượng 23.20 km/l, sức chứa 5 người và trang bị túi khí kép.\"}]\n\n[{\"title\": \"Top tai nghe Bluetooth dưới 5000 Rupee\", \"snippet\": \"Công nghệ không dây đã thay đổi cách thưởng thức âm nhạc. Trong phân khúc dưới 5000 Rupee, các mẫu tai nghe Over-ear (trùm tai) đang rất được ưa chuộng nhờ sự kết hợp giữa chất lượng âm thanh, sự thoải mái và thời lượng pin dài.\"}]\n\n[{\"title\": \"Phân tích phim Dil Bechara (2020)\", \"snippet\": \"Dil Bechara là bản chuyển thể từ tiểu thuyết 'The Fault In Our Stars' của John Green, được 'Bollywood hóa' với tên nhân vật và bối cảnh Ấn Độ. Phim ở mức ổn đến tốt, đặc biệt là 20 phút cuối phim tạo nên sự xúc động mạnh mẽ, xóa nhòa ranh giới giữa hư cấu và thực tại.\"}]\n\n[{\"title\": \"Sự thật về kinh phí xây dựng đền Ayodhya\", \"snippet\": \"Đền Ayodhya được xây dựng từ nguồn quyên góp của các tín đồ, không sử dụng tiền thuế của dân. Theo luật, tiền quyên góp cho đền thờ không được dùng cho mục đích khác. Ngược lại, các cơ sở công cộng được xây từ thuế. Các đền thờ cũng đóng góp một khoản thuế lớn cho nhà nước hàng năm.\"}]\n\n[{\"title\": \"Twitter Trends September 10, 2020\", \"snippet\": \"Các xu hướng nổi bật bao gồm: tranh luận về Hindu giáo, các bài đăng về Rahul Khan, cùng với các hashtag chúc mừng lễ Ganesh Chaturthi và 'Har Har Mahadev'.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm mua một chiếc ô tô tại Ấn Độ với ngân sách dưới 5 lakh rupee vào năm 2020, bạn có gợi ý mẫu xe nào tốt không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm gợi ý mẫu ô tô tốt nhất tại Ấn Độ với giá dưới 5 lakh rupee vào năm 2020.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "car",
+                "under 5 lakh",
+                "India",
+                "2020"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "car_model": [
+                "Maruti Suzuki Swift",
+                "Swift"
+              ],
+              "engine_specs": [
+                "động cơ xăng 1.2L",
+                "88.50 bhp",
+                "113 Nm"
+              ],
+              "fuel_economy": [
+                "23.20 km/l",
+                "tiết kiệm nhiên liệu"
+              ]
+            },
+            "golden_reference_claims": [
+              "Maruti Suzuki Swift là một trong những lựa chọn xe hơi giá rẻ tốt nhất dưới 5 lakh tại Ấn Độ năm 2020.",
+              "Xe được trang bị động cơ xăng 1.2L với công suất 88.50 bhp và mô-men xoắn 113 Nm.",
+              "Maruti Suzuki Swift có mức tiêu thụ nhiên liệu 23.20 km/l và trang bị túi khí kép."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Tiện thể, mình cũng muốn mua một chiếc tai nghe không dây tầm giá dưới 5.000 rupee, bạn thấy loại nào ổn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm gợi ý mua tai nghe không dây dưới 5000 rupee tại Ấn Độ",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "wireless earphones",
+                "5000 rupees"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "budget": [
+                "dưới 5.000 rupee",
+                "tầm giá dưới 5.000 rupee",
+                "dưới 5k rupee"
+              ],
+              "headphone_type": [
+                "tai nghe bluetooth over-ear",
+                "tai nghe không dây trùm tai"
+              ]
+            },
+            "golden_reference_claims": [
+              "Ngân sách mua tai nghe không dây của người dùng là dưới 5.000 rupee.",
+              "Các dòng tai nghe Bluetooth Over-ear (trùm tai) đang rất được ưa chuộng trong tầm giá này.",
+              "Tai nghe trùm tai mang lại trải nghiệm âm thanh tốt, sự thoải mái và thời lượng pin bền bỉ."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Mình đang rảnh, bạn đánh giá thế nào về bộ phim 'Dil Bechara' ra mắt năm 2020? Có đáng xem không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đánh giá chất lượng và sự đáng xem của bộ phim 'Dil Bechara' (2020).",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Dil Bechara",
+                "2020",
+                "review"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "movie_evaluation": [
+                "ổn đến tốt",
+                "đáng xem",
+                "từ ổn đến tốt"
+              ],
+              "adaptation_source": [
+                "The Fault In Our Stars",
+                "John Green",
+                "bản chuyển thể"
+              ],
+              "key_highlight": [
+                "20 phút cuối",
+                "xúc động mạnh mẽ",
+                "cảm xúc được đẩy lên cao trào"
+              ]
+            },
+            "golden_reference_claims": [
+              "Bộ phim 'Dil Bechara' (2020) được đánh giá ở mức từ ổn đến tốt.",
+              "Phim là bản chuyển thể mang phong cách Bollywood từ tiểu thuyết 'The Fault In Our Stars' của John Green.",
+              "20 phút cuối phim là điểm sáng tạo nên sự xúc động mạnh mẽ và ý nghĩa cho người xem."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Mình có đọc được một cuộc tranh luận về việc chi 3.000 crore rupee để xây đền Ram Mandir, bạn nghĩ sao về vấn đề này?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu và xác thực thông tin về nguồn kinh phí xây dựng đền Ram Mandir (Ayodhya).",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Ram Mandir",
+                "funding",
+                "construction",
+                "taxpayer money"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "funding_source": [
+                "quyên góp",
+                "tín đồ",
+                "đóng góp tự nguyện"
+              ],
+              "tax_money": [
+                "không sử dụng tiền thuế",
+                "không dùng ngân sách",
+                "không dùng tiền thuế của dân"
+              ]
+            },
+            "golden_reference_claims": [
+              "Đền Ram Mandir tại Ayodhya được xây dựng từ nguồn quyên góp tự nguyện của các tín đồ.",
+              "Việc xây dựng đền không sử dụng tiền thuế của người dân hay ngân sách nhà nước."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, bạn có biết hôm nay ngày 10 tháng 9 năm 2020, xu hướng hot nhất trên Twitter là gì không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xu hướng nổi bật trên Twitter vào ngày 10 tháng 9 năm 2020.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Twitter",
+                "trends",
+                "September 10 2020"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "twitter_trends": [
+                "tranh luận về Hindu giáo",
+                "Rahul Khan",
+                "Ganesh Chaturthi",
+                "Har Har Mahadev"
+              ],
+              "date": [
+                "10 tháng 9 năm 2020",
+                "September 10, 2020"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vào ngày 10 tháng 9 năm 2020, các xu hướng nổi bật trên Twitter bao gồm cuộc tranh luận về Hindu giáo và các bài đăng về Rahul Khan.",
+              "Các xu hướng trên Twitter vào ngày này cũng có sự xuất hiện của các hashtag chúc mừng lễ Ganesh Chaturthi và lời ca tụng 'Har Har Mahadev'."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_013",
+    "conversation_id": "conversation_0061",
+    "source": {
+      "text": "[{\"title\": \"Hướng dẫn xử lý đau thắt lưng tại nhà\", \"snippet\": \"Cột sống là hệ thống phức tạp gồm khớp, dây thần kinh và cơ. Đau thắt lưng thường xảy ra do vận động sai tư thế hoặc quá tải. Đa số các trường hợp đau thắt lưng (kể cả đau nặng) có thể tự thuyên giảm trong vài ngày nhờ khả năng tự chữa lành của cơ thể nếu người bệnh nghỉ ngơi và tránh các hoạt động gây kích ứng.\"}]\n\n[{\"title\": \"Nguyên nhân gây đau dây thần kinh tọa và đau lưng\", \"snippet\": \"Đau thắt lưng và đau dây thần kinh tọa ảnh hưởng đến hàng triệu người toàn cầu. Các nguyên nhân phổ biến bao gồm chấn thương, tư thế sai (poor posture) và một số tình trạng bệnh lý y khoa cụ thể.\"}]\n\n[{\"title\": \"Mẹo giảm mỡ bụng dưới và cải thiện vóc dáng\", \"snippet\": \"Để giảm mỡ bụng dưới, nên hạn chế tinh bột, đồ ăn nhanh và đường. Về bài tập, có thể tập gập bụng (situps) và tập thói quen hóp bụng (sucking in the gut) đúng cách. Cách tập hóp bụng: nằm xuống, đẩy mạnh như khi đi vệ sinh, sau đó đảo ngược lại bằng cách hóp bụng vào thay vì đẩy ra. Ngoài ra, cần chú ý cải thiện tư thế đứng/ngồi.\"}]\n\n[{\"title\": \"Giải pháp tự nhiên diệt chuột\", \"snippet\": \"Nuôi mèo là một cách hiệu quả vì mèo có bản năng săn đuổi, giết và ăn thịt chuột.\"}]\n\n[{\"title\": \"Lưu ý khi tập luyện cho người vẹo cột sống\", \"snippet\": \"Người bị vẹo cột sống nên gặp chuyên gia vật lý trị liệu hoặc huấn luyện viên chuyên sâu để phân tích tư thế và cải thiện phạm vi chuyển động. Tuy nhiên, do cấu trúc cột sống bất đối xứng, việc kích hoạt cơ lưng đồng đều tuyệt đối là gần như không thể vì cơ bắp đã bị mất cân bằng động.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, dạo gần đây tôi hay bị đau thắt lưng, có cách nào để giảm bớt tình trạng này tại nhà không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu các cách giảm đau thắt lưng tại nhà.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "giảm đau thắt lưng",
+                "home remedies",
+                "lower back pain"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "cause": [
+                "vận động sai tư thế",
+                "quá tải",
+                "cột sống phức tạp"
+              ],
+              "remedy": [
+                "nghỉ ngơi",
+                "tự thuyên giảm",
+                "tránh hoạt động gây kích ứng"
+              ]
+            },
+            "golden_reference_claims": [
+              "Đau thắt lưng thường xảy ra do vận động sai tư thế hoặc làm việc quá tải lên cột sống.",
+              "Đa số các trường hợp đau thắt lưng có thể tự thuyên giảm trong vài ngày nếu người bệnh nghỉ ngơi và tránh các hoạt động gây kích ứng."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Tôi hiểu rồi. Vậy thông thường những nguyên nhân nào dẫn đến đau thắt lưng và đau dây thần kinh tọa vậy bạn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu nguyên nhân gây ra đau thắt lưng và đau dây thần kinh tọa.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "nguyên nhân",
+                "đau thắt lưng",
+                "đau dây thần kinh tọa"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "injuries": [
+                "chấn thương",
+                "tác động vật lý",
+                "tổn thương"
+              ],
+              "poor_posture": [
+                "tư thế sai",
+                "poor posture",
+                "tư thế không đúng"
+              ],
+              "medical_conditions": [
+                "bệnh lý y khoa",
+                "tình trạng bệnh lý",
+                "thoái hóa cột sống"
+              ]
+            },
+            "golden_reference_claims": [
+              "Đau thắt lưng và đau dây thần kinh tọa phổ biến trên toàn cầu do chấn thương, tư thế sai và bệnh lý y khoa.",
+              "Chấn thương bao gồm các tác động vật lý đột ngột hoặc tổn thương tích tụ theo thời gian.",
+              "Tư thế sai như ngồi, đứng hoặc làm việc không đúng cách gây áp lực lên cột sống."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Ngoài vấn đề về lưng, tôi còn bị mỡ thừa vùng bụng dưới (kiểu bụng mẹ sau sinh). Tôi muốn giảm phần mỡ dưới rốn nhưng không muốn ăn kiêng khắt khe mà chỉ muốn điều chỉnh chế độ ăn, bạn có lời khuyên nào không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm cách giảm mỡ bụng dưới cho phụ nữ sau sinh mà không cần ăn kiêng khắt khe",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "giảm mỡ bụng dưới",
+                "không ăn kiêng"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "dietary_adjustment": [
+                "hạn chế tinh bột",
+                "đồ ăn nhanh",
+                "đường",
+                "chọn lọc thực phẩm"
+              ],
+              "exercise_method": [
+                "gập bụng",
+                "hóp bụng",
+                "situps"
+              ]
+            },
+            "golden_reference_claims": [
+              "Để giảm mỡ bụng dưới không cần ăn kiêng khắt khe, cần hạn chế tinh bột tinh chế, đồ ăn nhanh và đường.",
+              "Có thể tập luyện thông qua bài tập gập bụng hoặc bài tập hóp bụng chuyên sâu để cải thiện vùng bụng dưới."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "À, tôi vừa nhớ ra một việc khác không liên quan lắm. Sân sau nhà tôi đang bị chuột phá, có cách nào diệt chuột nhanh nhất không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm cách diệt chuột nhanh chóng và hiệu quả ở khu vực sân nhà.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "cách diệt chuột",
+                "sân nhà"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "solution": [
+                "nuôi mèo",
+                "nuôi một chú mèo"
+              ],
+              "benefit": [
+                "bản năng săn mồi",
+                "không cần dùng đến hóa chất"
+              ]
+            },
+            "golden_reference_claims": [
+              "Nuôi mèo là một trong những cách nhanh chóng và tự nhiên nhất để giải quyết vấn đề chuột trong sân.",
+              "Mèo có bản năng săn mồi tự nhiên giúp săn đuổi và tiêu diệt chuột hiệu quả mà không cần dùng hóa chất."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Quay lại chuyện sức khỏe, tôi bị vẹo cột sống (scoliosis). Khi tập squat, làm sao để tôi đảm bảo hai bên lưng dưới được vận động đồng đều?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách đảm bảo hai bên lưng dưới vận động đồng đều khi tập squat đối với người bị vẹo cột sống.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "vẹo cột sống",
+                "squat"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "expert_consultation": [
+                "chuyên gia vật lý trị liệu",
+                "huấn luyện viên chuyên sâu",
+                "gặp chuyên gia"
+              ],
+              "muscle_activation": [
+                "kích hoạt cơ lưng đồng đều",
+                "bất đối xứng",
+                "không thể đồng đều tuyệt đối"
+              ]
+            },
+            "golden_reference_claims": [
+              "Người bị vẹo cột sống nên tìm đến chuyên gia vật lý trị liệu hoặc huấn luyện viên chuyên sâu để được phân tích chuyển động và điều chỉnh tư thế squat.",
+              "Do cấu trúc cột sống bất đối xứng, việc kích hoạt cơ lưng đồng đều tuyệt đối khi tập squat là gần như không thể.",
+              "Mục tiêu khi tập luyện là tối ưu hóa tư thế để an toàn và giảm thiểu rủi ro chấn thương thay vì tìm kiếm sự cân bằng tuyệt đối."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_014",
+    "conversation_id": "conversation_0062",
+    "source": {
+      "text": "[{\"title\": \"The Transition from Paganism to Christianity\", \"snippet\": \"Christianity should be seen as on a continuum with the pagan world rather than a complete break. Much of its constitutive elements were Hellenistic, manifesting properties already latent or emerging within the Roman world.\"}]\n\n[{\"title\": \"Legendary Snipers: Hathcock and Kyle\", \"snippet\": \"Carlos Hathcock is often considered superior, though it's an apples-to-oranges comparison (Jungle vs Urban). Chris Kyle's strength was bravery in high-intensity urban combat zones like Fallujah and Ramadi.\"}]\n\n[{\"title\": \"Comparison of Crystallography, NMR and EM\", \"snippet\": \"Structural biology uses X-ray crystallography, NMR, and EM to elucidate molecular structures. Each has strengths: X-ray is powerful for high-resolution static structures, while NMR is better for dynamics in solution.\"}]\n\n[{\"title\": \"Religion, Nationalism and Tribalism\", \"snippet\": \"Much religious competition is thinly veiled nationalism. For example, Protestant denominations often align with national identities (Scottish, Welsh, German). Catholic vs Orthodox reflects the Western vs Eastern Roman Empire split. Tribalism also plays a role, as seen in Myanmar.\"}]\n\n[{\"title\": \"Creative Magazine Upcycling Ideas\", \"snippet\": \"Cut pictures for collages, create garlands for fireplaces/windows, make paper flowers for wreaths, or use pages as a weed barrier in gardens.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình đang tìm hiểu về lịch sử tôn giáo. Bạn cho mình hỏi Kitô giáo có những điểm nào vượt trội hơn về mặt đạo đức so với các tín ngưỡng đa thần (paganism) mà nó đã thay thế không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem Kitô giáo có những điểm vượt trội nào về mặt đạo đức so với các tín ngưỡng đa thần mà nó thay thế.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Christianity",
+                "paganism",
+                "moral"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "continuity": [
+                "dải liên tục",
+                "continuum",
+                "không phải sự đứt gãy hoàn toàn"
+              ],
+              "hellenistic_influence": [
+                "Hy Lạp hóa",
+                "Hellenistic"
+              ],
+              "roman_world_origins": [
+                "thế giới La Mã",
+                "Roman world",
+                "tiềm ẩn trong lòng thế giới La Mã"
+              ]
+            },
+            "golden_reference_claims": [
+              "Kitô giáo nằm trong một dải liên tục với thế giới đa thần thay vì là một sự thay thế hoàn toàn hay bước nhảy vọt về đạo đức.",
+              "Nhiều thành tố cốt lõi của Kitô giáo mang đậm chất Hy Lạp hóa (Hellenistic).",
+              "Kitô giáo hiện thực hóa những đặc điểm vốn đã tiềm ẩn hoặc đang nảy nở trong lòng thế giới La Mã."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Một câu hỏi khác hoàn toàn nhé, mình muốn so sánh về kỹ năng quân sự. Giữa Chris Kyle và Carlos Hathcock, ai là tay súng bắn tỉa xuất sắc hơn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh kỹ năng quân sự và hiệu suất giữa hai tay súng bắn tỉa Chris Kyle và Carlos Hathcock",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Chris Kyle",
+                "Carlos Hathcock",
+                "sniper"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "tactical_context": [
+                "bối cảnh tác chiến",
+                "táo với cam",
+                "apples-to-oranges",
+                "jungle vs urban"
+              ],
+              "carlos_hathcock": [
+                "Carlos Hathcock",
+                "kỹ năng thuần túy",
+                "nhỉnh hơn"
+              ],
+              "chris_kyle": [
+                "Chris Kyle",
+                "lòng dũng cảm",
+                "đô thị khắc nghiệt",
+                "Fallujah",
+                "Ramadi"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc so sánh giữa Carlos Hathcock và Chris Kyle là khó khăn do bối cảnh tác chiến khác nhau giữa rừng rậm và đô thị.",
+              "Carlos Hathcock được nhiều chuyên gia đánh giá nhỉnh hơn về kỹ năng bắn tỉa thuần túy.",
+              "Chris Kyle thể hiện sự xuất sắc vượt trội về lòng dũng cảm và khả năng thích nghi trong môi trường chiến đấu đô thị tại Iraq."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tiếp tục với chủ đề khoa học, trong việc xác định cấu trúc protein, phương pháp tinh thể học tia X (X-ray crystallography) có ưu thế hơn so với phổ cộng hưởng từ hạt nhân (NMR spectroscopy) không? Nếu có thì vì sao?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh ưu thế giữa phương pháp tinh thể học tia X và phổ cộng hưởng từ hạt nhân (NMR) trong việc xác định cấu trúc protein.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "X-ray crystallography",
+                "NMR spectroscopy",
+                "protein structure"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "x_ray_advantage": [
+                "tinh thể học tia X",
+                "X-ray crystallography",
+                "cấu trúc tĩnh độ phân giải cao",
+                "high-resolution static structures"
+              ],
+              "nmr_advantage": [
+                "phổ NMR",
+                "NMR spectroscopy",
+                "động lực học trong dung dịch",
+                "dynamics in solution"
+              ]
+            },
+            "golden_reference_claims": [
+              "Tinh thể học tia X vượt trội hơn trong việc xác định cấu trúc tĩnh với độ phân giải cực cao của các phân tử phức tạp.",
+              "Phổ NMR có lợi thế hơn trong việc nghiên cứu động lực học của protein trong môi trường dung dịch."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại chuyện tôn giáo một chút, tại sao hiện nay các nhánh như Chính thống giáo, Công giáo, Hồi giáo, Phật giáo và nhiều hệ phái khác vẫn tiếp tục cạnh tranh với nhau?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Làm rõ lý do vì sao các tôn giáo và hệ phái khác nhau vẫn tiếp tục cạnh tranh trong thế giới hiện đại.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "religion",
+                "competition",
+                "nationalism"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "chuyện tôn giáo",
+              "expected_target": [
+                "lịch sử tôn giáo",
+                "Kitô giáo",
+                "tín ngưỡng đa thần"
+              ]
+            },
+            "required_slots": {
+              "nationalism_factor": [
+                "chủ nghĩa dân tộc",
+                "bản sắc quốc gia",
+                "nationalism"
+              ],
+              "historical_split": [
+                "Đế chế La Mã",
+                "Roman Empire",
+                "Công giáo và Chính thống giáo"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sự cạnh tranh giữa các tôn giáo và hệ phái hiện nay phần lớn là do chủ nghĩa dân tộc được che đậy khéo léo.",
+              "Sự đối lập giữa Công giáo và Chính thống giáo phản ánh sự chia rẽ giữa Đế chế La Mã phía Tây và phía Đông.",
+              "Yếu tố bộ lạc và chính trị đóng vai trò rất lớn trong việc định hình các cuộc cạnh tranh tôn giáo."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình muốn đổi gió sang làm đồ thủ công. Bạn có cách nào sáng tạo để tái chế những cuốn tạp chí cũ không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm kiếm các ý tưởng sáng tạo và cách thức tái chế, làm đồ thủ công từ những cuốn tạp chí cũ.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "magazine",
+                "upcycling",
+                "tái chế",
+                "tạp chí"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "craft_ideas": [
+                "collage",
+                "tranh ghép",
+                "hoa giấy",
+                "paper flowers"
+              ],
+              "home_decor": [
+                "garland",
+                "dải garland",
+                "vòng hoa treo tường"
+              ],
+              "garden_usage": [
+                "màng ngăn cỏ dại",
+                "weed barrier"
+              ]
+            },
+            "golden_reference_claims": [
+              "Có thể cắt hình ảnh từ tạp chí cũ để làm nghệ thuật collage tranh ghép hoặc kết thành dải garland trang trí.",
+              "Các trang tạp chí có thể được cắt và uốn thành hoa giấy để cắm bình hoặc làm vòng hoa.",
+              "Các trang giấy của tạp chí cũ có thể được sử dụng làm màng ngăn cỏ dại trong làm vườn."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_015",
+    "conversation_id": "conversation_0063",
+    "source": {
+      "text": "[{\"title\": \"Cosmic Energy Sources and Superman\", \"snippet\": \"Hiệu quả năng lượng thường được tính bằng Công suất x Thời gian. Vụ nổ tia Gamma (GRB) thường được coi là lựa chọn tốt hơn vì phân phối năng lượng đồng đều hơn trong thời gian ngắn. Tuy nhiên, nếu xét trong khoảng thời gian dài, Quasar lại có tổng sản lượng năng lượng lớn hơn nhiều.\"}]\n\n[{\"title\": \"Scientific Method: Hypothesis vs Theory\", \"snippet\": \"Một giả thuyết cần phải chứng minh được khả năng khớp với kết quả thực nghiệm tốt hơn các mô hình hiện tại. Để chuyển từ giả thuyết sang lý thuyết, cần giải thích tại sao mô hình cũ không khớp và mô hình mới lại chính xác hơn.\"}]\n\n[{\"title\": \"Superman's Power Scaling: Sundip and World Forger\", \"snippet\": \"Superman khi sử dụng Sundip đạt được sức mạnh không tưởng, thậm chí vượt qua World Forger - một thực thể chiều thứ 6. World Forger có thể dễ dàng tạo ra các đa vũ trụ mới, bao gồm cả Hypertime, và vượt xa mọi thực thể ở chiều thứ 4 hay thứ 5 như Speedforce hay Sphere Of The Gods.\"}]\n\n[{\"title\": \"Superman's Greatest Feats of Strength\", \"snippet\": \"Các kỳ tích đáng kinh ngạc nhất bao gồm: kéo Highfather và Darkseid ra khỏi Bức tường Nguồn (Source Wall) - nơi đòi hỏi sức mạnh không thể tính toán; cùng Shazam nâng cuốn sách có số trang vô hạn (khối lượng vô hạn); đỡ toàn bộ thiên đường trên vai; và làm nứt cả thế giới chỉ bằng một bước chân.\"}]\n\n[{\"title\": \"Weather Balloon Specifications\", \"snippet\": \"Bóng thám không được làm từ vật liệu nhẹ nhưng cực kỳ bền, thiết kế để chịu được áp suất thấp và điều kiện thời tiết khắc nghiệt ở độ cao lớn. Việc làm nổ chúng bằng tay không là rất khó nếu không có công cụ hỗ trợ.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Giữa một vụ nổ tia Gamma (Gamma Ray Burst) và một Quasar, cái nào sẽ cung cấp cho Superman nhiều năng lượng hơn?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh năng lượng cung cấp cho Superman giữa Vụ nổ tia Gamma và Quasar.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Gamma Ray Burst",
+                "Quasar",
+                "Superman"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "gamma_ray_burst": [
+                "Vụ nổ tia Gamma",
+                "Gamma Ray Bursts",
+                "GRB"
+              ],
+              "quasar": [
+                "Quasar"
+              ],
+              "energy_comparison": [
+                "năng lượng tức thời",
+                "tổng sản lượng năng lượng",
+                "khoảng thời gian"
+              ]
+            },
+            "golden_reference_claims": [
+              "Vụ nổ tia Gamma (GRB) cung cấp cường độ năng lượng tức thời tốt hơn do phân phối năng lượng đồng đều trong thời gian ngắn.",
+              "Quasar có tổng sản lượng năng lượng lớn hơn nhiều nếu xét trong khoảng thời gian dài.",
+              "Sức mạnh của Superman từ các nguồn năng lượng này có thể thay đổi tùy theo tác giả và cốt truyện."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Tôi có giả thuyết rằng các vụ nổ tia Gamma thực chất là do các hành tinh kích hoạt thiết bị hạt nhân uranium dạng súng hình trụ bị sụp đổ và tạo ra laser tia gamma. Bạn nghĩ sao về điều này?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Đưa ra giả thuyết cá nhân về nguyên nhân gây ra vụ nổ tia Gamma và hỏi ý kiến của Assistant.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "gamma ray bursts",
+                "scientific model"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "scientific_definition": [
+                "giả thuyết",
+                "hypothesis"
+              ],
+              "scientific_requirements": [
+                "bằng chứng thực nghiệm",
+                "khớp với kết quả thực nghiệm",
+                "mô hình hiện tại"
+              ]
+            },
+            "golden_reference_claims": [
+              "Điều người dùng vừa nêu được gọi là một giả thuyết (hypothesis) chứ chưa phải là một lý thuyết (theory) về mặt thuật ngữ khoa học.",
+              "Để giả thuyết có giá trị khoa học, cần chứng minh nó khớp với kết nghiệm thực nghiệm tốt hơn và giải thích điểm mà mô hình hiện tại chưa làm được."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Vậy nếu Superman được nhúng trong Sundip, liệu anh ấy có thể vượt qua sức mạnh của Odin không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "So sánh sức mạnh của Superman trong trạng thái Sundip với thần Odin trong thần thoại hoặc vũ trụ Marvel.",
+            "context_required": true,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Sundip",
+                "Odin",
+                "power scaling",
+                "World Forger"
+              ]
+            },
+            "coreference": {
+              "referent_phrase": "Superman",
+              "expected_target": [
+                "Superman",
+                "Kal-El"
+              ]
+            },
+            "required_slots": {
+              "sundip_state": [
+                "Sundip",
+                "nhúng trong Sundip",
+                "trạng thái Sundip"
+              ],
+              "power_level": [
+                "World Forger",
+                "chiều thứ 6",
+                "6th dimension",
+                "multiversal"
+              ],
+              "comparison_with_odin": [
+                "vượt qua sức mạnh của Odin",
+                "vượt xa Odin"
+              ]
+            },
+            "golden_reference_claims": [
+              "Trong trạng thái Sundip, Superman đạt đến mức sức mạnh vượt xa mọi sự tưởng tượng.",
+              "Phiên bản Sundip của Superman có thể đối đầu và vượt qua World Forger - một thực thể thuộc chiều thứ 6.",
+              "Với cấp độ sức mạnh đa vũ trụ, Superman hoàn toàn có thể vượt qua sức mạnh của Odin."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Trong lịch sử truyện tranh, màn phô diễn sức mạnh thô bạo và áp đảo nhất của Superman là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu những màn phô diễn sức mạnh thể chất áp đảo nhất của Superman trong truyện tranh",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Superman",
+                "sức mạnh",
+                "Source Wall",
+                "feats of strength"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "source_wall_feat": [
+                "Bức tường Nguồn",
+                "Source Wall",
+                "kéo Highfather",
+                "kéo Darkseid"
+              ],
+              "infinite_book_feat": [
+                "cuốn sách có số trang vô hạn",
+                "khối lượng vô hạn",
+                "cùng với Shazam"
+              ],
+              "world_breaking_feat": [
+                "làm nứt cả thế giới",
+                "bước chân duy nhất",
+                "đỡ toàn bộ thiên đường"
+              ]
+            },
+            "golden_reference_claims": [
+              "Superman từng kéo Highfather và Darkseid ra khỏi Bức tường Nguồn (Source Wall), một kỳ tích đòi hỏi sức mạnh không thể đo đếm.",
+              "Superman cùng với Shazam từng nâng một cuốn sách có số trang vô hạn, tương đương khối lượng vô hạn.",
+              "Superman có khả năng làm nứt cả thế giới chỉ bằng một bước chân duy nhất."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Quay lại thực tế một chút, liệu một người bình thường có thể dùng tay không làm nổ một quả bóng thám không (weather balloon) không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem liệu một người bình thường có thể dùng tay không làm nổ bóng thám không trong thực tế hay không.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "weather balloon",
+                "bare hands",
+                "pop"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "difficulty": [
+                "rất khó",
+                "khó",
+                "không thể dễ dàng"
+              ],
+              "material": [
+                "vật liệu đặc biệt",
+                "nhẹ nhưng cực kỳ bền",
+                "chịu được áp suất"
+              ],
+              "requirement": [
+                "dùng công cụ sắc nhọn",
+                "lực tác động rất lớn",
+                "cần công cụ hỗ trợ"
+              ]
+            },
+            "golden_reference_claims": [
+              "Việc dùng tay không làm nổ một quả bóng thám không trong thực tế là rất khó.",
+              "Bóng thám không được chế tạo từ vật liệu đặc biệt, nhẹ và cực kỳ bền để chịu được áp suất thấp và điều kiện khắc nghiệt.",
+              "Cần có lực tác động rất lớn hoặc công cụ sắc nhọn mới có thể làm nổ bóng thám không."
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sample_id": "sample_016",
+    "conversation_id": "conversation_0064",
+    "source": {
+      "text": "[{\"title\": \"Darwinism and Social Context\", \"snippet\": \"The propagation of ideas requires funding. In Western Europe, the 19th-century colonization provided the financial backing to market these ideas. In the US, the lack of similar funding structures meant the social implications of 'Darwinism' developed differently, often clashing more sharply with established religious rhetoric.\"}]\n\n[{\"title\": \"Critique of Big Whisper\", \"snippet\": \"Big Whisper is a speculation published in self-published Medium articles, not a peer-reviewed scientific theory. It fails to reproduce the same results as the Big Bang theory and demonstrates a misunderstanding of current astrophysics beyond pop-science levels.\"}]\n\n[{\"title\": \"Sum of Two Squares Theorem - Wolfram MathWorld\", \"snippet\": \"A positive integer can be represented as the sum of two squares if and only if each prime factor of the form 4k+3 occurs with an even exponent in its prime factorization. The prime factor 2 is ignored.\"}]\n\n[{\"title\": \"Wegener's Evidence for Continental Drift\", \"snippet\": \"Mineral composition of continents and the melting point of minerals suggested a molten core. Volcanism and mineral patterns in mountain ranges across different continents supported the idea that they were once joined.\"}]\n\n[{\"title\": \"Alternative Theory of Everything\", \"snippet\": \"Some authors claim an 'Ancient theory of everything' based on scriptures over 500 years old can explain time dilation, gravity, black holes, and dark matter, claiming coherence with quantum mechanics.\"}]",
+      "label": 0
+    },
+    "scenario": {
+      "objective": "multi_turn_context_tool_use",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Tại sao sự phản đối từ tôn giáo đối với thuyết tiến hóa của Darwin ở Tây Âu lại không gay gắt hoặc không có tác động xã hội sâu rộng như ở Mỹ?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Giải thích lý do sự phản đối của tôn giáo đối với thuyết tiến hóa ở Tây Âu ít gay gắt hơn so với ở Mỹ.",
+            "context_required": false,
+            "state_required": false
+          },
+          "ground_truth": {
+            "turn": 1,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "religious reaction",
+                "Darwinism",
+                "Europe",
+                "USA"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "economic_context": [
+                "kinh tế và xã hội",
+                "nguồn lực tài chính",
+                "quá trình thực dân hóa"
+              ],
+              "european_reception": [
+                "Tây Âu",
+                "thực dân hóa trong thế kỷ 19",
+                "tiếp nhận và lan tỏa một cách hệ thống"
+              ],
+              "american_conflict": [
+                "Mỹ",
+                "thiếu hụt các nguồn lực",
+                "xung đột gay gắt hơn với các giá trị tôn giáo"
+              ]
+            },
+            "golden_reference_claims": [
+              "Sự khác biệt về mức độ phản ứng của tôn giáo đối với thuyết tiến hóa giữa Tây Âu và Mỹ bắt nguồn từ bối cảnh kinh tế và nguồn lực tài chính.",
+              "Ở Tây Âu, nguồn vốn từ quá trình thực dân hóa thế kỷ 19 đã giúp lý thuyết Darwin được lan tỏa hệ thống, giảm thiểu xung đột.",
+              "Tại Mỹ, do thiếu hụt nguồn lực tương tự, các hàm ý xã hội của thuyết Darwin dẫn đến những xung đột gay gắt với tôn giáo truyền thống."
+            ]
+          }
+        },
+        {
+          "turn": 2,
+          "user_message": "Vậy còn 'thuyết Big Whisper' thì sao? Nếu nó sử dụng cùng các dữ kiện khoa học như thuyết Big Bang thì liệu có thể coi là một phương án thay thế tốt không?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu về 'thuyết Big Whisper' và khả năng đóng vai trò là phương án thay thế cho thuyết Big Bang.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 2,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Big Whisper theory",
+                "Big Bang theory"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "scientific_status": [
+                "không được cộng đồng khoa học công nhận",
+                "không qua bình duyệt",
+                "peer-reviewed",
+                "suy đoán cá nhân"
+              ],
+              "comparison_with_big_bang": [
+                "không thể thay thế",
+                "thiếu nền tảng vật lý",
+                "không tái lập được kết quả"
+              ]
+            },
+            "golden_reference_claims": [
+              "Thuyết Big Whisper không được cộng đồng khoa học công nhận và chỉ là suy đoán cá nhân trên các bài viết tự xuất bản.",
+              "Big Whisper thiếu quy trình bình duyệt (peer-review) và không thể tái lập kết quả thực nghiệm như thuyết Big Bang.",
+              "Big Whisper thiếu nền tảng vật lý chuyên sâu nên không thể coi là phương án thay thế khả thi cho thuyết Big Bang."
+            ]
+          }
+        },
+        {
+          "turn": 3,
+          "user_message": "Tôi muốn chuyển sang một chủ đề toán học một chút. Trong lý thuyết số, những số nào có thể được biểu diễn duy nhất dưới dạng tổng của hai số chính phương?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Xác định điều kiện để một số được biểu diễn dưới dạng tổng của hai số chính phương trong lý thuyết số.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 3,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "sum of two squares",
+                "prime factor",
+                "4k+3"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "prime_factorization": [
+                "phân tích thừa số nguyên tố",
+                "prime factorization"
+              ],
+              "prime_factor_form": [
+                "4k + 3",
+                "thừa số nguyên tố có dạng 4k+3"
+              ],
+              "even_exponent": [
+                "số mũ chẵn",
+                "even exponent"
+              ]
+            },
+            "golden_reference_claims": [
+              "Một số nguyên dương có thể biểu diễn dưới dạng tổng của hai số chính phương khi và chỉ khi mọi thừa số nguyên tố có dạng 4k + 3 xuất hiện với số mũ chẵn trong phân tích thừa số nguyên tố.",
+              "Thừa số nguyên tố 2 được bỏ qua khi xét điều kiện số mũ chẵn."
+            ]
+          }
+        },
+        {
+          "turn": 4,
+          "user_message": "Quay lại với khoa học tự nhiên, tôi nghe nói Alfred Wegener đã dùng khoáng vật học để chứng minh lý thuyết của mình. Cụ thể là các khoáng vật đã hỗ trợ thuyết trôi dạt lục địa như thế nào?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu cách Alfred Wegener sử dụng khoáng vật học để chứng minh thuyết trôi dạt lục địa.",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 4,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Alfred Wegener",
+                "minerals",
+                "continental drift"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "mineral_composition": [
+                "thành phần khoáng vật",
+                "mineral composition",
+                "khoáng vật tương đồng"
+              ],
+              "melting_point": [
+                "điểm nóng chảy",
+                "melting point",
+                "lõi nóng chảy"
+              ]
+            },
+            "golden_reference_claims": [
+              "Điểm nóng chảy của các khoáng vật giúp xác nhận Trái Đất có lõi nóng chảy, hỗ trợ sự di chuyển của các mảng lục địa.",
+              "Thành phần khoáng vật tương đồng giữa các lục địa chứng minh chúng từng là một khối thống nhất trước khi tách ra."
+            ]
+          }
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, liệu nhân loại đã tìm ra 'Lý thuyết về mọi thứ' (Theory of Everything) chưa? Nếu có thì phương trình của nó là gì?",
+          "expected_behavior": {
+            "should_call_tool": true,
+            "expected_tool": "web_search",
+            "expected_category": "knowledge",
+            "query_intent": "Tìm hiểu xem nhân loại đã tìm ra 'Lý thuyết về mọi thứ' chưa và phương trình của nó là gì",
+            "context_required": false,
+            "state_required": true
+          },
+          "ground_truth": {
+            "turn": 5,
+            "tool_call": {
+              "should_call": true,
+              "expected_name": "web_search",
+              "required_arg_keywords": [
+                "Theory of Everything",
+                "current status"
+              ]
+            },
+            "coreference": null,
+            "required_slots": {
+              "toe_status": [
+                "chưa có",
+                "chưa được chấp nhận rộng rãi",
+                "not accepted",
+                "not found"
+              ],
+              "alternative_proposal": [
+                "Lý thuyết về mọi thứ cổ đại",
+                "Ancient theory of everything"
+              ]
+            },
+            "golden_reference_claims": [
+              "Hiện nay, trong vật lý chính thống, chúng ta vẫn chưa có một 'Lý thuyết về mọi thứ' (ToE) được chấp nhận rộng rãi.",
+              "Có một số đề xuất mới như 'Lý thuyết về mọi thứ cổ đại' (Ancient theory of everything) dựa trên các văn bản cổ hơn 500 năm nhưng chưa trở thành chuẩn mực khoa học hiện đại."
+            ]
+          }
+        }
+      ]
+    }
+  }
+]

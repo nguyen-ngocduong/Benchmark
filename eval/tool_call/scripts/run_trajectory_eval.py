@@ -234,34 +234,101 @@ class DeterministicValidator:
 # 2. Atomic Claim Verifier & Groundedness (BINEVAL / FactScore style)
 # ==============================================================================
 
+def resolve_judge_config(
+    judge: Optional[str] = None,
+    model: Optional[str] = None,
+    base_url: Optional[str] = None,
+    api_key: Optional[str] = None,
+) -> Tuple[str, str, str]:
+    """
+    Resolves (model, base_url, api_key) for the Judge/Verifier LLM.
+    Supports preset shortcuts:
+      - 'gemini' | 'gemini-3.5-flash-lite'
+      - 'gemma'  | 'gemma-4-31B-it'
+    Or custom model/endpoint.
+    """
+    raw_target = (
+        judge
+        or model
+        or os.environ.get("JUDGE_MODEL")
+        or os.environ.get("MODEL")
+        or "gemma-4-31B-it"
+    )
+    target = str(raw_target).strip().lower()
+
+    if "gemini" in target:
+        resolved_model = (
+            model
+            if (model and "gemini" in model.lower())
+            else os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite")
+        )
+        resolved_base_url = (
+            base_url
+            or os.environ.get("GEMINI_BASE_URL")
+            or "https://generativelanguage.googleapis.com/v1beta/openai/"
+        )
+        resolved_api_key = (
+            api_key
+            or os.environ.get("GEMINI_API_KEY")
+            or os.environ.get("OPENAI_API_KEY")
+            or "EMPTY"
+        )
+    elif "gemma" in target:
+        resolved_model = (
+            model
+            if (model and "gemma" in model.lower())
+            else os.environ.get("GEMMA_MODEL", "gemma-4-31B-it")
+        )
+        resolved_base_url = (
+            base_url
+            or os.environ.get("GEMMA_BASE_URL")
+            or os.environ.get("BASE_URL")
+            or "https://more-starring-administration-cemetery.trycloudflare.com/v1"
+        )
+        resolved_api_key = (
+            api_key
+            or os.environ.get("OPENAI_API_KEY")
+            or os.environ.get("LLM_API_KEY")
+            or "EMPTY"
+        )
+    else:
+        resolved_model = model or os.environ.get("MODEL", raw_target)
+        resolved_base_url = (
+            base_url
+            or os.environ.get("BASE_URL")
+            or "https://more-starring-administration-cemetery.trycloudflare.com/v1"
+        )
+        resolved_api_key = (
+            api_key
+            or os.environ.get("OPENAI_API_KEY")
+            or os.environ.get("LLM_API_KEY")
+            or "EMPTY"
+        )
+
+    return resolved_model, resolved_base_url, resolved_api_key
+
+
 class AtomicClaimVerifier:
-    """Decomposes response into atomic claims and verifies grounding against evidence using MODEL (e.g. gemma-4-31B-it)."""
+    """Decomposes response into atomic claims and verifies grounding against evidence using Judge LLM (gemma-4-31B-it or gemini-3.5-flash-lite)."""
 
     def __init__(
         self,
         base_url: Optional[str] = None,
         model: Optional[str] = None,
         api_key: Optional[str] = None,
+        judge: Optional[str] = None,
         enabled: bool = True
     ):
-        self.base_url = (
-            base_url
-            or os.environ.get("BASE_URL")
-            or os.environ.get("LLM_BASE_URL")
-            or "https://more-starring-administration-cemetery.trycloudflare.com/v1"
+        r_model, r_base_url, r_api_key = resolve_judge_config(
+            judge=judge,
+            model=model,
+            base_url=base_url,
+            api_key=api_key
         )
-        self.model = (
-            model
-            or os.environ.get("MODEL")
-            or os.environ.get("LLM_MODEL")
-            or "gemma-4-31B-it"
-        )
-        self.api_key = (
-            api_key
-            or os.environ.get("OPENAI_API_KEY")
-            or os.environ.get("LLM_API_KEY")
-            or "EMPTY"
-        )
+        self.model = r_model
+        self.base_url = r_base_url
+        self.api_key = r_api_key
+        self.enabled = enabled
         self.client = None
         if enabled and self.base_url:
             self.client = AsyncOpenAI(
@@ -1061,11 +1128,17 @@ async def evaluate_single_batch(
         if enrich_batch_dataset is None:
             print(f"❌ enrich_batch_dataset could not be imported.")
             return {}
-        print(f"🔄 Chưa có Ground Truth, tự động enrich bằng {enrich_model} cho {batch_file.name}...")
+        e_model, e_base_url, e_api_key = resolve_judge_config(
+            judge=enrich_model,
+            model=enrich_model
+        )
+        print(f"🔄 Chưa có Ground Truth, tự động enrich bằng {e_model} cho {batch_file.name}...")
         scenarios, gt_path = await enrich_batch_dataset(
             input_file=str(batch_file),
             output_file=str(gt_path),
-            model=enrich_model,
+            model=e_model,
+            base_url=e_base_url,
+            api_key=e_api_key,
             force=force_enrich
         )
     else:
@@ -1206,6 +1279,7 @@ async def evaluate_single_batch(
     report = {
         "batch_file": batch_file.name,
         "model": model_name,
+        "judge_model": evaluator.verifier.model,
         "evaluation_timestamp": datetime.now().isoformat(),
         "total_scenarios": len(merged_scenarios),
         "summary_metrics": summary_metrics,
@@ -1218,6 +1292,7 @@ async def evaluate_single_batch(
 
     print(f"\n{'='*75}")
     print(f"🏁 BATCH EVALUATION COMPLETE FOR {batch_file.name}")
+    print(f"🤖 Judge Model:                    {evaluator.verifier.model}")
     print(f"🏆 Task Success Rate:              {summary_metrics['task_success_rate']*100:.1f}%")
     print(f"🎯 BinEval Overall Score:          {summary_metrics['bineval_overall_score']*100:.1f}%")
     print(f"📁 Evaluation report saved to:     {out_path.resolve()}")
@@ -1227,7 +1302,14 @@ async def evaluate_single_batch(
 
 async def main_async():
     parser = argparse.ArgumentParser(description="Multi-Turn Trajectory Evaluator with 3-Pillar Taxonomy")
-    parser.add_argument("--model", type=str, default=os.environ.get("MODEL", "gemma-4-31B-it"), help="Model name (or set MODEL in .env)")
+    parser.add_argument("--model", type=str, default=os.environ.get("MODEL", "gemma-4-31B-it"), help="Evaluated model name (or set MODEL in .env)")
+    parser.add_argument(
+        "--judge", "--judge-model",
+        type=str,
+        default=None,
+        choices=["gemini", "gemini-3.5-flash-lite", "gemma", "gemma-4-31B-it"],
+        help="Preset judge model for claim verification: 'gemini' (or 'gemini-3.5-flash-lite') | 'gemma' (or 'gemma-4-31B-it')"
+    )
     parser.add_argument("--trajectory", type=str, default=None, help="Path to agent_output.jsonl")
     parser.add_argument("--dataset", type=str, default="eval/tool_call/datasets/multi_turn/samples.json")
     parser.add_argument("--output", type=str, default=None, help="Output JSON path")
@@ -1235,8 +1317,9 @@ async def main_async():
     parser.add_argument("--batch-dir", type=str, default=None, help="Directory containing batch files (e.g. eval/tool_call/datasets/multi_turn/batches)")
     parser.add_argument("--output-dir", type=str, default="eval/tool_call/results/eval", help="Directory where batch evaluation results will be saved (default: eval/tool_call/results/eval)")
     parser.add_argument("--skip-llm-claim-eval", action="store_true", help="Skip LLM claim verification")
-    parser.add_argument("--claim-model", type=str, default=os.environ.get("MODEL", "gemma-4-31B-it"), help="Model for atomic claim evaluation (default from .env: gemma-4-31B-it)")
-    parser.add_argument("--claim-base-url", type=str, default=os.environ.get("BASE_URL", "https://more-starring-administration-cemetery.trycloudflare.com/v1"), help="Base URL for claim evaluation model")
+    parser.add_argument("--claim-model", type=str, default=None, help="Custom model name for atomic claim evaluation (default auto-resolved from judge or .env)")
+    parser.add_argument("--claim-base-url", type=str, default=None, help="Custom Base URL for claim evaluation model (default auto-resolved)")
+    parser.add_argument("--claim-api-key", type=str, default=None, help="Custom API key for claim evaluation model (default auto-resolved)")
     parser.add_argument("--enrich-model", type=str, default="gemini-3.5-flash-lite", help="Model to enrich Ground Truth (default: gemini-3.5-flash-lite)")
     parser.add_argument("--no-auto-enrich", action="store_true", help="Disable automatic Ground Truth enrichment if missing")
     parser.add_argument("--force-enrich", action="store_true", help="Force re-enrichment of Ground Truth even if cache exists")
@@ -1248,8 +1331,10 @@ async def main_async():
     args = parser.parse_args()
 
     claim_verifier = AtomicClaimVerifier(
-        base_url=args.claim_base_url,
+        judge=args.judge,
         model=args.claim_model,
+        base_url=args.claim_base_url,
+        api_key=args.claim_api_key,
         enabled=not args.skip_llm_claim_eval
     )
     evaluator = TrajectoryEvaluator(claim_verifier=claim_verifier)
@@ -1366,8 +1451,11 @@ async def main_async():
         print(f"🎯 Filtered range: {len(trajectories)} scenarios ({args.from_sample or 'start'} -> {args.to_sample or 'end'})")
 
     print(f"\n{'='*75}")
-    print(f"🎯 Objective Multi-Turn Trajectory Evaluator | Model: {args.model}")
-    print(f"📂 Trajectory source: {traj_path}")
+    print(f"🎯 Objective Multi-Turn Trajectory Evaluator")
+    print(f"   • Evaluated Agent : {args.model}")
+    print(f"   • Judge Model     : {evaluator.verifier.model}")
+    print(f"   • Judge Endpoint  : {evaluator.verifier.base_url}")
+    print(f"   • Trajectory path : {traj_path}")
     print(f"📋 Loaded {len(trajectories)} scenario trajectory/trajectories to evaluate")
     print(f"{'='*75}\n")
 
@@ -1447,6 +1535,7 @@ async def main_async():
 
     summary = {
         "model": args.model,
+        "judge_model": evaluator.verifier.model,
         "evaluation_timestamp": datetime.now().isoformat(),
         "total_scenarios": total_scenarios,
         "summary_metrics": summary_metrics,
@@ -1459,6 +1548,7 @@ async def main_async():
 
     print(f"\n{'='*75}")
     print(f"🏁 EVALUATION COMPLETE FOR {args.model}")
+    print(f"🤖 Judge Model:                    {evaluator.verifier.model}")
     print(f"🏆 Task Success Rate:              {summary_metrics['task_success_rate']*100:.1f}%\n")
     print(f"--- [A. TOOL USE] ---")
     print(f"  • tool_decision_accuracy:        {summary_metrics['tool_decision_accuracy']*100:.1f}%")

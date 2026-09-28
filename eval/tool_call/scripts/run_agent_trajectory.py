@@ -130,21 +130,22 @@ class AgentTrajectoryRunner:
         tools: Optional[List[Dict]] = None
     ):
         self.model_name = model_name or os.environ.get("MODEL") or "qwen3.5:0.8b"
-        raw_base_url = (
-            base_url
-            or os.environ.get("BASE_URL")
-            or os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
-        )
-        self.base_url = raw_base_url.rstrip("/")
-        self.api_key = os.environ.get("API_KEY", "EMPTY")
 
-        # Determine if using OpenAI-compatible client (remote endpoint, vLLM, SGLang, or external model)
-        self.use_openai_client = bool(
-            os.environ.get("BASE_URL")
-            or "/" in self.model_name
-            or "/v1" in self.base_url
-            or ("localhost:11434" not in self.base_url and "127.0.0.1:11434" not in self.base_url)
-        )
+        # Determine whether this is a local Ollama model vs remote OpenAI client
+        # Local Ollama models (e.g. qwen3.5:0.8b, gemma4:e2b) do not contain '/' or 'gemini'
+        is_local_ollama = not ("/" in self.model_name or "gemini" in self.model_name.lower())
+
+        if base_url:
+            self.base_url = base_url.rstrip("/")
+            self.use_openai_client = True
+        elif is_local_ollama:
+            self.base_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434").rstrip("/")
+            self.use_openai_client = False
+        else:
+            self.base_url = (os.environ.get("BASE_URL") or "http://localhost:11434").rstrip("/")
+            self.use_openai_client = True
+
+        self.api_key = os.environ.get("API_KEY", "EMPTY")
 
         if "gemma" in self.model_name.lower() and num_ctx > 1536 and not self.use_openai_client:
             self.num_ctx = 1536
@@ -302,7 +303,12 @@ class AgentTrajectoryRunner:
         Execute agent trajectory across all turns of a single scenario.
         Returns the formatted scenario trajectory dictionary.
         """
-        sample_id = scenario_data.get("sample_id") or scenario_data.get("id") or "unknown"
+        sample_id = (
+            scenario_data.get("sample_id")
+            or scenario_data.get("conversation_id")
+            or scenario_data.get("id")
+            or "unknown"
+        )
         source_data = scenario_data.get("source", {})
         article_text = (
             source_data.get("text", "")
@@ -315,13 +321,42 @@ class AgentTrajectoryRunner:
         if not turns:
             turns = scenario_data.get("turns") or []
 
+        # If dataset is in ChatML/OpenAI messages format (e.g. batch generated samples)
+        if not turns and "messages" in scenario_data:
+            extracted_turns = []
+            curr_user_turn = None
+            for m in scenario_data["messages"]:
+                m_role = m.get("role")
+                if m_role == "user":
+                    if curr_user_turn:
+                        extracted_turns.append(curr_user_turn)
+                    curr_user_turn = {
+                        "turn": len(extracted_turns) + 1,
+                        "user_message": m.get("content", ""),
+                        "evidence_snippet": ""
+                    }
+                elif m_role == "tool" and curr_user_turn:
+                    curr_user_turn["evidence_snippet"] = m.get("content", "")
+            if curr_user_turn:
+                extracted_turns.append(curr_user_turn)
+            turns = extracted_turns
+
+        # Check if scenario has custom tools
+        scenario_tools = scenario_data.get("tools") or self.tools
+
+        # Check if scenario has custom system prompt in messages[0]
+        init_system = self.system_prompt
+        if "messages" in scenario_data and len(scenario_data["messages"]) > 0:
+            if scenario_data["messages"][0].get("role") == "system":
+                init_system = scenario_data["messages"][0].get("content") or self.system_prompt
+
         print(f"\n{'='*65}")
         print(f"🎬 Executing Scenario: {sample_id} ({len(turns)} turns) | Model: {self.model_name}")
         print(f"{'='*65}")
 
         # Initialize conversation messages with system prompt
         messages: List[Dict[str, Any]] = [
-            {"role": "system", "content": self.system_prompt}
+            {"role": "system", "content": init_system}
         ]
 
         trajectory_turns: List[Dict[str, Any]] = []
@@ -338,7 +373,7 @@ class AgentTrajectoryRunner:
 
             # Call model with available tools (auto: model autonomously decides whether to call a tool)
             turn_tool_choice = "auto"
-            model_res = await self.call_model(messages=messages, tools=self.tools, tool_choice=turn_tool_choice)
+            model_res = await self.call_model(messages=messages, tools=scenario_tools, tool_choice=turn_tool_choice)
             tool_calls = model_res.get("tool_calls", [])
 
             if tool_calls:
@@ -359,12 +394,16 @@ class AgentTrajectoryRunner:
                 }
 
                 # Construct tool_result with exact raw article text snippet
+                turn_snippet = turn_item.get("evidence_snippet") or article_text
+                if not turn_snippet:
+                    turn_snippet = f"Kết quả tìm kiếm cho: {tool_args}"
+
                 tool_result = {
                     "type": "tool_result",
                     "tool_name": tool_name,
                     "results": [
                         {
-                            "snippet": article_text
+                            "snippet": turn_snippet
                         }
                     ]
                 }
@@ -385,11 +424,16 @@ class AgentTrajectoryRunner:
                 })
 
                 # Append tool result to message history
+                tool_msg_content = (
+                    turn_snippet
+                    if isinstance(turn_snippet, str) and turn_snippet.strip().startswith(("[", "{"))
+                    else json.dumps(tool_result, ensure_ascii=False)
+                )
                 messages.append({
                     "role": "tool",
                     "tool_call_id": tc_id,
                     "name": tool_name,
-                    "content": json.dumps(tool_result, ensure_ascii=False)
+                    "content": tool_msg_content
                 })
 
                 # Call model again to generate final verbal response
@@ -426,7 +470,9 @@ class AgentTrajectoryRunner:
 
         return {
             "sample_id": sample_id,
-            "turns": trajectory_turns
+            "conversation_id": scenario_data.get("conversation_id", sample_id),
+            "turns": trajectory_turns,
+            "messages": messages
         }
 
 
@@ -464,7 +510,7 @@ def get_existing_sample_ids(output_path: str) -> set:
             if line.strip():
                 try:
                     obj = json.loads(line)
-                    sid = obj.get("sample_id")
+                    sid = obj.get("sample_id") or obj.get("conversation_id")
                     if sid:
                         completed.add(sid)
                 except Exception:
@@ -474,7 +520,7 @@ def get_existing_sample_ids(output_path: str) -> set:
 
 def save_trajectory_record(out_path: Path, new_trajectory: Dict[str, Any]):
     """Appends or updates a trajectory record in JSONL, and synchronously updates agent_output.json array."""
-    sid = new_trajectory.get("sample_id")
+    sid = new_trajectory.get("sample_id") or new_trajectory.get("conversation_id")
     existing_records = []
     found = False
 
@@ -485,7 +531,8 @@ def save_trajectory_record(out_path: Path, new_trajectory: Dict[str, Any]):
                 if line_str:
                     try:
                         record = json.loads(line_str)
-                        if record.get("sample_id") == sid:
+                        rec_id = record.get("sample_id") or record.get("conversation_id")
+                        if rec_id == sid:
                             existing_records.append(new_trajectory)
                             found = True
                         else:
@@ -630,21 +677,21 @@ async def main_async():
 
     # Filter by sample-id or from-sample/to-sample
     if args.sample_id:
-        scenarios = [s for s in scenarios if (s.get("sample_id") or s.get("id")) == args.sample_id]
+        scenarios = [s for s in scenarios if (s.get("sample_id") or s.get("conversation_id") or s.get("id")) == args.sample_id]
         print(f"🎯 Filtered for single sample: {args.sample_id} ({len(scenarios)} matched)")
     elif args.from_sample or args.to_sample:
         from_idx = 0
         to_idx = len(scenarios)
         if args.from_sample:
             for i, s in enumerate(scenarios):
-                if (s.get("sample_id") or s.get("id")) == args.from_sample:
+                if (s.get("sample_id") or s.get("conversation_id") or s.get("id")) == args.from_sample:
                     from_idx = i
                     break
             else:
                 print(f"⚠️ Sample {args.from_sample} not found in dataset. Starting from beginning.")
         if args.to_sample:
             for i, s in enumerate(scenarios):
-                if (s.get("sample_id") or s.get("id")) == args.to_sample:
+                if (s.get("sample_id") or s.get("conversation_id") or s.get("id")) == args.to_sample:
                     to_idx = i + 1
                     break
             else:
@@ -653,7 +700,7 @@ async def main_async():
         print(f"🎯 Filtered range: {len(scenarios)} scenarios ({args.from_sample or 'start'} -> {args.to_sample or 'end'})")
     elif completed_ids:
         # Automatic resume: only run scenarios not yet in agent_output.jsonl
-        scenarios = [s for s in scenarios if (s.get("sample_id") or s.get("id")) not in completed_ids]
+        scenarios = [s for s in scenarios if (s.get("sample_id") or s.get("conversation_id") or s.get("id")) not in completed_ids]
         print(f"📌 Resuming: Remaining {len(scenarios)} scenarios to execute")
 
     # Apply limit

@@ -75,6 +75,28 @@ def parse_args():
 
 ARGS = parse_args()
 
+DEFAULT_TOOLS = [
+    {
+        "type": "function",
+        "function": {
+            "name": "web_search",
+            "description": "Tìm kiếm thông tin trên web để thu thập dữ liệu và trả lời câu hỏi của người dùng.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "queries": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "description": "Danh sách các từ khóa hoặc câu truy vấn tìm kiếm thông tin trên web."
+                    }
+                },
+                "required": ["queries"]
+            }
+        }
+    }
+]
+
+
 PROMPT_GENERATE_CONVERSATION = """Bạn là chuyên gia xây dựng dữ liệu benchmark cho Agent đàm thoại đa lượt tiếng Việt có sử dụng công cụ tìm kiếm web (web_search).
 
 Nhiệm vụ: Chuyển đổi chuỗi {turn_count} câu hỏi - câu trả lời từ Quora thành một phiên hội thoại đa lượt hoàn chỉnh giữa người dùng và trợ lý ảo:
@@ -566,6 +588,7 @@ async def process_single_conversation_single_pass(
                         "turn_count": len(indices),
                         "source_row_ids": indices,
                         "source_indices": list(range(len(indices))),
+                        "tools": DEFAULT_TOOLS,
                         "messages": messages
                     }
 
@@ -654,6 +677,7 @@ async def process_single_conversation_per_turn(
         "turn_count": len(indices),
         "source_row_ids": indices,
         "source_indices": list(range(len(indices))),
+        "tools": DEFAULT_TOOLS,
         "messages": messages
     }
 
@@ -787,6 +811,7 @@ async def main():
                     "turn_count": c.get("turn_count", len(c.get("messages", [])) // 4),
                     "source_row_ids": c.get("source_row_ids", []),
                     "source_indices": c.get("source_indices", list(range(c.get("turn_count", 4)))),
+                    "tools": c.get("tools") or DEFAULT_TOOLS,
                     "messages": c["messages"]
                 }
                 batch_output_format.append(conv_obj)

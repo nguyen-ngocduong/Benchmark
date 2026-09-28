@@ -1,31 +1,858 @@
 {
   "batch_file": "samples__20260925_123650.json",
-  "model": "gemma-4-31B-it",
-  "evaluation_timestamp": "2026-09-25T15:09:55.256730",
-  "total_scenarios": 16,
+  "model": "gemini-3.5-flash-lite",
+  "judge_model": "gemini-3.5-flash-lite",
+  "evaluation_timestamp": "2026-09-26T10:11:58.357447",
+  "total_scenarios": 17,
   "summary_metrics": {
-    "task_success_rate": 0.562,
+    "task_success_rate": 0.588,
     "tool_decision_accuracy": 1.0,
     "tool_argument_accuracy": 0.938,
     "tool_switching_accuracy": 1.0,
     "missing_tool_call_rate": 0.0,
     "unnecessary_tool_call_rate": 0.0,
-    "context_slot_accuracy": 0.889,
+    "context_slot_accuracy": 0.896,
     "coreference_accuracy": 1.0,
-    "follow_up_understanding": 0.943,
-    "state_tracking_accuracy": 0.889,
+    "follow_up_understanding": 0.946,
+    "state_tracking_accuracy": 0.896,
     "cross_turn_consistency": 1.0,
-    "result_summarization_score": 0.923,
-    "final_answer_quality": 0.846,
-    "grounded_claim_precision": 0.726,
-    "unsupported_claim_rate": 0.274,
+    "result_summarization_score": 0.927,
+    "final_answer_quality": 0.847,
+    "grounded_claim_precision": 0.722,
+    "unsupported_claim_rate": 0.278,
     "contradiction_rate": 0.0,
     "bineval_tool_score": 0.996,
-    "bineval_context_score": 0.981,
-    "bineval_factuality_score": 0.813,
-    "bineval_overall_score": 0.93
+    "bineval_context_score": 0.982,
+    "bineval_factuality_score": 0.808,
+    "bineval_overall_score": 0.929
   },
   "scenarios": [
+    {
+      "sample_id": "sample_001",
+      "turns": [
+        {
+          "turn": 1,
+          "user_message": "Chào bạn, mình lỡ tay xóa mất ghi chú trong ứng dụng Samsung Notes trên điện thoại Galaxy, có cách nào để khôi phục lại không?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 1.0,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "queries": [
+                "khôi phục Samsung Notes đã xóa",
+                "recover deleted Samsung Notes Galaxy"
+              ]
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "trash_bin_check": {
+                "matched": true,
+                "matched_alias": "Thùng rác",
+                "expected_aliases": [
+                  "kiểm tra Thùng rác",
+                  "Thùng rác",
+                  "Trash"
+                ]
+              },
+              "data_recovery_tools": {
+                "matched": true,
+                "matched_alias": "công cụ khôi phục dữ liệu",
+                "expected_aliases": [
+                  "công cụ khôi phục dữ liệu",
+                  "phần mềm chuyên dụng",
+                  "khôi phục dữ liệu trực tuyến"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Bạn hãy kiểm tra mục 'Thùng racer' (Trash) ngay trong ứng dụng Samsung Notes, vì thông thường các ghi chú bị xóa sẽ được lưu tạm ở đó",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ đề cập đến việc kiểm tra Thùng rác (Trash) trong ứng dụng để khôi phục ghi chú hoặc ảnh, nhưng không nói cụ thể là 'trong ứng dụng Samsung Notes' hay các ghi chú được lưu tạm bao lâu."
+              },
+              {
+                "claim": "Trong trường hợp bạn đã xóa sạch thùng rác, bạn có thể cân nhắc sử dụng các công cụ khôi phục dữ liệu trực tuyến hoặc phần mềm chuyên dụng cho Samsung Galaxy để quét và tìm lại các tệp tin bị xóa.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Để khôi phục ghi chú hoặc ảnh đã xóa trên Samsung Galaxy, người dùng có thể kiểm tra Thùng rác (Trash) trong ứng dụng hoặc sử dụng các công cụ khôi phục dữ liệu trực tuyến chuyên dụng nếu dữ liệu đã bị xóa vĩnh viễn.",
+                "reason": "Phát biểu hoàn toàn khớp với nội dung bằng chứng về việc sử dụng các công cụ khôi phục dữ liệu trực tuyến chuyên dụng khi dữ liệu đã bị xóa."
+              }
+            ],
+            "grounded_claim_precision": 0.5,
+            "unsupported_claim_rate": 0.5,
+            "contradiction_rate": 0.0,
+            "total_claims": 2,
+            "supported_claims_count": 1,
+            "unsupported_claims_count": 1,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "YES",
+                    "reason": "Độ chính xác từ khóa query đạt 100%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 50% | Bằng chứng: \"Để khôi phục ghi chú hoặc ảnh đã xóa trên Samsung Galaxy, người dùng có thể kiểm tra Thùng...\""
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 80%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.889
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": null,
+          "final_answer_quality": 0.8
+        },
+        {
+          "turn": 2,
+          "user_message": "Mình đang phân vân giữa OnePlus 6 và Samsung Galaxy S8, theo bạn mình nên mua máy nào?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 1.0,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "queries": [
+                "so sánh OnePlus 6 và Samsung Galaxy S8",
+                "OnePlus 6 vs Samsung Galaxy S8 comparison"
+              ]
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "connectivity": {
+                "matched": true,
+                "matched_alias": "LTE-A Cat16",
+                "expected_aliases": [
+                  "LTE-A Cat16",
+                  "kết nối di động",
+                  "thu sóng"
+                ]
+              },
+              "display_quality": {
+                "matched": true,
+                "matched_alias": "Super AMOLED",
+                "expected_aliases": [
+                  "Super AMOLED",
+                  "độ phân giải 1440 x 2960 pixels",
+                  "màn hình"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Về khả năng thu sóng và kết nối di động, OnePlus 6 và Samsung Galaxy S8 gần như tương đương nhau.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Về kết nối di động, cả hai tương đương với LTE-A Cat16.",
+                "reason": "Bằng chứng khẳng định cả hai tương đương về kết nối di động LTE-A Cat16."
+              },
+              {
+                "claim": "Cả hai máy đều hỗ trợ LTE-A Cat16.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Về kết nối di động, cả hai tương đương với LTE-A Cat16.",
+                "reason": "Bằng chứng nêu rõ cả hai tương đương với LTE-A Cat16."
+              },
+              {
+                "claim": "Samsung Galaxy S8 có màn hình Super AMOLED.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Samsung S8 vượt trội về màn hình với công nghệ Super AMOLED",
+                "reason": "Bằng chứng xác nhận Samsung S8 sử dụng công nghệ màn hình Super AMOLED."
+              },
+              {
+                "claim": "Samsung Galaxy S8 có độ phân giải màn hình 1440 x 2960 pixels.",
+                "label": "SUPPORTED",
+                "evidence_quote": "độ phân giải 1440 x 2960 pixels",
+                "reason": "Bằng chứng nêu rõ độ phân giải màn hình của Samsung S8 là 1440 x 2960 pixels."
+              },
+              {
+                "claim": "Samsung Galaxy S8 có màu sắc rực rỡ mà khó có đối thủ nào cùng tầm thời điểm đó sánh kịp.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ đề cập đến công nghệ màn hình, độ phân giải và mật độ điểm ảnh của Samsung S8, không nhắc đến việc 'màu sắc rực rỡ khó có đối thủ nào cùng tầm thời điểm đó sánh kịp'."
+              },
+              {
+                "claim": "OnePlus 6 thường mạnh hơn về hiệu năng thuần túy và tốc độ vận hành.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng hoàn toàn không đề cập đến hiệu năng thuần túy hay tốc độ vận hành của OnePlus 6."
+              }
+            ],
+            "grounded_claim_precision": 0.667,
+            "unsupported_claim_rate": 0.333,
+            "contradiction_rate": 0.0,
+            "total_claims": 6,
+            "supported_claims_count": 4,
+            "unsupported_claims_count": 2,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "YES",
+                    "reason": "Độ chính xác từ khóa query đạt 100%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 67% | Bằng chứng: \"Về kết nối di động, cả hai tương đương với LTE-A Cat16.\""
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 87%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.889
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 0.867
+        },
+        {
+          "turn": 3,
+          "user_message": "Mình có một chiếc máy tính bảng Samsung Galaxy nhưng không có bút stylus, bạn gợi ý cho mình ứng dụng vẽ phác thảo nào tốt mà không cần bút không?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 1.0,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "queries": [
+                "ứng dụng vẽ cho Samsung tablet không dùng bút",
+                "best sketching apps for Samsung tablet without stylus"
+              ]
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "sketchbook_app": {
+                "matched": true,
+                "matched_alias": "SketchBook",
+                "expected_aliases": [
+                  "SketchBook",
+                  "Autodesk SketchBook"
+                ]
+              },
+              "illustrator_draw_app": {
+                "matched": true,
+                "matched_alias": "Adobe Illustrator Draw",
+                "expected_aliases": [
+                  "Adobe Illustrator Draw",
+                  "Illustrator Draw"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "coreference_accuracy": null,
+            "has_coreference": false
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "SketchBook cung cấp bộ công cụ đa dạng từ cọ vẽ, bút chì đến bút marker",
+                "label": "SUPPORTED",
+                "evidence_quote": "SketchBook cung cấp đa dạng cọ vẽ, bút chì, marker",
+                "reason": "Bằng chứng trong đoạn về ứng dụng vẽ trên Android xác nhận SketchBook có cung cấp đa dạng cọ vẽ, bút chì, marker."
+              },
+              {
+                "claim": "SketchBook cho phép người dùng nhập hình ảnh từ bên ngoài để vẽ đè lên làm mẫu",
+                "label": "SUPPORTED",
+                "evidence_quote": "cho phép nhập ảnh làm mẫu.",
+                "reason": "Bằng chứng nêu rõ ứng dụng cho phép nhập ảnh làm mẫu, tương ứng với phát biểu."
+              },
+              {
+                "claim": "Adobe Illustrator Draw tập trung vào việc tạo ra các bản vẽ vector",
+                "label": "SUPPORTED",
+                "evidence_quote": "Adobe Illustrator Draw tập trung vào vẽ vector",
+                "reason": "Bằng chứng xác nhận Adobe Illustrator Draw tập trung vào vẽ vector."
+              },
+              {
+                "claim": "Adobe Illustrator Draw phù hợp cho việc tạo hình đồ họa chính xác",
+                "label": "SUPPORTED",
+                "evidence_quote": "phù hợp cho việc tạo hình đồ họa chính xác.",
+                "reason": "Bằng chứng khẳng định ứng dụng phù hợp cho việc tạo hình đồ họa chính xác."
+              },
+              {
+                "claim": "Hoàn toàn có thể vẽ đẹp trên máy tính bảng Samsung ngay cả khi không có bút stylus",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ liệt kê tên ứng dụng và tính năng của chúng, không đề cập đến việc máy tính bảng Samsung có vẽ đẹp hay không khi không có bút stylus."
+              }
+            ],
+            "grounded_claim_precision": 0.8,
+            "unsupported_claim_rate": 0.2,
+            "contradiction_rate": 0.0,
+            "total_claims": 5,
+            "supported_claims_count": 4,
+            "unsupported_claims_count": 1,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "YES",
+                    "reason": "Độ chính xác từ khóa query đạt 100%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "YES",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 80% | Bằng chứng: \"SketchBook cung cấp đa dạng cọ vẽ, bút chì, marker\""
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 92%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 1.0
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 0.92
+        },
+        {
+          "turn": 4,
+          "user_message": "Chiếc Samsung Galaxy S20 Ultra của mình có chống nước không? Mình có thể mang máy vào phòng tắm khi tắm không?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 0.6666666666666666,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "queries": [
+                "Samsung Galaxy S20 Ultra waterproof IP68",
+                "can I shower with S20 Ultra"
+              ]
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "water_resistance_standard": {
+                "matched": true,
+                "matched_alias": "IP68",
+                "expected_aliases": [
+                  "IP68",
+                  "kháng nước IP68"
+                ]
+              },
+              "shower_recommendation": {
+                "matched": true,
+                "matched_alias": "không khuyến khích",
+                "expected_aliases": [
+                  "không khuyến khích",
+                  "không nên mang vào phòng tắm",
+                  "để máy bên ngoài"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "mình",
+            "expected_target": [
+              "Samsung Galaxy S20 Ultra"
+            ],
+            "matched_target": "samsung galaxy s20 ultra",
+            "resolution_mode": "explicit_mention",
+            "context_grounded": false,
+            "coreference_accuracy": 1.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Samsung Galaxy S20 Ultra có chuẩn kháng nước IP68.",
+                "label": "SUPPORTED",
+                "evidence_quote": "S20 Ultra đạt chuẩn IP68, có thể chịu được nước ở độ sâu 1.5m trong 30 phút.",
+                "reason": "Bằng chứng xác nhận S20 Ultra đạt chuẩn IP68."
+              },
+              {
+                "claim": "Máy có thể chịu được việc ngâm trong nước ngọt ở độ sâu 1.5m trong khoảng 30 phút.",
+                "label": "SUPPORTED",
+                "evidence_quote": "có thể chịu được nước ở độ sâu 1.5m trong 30 phút.",
+                "reason": "Bằng chứng nêu rõ thông số thời gian và độ sâu này."
+              },
+              {
+                "claim": "Chuẩn IP68 chủ yếu để bảo vệ máy khi vô tình bị đổ nước hoặc rơi xuống nước.",
+                "label": "SUPPORTED",
+                "evidence_quote": "chuẩn này chủ yếu bảo vệ máy trước các tai nạn như đổ nước",
+                "reason": "Bằng chứng khẳng định chuẩn này chủ yếu bảo vệ trước các tai nạn như đổ nước."
+              },
+              {
+                "claim": "Không khuyến khích mang máy vào phòng tắm khi tắm.",
+                "label": "SUPPORTED",
+                "evidence_quote": "không khuyến khích tiếp xúc thường xuyên với xà phòng hoặc áp lực nước mạnh.",
+                "reason": "Bằng chứng khuyến cáo không nên tiếp xúc với áp lực nước mạnh và xà phòng (có trong phòng tắm)."
+              },
+              {
+                "claim": "Áp lực nước từ vòi sen và các hóa chất trong xà phòng, sữa tắm có thể làm mòn lớp gioăng cao su chống nước, dẫn đến rò rỉ.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ đề cập không khuyến khích tiếp xúc với xà phòng hoặc áp lực nước mạnh, không nhắc đến việc 'làm mòn lớp gioăng cao su chống nước dẫn đến rò rỉ'."
+              },
+              {
+                "claim": "Nếu bạn vẫn muốn mang theo, hãy đảm bảo các cổng kết nối được che chắn kỹ, nhưng an toàn nhất vẫn là để máy bên ngoài.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng không đề cập đến việc che chắn các cổng kết nối hay lời khuyên để máy bên ngoài."
+              }
+            ],
+            "grounded_claim_precision": 0.667,
+            "unsupported_claim_rate": 0.333,
+            "contradiction_rate": 0.0,
+            "total_claims": 6,
+            "supported_claims_count": 4,
+            "unsupported_claims_count": 2,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "YES",
+                    "reason": "Độ chính xác từ khóa query đạt 67%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "YES",
+                    "reason": "Bắt đúng đối tượng 'samsung galaxy s20 ultra'"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 67% | Bằng chứng: \"S20 Ultra đạt chuẩn IP68, có thể chịu được nước ở độ sâu 1.5m trong 30 phút.\""
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 87%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.889
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 0.867
+        },
+        {
+          "turn": 5,
+          "user_message": "Cuối cùng, mình có một chiếc Samsung J7 cũ và dạo này nó sạc rất chập chờn, làm sao để khắc phục lỗi sạc này nhỉ?",
+          "tool_evaluation": {
+            "actual_called_tool": true,
+            "should_call_tool": true,
+            "tool_decision_accuracy": 1.0,
+            "missing_tool_call": false,
+            "unnecessary_tool_call": false,
+            "tool_name_accuracy": 1.0,
+            "tool_argument_accuracy": 1.0,
+            "actual_tool_name": "web_search",
+            "actual_args": {
+              "queries": [
+                "sửa lỗi sạc Samsung Galaxy J7",
+                "Samsung J7 charging problem solution"
+              ]
+            }
+          },
+          "slot_evaluation": {
+            "context_slot_accuracy": 1.0,
+            "slots_evaluated": {
+              "cleaning_port": {
+                "matched": true,
+                "matched_alias": "vệ sinh cổng sạc",
+                "expected_aliases": [
+                  "vệ sinh cổng sạc",
+                  "bàn chải mềm",
+                  "loại bỏ bụi bẩn"
+                ]
+              },
+              "system_maintenance": {
+                "matched": true,
+                "matched_alias": "khởi động lại máy",
+                "expected_aliases": [
+                  "khởi động lại máy",
+                  "dung lượng bộ nhớ",
+                  "dưới 80%"
+                ]
+              }
+            },
+            "total_required_slots": 2,
+            "matched_slots_count": 2
+          },
+          "coreference_evaluation": {
+            "has_coreference": true,
+            "referent_phrase": "nó",
+            "expected_target": [
+              "Samsung J7",
+              "Samsung Galaxy J7"
+            ],
+            "matched_target": "samsung j7",
+            "resolution_mode": "explicit_mention",
+            "context_grounded": false,
+            "coreference_accuracy": 1.0
+          },
+          "claim_evaluation": {
+            "claims": [
+              {
+                "claim": "Đối với dòng Samsung J7, lỗi sạc chập chờn thường đến từ hai nguyên nhân: phần cứng (cổng sạc) và phần mềm (quá tải).",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ hướng dẫn cách khắc phục lỗi sạc pin trên dòng Samsung J series (vệ sinh cổng sạc, khởi động lại, giữ bộ nhớ trống dưới 80%) nhưng không nêu cụ thể nguyên nhân gây lỗi là do phần cứng hay phần mềm."
+              },
+              {
+                "claim": "Vệ sinh cổng sạc bằng một chiếc bàn chải đánh răng mềm, khô để nhẹ nhàng làm sạch bụi bẩn trong cổng sạc.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Vệ sinh cổng sạc bằng bàn chải mềm để loại bỏ bụi bẩn.",
+                "reason": "Bằng chứng xác nhận việc vệ sinh cổng sạc bằng bàn chải mềm để loại bỏ bụi bẩn."
+              },
+              {
+                "claim": "Đừng để bộ nhớ máy quá đầy, hãy giữ mức sử dụng dưới 80%.",
+                "label": "SUPPORTED",
+                "evidence_quote": "giữ dung lượng bộ nhớ trống dưới 80% để giảm tải cho hệ thống, tránh gây nóng máy và hao pin.",
+                "reason": "Bằng chứng khẳng định cần giữ dung lượng bộ nhớ trống dưới 80% để giảm tải hệ thống."
+              },
+              {
+                "claim": "Khi bộ nhớ quá tải, máy phải hoạt động liên tục, gây nóng và ảnh hưởng đến hiệu suất sạc/xả pin.",
+                "label": "SUPPORTED",
+                "evidence_quote": "giữ dung lượng bộ nhớ trống dưới 80% để giảm tải cho hệ thống, tránh gây nóng máy và hao pin.",
+                "reason": "Bằng chứng nêu rõ việc giữ dung lượng bộ nhớ nhằm tránh gây nóng máy và hao pin, tương đương với ý ảnh hưởng đến hiệu suất sạc."
+              },
+              {
+                "claim": "Bạn nên khởi động lại máy ít nhất một lần mỗi tuần để làm tươi hệ thống.",
+                "label": "SUPPORTED",
+                "evidence_quote": "Khởi động lại máy hàng tuần và giữ dung lượng bộ nhớ trống dưới 80%...",
+                "reason": "Bằng chứng xác nhận việc khởi động lại máy hàng tuần."
+              },
+              {
+                "claim": "Khởi động lại máy giúp pin và quy trình sạc vận hành ổn định hơn.",
+                "label": "UNSUPPORTED",
+                "evidence_quote": "",
+                "reason": "Bằng chứng chỉ nói cần khởi động lại máy hàng tuần và giữ bộ nhớ trống dưới 80% để giảm tải hệ thống, tránh gây nóng máy và hao pin, không nói trực tiếp rằng việc này giúp quy trình sạc vận hành ổn định hơn."
+              }
+            ],
+            "grounded_claim_precision": 0.667,
+            "unsupported_claim_rate": 0.333,
+            "contradiction_rate": 0.0,
+            "total_claims": 6,
+            "supported_claims_count": 4,
+            "unsupported_claims_count": 2,
+            "contradicted_claims_count": 0
+          },
+          "bineval_evaluation": {
+            "aspects": {
+              "tool_proficiency": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "tool_decision_pass",
+                    "question": "Quyết định gọi tool (hoặc trả lời trực tiếp) có chính xác theo yêu cầu ngữ cảnh không?",
+                    "verdict": "YES",
+                    "reason": "Quyết định gọi tool trùng khớp với Ground Truth"
+                  },
+                  {
+                    "id": "tool_query_pass",
+                    "question": "Tham số gọi tool (query) có chứa các từ khóa trọng tâm cần thiết không?",
+                    "verdict": "YES",
+                    "reason": "Độ chính xác từ khóa query đạt 100%"
+                  },
+                  {
+                    "id": "tool_efficiency_pass",
+                    "question": "Agent có tránh được việc gọi lặp hoặc gọi công cụ dư thừa không?",
+                    "verdict": "YES",
+                    "reason": "Hành động gọi tool tinh gọn, không dư thừa"
+                  }
+                ]
+              },
+              "context_continuity": {
+                "score": 1.0,
+                "questions": [
+                  {
+                    "id": "coreference_pass",
+                    "question": "Agent có giải quyết đúng thực thể được ám chỉ bởi đại từ/từ thay thế không?",
+                    "verdict": "YES",
+                    "reason": "Bắt đúng đối tượng 'samsung j7'"
+                  },
+                  {
+                    "id": "slot_coverage_pass",
+                    "question": "Câu trả lời có bao phủ các thông tin/thực thể then chốt của câu hỏi không?",
+                    "verdict": "YES",
+                    "reason": "Độ bao phủ thực thể đạt 100% (2/2 slots)"
+                  }
+                ]
+              },
+              "factuality_quality": {
+                "score": 0.667,
+                "questions": [
+                  {
+                    "id": "grounding_pass",
+                    "question": "Phần lớn các dữ kiện trong câu trả lời có căn cứ xác thực từ tài liệu không?",
+                    "verdict": "NO",
+                    "reason": "Tỷ lệ luận điểm có bằng chứng đạt 67% | Bằng chứng: \"Vệ sinh cổng sạc bằng bàn chải mềm để loại bỏ bụi bẩn.\""
+                  },
+                  {
+                    "id": "no_contradiction_pass",
+                    "question": "Câu trả lời có hoàn toàn không chứa phát biểu nào mâu thuẫn/sai lệch với bằng chứng không?",
+                    "verdict": "YES",
+                    "reason": "Hoàn toàn không có phát biểu mâu thuẫn"
+                  },
+                  {
+                    "id": "completeness_pass",
+                    "question": "Câu trả lời có giải quyết trọn vẹn yêu cầu của người dùng một cách mạch lạc không?",
+                    "verdict": "YES",
+                    "reason": "Chất lượng câu trả lời tổng thể đạt 87%"
+                  }
+                ]
+              }
+            },
+            "turn_score": 0.889
+          },
+          "result_summarization_score": 1.0,
+          "follow_up_understanding": 1.0,
+          "final_answer_quality": 0.867
+        }
+      ],
+      "conversation_metrics": {
+        "task_success": 1.0,
+        "tool_decision_accuracy": 1.0,
+        "tool_argument_accuracy": 0.933,
+        "tool_switching_accuracy": 1.0,
+        "missing_tool_call_rate": 0.0,
+        "unnecessary_tool_call_rate": 0.0,
+        "context_slot_accuracy": 1.0,
+        "coreference_accuracy": 1.0,
+        "follow_up_understanding": 1.0,
+        "state_tracking_accuracy": 1.0,
+        "cross_turn_consistency": 1.0,
+        "result_summarization_score": 1.0,
+        "final_answer_quality": 0.864,
+        "grounded_claim_precision": 0.66,
+        "unsupported_claim_rate": 0.34,
+        "contradiction_rate": 0.0,
+        "bineval_tool_score": 1.0,
+        "bineval_context_score": 1.0,
+        "bineval_factuality_score": 0.734,
+        "bineval_overall_score": 0.911
+      }
+    },
     {
       "sample_id": "conversation_0001",
       "turns": [
